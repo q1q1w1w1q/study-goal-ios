@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="MyriadPro-Regular.otf">
+            <string>MyriadPro-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SingleBarView" customModule="Jisc" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sSw-cc-10m">
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="84" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EnW-GA-8KP">
+                            <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="13"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="taL-tt-qag">
+                            <color key="backgroundColor" red="0.43348214285714287" green="0.19076450892857144" blue="0.64734933035714282" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="14" id="BWs-qE-kaF"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="taL-tt-qag" firstAttribute="top" secondItem="EnW-GA-8KP" secondAttribute="bottom" id="3c1-4a-rsc"/>
+                        <constraint firstItem="EnW-GA-8KP" firstAttribute="leading" secondItem="sSw-cc-10m" secondAttribute="leading" id="3rn-Oy-uzY"/>
+                        <constraint firstItem="taL-tt-qag" firstAttribute="centerX" secondItem="sSw-cc-10m" secondAttribute="centerX" id="U1B-wv-XxA"/>
+                        <constraint firstAttribute="trailing" secondItem="EnW-GA-8KP" secondAttribute="trailing" id="X2J-sL-WON"/>
+                        <constraint firstAttribute="bottom" secondItem="taL-tt-qag" secondAttribute="bottom" id="wJn-Nr-xO6"/>
+                        <constraint firstItem="taL-tt-qag" firstAttribute="height" secondItem="sSw-cc-10m" secondAttribute="height" priority="250" id="yWT-Q1-2yY"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="sSw-cc-10m" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="8jE-e9-tBs"/>
+                <constraint firstAttribute="bottom" secondItem="sSw-cc-10m" secondAttribute="bottom" id="9ON-3P-vPW"/>
+                <constraint firstItem="sSw-cc-10m" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="1:1.1" id="k4k-mw-YBS"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="barSuperview" destination="sSw-cc-10m" id="0MG-ty-nLc"/>
+                <outlet property="barView" destination="taL-tt-qag" id="g8Q-ag-gXi"/>
+                <outlet property="valueLabel" destination="EnW-GA-8KP" id="Qe2-qR-2SI"/>
+            </connections>
+            <point key="canvasLocation" x="-77" y="53"/>
+        </view>
+    </objects>
+</document>

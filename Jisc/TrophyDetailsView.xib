@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="MyriadPro-Regular.otf">
+            <string>MyriadPro-Regular</string>
+        </array>
+        <array key="StagSans-Book-App.ttf">
+            <string>StagSansApp-Book</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TrophyDetailsView" customModule="Jisc" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i5l-ye-uRf">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zFj-Hy-muB">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lightBlue" translatesAutoresizingMaskIntoConstraints="NO" id="EY7-aO-7Uj">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trophy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xE5-3E-vyi">
+                                    <rect key="frame" x="153.5" y="30" width="68" height="22"/>
+                                    <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="22"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="xE5-3E-vyi" firstAttribute="centerX" secondItem="zFj-Hy-muB" secondAttribute="centerX" id="4BW-Wf-EAk"/>
+                                <constraint firstItem="xE5-3E-vyi" firstAttribute="centerY" secondItem="zFj-Hy-muB" secondAttribute="centerY" constant="5" id="B4G-Yh-68d"/>
+                                <constraint firstAttribute="width" secondItem="zFj-Hy-muB" secondAttribute="height" multiplier="325:42" id="CeQ-Y6-tqi"/>
+                                <constraint firstAttribute="trailing" secondItem="EY7-aO-7Uj" secondAttribute="trailing" id="JqT-WY-min"/>
+                                <constraint firstAttribute="bottom" secondItem="EY7-aO-7Uj" secondAttribute="bottom" id="Xfg-al-xM7"/>
+                                <constraint firstItem="EY7-aO-7Uj" firstAttribute="leading" secondItem="zFj-Hy-muB" secondAttribute="leading" id="Xu9-WN-kjR"/>
+                                <constraint firstAttribute="width" secondItem="zFj-Hy-muB" secondAttribute="height" multiplier="135:26" id="kGC-s4-Zgt"/>
+                                <constraint firstAttribute="height" constant="72" id="l0E-in-Q1F"/>
+                                <constraint firstItem="EY7-aO-7Uj" firstAttribute="top" secondItem="zFj-Hy-muB" secondAttribute="top" id="tKt-vr-r3C"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="CeQ-Y6-tqi"/>
+                                    <exclude reference="kGC-s4-Zgt"/>
+                                </mask>
+                            </variation>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BEJ-cQ-pLI">
+                            <rect key="frame" x="164.5" y="92" width="46" height="20"/>
+                            <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="20"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uMp-ty-Iye">
+                            <rect key="frame" x="93.5" y="132" width="188" height="188"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4rg-DB-ox6">
+                                    <rect key="frame" x="22" y="22" width="144" height="144"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="self.layer.masksToBounds" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="self.layer.cornerRadius">
+                                            <integer key="value" value="72"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="4rg-DB-ox6" firstAttribute="top" secondItem="uMp-ty-Iye" secondAttribute="top" constant="22" id="L0N-aC-XXM"/>
+                                <constraint firstAttribute="height" constant="188" id="Tkw-eA-F3W"/>
+                                <constraint firstAttribute="width" constant="188" id="TmN-j4-cWS"/>
+                                <constraint firstAttribute="bottom" secondItem="4rg-DB-ox6" secondAttribute="bottom" constant="22" id="XBZ-yM-4Xk"/>
+                                <constraint firstItem="4rg-DB-ox6" firstAttribute="leading" secondItem="uMp-ty-Iye" secondAttribute="leading" constant="22" id="aKX-PP-x8e"/>
+                                <constraint firstAttribute="trailing" secondItem="4rg-DB-ox6" secondAttribute="trailing" constant="22" id="rcV-fp-7r9"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="self.layer.masksToBounds" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="self.layer.cornerRadius">
+                                    <integer key="value" value="94"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOd-1J-TkV">
+                            <rect key="frame" x="45" y="340" width="285" height="20"/>
+                            <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="20"/>
+                            <color key="textColor" red="0.53333333329999999" green="0.38823529410000002" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VoH-xr-Bb0">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <connections>
+                                <action selector="closeTrophyDetails:" destination="iN0-l3-epB" eventType="touchUpInside" id="0ZV-tp-uHA"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="zFj-Hy-muB" secondAttribute="trailing" id="4b9-2w-EdD"/>
+                        <constraint firstAttribute="bottom" secondItem="VoH-xr-Bb0" secondAttribute="bottom" id="MYC-10-HcM"/>
+                        <constraint firstItem="zFj-Hy-muB" firstAttribute="leading" secondItem="i5l-ye-uRf" secondAttribute="leading" id="P4W-NO-abW"/>
+                        <constraint firstItem="mOd-1J-TkV" firstAttribute="top" secondItem="uMp-ty-Iye" secondAttribute="bottom" constant="20" id="RhR-Zs-hQm"/>
+                        <constraint firstItem="uMp-ty-Iye" firstAttribute="centerX" secondItem="i5l-ye-uRf" secondAttribute="centerX" id="TZp-pD-GH0"/>
+                        <constraint firstAttribute="trailing" secondItem="VoH-xr-Bb0" secondAttribute="trailing" id="Tyg-yc-e4P"/>
+                        <constraint firstAttribute="trailing" secondItem="mOd-1J-TkV" secondAttribute="trailing" constant="45" id="UMi-IR-DTP"/>
+                        <constraint firstItem="VoH-xr-Bb0" firstAttribute="leading" secondItem="i5l-ye-uRf" secondAttribute="leading" id="WgW-GF-l5H"/>
+                        <constraint firstItem="VoH-xr-Bb0" firstAttribute="top" secondItem="i5l-ye-uRf" secondAttribute="top" id="ZkC-4G-rxD"/>
+                        <constraint firstItem="uMp-ty-Iye" firstAttribute="top" secondItem="BEJ-cQ-pLI" secondAttribute="bottom" constant="20" id="ao8-3h-7Ux"/>
+                        <constraint firstItem="BEJ-cQ-pLI" firstAttribute="centerX" secondItem="i5l-ye-uRf" secondAttribute="centerX" id="d8f-ms-Lfl"/>
+                        <constraint firstItem="mOd-1J-TkV" firstAttribute="leading" secondItem="i5l-ye-uRf" secondAttribute="leading" constant="45" id="g6z-bX-drl"/>
+                        <constraint firstItem="BEJ-cQ-pLI" firstAttribute="top" secondItem="zFj-Hy-muB" secondAttribute="bottom" constant="20" id="m3a-rv-PUg"/>
+                        <constraint firstItem="zFj-Hy-muB" firstAttribute="top" secondItem="i5l-ye-uRf" secondAttribute="top" id="wRV-NK-oJ9"/>
+                        <constraint firstItem="zFj-Hy-muB" firstAttribute="width" secondItem="zFj-Hy-muB" secondAttribute="height" multiplier="135:22" id="yhj-73-LvY"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="yhj-73-LvY"/>
+                        </mask>
+                    </variation>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="i5l-ye-uRf" secondAttribute="trailing" id="2iS-Qq-IKr"/>
+                <constraint firstItem="i5l-ye-uRf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="VSi-s6-deU"/>
+                <constraint firstAttribute="bottom" secondItem="i5l-ye-uRf" secondAttribute="bottom" id="iSz-jQ-2Pm"/>
+                <constraint firstItem="i5l-ye-uRf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qRv-Hy-NNE"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <connections>
+                <outlet property="trophyImage" destination="4rg-DB-ox6" id="95Y-8b-PWD"/>
+                <outlet property="trophyImageContainer" destination="uMp-ty-Iye" id="GT7-kp-Srs"/>
+                <outlet property="trophyNameLabel" destination="xE5-3E-vyi" id="f3I-fP-b5l"/>
+                <outlet property="trophyReasonLabel" destination="mOd-1J-TkV" id="fRy-Cy-chy"/>
+                <outlet property="trophyTypeLabel" destination="BEJ-cQ-pLI" id="EBT-lv-ajS"/>
+            </connections>
+            <point key="canvasLocation" x="267" y="206"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="lightBlue" width="10" height="10"/>
+    </resources>
+</document>

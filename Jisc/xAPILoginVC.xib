@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="xAPILoginVC" customModule="Jisc" customModuleProvider="target">
+            <connections>
+                <outlet property="loginWebView" destination="fuw-tR-Uu2" id="YEE-tY-pTq"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ez-Zs-JAk">
+                    <rect key="frame" x="20" y="10" width="39" height="30"/>
+                    <state key="normal" title="Close"/>
+                    <connections>
+                        <action selector="close:" destination="-1" eventType="touchUpInside" id="5qE-y1-qlS"/>
+                    </connections>
+                </button>
+                <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fuw-tR-Uu2">
+                    <rect key="frame" x="0.0" y="50" width="600" height="550"/>
+                    <color key="backgroundColor" red="0.28958413004875183" green="0.31462949514389038" blue="0.32950475811958313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="W15-El-lrc"/>
+                    </connections>
+                </webView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fuw-tR-Uu2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="BIP-id-aNU"/>
+                <constraint firstAttribute="bottom" secondItem="fuw-tR-Uu2" secondAttribute="bottom" id="HF5-B9-iQ0"/>
+                <constraint firstAttribute="trailing" secondItem="fuw-tR-Uu2" secondAttribute="trailing" id="U7a-n8-Wyg"/>
+                <constraint firstItem="8ez-Zs-JAk" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="a9V-0X-Fab"/>
+                <constraint firstItem="fuw-tR-Uu2" firstAttribute="top" secondItem="8ez-Zs-JAk" secondAttribute="bottom" constant="10" id="lZo-Jn-Hz8"/>
+                <constraint firstItem="8ez-Zs-JAk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="mg0-4P-CnV"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

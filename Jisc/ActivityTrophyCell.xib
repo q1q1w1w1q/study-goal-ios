@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="MyriadPro-Regular.otf">
+            <string>MyriadPro-Regular</string>
+            <string>MyriadPro-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ActivityTrophyCellIdentifier" id="KGk-i7-Jjw" customClass="ActivityTrophyCell" customModule="Jisc" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="112"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="111"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mh5-1D-zRi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="111"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5A2-pN-1We">
+                                <rect key="frame" x="20" y="10" width="91" height="91"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="5A2-pN-1We" secondAttribute="height" multiplier="1:1" id="ipP-qW-wxt"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w6c-CN-RK2">
+                                <rect key="frame" x="131" y="20" width="234" height="18"/>
+                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="18"/>
+                                <color key="textColor" red="0.53333333329999999" green="0.38823529410000002" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Trophy awarding explanation" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qjD-Ee-AZM">
+                                <rect key="frame" x="131" y="46" width="234" height="15"/>
+                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o2Q-2o-8sh">
+                                <rect key="frame" x="0.0" y="110" width="375" height="1"/>
+                                <color key="backgroundColor" red="0.83529411764705885" green="0.83529411764705885" blue="0.83529411764705885" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="1ck-SP-RVj"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="w6c-CN-RK2" firstAttribute="top" secondItem="Mh5-1D-zRi" secondAttribute="top" constant="20" id="3HW-7O-Txu"/>
+                            <constraint firstItem="5A2-pN-1We" firstAttribute="leading" secondItem="Mh5-1D-zRi" secondAttribute="leading" constant="20" id="6f3-Qy-adB"/>
+                            <constraint firstItem="qjD-Ee-AZM" firstAttribute="top" secondItem="w6c-CN-RK2" secondAttribute="bottom" constant="8" id="8At-cL-lXd"/>
+                            <constraint firstItem="w6c-CN-RK2" firstAttribute="leading" secondItem="5A2-pN-1We" secondAttribute="trailing" constant="20" id="AWK-7l-ucX"/>
+                            <constraint firstItem="o2Q-2o-8sh" firstAttribute="leading" secondItem="Mh5-1D-zRi" secondAttribute="leading" id="CYt-jD-qdX"/>
+                            <constraint firstAttribute="bottom" secondItem="o2Q-2o-8sh" secondAttribute="bottom" id="Qw0-S2-yw6"/>
+                            <constraint firstAttribute="trailing" secondItem="o2Q-2o-8sh" secondAttribute="trailing" id="WBu-wb-Tkl"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="qjD-Ee-AZM" secondAttribute="bottom" constant="20" id="YMI-gZ-gYC"/>
+                            <constraint firstAttribute="trailing" secondItem="w6c-CN-RK2" secondAttribute="trailing" constant="10" id="ZNN-c0-rkk"/>
+                            <constraint firstItem="5A2-pN-1We" firstAttribute="top" secondItem="Mh5-1D-zRi" secondAttribute="top" constant="10" id="aYf-eo-2iN"/>
+                            <constraint firstAttribute="trailing" secondItem="qjD-Ee-AZM" secondAttribute="trailing" constant="10" id="coZ-uX-Mih"/>
+                            <constraint firstItem="5A2-pN-1We" firstAttribute="width" secondItem="Mh5-1D-zRi" secondAttribute="height" multiplier="1:1" id="h5j-Qr-ZSe"/>
+                            <constraint firstAttribute="bottom" secondItem="5A2-pN-1We" secondAttribute="bottom" constant="10" id="rXY-LB-d4t"/>
+                            <constraint firstItem="qjD-Ee-AZM" firstAttribute="leading" secondItem="w6c-CN-RK2" secondAttribute="leading" id="x0I-Nk-qpV"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="h5j-Qr-ZSe"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="Mh5-1D-zRi" secondAttribute="trailing" id="457-0v-bkr"/>
+                    <constraint firstAttribute="bottom" secondItem="Mh5-1D-zRi" secondAttribute="bottom" id="OMm-1t-lSw"/>
+                    <constraint firstItem="Mh5-1D-zRi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="UV4-Ma-ACq"/>
+                    <constraint firstItem="Mh5-1D-zRi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="kJG-0z-LP5"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="explanationLabel" destination="qjD-Ee-AZM" id="s3Q-nF-aeJ"/>
+                <outlet property="titleLabel" destination="w6c-CN-RK2" id="3MK-jy-k4s"/>
+                <outlet property="trophyImage" destination="5A2-pN-1We" id="for-W5-7pZ"/>
+            </connections>
+            <point key="canvasLocation" x="400" y="338"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Automatic">
+    <entity name="Activity" representedClassName=".Activity" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="past" attributeType="String" syncable="YES"/>
+        <attribute name="present" attributeType="String" syncable="YES"/>
+        <relationship name="activityLogs" toMany="YES" deletionRule="Nullify" destinationEntity="ActivityLog" inverseName="activity" inverseEntity="ActivityLog" syncable="YES"/>
+        <relationship name="activityTypes" toMany="YES" deletionRule="Nullify" destinationEntity="ActivityType" inverseName="activities" inverseEntity="ActivityType" syncable="YES"/>
+        <relationship name="targets" toMany="YES" deletionRule="Nullify" destinationEntity="Target" inverseName="activity" inverseEntity="Target" syncable="YES"/>
+    </entity>
+    <entity name="ActivityLog" representedClassName=".ActivityLog" syncable="YES">
+        <attribute name="createdDate" attributeType="Date" syncable="YES"/>
+        <attribute name="date" attributeType="Date" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="isPaused" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isRunning" attributeType="Boolean" syncable="YES"/>
+        <attribute name="modifiedDate" attributeType="Date" syncable="YES"/>
+        <attribute name="note" attributeType="String" syncable="YES"/>
+        <attribute name="pauseDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="timeSpent" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="activity" maxCount="1" deletionRule="Nullify" destinationEntity="Activity" inverseName="activityLogs" inverseEntity="Activity" syncable="YES"/>
+        <relationship name="activityType" maxCount="1" deletionRule="Nullify" destinationEntity="ActivityType" inverseName="activityLogs" inverseEntity="ActivityType" syncable="YES"/>
+        <relationship name="module" maxCount="1" deletionRule="Nullify" destinationEntity="Module" inverseName="activityLogs" inverseEntity="Module" syncable="YES"/>
+        <relationship name="student" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="activityLogs" inverseEntity="Student" syncable="YES"/>
+    </entity>
+    <entity name="ActivityType" representedClassName=".ActivityType" syncable="YES">
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="activities" toMany="YES" deletionRule="Nullify" destinationEntity="Activity" inverseName="activityTypes" inverseEntity="Activity" syncable="YES"/>
+        <relationship name="activityLogs" toMany="YES" deletionRule="Nullify" destinationEntity="ActivityLog" inverseName="activityType" inverseEntity="ActivityLog" syncable="YES"/>
+        <relationship name="targets" toMany="YES" deletionRule="Nullify" destinationEntity="Target" inverseName="activityType" inverseEntity="Target" syncable="YES"/>
+    </entity>
+    <entity name="Colleague" representedClassName=".Colleague" syncable="YES">
+        <attribute name="accommodationCode" attributeType="String" syncable="YES"/>
+        <attribute name="addressLine1" attributeType="String" syncable="YES"/>
+        <attribute name="addressLine2" attributeType="String" syncable="YES"/>
+        <attribute name="addressLine3" attributeType="String" syncable="YES"/>
+        <attribute name="addressLine4" attributeType="String" syncable="YES"/>
+        <attribute name="age" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="countryCode" attributeType="String" syncable="YES"/>
+        <attribute name="disabilityCode" attributeType="String" syncable="YES"/>
+        <attribute name="dob" attributeType="Date" syncable="YES"/>
+        <attribute name="email" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" attributeType="String" syncable="YES"/>
+        <attribute name="homePhone" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" attributeType="String" syncable="YES"/>
+        <attribute name="learningDifficultyCode" attributeType="String" syncable="YES"/>
+        <attribute name="mobilePhone" attributeType="String" syncable="YES"/>
+        <attribute name="overseasCode" attributeType="String" syncable="YES"/>
+        <attribute name="parentsQualification" attributeType="String" syncable="YES"/>
+        <attribute name="password" attributeType="String" syncable="YES"/>
+        <attribute name="photo" attributeType="String" syncable="YES"/>
+        <attribute name="postalCode" attributeType="String" syncable="YES"/>
+        <attribute name="raceCode" attributeType="String" syncable="YES"/>
+        <attribute name="sexCode" attributeType="String" syncable="YES"/>
+        <relationship name="inTheSameCourseWith" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="studentsInTheSameCourse" inverseEntity="Student" syncable="YES"/>
+    </entity>
+    <entity name="Feed" representedClassName=".Feed" syncable="YES">
+        <attribute name="createdDate" attributeType="Date" syncable="YES"/>
+        <attribute name="from" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="isHidden" attributeType="Boolean" syncable="YES"/>
+        <attribute name="message" attributeType="String" syncable="YES"/>
+        <attribute name="to" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Friend" representedClassName=".Friend" syncable="YES">
+        <attribute name="accommodationCode" attributeType="String" syncable="YES"/>
+        <attribute name="addressLine1" attributeType="String" syncable="YES"/>
+        <attribute name="addressLine2" attributeType="String" syncable="YES"/>
+        <attribute name="addressLine3" attributeType="String" syncable="YES"/>
+        <attribute name="addressLine4" attributeType="String" syncable="YES"/>
+        <attribute name="age" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="countryCode" attributeType="String" syncable="YES"/>
+        <attribute name="disabilityCode" attributeType="String" syncable="YES"/>
+        <attribute name="dob" attributeType="Date" syncable="YES"/>
+        <attribute name="email" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" attributeType="String" syncable="YES"/>
+        <attribute name="hidden" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="homePhone" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" attributeType="String" syncable="YES"/>
+        <attribute name="learningDifficultyCode" attributeType="String" syncable="YES"/>
+        <attribute name="mobilePhone" attributeType="String" syncable="YES"/>
+        <attribute name="overseasCode" attributeType="String" syncable="YES"/>
+        <attribute name="parentsQualification" attributeType="String" syncable="YES"/>
+        <attribute name="password" attributeType="String" syncable="YES"/>
+        <attribute name="photo" attributeType="String" syncable="YES"/>
+        <attribute name="postalCode" attributeType="String" syncable="YES"/>
+        <attribute name="raceCode" attributeType="String" syncable="YES"/>
+        <attribute name="sexCode" attributeType="String" syncable="YES"/>
+        <relationship name="friendOf" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="friends" inverseEntity="Student" syncable="YES"/>
+    </entity>
+    <entity name="FriendRequest" representedClassName=".FriendRequest" syncable="YES">
+        <attribute name="accommodationCode" attributeType="String" syncable="YES"/>
+        <attribute name="addressLine1" attributeType="String" syncable="YES"/>
+        <attribute name="addressLine2" attributeType="String" syncable="YES"/>
+        <attribute name="addressLine3" attributeType="String" syncable="YES"/>
+        <attribute name="addressLine4" attributeType="String" syncable="YES"/>
+        <attribute name="age" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="countryCode" attributeType="String" syncable="YES"/>
+        <attribute name="disabilityCode" attributeType="String" syncable="YES"/>
+        <attribute name="dob" attributeType="Date" syncable="YES"/>
+        <attribute name="email" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" attributeType="String" syncable="YES"/>
+        <attribute name="homePhone" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" attributeType="String" syncable="YES"/>
+        <attribute name="learningDifficultyCode" attributeType="String" syncable="YES"/>
+        <attribute name="mobilePhone" attributeType="String" syncable="YES"/>
+        <attribute name="overseasCode" attributeType="String" syncable="YES"/>
+        <attribute name="parentsQualification" attributeType="String" syncable="YES"/>
+        <attribute name="password" attributeType="String" syncable="YES"/>
+        <attribute name="photo" attributeType="String" syncable="YES"/>
+        <attribute name="postalCode" attributeType="String" syncable="YES"/>
+        <attribute name="raceCode" attributeType="String" syncable="YES"/>
+        <attribute name="sexCode" attributeType="String" syncable="YES"/>
+        <relationship name="requestedFriendshipOf" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="friendRequests" inverseEntity="Student" syncable="YES"/>
+    </entity>
+    <entity name="Institution" representedClassName=".Institution" syncable="YES">
+        <attribute name="accessKey" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="secret" attributeType="String" syncable="YES"/>
+        <relationship name="students" toMany="YES" deletionRule="Nullify" destinationEntity="Student" inverseName="institution" inverseEntity="Student" syncable="YES"/>
+    </entity>
+    <entity name="Mark" representedClassName=".Mark" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="module" maxCount="1" deletionRule="Nullify" destinationEntity="Module" inverseName="marks" inverseEntity="Module" syncable="YES"/>
+        <relationship name="student" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="marks" inverseEntity="Student" syncable="YES"/>
+        <relationship name="values" toMany="YES" deletionRule="Nullify" destinationEntity="MarkValue" inverseName="mark" inverseEntity="MarkValue" syncable="YES"/>
+    </entity>
+    <entity name="MarkValue" representedClassName=".MarkValue" syncable="YES">
+        <attribute name="value" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="mark" maxCount="1" deletionRule="Nullify" destinationEntity="Mark" inverseName="values" inverseEntity="Mark" syncable="YES"/>
+    </entity>
+    <entity name="Module" representedClassName=".Module" syncable="YES">
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="activityLogs" toMany="YES" deletionRule="Nullify" destinationEntity="ActivityLog" inverseName="module" inverseEntity="ActivityLog" syncable="YES"/>
+        <relationship name="marks" toMany="YES" deletionRule="Nullify" destinationEntity="Mark" inverseName="module" inverseEntity="Mark" syncable="YES"/>
+        <relationship name="students" toMany="YES" deletionRule="Nullify" destinationEntity="Student" inverseName="modules" inverseEntity="Student" syncable="YES"/>
+        <relationship name="targets" toMany="YES" deletionRule="Nullify" destinationEntity="Target" inverseName="module" inverseEntity="Target" syncable="YES"/>
+    </entity>
+    <entity name="SentFriendRequest" representedClassName=".SentFriendRequest" syncable="YES">
+        <attribute name="accommodationCode" attributeType="String" syncable="YES"/>
+        <attribute name="addressLine1" attributeType="String" syncable="YES"/>
+        <attribute name="addressLine2" attributeType="String" syncable="YES"/>
+        <attribute name="addressLine3" attributeType="String" syncable="YES"/>
+        <attribute name="addressLine4" attributeType="String" syncable="YES"/>
+        <attribute name="age" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="countryCode" attributeType="String" syncable="YES"/>
+        <attribute name="disabilityCode" attributeType="String" syncable="YES"/>
+        <attribute name="dob" attributeType="Date" syncable="YES"/>
+        <attribute name="email" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" attributeType="String" syncable="YES"/>
+        <attribute name="homePhone" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" attributeType="String" syncable="YES"/>
+        <attribute name="learningDifficultyCode" attributeType="String" syncable="YES"/>
+        <attribute name="mobilePhone" attributeType="String" syncable="YES"/>
+        <attribute name="overseasCode" attributeType="String" syncable="YES"/>
+        <attribute name="parentsQualification" attributeType="String" syncable="YES"/>
+        <attribute name="password" attributeType="String" syncable="YES"/>
+        <attribute name="photo" attributeType="String" syncable="YES"/>
+        <attribute name="postalCode" attributeType="String" syncable="YES"/>
+        <attribute name="raceCode" attributeType="String" syncable="YES"/>
+        <attribute name="sexCode" attributeType="String" syncable="YES"/>
+        <relationship name="requestSender" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="sentFriendRequests" inverseEntity="Student" syncable="YES"/>
+    </entity>
+    <entity name="StretchTarget" representedClassName=".StretchTarget" syncable="YES">
+        <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="stretchTime" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="student" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="stretchTargets" inverseEntity="Student" syncable="YES"/>
+        <relationship name="target" maxCount="1" deletionRule="Nullify" destinationEntity="Target" inverseName="stretchTargets" inverseEntity="Target" syncable="YES"/>
+    </entity>
+    <entity name="Student" representedClassName=".Student" syncable="YES">
+        <attribute name="accommodationCode" attributeType="String" syncable="YES"/>
+        <attribute name="addressLine1" attributeType="String" syncable="YES"/>
+        <attribute name="addressLine2" attributeType="String" syncable="YES"/>
+        <attribute name="addressLine3" attributeType="String" syncable="YES"/>
+        <attribute name="addressLine4" attributeType="String" syncable="YES"/>
+        <attribute name="age" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="countryCode" attributeType="String" syncable="YES"/>
+        <attribute name="disabilityCode" attributeType="String" syncable="YES"/>
+        <attribute name="dob" attributeType="Date" syncable="YES"/>
+        <attribute name="email" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" attributeType="String" syncable="YES"/>
+        <attribute name="homePhone" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" attributeType="String" syncable="YES"/>
+        <attribute name="lastWeekActivityPoints" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="learningDifficultyCode" attributeType="String" syncable="YES"/>
+        <attribute name="mobilePhone" attributeType="String" syncable="YES"/>
+        <attribute name="overseasCode" attributeType="String" syncable="YES"/>
+        <attribute name="parentsQualification" attributeType="String" syncable="YES"/>
+        <attribute name="password" attributeType="String" syncable="YES"/>
+        <attribute name="photo" attributeType="String" syncable="YES"/>
+        <attribute name="postalCode" attributeType="String" syncable="YES"/>
+        <attribute name="raceCode" attributeType="String" syncable="YES"/>
+        <attribute name="sexCode" attributeType="String" syncable="YES"/>
+        <attribute name="totalActivityPoints" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="activityLogs" toMany="YES" deletionRule="Nullify" destinationEntity="ActivityLog" inverseName="student" inverseEntity="ActivityLog" syncable="YES"/>
+        <relationship name="friendRequests" toMany="YES" deletionRule="Nullify" destinationEntity="FriendRequest" inverseName="requestedFriendshipOf" inverseEntity="FriendRequest" syncable="YES"/>
+        <relationship name="friends" toMany="YES" deletionRule="Nullify" destinationEntity="Friend" inverseName="friendOf" inverseEntity="Friend" syncable="YES"/>
+        <relationship name="institution" maxCount="1" deletionRule="Nullify" destinationEntity="Institution" inverseName="students" inverseEntity="Institution" syncable="YES"/>
+        <relationship name="marks" toMany="YES" deletionRule="Nullify" destinationEntity="Mark" inverseName="student" inverseEntity="Mark" syncable="YES"/>
+        <relationship name="modules" toMany="YES" deletionRule="Nullify" destinationEntity="Module" inverseName="students" inverseEntity="Module" syncable="YES"/>
+        <relationship name="sentFriendRequests" toMany="YES" deletionRule="Nullify" destinationEntity="SentFriendRequest" inverseName="requestSender" inverseEntity="SentFriendRequest" syncable="YES"/>
+        <relationship name="stretchTargets" toMany="YES" deletionRule="Nullify" destinationEntity="StretchTarget" inverseName="student" inverseEntity="StretchTarget" syncable="YES"/>
+        <relationship name="studentsInTheSameCourse" toMany="YES" deletionRule="Nullify" destinationEntity="Colleague" inverseName="inTheSameCourseWith" inverseEntity="Colleague" syncable="YES"/>
+        <relationship name="targets" toMany="YES" deletionRule="Nullify" destinationEntity="Target" inverseName="student" inverseEntity="Target" syncable="YES"/>
+        <relationship name="trophies" toMany="YES" deletionRule="Nullify" destinationEntity="StudentTrophy" inverseName="owner" inverseEntity="StudentTrophy" syncable="YES"/>
+    </entity>
+    <entity name="StudentTrophy" representedClassName=".StudentTrophy" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="total" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="owner" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="trophies" inverseEntity="Student" syncable="YES"/>
+        <relationship name="trophy" maxCount="1" deletionRule="Nullify" destinationEntity="Trophy" inverseName="studentTrophies" inverseEntity="Trophy" syncable="YES"/>
+    </entity>
+    <entity name="Target" representedClassName=".Target" syncable="YES">
+        <attribute name="because" attributeType="String" syncable="YES"/>
+        <attribute name="createdDate" attributeType="Date" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="modifiedDate" attributeType="Date" syncable="YES"/>
+        <attribute name="status" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="timeSpan" attributeType="String" syncable="YES"/>
+        <attribute name="totalTime" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="activity" maxCount="1" deletionRule="Nullify" destinationEntity="Activity" inverseName="targets" inverseEntity="Activity" syncable="YES"/>
+        <relationship name="activityType" maxCount="1" deletionRule="Nullify" destinationEntity="ActivityType" inverseName="targets" inverseEntity="ActivityType" syncable="YES"/>
+        <relationship name="module" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Module" inverseName="targets" inverseEntity="Module" syncable="YES"/>
+        <relationship name="stretchTargets" toMany="YES" deletionRule="Nullify" destinationEntity="StretchTarget" inverseName="target" inverseEntity="StretchTarget" syncable="YES"/>
+        <relationship name="student" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="targets" inverseEntity="Student" syncable="YES"/>
+    </entity>
+    <entity name="Trophy" representedClassName=".Trophy" syncable="YES">
+        <attribute name="activityName" attributeType="String" syncable="YES"/>
+        <attribute name="count" attributeType="String" syncable="YES"/>
+        <attribute name="days" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="type" attributeType="String" syncable="YES"/>
+        <relationship name="studentTrophies" toMany="YES" deletionRule="Nullify" destinationEntity="StudentTrophy" inverseName="trophy" inverseEntity="StudentTrophy" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Activity" positionX="-45" positionY="144" width="128" height="150"/>
+        <element name="ActivityLog" positionX="-18" positionY="162" width="128" height="240"/>
+        <element name="ActivityType" positionX="-36" positionY="153" width="128" height="105"/>
+        <element name="Colleague" positionX="9" positionY="171" width="128" height="405"/>
+        <element name="Feed" positionX="-27" positionY="135" width="128" height="135"/>
+        <element name="Friend" positionX="-18" positionY="153" width="128" height="420"/>
+        <element name="FriendRequest" positionX="-9" positionY="162" width="128" height="405"/>
+        <element name="Institution" positionX="-9" positionY="171" width="128" height="120"/>
+        <element name="Mark" positionX="-27" positionY="135" width="128" height="103"/>
+        <element name="MarkValue" positionX="-18" positionY="144" width="128" height="73"/>
+        <element name="Module" positionX="-54" positionY="144" width="128" height="135"/>
+        <element name="SentFriendRequest" positionX="-27" positionY="135" width="128" height="405"/>
+        <element name="StretchTarget" positionX="-27" positionY="135" width="128" height="135"/>
+        <element name="Student" positionX="-63" positionY="-18" width="128" height="585"/>
+        <element name="StudentTrophy" positionX="-27" positionY="144" width="128" height="105"/>
+        <element name="Target" positionX="-54" positionY="135" width="128" height="225"/>
+        <element name="Trophy" positionX="-36" positionY="135" width="128" height="150"/>
+    </elements>
+</model>

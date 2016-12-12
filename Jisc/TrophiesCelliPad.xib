@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="MyriadPro-Regular.otf">
+            <string>MyriadPro-Regular</string>
+            <string>MyriadPro-Regular</string>
+            <string>MyriadPro-Regular</string>
+            <string>MyriadPro-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TrophiesCelliPadIdentifier" rowHeight="119" id="KGk-i7-Jjw" customClass="TrophiesCelliPad" customModule="Jisc" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="500" height="126"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="500" height="125"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QQN-bp-vXD">
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="125"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3j9-mb-uuV" customClass="OneTrophyView" customModule="Jisc" customModuleProvider="target">
+                                <rect key="frame" x="1" y="0.0" width="124" height="124"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3CV-OQ-kPN" customClass="UIImageDownload" customModule="Jisc" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="124" height="124"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="95C-xI-tsY">
+                                        <rect key="frame" x="4" y="5" width="26" height="26"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="silverTrophyCount" translatesAutoresizingMaskIntoConstraints="NO" id="D55-X0-J3C">
+                                                <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDn-gD-mxf">
+                                                <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
+                                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="13"/>
+                                                <color key="textColor" red="0.53333333329999999" green="0.38823529410000002" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="BDn-gD-mxf" firstAttribute="leading" secondItem="95C-xI-tsY" secondAttribute="leading" id="0Xg-7M-tUJ"/>
+                                            <constraint firstAttribute="trailing" secondItem="BDn-gD-mxf" secondAttribute="trailing" id="DCY-sW-6s5"/>
+                                            <constraint firstAttribute="trailing" secondItem="D55-X0-J3C" secondAttribute="trailing" id="Kb5-hx-Zzi"/>
+                                            <constraint firstAttribute="width" constant="26" id="MEN-bU-pPt"/>
+                                            <constraint firstItem="D55-X0-J3C" firstAttribute="top" secondItem="95C-xI-tsY" secondAttribute="top" id="Mej-4x-Ywn"/>
+                                            <constraint firstItem="D55-X0-J3C" firstAttribute="leading" secondItem="95C-xI-tsY" secondAttribute="leading" id="OTJ-o7-hRw"/>
+                                            <constraint firstAttribute="height" constant="26" id="Pao-XZ-Nri"/>
+                                            <constraint firstAttribute="bottom" secondItem="D55-X0-J3C" secondAttribute="bottom" id="Uj7-Nk-l1g"/>
+                                            <constraint firstAttribute="bottom" secondItem="BDn-gD-mxf" secondAttribute="bottom" id="VIh-lc-vpD"/>
+                                            <constraint firstItem="BDn-gD-mxf" firstAttribute="top" secondItem="95C-xI-tsY" secondAttribute="top" id="cmC-qM-zD7"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DDc-dI-y7J">
+                                        <rect key="frame" x="0.0" y="0.0" width="124" height="124"/>
+                                        <connections>
+                                            <action selector="selectTrophy:" destination="3j9-mb-uuV" eventType="touchUpInside" id="sCV-b4-Z5C"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="DDc-dI-y7J" secondAttribute="trailing" id="1gL-bg-8n2"/>
+                                    <constraint firstAttribute="trailing" secondItem="3CV-OQ-kPN" secondAttribute="trailing" id="7dx-DL-Hyk"/>
+                                    <constraint firstAttribute="bottom" secondItem="95C-xI-tsY" secondAttribute="bottom" constant="5" id="OeJ-BG-vdC"/>
+                                    <constraint firstItem="3CV-OQ-kPN" firstAttribute="leading" secondItem="3j9-mb-uuV" secondAttribute="leading" id="VTS-ax-th3"/>
+                                    <constraint firstAttribute="bottom" secondItem="3CV-OQ-kPN" secondAttribute="bottom" id="WTe-l3-eQF"/>
+                                    <constraint firstAttribute="trailing" secondItem="95C-xI-tsY" secondAttribute="trailing" constant="5" id="dAa-fY-7i5"/>
+                                    <constraint firstItem="DDc-dI-y7J" firstAttribute="leading" secondItem="3j9-mb-uuV" secondAttribute="leading" id="gaT-gT-EYe"/>
+                                    <constraint firstItem="DDc-dI-y7J" firstAttribute="top" secondItem="3j9-mb-uuV" secondAttribute="top" id="h9m-lD-VTT"/>
+                                    <constraint firstAttribute="bottom" secondItem="DDc-dI-y7J" secondAttribute="bottom" id="i4B-sZ-CYY"/>
+                                    <constraint firstAttribute="width" secondItem="3j9-mb-uuV" secondAttribute="height" multiplier="1:1" id="nzT-hz-qqe"/>
+                                    <constraint firstItem="3CV-OQ-kPN" firstAttribute="top" secondItem="3j9-mb-uuV" secondAttribute="top" id="yO0-s5-0nv"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="OeJ-BG-vdC"/>
+                                        <exclude reference="dAa-fY-7i5"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="trophyCountImage" destination="D55-X0-J3C" id="1ud-ib-xvK"/>
+                                    <outlet property="trophyCountLabel" destination="BDn-gD-mxf" id="7kI-rt-ePf"/>
+                                    <outlet property="trophyCountView" destination="95C-xI-tsY" id="Nbj-Fm-Mdo"/>
+                                    <outlet property="trophyImage" destination="3CV-OQ-kPN" id="Da2-Ps-XpO"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hqb-cv-nJS" customClass="OneTrophyView" customModule="Jisc" customModuleProvider="target">
+                                <rect key="frame" x="126" y="0.0" width="124" height="124"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Hx-12-5AT" customClass="UIImageDownload" customModule="Jisc" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="124" height="124"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sgK-3k-Lfz">
+                                        <rect key="frame" x="5" y="5" width="26" height="26"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="goldTrophyCount" translatesAutoresizingMaskIntoConstraints="NO" id="5ZP-Uz-Ce2">
+                                                <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qo8-cA-G0v">
+                                                <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
+                                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="13"/>
+                                                <color key="textColor" red="0.53333333329999999" green="0.38823529410000002" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="5ZP-Uz-Ce2" secondAttribute="bottom" id="22u-dh-fb9"/>
+                                            <constraint firstAttribute="bottom" secondItem="qo8-cA-G0v" secondAttribute="bottom" id="6lQ-iT-JyA"/>
+                                            <constraint firstItem="5ZP-Uz-Ce2" firstAttribute="top" secondItem="sgK-3k-Lfz" secondAttribute="top" id="QZn-G5-sGj"/>
+                                            <constraint firstAttribute="trailing" secondItem="5ZP-Uz-Ce2" secondAttribute="trailing" id="Zdd-1z-hpe"/>
+                                            <constraint firstItem="qo8-cA-G0v" firstAttribute="leading" secondItem="sgK-3k-Lfz" secondAttribute="leading" id="ajQ-HB-FAZ"/>
+                                            <constraint firstAttribute="trailing" secondItem="qo8-cA-G0v" secondAttribute="trailing" id="diF-f4-iyV"/>
+                                            <constraint firstAttribute="height" constant="26" id="u2V-ZI-zaG"/>
+                                            <constraint firstItem="qo8-cA-G0v" firstAttribute="top" secondItem="sgK-3k-Lfz" secondAttribute="top" id="u4G-SL-sxb"/>
+                                            <constraint firstAttribute="width" constant="26" id="vBM-xE-7t1"/>
+                                            <constraint firstItem="5ZP-Uz-Ce2" firstAttribute="leading" secondItem="sgK-3k-Lfz" secondAttribute="leading" id="xLG-AT-Gsb"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kdt-O9-7C0">
+                                        <rect key="frame" x="0.0" y="0.0" width="124" height="124"/>
+                                        <connections>
+                                            <action selector="selectTrophy:" destination="Hqb-cv-nJS" eventType="touchUpInside" id="sfK-Fb-yZx"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="kdt-O9-7C0" secondAttribute="trailing" id="3oW-hh-lpc"/>
+                                    <constraint firstAttribute="bottom" secondItem="kdt-O9-7C0" secondAttribute="bottom" id="55w-sp-7Qx"/>
+                                    <constraint firstAttribute="bottom" secondItem="sgK-3k-Lfz" secondAttribute="bottom" constant="5" id="6Wf-Z2-qcR"/>
+                                    <constraint firstItem="kdt-O9-7C0" firstAttribute="leading" secondItem="Hqb-cv-nJS" secondAttribute="leading" id="G06-SD-PiK"/>
+                                    <constraint firstAttribute="trailing" secondItem="7Hx-12-5AT" secondAttribute="trailing" id="KBi-dO-PHl"/>
+                                    <constraint firstItem="sgK-3k-Lfz" firstAttribute="top" secondItem="Hqb-cv-nJS" secondAttribute="top" constant="5" id="LfE-TW-BrW"/>
+                                    <constraint firstAttribute="bottom" secondItem="7Hx-12-5AT" secondAttribute="bottom" id="VIO-1X-Jib"/>
+                                    <constraint firstItem="7Hx-12-5AT" firstAttribute="leading" secondItem="Hqb-cv-nJS" secondAttribute="leading" id="X6I-A6-0d3"/>
+                                    <constraint firstAttribute="trailing" secondItem="sgK-3k-Lfz" secondAttribute="trailing" constant="5" id="b53-v8-sAN"/>
+                                    <constraint firstItem="sgK-3k-Lfz" firstAttribute="leading" secondItem="Hqb-cv-nJS" secondAttribute="leading" constant="5" id="hDT-fT-JNf"/>
+                                    <constraint firstItem="7Hx-12-5AT" firstAttribute="top" secondItem="Hqb-cv-nJS" secondAttribute="top" id="nYf-ye-QZ4"/>
+                                    <constraint firstAttribute="width" secondItem="Hqb-cv-nJS" secondAttribute="height" multiplier="1:1" id="oaA-6r-pA0"/>
+                                    <constraint firstItem="kdt-O9-7C0" firstAttribute="top" secondItem="Hqb-cv-nJS" secondAttribute="top" id="od7-ft-AJD"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="6Wf-Z2-qcR"/>
+                                        <exclude reference="b53-v8-sAN"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="trophyCountImage" destination="5ZP-Uz-Ce2" id="ruR-mi-E9y"/>
+                                    <outlet property="trophyCountLabel" destination="qo8-cA-G0v" id="ZmM-ze-0eF"/>
+                                    <outlet property="trophyCountView" destination="sgK-3k-Lfz" id="ghP-Xw-8Fj"/>
+                                    <outlet property="trophyImage" destination="7Hx-12-5AT" id="C15-79-WQn"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ij0-u3-0FG">
+                                <rect key="frame" x="250" y="0.0" width="1" height="125"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="1" id="T5e-Gp-XKQ"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="coU-6g-ZuM" customClass="OneTrophyView" customModule="Jisc" customModuleProvider="target">
+                                <rect key="frame" x="251" y="0.0" width="124" height="124"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eFW-Hp-yBp" customClass="UIImageDownload" customModule="Jisc" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="124" height="124"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="opf-VV-K3F">
+                                        <rect key="frame" x="5" y="5" width="26" height="26"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="silverTrophyCount" translatesAutoresizingMaskIntoConstraints="NO" id="s1S-EZ-iWE">
+                                                <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GlF-gV-0Jd">
+                                                <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
+                                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="13"/>
+                                                <color key="textColor" red="0.53333333329999999" green="0.38823529410000002" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="s1S-EZ-iWE" firstAttribute="leading" secondItem="opf-VV-K3F" secondAttribute="leading" id="8dn-rm-7xH"/>
+                                            <constraint firstAttribute="trailing" secondItem="GlF-gV-0Jd" secondAttribute="trailing" id="EeD-aS-NrZ"/>
+                                            <constraint firstItem="GlF-gV-0Jd" firstAttribute="top" secondItem="opf-VV-K3F" secondAttribute="top" id="FGs-Ya-56h"/>
+                                            <constraint firstAttribute="width" constant="26" id="K9n-1J-hnR"/>
+                                            <constraint firstAttribute="trailing" secondItem="s1S-EZ-iWE" secondAttribute="trailing" id="WgR-CN-4ll"/>
+                                            <constraint firstAttribute="height" constant="26" id="eYx-ci-h0h"/>
+                                            <constraint firstAttribute="bottom" secondItem="GlF-gV-0Jd" secondAttribute="bottom" id="ew5-YK-Rzi"/>
+                                            <constraint firstItem="s1S-EZ-iWE" firstAttribute="top" secondItem="opf-VV-K3F" secondAttribute="top" id="lVY-rM-ssV"/>
+                                            <constraint firstAttribute="bottom" secondItem="s1S-EZ-iWE" secondAttribute="bottom" id="nzU-uw-nJ3"/>
+                                            <constraint firstItem="GlF-gV-0Jd" firstAttribute="leading" secondItem="opf-VV-K3F" secondAttribute="leading" id="xRo-zF-Z4R"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2uJ-ro-Eub">
+                                        <rect key="frame" x="0.0" y="0.0" width="124" height="124"/>
+                                        <connections>
+                                            <action selector="selectTrophy:" destination="coU-6g-ZuM" eventType="touchUpInside" id="UWX-ic-URJ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="eFW-Hp-yBp" secondAttribute="bottom" id="8IR-Ut-IZO"/>
+                                    <constraint firstItem="2uJ-ro-Eub" firstAttribute="top" secondItem="coU-6g-ZuM" secondAttribute="top" id="9iv-Ac-2Vx"/>
+                                    <constraint firstAttribute="bottom" secondItem="opf-VV-K3F" secondAttribute="bottom" constant="5" id="J6k-Mm-rxC"/>
+                                    <constraint firstItem="eFW-Hp-yBp" firstAttribute="top" secondItem="coU-6g-ZuM" secondAttribute="top" id="Naq-Ia-Wom"/>
+                                    <constraint firstItem="opf-VV-K3F" firstAttribute="leading" secondItem="coU-6g-ZuM" secondAttribute="leading" constant="5" id="Vrf-cc-xHc"/>
+                                    <constraint firstAttribute="trailing" secondItem="2uJ-ro-Eub" secondAttribute="trailing" id="YDs-kN-aYe"/>
+                                    <constraint firstAttribute="width" secondItem="coU-6g-ZuM" secondAttribute="height" multiplier="1:1" id="YLy-Gn-o7i"/>
+                                    <constraint firstItem="opf-VV-K3F" firstAttribute="top" secondItem="coU-6g-ZuM" secondAttribute="top" constant="5" id="iEj-Z3-m0V"/>
+                                    <constraint firstAttribute="trailing" secondItem="opf-VV-K3F" secondAttribute="trailing" constant="5" id="ibK-Xc-h1b"/>
+                                    <constraint firstItem="2uJ-ro-Eub" firstAttribute="leading" secondItem="coU-6g-ZuM" secondAttribute="leading" id="kBj-wb-54i"/>
+                                    <constraint firstAttribute="trailing" secondItem="eFW-Hp-yBp" secondAttribute="trailing" id="nQR-UG-VQf"/>
+                                    <constraint firstItem="eFW-Hp-yBp" firstAttribute="leading" secondItem="coU-6g-ZuM" secondAttribute="leading" id="oMf-P7-lHw"/>
+                                    <constraint firstAttribute="bottom" secondItem="2uJ-ro-Eub" secondAttribute="bottom" id="qxG-Fh-1Yh"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="J6k-Mm-rxC"/>
+                                        <exclude reference="ibK-Xc-h1b"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="trophyCountImage" destination="s1S-EZ-iWE" id="A3f-jZ-7pu"/>
+                                    <outlet property="trophyCountLabel" destination="GlF-gV-0Jd" id="J8O-AJ-UJ8"/>
+                                    <outlet property="trophyCountView" destination="opf-VV-K3F" id="io0-ta-W30"/>
+                                    <outlet property="trophyImage" destination="eFW-Hp-yBp" id="18v-nn-H7E"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bx3-nA-fXY" customClass="OneTrophyView" customModule="Jisc" customModuleProvider="target">
+                                <rect key="frame" x="376" y="0.0" width="124" height="124"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qvy-1T-JQv" customClass="UIImageDownload" customModule="Jisc" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="124" height="124"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LpJ-Qy-wDX">
+                                        <rect key="frame" x="5" y="5" width="26" height="26"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="silverTrophyCount" translatesAutoresizingMaskIntoConstraints="NO" id="Sdo-Fa-hKM">
+                                                <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hH7-UA-vft">
+                                                <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
+                                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="13"/>
+                                                <color key="textColor" red="0.53333333329999999" green="0.38823529410000002" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="Sdo-Fa-hKM" secondAttribute="trailing" id="AVd-mW-0e9"/>
+                                            <constraint firstItem="hH7-UA-vft" firstAttribute="leading" secondItem="LpJ-Qy-wDX" secondAttribute="leading" id="F6a-wj-aLg"/>
+                                            <constraint firstItem="Sdo-Fa-hKM" firstAttribute="top" secondItem="LpJ-Qy-wDX" secondAttribute="top" id="HgV-FC-ebL"/>
+                                            <constraint firstItem="Sdo-Fa-hKM" firstAttribute="leading" secondItem="LpJ-Qy-wDX" secondAttribute="leading" id="I79-7Q-gRY"/>
+                                            <constraint firstAttribute="trailing" secondItem="hH7-UA-vft" secondAttribute="trailing" id="MLs-u6-0Cm"/>
+                                            <constraint firstAttribute="bottom" secondItem="Sdo-Fa-hKM" secondAttribute="bottom" id="NgJ-of-P83"/>
+                                            <constraint firstAttribute="bottom" secondItem="hH7-UA-vft" secondAttribute="bottom" id="XLg-fa-7jP"/>
+                                            <constraint firstItem="hH7-UA-vft" firstAttribute="top" secondItem="LpJ-Qy-wDX" secondAttribute="top" id="Z3l-vw-pIX"/>
+                                            <constraint firstAttribute="width" constant="26" id="hFN-LK-ikS"/>
+                                            <constraint firstAttribute="height" constant="26" id="kP9-U6-yn0"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kmu-OA-9bY">
+                                        <rect key="frame" x="0.0" y="0.0" width="124" height="124"/>
+                                        <connections>
+                                            <action selector="selectTrophy:" destination="Bx3-nA-fXY" eventType="touchUpInside" id="Scd-E7-gfC"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Qvy-1T-JQv" secondAttribute="trailing" id="5Je-vN-bIG"/>
+                                    <constraint firstItem="kmu-OA-9bY" firstAttribute="leading" secondItem="Bx3-nA-fXY" secondAttribute="leading" id="6O0-BV-7Sd"/>
+                                    <constraint firstAttribute="width" secondItem="Bx3-nA-fXY" secondAttribute="height" multiplier="1:1" id="8gQ-ll-uHa"/>
+                                    <constraint firstAttribute="trailing" secondItem="LpJ-Qy-wDX" secondAttribute="trailing" constant="5" id="AhY-0k-ufI"/>
+                                    <constraint firstItem="LpJ-Qy-wDX" firstAttribute="top" secondItem="Bx3-nA-fXY" secondAttribute="top" constant="5" id="Bo5-bu-KX9"/>
+                                    <constraint firstAttribute="bottom" secondItem="LpJ-Qy-wDX" secondAttribute="bottom" constant="5" id="Elr-Lg-bce"/>
+                                    <constraint firstAttribute="trailing" secondItem="kmu-OA-9bY" secondAttribute="trailing" id="GVs-rx-wds"/>
+                                    <constraint firstItem="Qvy-1T-JQv" firstAttribute="leading" secondItem="Bx3-nA-fXY" secondAttribute="leading" id="J5u-eX-W2v"/>
+                                    <constraint firstItem="Qvy-1T-JQv" firstAttribute="top" secondItem="Bx3-nA-fXY" secondAttribute="top" id="ZTo-kk-mrC"/>
+                                    <constraint firstAttribute="bottom" secondItem="kmu-OA-9bY" secondAttribute="bottom" id="eBM-xX-T4a"/>
+                                    <constraint firstItem="kmu-OA-9bY" firstAttribute="top" secondItem="Bx3-nA-fXY" secondAttribute="top" id="lle-UU-D8u"/>
+                                    <constraint firstAttribute="bottom" secondItem="Qvy-1T-JQv" secondAttribute="bottom" id="n3A-gg-Pew"/>
+                                    <constraint firstItem="LpJ-Qy-wDX" firstAttribute="leading" secondItem="Bx3-nA-fXY" secondAttribute="leading" constant="5" id="u36-LX-07j"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="AhY-0k-ufI"/>
+                                        <exclude reference="Elr-Lg-bce"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="trophyCountImage" destination="Sdo-Fa-hKM" id="QiO-ae-zpc"/>
+                                    <outlet property="trophyCountLabel" destination="hH7-UA-vft" id="aGs-ou-YsO"/>
+                                    <outlet property="trophyCountView" destination="LpJ-Qy-wDX" id="sGF-dA-Y7M"/>
+                                    <outlet property="trophyImage" destination="Qvy-1T-JQv" id="Ef9-jQ-sRv"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Bx3-nA-fXY" secondAttribute="trailing" constant="2" id="6qn-yW-UN0"/>
+                            <constraint firstItem="Hqb-cv-nJS" firstAttribute="leading" secondItem="3j9-mb-uuV" secondAttribute="trailing" constant="1" id="7X8-7x-5XL"/>
+                            <constraint firstItem="Bx3-nA-fXY" firstAttribute="top" secondItem="QQN-bp-vXD" secondAttribute="top" id="8UK-NV-RGi"/>
+                            <constraint firstItem="3j9-mb-uuV" firstAttribute="top" secondItem="QQN-bp-vXD" secondAttribute="top" id="Ec8-O5-aru"/>
+                            <constraint firstAttribute="bottom" secondItem="3j9-mb-uuV" secondAttribute="bottom" constant="1" id="Gr1-ts-4c2"/>
+                            <constraint firstAttribute="trailing" secondItem="coU-6g-ZuM" secondAttribute="trailing" constant="2" id="KFJ-Qo-bcN"/>
+                            <constraint firstAttribute="bottom" secondItem="Bx3-nA-fXY" secondAttribute="bottom" constant="1" id="Pln-n1-tjr"/>
+                            <constraint firstItem="95C-xI-tsY" firstAttribute="top" secondItem="QQN-bp-vXD" secondAttribute="top" constant="5" id="Sfu-Yw-Pjx"/>
+                            <constraint firstItem="ij0-u3-0FG" firstAttribute="leading" secondItem="Hqb-cv-nJS" secondAttribute="trailing" id="U6S-vv-Ogf"/>
+                            <constraint firstItem="3j9-mb-uuV" firstAttribute="leading" secondItem="QQN-bp-vXD" secondAttribute="leading" constant="2" id="WAn-Bl-Nsd"/>
+                            <constraint firstItem="coU-6g-ZuM" firstAttribute="leading" secondItem="Hqb-cv-nJS" secondAttribute="trailing" constant="1" id="WxN-kC-LbS"/>
+                            <constraint firstAttribute="bottom" secondItem="ij0-u3-0FG" secondAttribute="bottom" id="aOI-g3-Hfa"/>
+                            <constraint firstItem="ij0-u3-0FG" firstAttribute="top" secondItem="QQN-bp-vXD" secondAttribute="top" id="aP2-M7-gRi"/>
+                            <constraint firstItem="Bx3-nA-fXY" firstAttribute="leading" secondItem="coU-6g-ZuM" secondAttribute="trailing" constant="1" id="fcM-NS-tGJ"/>
+                            <constraint firstAttribute="bottom" secondItem="coU-6g-ZuM" secondAttribute="bottom" constant="1" id="fzc-gm-1u0"/>
+                            <constraint firstItem="Hqb-cv-nJS" firstAttribute="top" secondItem="QQN-bp-vXD" secondAttribute="top" id="j24-u4-xd0"/>
+                            <constraint firstItem="95C-xI-tsY" firstAttribute="leading" secondItem="QQN-bp-vXD" secondAttribute="leading" constant="5" id="jvD-q4-2hl"/>
+                            <constraint firstAttribute="bottom" secondItem="Hqb-cv-nJS" secondAttribute="bottom" constant="1" id="mhp-dL-Qb0"/>
+                            <constraint firstItem="coU-6g-ZuM" firstAttribute="top" secondItem="QQN-bp-vXD" secondAttribute="top" id="rTf-m0-zvQ"/>
+                            <constraint firstItem="ij0-u3-0FG" firstAttribute="centerX" secondItem="QQN-bp-vXD" secondAttribute="centerX" id="uwp-8C-1Y2"/>
+                            <constraint firstItem="coU-6g-ZuM" firstAttribute="leading" secondItem="ij0-u3-0FG" secondAttribute="trailing" id="xF9-u8-Al2"/>
+                            <constraint firstItem="Hqb-cv-nJS" firstAttribute="centerX" secondItem="QQN-bp-vXD" secondAttribute="centerX" id="zRC-SL-Aau"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="WAn-Bl-Nsd"/>
+                                <exclude reference="zRC-SL-Aau"/>
+                                <exclude reference="KFJ-Qo-bcN"/>
+                                <exclude reference="WxN-kC-LbS"/>
+                                <exclude reference="6qn-yW-UN0"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="QQN-bp-vXD" secondAttribute="bottom" id="6rs-2z-qQa"/>
+                    <constraint firstItem="QQN-bp-vXD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="UeF-uC-AnR"/>
+                    <constraint firstAttribute="trailing" secondItem="QQN-bp-vXD" secondAttribute="trailing" id="ZB4-fT-MLT"/>
+                    <constraint firstAttribute="bottom" secondItem="QQN-bp-vXD" secondAttribute="bottom" id="wZd-H5-eRa"/>
+                    <constraint firstItem="QQN-bp-vXD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="waO-br-LnB"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="wZd-H5-eRa"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="leftTrophy" destination="3j9-mb-uuV" id="DAu-9q-bww"/>
+                <outlet property="middleLeftTrophy" destination="Hqb-cv-nJS" id="pqp-62-CQb"/>
+                <outlet property="middleRightTrophy" destination="coU-6g-ZuM" id="qV3-oc-ziE"/>
+                <outlet property="rightTrophy" destination="Bx3-nA-fXY" id="cvH-Fe-tUf"/>
+            </connections>
+            <point key="canvasLocation" x="419" y="292.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="goldTrophyCount" width="33" height="33"/>
+        <image name="silverTrophyCount" width="33" height="33"/>
+    </resources>
+</document>

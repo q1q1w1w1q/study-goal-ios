@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="AlertView" customModule="Jisc" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Dc-O5-EIf">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uoe-eF-lV0">
+                            <rect key="frame" x="169" y="215" width="262" height="170"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alertCheckmark" translatesAutoresizingMaskIntoConstraints="NO" id="hPh-bw-Xc7">
+                                    <rect key="frame" x="105" y="42" width="53" height="47"/>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity Stopped" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VX1-Zn-bdD">
+                                    <rect key="frame" x="20" y="119" width="222" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="hPh-bw-Xc7" firstAttribute="top" secondItem="uoe-eF-lV0" secondAttribute="top" constant="42" id="61D-Q1-V3m"/>
+                                <constraint firstAttribute="bottom" secondItem="VX1-Zn-bdD" secondAttribute="bottom" constant="30" id="7mn-Np-JXQ"/>
+                                <constraint firstAttribute="height" constant="170" id="Eek-Y2-2Mh"/>
+                                <constraint firstAttribute="width" constant="262" id="Nxm-uO-aLP"/>
+                                <constraint firstItem="VX1-Zn-bdD" firstAttribute="top" secondItem="hPh-bw-Xc7" secondAttribute="bottom" constant="30" id="Q5R-zz-wFi"/>
+                                <constraint firstItem="VX1-Zn-bdD" firstAttribute="centerX" secondItem="hPh-bw-Xc7" secondAttribute="centerX" id="Zze-Wb-yOO"/>
+                                <constraint firstItem="VX1-Zn-bdD" firstAttribute="leading" secondItem="uoe-eF-lV0" secondAttribute="leading" constant="20" id="j2u-1J-u2t"/>
+                                <constraint firstAttribute="trailing" secondItem="VX1-Zn-bdD" secondAttribute="trailing" constant="20" id="sSR-0u-gnv"/>
+                                <constraint firstItem="hPh-bw-Xc7" firstAttribute="centerX" secondItem="uoe-eF-lV0" secondAttribute="centerX" id="saN-8b-jw9"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="self.layer.masksToBounds" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="self.layer.cornerRadius">
+                                    <integer key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="Eek-Y2-2Mh"/>
+                                </mask>
+                            </variation>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="uoe-eF-lV0" firstAttribute="centerX" secondItem="2Dc-O5-EIf" secondAttribute="centerX" id="epZ-jl-7Ti"/>
+                        <constraint firstItem="uoe-eF-lV0" firstAttribute="centerY" secondItem="2Dc-O5-EIf" secondAttribute="centerY" id="yCC-QU-45H"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="2Dc-O5-EIf" secondAttribute="bottom" id="B5X-aq-H2h"/>
+                <constraint firstAttribute="trailing" secondItem="2Dc-O5-EIf" secondAttribute="trailing" id="ONy-Ds-cXU"/>
+                <constraint firstItem="2Dc-O5-EIf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="VoR-90-ka4"/>
+                <constraint firstItem="2Dc-O5-EIf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="di8-yA-iA1"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <connections>
+                <outlet property="iconImage" destination="hPh-bw-Xc7" id="Eda-sn-RWp"/>
+                <outlet property="titleLabel" destination="VX1-Zn-bdD" id="rYN-nZ-iGp"/>
+            </connections>
+            <point key="canvasLocation" x="492" y="452"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="alertCheckmark" width="53" height="47"/>
+    </resources>
+</document>

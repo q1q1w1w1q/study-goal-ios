@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="MyriadPro-Regular.otf">
+            <string>MyriadPro-Regular</string>
+        </array>
+        <array key="StagSans-Book-App.ttf">
+            <string>StagSansApp-Book</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LogVC" customModule="Jisc" customModuleProvider="target">
+            <connections>
+                <outlet property="activityActionButton" destination="Mg2-8T-QRL" id="1So-Y9-OAW"/>
+                <outlet property="activityLogsTable" destination="4kN-Nx-AB4" id="sQ4-Lt-LjZ"/>
+                <outlet property="emptyScreenMessage" destination="Rb1-YN-EpK" id="eiZ-Fv-pl6"/>
+                <outlet property="view" destination="eSV-Hi-CQW" id="Nt3-jC-BiG"/>
+                <outletCollection property="localizableLabels" destination="Mtz-iW-vhD" collectionClass="NSMutableArray" id="lTQ-3h-IuZ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="eSV-Hi-CQW">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1dY-vP-8ZO">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lightBlue" translatesAutoresizingMaskIntoConstraints="NO" id="69F-YN-fHp">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jisc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tl6-7Z-2UA" customClass="AppTitleLabel" customModule="Jisc" customModuleProvider="target">
+                            <rect key="frame" x="10" y="31" width="28" height="17"/>
+                            <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="17"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity Log" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mtz-iW-vhD" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
+                            <rect key="frame" x="130" y="28" width="115" height="22"/>
+                            <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="22"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="activity_log"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z3Q-eM-JMM">
+                            <rect key="frame" x="335" y="20" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="SEo-rf-ccp"/>
+                                <constraint firstAttribute="width" constant="40" id="r68-VF-Ygl"/>
+                            </constraints>
+                            <state key="normal" image="settingsButton"/>
+                            <connections>
+                                <action selector="settings:" destination="-1" eventType="touchUpInside" id="PIF-N0-X5y"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mg2-8T-QRL">
+                            <rect key="frame" x="295" y="20" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="PZ7-y0-Hog"/>
+                                <constraint firstAttribute="width" constant="40" id="oDx-qV-P0j"/>
+                            </constraints>
+                            <state key="normal" image="addButton"/>
+                            <connections>
+                                <action selector="showNewActivitySelector:" destination="-1" eventType="touchUpInside" id="g0b-Wj-fZE"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="69F-YN-fHp" secondAttribute="bottom" id="68K-HX-h6i"/>
+                        <constraint firstItem="z3Q-eM-JMM" firstAttribute="leading" secondItem="Mg2-8T-QRL" secondAttribute="trailing" id="6Gj-Uu-gp6"/>
+                        <constraint firstAttribute="bottom" secondItem="Mg2-8T-QRL" secondAttribute="bottom" id="Dh4-ef-Mxe"/>
+                        <constraint firstItem="69F-YN-fHp" firstAttribute="leading" secondItem="1dY-vP-8ZO" secondAttribute="leading" id="TD9-G8-gbk"/>
+                        <constraint firstAttribute="trailing" secondItem="69F-YN-fHp" secondAttribute="trailing" id="Y5D-rV-j8h"/>
+                        <constraint firstItem="Mg2-8T-QRL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Mtz-iW-vhD" secondAttribute="trailing" constant="5" id="YfW-Pq-l8T"/>
+                        <constraint firstItem="Mtz-iW-vhD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tl6-7Z-2UA" secondAttribute="trailing" constant="5" id="Z3j-Ar-Lu4"/>
+                        <constraint firstItem="tl6-7Z-2UA" firstAttribute="centerY" secondItem="Mtz-iW-vhD" secondAttribute="centerY" id="Zeo-tX-ImL"/>
+                        <constraint firstAttribute="height" constant="60" id="cZz-5J-0ba"/>
+                        <constraint firstItem="69F-YN-fHp" firstAttribute="top" secondItem="1dY-vP-8ZO" secondAttribute="top" id="dOL-BS-g4h"/>
+                        <constraint firstItem="Mtz-iW-vhD" firstAttribute="centerX" secondItem="1dY-vP-8ZO" secondAttribute="centerX" id="g9m-Of-3Ty"/>
+                        <constraint firstItem="tl6-7Z-2UA" firstAttribute="leading" secondItem="1dY-vP-8ZO" secondAttribute="leading" constant="10" id="gLS-W0-6F9"/>
+                        <constraint firstAttribute="bottom" secondItem="z3Q-eM-JMM" secondAttribute="bottom" id="jg5-XF-3EJ"/>
+                        <constraint firstAttribute="bottom" secondItem="Mtz-iW-vhD" secondAttribute="bottom" constant="10" id="oDI-Ni-wVL"/>
+                        <constraint firstAttribute="trailing" secondItem="z3Q-eM-JMM" secondAttribute="trailing" id="uCF-nE-7e9"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="51" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4kN-Nx-AB4">
+                    <rect key="frame" x="0.0" y="60" width="375" height="607"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="t1S-HU-3g2"/>
+                        <outlet property="delegate" destination="-1" id="FFT-pp-BGX"/>
+                    </connections>
+                </tableView>
+                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rb1-YN-EpK" customClass="LocalizableView" customModule="Jisc" customModuleProvider="target">
+                    <rect key="frame" x="164" y="324" width="46" height="20"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdD-3e-AEZ" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="46" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="280" id="p7i-zy-Pju"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="20"/>
+                            <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="empty_log_page_message"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="fdD-3e-AEZ" firstAttribute="leading" secondItem="Rb1-YN-EpK" secondAttribute="leading" id="4Ws-NN-IPU"/>
+                        <constraint firstAttribute="trailing" secondItem="fdD-3e-AEZ" secondAttribute="trailing" id="Pf7-9f-JbL"/>
+                        <constraint firstItem="fdD-3e-AEZ" firstAttribute="top" secondItem="Rb1-YN-EpK" secondAttribute="top" id="f4F-PT-fY7"/>
+                        <constraint firstAttribute="bottom" secondItem="fdD-3e-AEZ" secondAttribute="bottom" id="rWL-s1-nXi"/>
+                    </constraints>
+                    <connections>
+                        <outletCollection property="localizableLabels" destination="fdD-3e-AEZ" collectionClass="NSMutableArray" id="WYT-nc-kPe"/>
+                    </connections>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="4kN-Nx-AB4" firstAttribute="top" secondItem="1dY-vP-8ZO" secondAttribute="bottom" id="2dG-XG-hcc"/>
+                <constraint firstAttribute="trailing" secondItem="1dY-vP-8ZO" secondAttribute="trailing" id="95L-yu-jy7"/>
+                <constraint firstItem="1dY-vP-8ZO" firstAttribute="top" secondItem="eSV-Hi-CQW" secondAttribute="top" id="KcI-af-94i"/>
+                <constraint firstItem="1dY-vP-8ZO" firstAttribute="leading" secondItem="eSV-Hi-CQW" secondAttribute="leading" id="Qzx-K7-xzo"/>
+                <constraint firstAttribute="bottom" secondItem="4kN-Nx-AB4" secondAttribute="bottom" id="T5Q-Z2-mfC"/>
+                <constraint firstItem="Rb1-YN-EpK" firstAttribute="centerX" secondItem="eSV-Hi-CQW" secondAttribute="centerX" id="YMV-mp-oQ4"/>
+                <constraint firstAttribute="trailing" secondItem="4kN-Nx-AB4" secondAttribute="trailing" id="b0P-rL-khg"/>
+                <constraint firstItem="Rb1-YN-EpK" firstAttribute="centerY" secondItem="eSV-Hi-CQW" secondAttribute="centerY" id="mv4-lX-koJ"/>
+                <constraint firstItem="4kN-Nx-AB4" firstAttribute="leading" secondItem="eSV-Hi-CQW" secondAttribute="leading" id="qba-Qv-8lX"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+            <point key="canvasLocation" x="488.5" y="145.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="addButton" width="23" height="23"/>
+        <image name="lightBlue" width="10" height="10"/>
+        <image name="settingsButton" width="23" height="22"/>
+    </resources>
+</document>

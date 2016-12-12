@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15B42" minimumToolsVersion="Automatic">
+    <entity name="Activity" representedClassName=".Activity" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="past" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="present" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="activityLogs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ActivityLog" inverseName="activity" inverseEntity="ActivityLog" syncable="YES"/>
+        <relationship name="activityTypes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ActivityType" inverseName="activities" inverseEntity="ActivityType" syncable="YES"/>
+        <relationship name="targets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Target" inverseName="activity" inverseEntity="Target" syncable="YES"/>
+    </entity>
+    <entity name="ActivityLog" representedClassName=".ActivityLog" syncable="YES">
+        <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isRunning" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="modifiedDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timeSpent" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="activity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Activity" inverseName="activityLogs" inverseEntity="Activity" syncable="YES"/>
+        <relationship name="activityType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ActivityType" inverseName="activityLogs" inverseEntity="ActivityType" syncable="YES"/>
+        <relationship name="module" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Module" inverseName="activityLogs" inverseEntity="Module" syncable="YES"/>
+        <relationship name="student" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="activityLogs" inverseEntity="Student" syncable="YES"/>
+    </entity>
+    <entity name="ActivityType" representedClassName=".ActivityType" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="activities" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Activity" inverseName="activityTypes" inverseEntity="Activity" syncable="YES"/>
+        <relationship name="activityLogs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ActivityLog" inverseName="activityType" inverseEntity="ActivityLog" syncable="YES"/>
+        <relationship name="targets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Target" inverseName="activityType" inverseEntity="Target" syncable="YES"/>
+    </entity>
+    <entity name="Institution" representedClassName=".Institution" syncable="YES">
+        <attribute name="accessKey" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="secret" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="students" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Student" inverseName="institution" inverseEntity="Student" syncable="YES"/>
+    </entity>
+    <entity name="Module" representedClassName=".Module" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="activityLogs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ActivityLog" inverseName="module" inverseEntity="ActivityLog" syncable="YES"/>
+        <relationship name="students" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Student" inverseName="modules" inverseEntity="Student" syncable="YES"/>
+        <relationship name="targets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Target" inverseName="module" inverseEntity="Target" syncable="YES"/>
+    </entity>
+    <entity name="Student" representedClassName=".Student" syncable="YES">
+        <attribute name="accommodationCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="addressLine1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="addressLine2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="addressLine3" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="addressLine4" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="age" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="countryCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="disabilityCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dob" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="homePhone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="learningDifficultyCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mobilePhone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="overseasCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="parentsQualification" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="postalCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="raceCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sexCode" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="activityLogs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ActivityLog" inverseName="student" inverseEntity="ActivityLog" syncable="YES"/>
+        <relationship name="friendOf" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="friends" inverseEntity="Student" syncable="YES"/>
+        <relationship name="friendRequests" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Student" inverseName="friendRequests" inverseEntity="Student" syncable="YES"/>
+        <relationship name="friends" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Student" inverseName="friendOf" inverseEntity="Student" syncable="YES"/>
+        <relationship name="institution" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Institution" inverseName="students" inverseEntity="Institution" syncable="YES"/>
+        <relationship name="inTheSameCourseWith" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="studentsInTheSameCourse" inverseEntity="Student" syncable="YES"/>
+        <relationship name="modules" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Module" inverseName="students" inverseEntity="Module" syncable="YES"/>
+        <relationship name="studentsInTheSameCourse" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Student" inverseName="inTheSameCourseWith" inverseEntity="Student" syncable="YES"/>
+        <relationship name="targets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Target" inverseName="student" inverseEntity="Target" syncable="YES"/>
+    </entity>
+    <entity name="Target" representedClassName=".Target" syncable="YES">
+        <attribute name="because" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modifiedDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="timeSpan" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalTime" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="activity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Activity" inverseName="targets" inverseEntity="Activity" syncable="YES"/>
+        <relationship name="activityType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ActivityType" inverseName="targets" inverseEntity="ActivityType" syncable="YES"/>
+        <relationship name="module" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Module" inverseName="targets" inverseEntity="Module" syncable="YES"/>
+        <relationship name="student" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="targets" inverseEntity="Student" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Module" positionX="-54" positionY="144" width="128" height="120"/>
+        <element name="Student" positionX="-63" positionY="-18" width="128" height="525"/>
+        <element name="Target" positionX="-54" positionY="135" width="128" height="210"/>
+        <element name="Activity" positionX="-45" positionY="144" width="128" height="135"/>
+        <element name="ActivityType" positionX="-36" positionY="153" width="128" height="105"/>
+        <element name="ActivityLog" positionX="-18" positionY="162" width="128" height="210"/>
+        <element name="Institution" positionX="-9" positionY="171" width="128" height="120"/>
+    </elements>
+</model>
