@@ -384,9 +384,13 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
 	@IBAction func sendFriendRequestAnyway(_ sender:UIButton) {
 		if let text = searchStudentsInputTextField.text {
 			if (isValidEmail(text)) {
-				DownloadManager().sendFriendRequestToEmail(dataManager.currentStudent!.id, email: text, alertAboutInternet: false, completion: { (success, result, results, error) in
-					UIAlertView(title: "", message: localized("friend_request_sent_successfully"), delegate: nil, cancelButtonTitle: localized("ok")).show()
-				})
+				if let student = filteredStudents.first {
+					sendFriendRequestToColleague(student)
+				} else {
+					DownloadManager().sendFriendRequestToEmail(dataManager.currentStudent!.id, email: text, alertAboutInternet: false, completion: { (success, result, results, error) in
+						UIAlertView(title: "", message: localized("friend_request_sent_successfully"), delegate: nil, cancelButtonTitle: localized("ok")).show()
+					})
+				}
 			} else {
 				UIAlertView(title: localized("error"), message: localized("please_search_for_friends_using_their_institution_email_address"), delegate: nil, cancelButtonTitle: localized("ok")).show()
 			}
