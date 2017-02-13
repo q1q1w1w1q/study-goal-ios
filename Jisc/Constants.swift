@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+var STAFF = false
 let onSimulator = TARGET_IPHONE_SIMULATOR == 1
 
 enum ScreenWidth:CGFloat {

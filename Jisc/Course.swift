@@ -22,6 +22,9 @@ class Course: NSManagedObject {
 				}
 			}
 		}
+		print("dictionary: \(dictionary)")
+		print("id: \(id)")
+		print("name: \(name)")
 	}
 	
 	class func insertInManagedObjectContext(_ context:NSManagedObjectContext, dictionary:NSDictionary) -> Course {

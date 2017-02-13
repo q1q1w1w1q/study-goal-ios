@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -107,22 +107,22 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PuM-4m-3QT">
-                    <rect key="frame" x="45" y="135.5" width="285" height="397"/>
+                    <rect key="frame" x="45" y="135" width="285" height="397"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W2I-Nd-qov">
                             <rect key="frame" x="22" y="0.0" width="241" height="105"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="252" misplaced="YES" image="studentHat" translatesAutoresizingMaskIntoConstraints="NO" id="QOK-x7-1CN">
-                                    <rect key="frame" x="57" y="0.0" width="127" height="59"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="252" image="studentHat" translatesAutoresizingMaskIntoConstraints="NO" id="QOK-x7-1CN">
+                                    <rect key="frame" x="57" y="0.0" width="127" height="58"/>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Jisc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ul0-4X-o05">
-                                    <rect key="frame" x="173" y="42" width="32" height="22"/>
+                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jisc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ul0-4X-o05">
+                                    <rect key="frame" x="173" y="41" width="32" height="22"/>
                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="22"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Learning analytics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="teU-jO-kbM">
-                                    <rect key="frame" x="0.0" y="59" width="241" height="46"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Learning analytics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="teU-jO-kbM">
+                                    <rect key="frame" x="0.0" y="58" width="241" height="47"/>
                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="32"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -278,8 +278,8 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="24r-3W-MTJ" customClass="ViewWithRoundedCorners" customModule="Jisc" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="83" width="285" height="35"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="loginPasswordIcon" translatesAutoresizingMaskIntoConstraints="NO" id="8XR-bH-B6s">
-                                            <rect key="frame" x="10" y="10" width="15" height="15"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginPasswordIcon" translatesAutoresizingMaskIntoConstraints="NO" id="8XR-bH-B6s">
+                                            <rect key="frame" x="10" y="11" width="15" height="14"/>
                                         </imageView>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kNK-xW-hOQ" customClass="LocalizableTextField" customModule="Jisc" customModuleProvider="target">
                                             <rect key="frame" x="40" y="5" width="230" height="25"/>
@@ -365,7 +365,7 @@
                                     </connections>
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="csT-sI-BM9">
-                                    <rect key="frame" x="50.5" y="50" width="184" height="16"/>
+                                    <rect key="frame" x="51" y="50" width="184" height="16"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mUG-v4-zYw" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="64" height="16"/>
@@ -525,7 +525,7 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OWw-sb-DxI">
-                    <rect key="frame" x="37.5" y="50" width="300" height="617"/>
+                    <rect key="frame" x="38" y="50" width="300" height="617"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dGj-LK-gUs">
                             <rect key="frame" x="0.0" y="0.0" width="300" height="617"/>
@@ -559,7 +559,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PEJ-lf-qvl" customClass="ViewWithRoundedCorners" customModule="Jisc" customModuleProvider="target">
-                    <rect key="frame" x="37.5" y="32" width="300" height="37"/>
+                    <rect key="frame" x="38" y="32" width="300" height="37"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xt9-js-hx8">
                             <rect key="frame" x="0.0" y="0.0" width="300" height="37"/>
@@ -651,7 +651,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lDx-iI-Upj" customClass="ViewWithRoundedCorners" customModule="Jisc" customModuleProvider="target">
-                    <rect key="frame" x="30" y="105.5" width="315" height="458"/>
+                    <rect key="frame" x="30" y="105" width="315" height="458"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1xV-1b-gSk">
                             <rect key="frame" x="0.0" y="0.0" width="315" height="40"/>
@@ -660,7 +660,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="315" height="40"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms and Conditions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVE-JM-ebg" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                    <rect key="frame" x="63.5" y="11" width="190" height="20"/>
+                                    <rect key="frame" x="63" y="12" width="190" height="20"/>
                                     <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="20"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -797,10 +797,10 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZQt-YK-nAZ">
-                    <rect key="frame" x="45" y="181.5" width="285" height="205"/>
+                    <rect key="frame" x="45" y="181" width="285" height="205"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RESET YOUR PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zG-6A-2dR" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="57.5" y="12" width="171.5" height="17"/>
+                            <rect key="frame" x="57" y="12" width="172" height="17"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -823,8 +823,8 @@ email address below and click on the ‘Request Password Reset’ button. We wil
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wm9-Rr-DCI" customClass="ViewWithRoundedCorners" customModule="Jisc" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="101" width="285" height="35"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="forgotPasswordEmailIcon" translatesAutoresizingMaskIntoConstraints="NO" id="97Z-gW-tPO">
-                                    <rect key="frame" x="10" y="10" width="17" height="16"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="forgotPasswordEmailIcon" translatesAutoresizingMaskIntoConstraints="NO" id="97Z-gW-tPO">
+                                    <rect key="frame" x="10" y="11" width="17" height="15"/>
                                 </imageView>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hd9-Cx-m5X" customClass="LocalizableTextField" customModule="Jisc" customModuleProvider="target">
                                     <rect key="frame" x="42" y="5" width="228" height="25"/>
@@ -1054,6 +1054,19 @@ email address below and click on the ‘Request Password Reset’ button. We wil
                                 <constraint firstAttribute="bottom" secondItem="Fsb-b3-ecA" secondAttribute="bottom" id="yZE-8c-B3c"/>
                             </constraints>
                         </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZk-sU-7yq">
+                            <rect key="frame" x="116" y="395" width="142" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="142" id="jMS-4o-TOu"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                            <inset key="titleEdgeInsets" minX="5" minY="3" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="I'm a staff member" image="checkBoxBigOFF"/>
+                            <state key="selected" image="checkBoxBig"/>
+                            <connections>
+                                <action selector="toggleStaff:" destination="-1" eventType="touchUpInside" id="rD9-h5-7rj"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -1061,9 +1074,11 @@ email address below and click on the ‘Request Password Reset’ button. We wil
                         <constraint firstAttribute="trailing" secondItem="VHG-84-2hX" secondAttribute="trailing" id="DAZ-7j-0HJ"/>
                         <constraint firstAttribute="bottom" secondItem="VHG-84-2hX" secondAttribute="bottom" id="Xhr-5C-xKE"/>
                         <constraint firstItem="VHG-84-2hX" firstAttribute="top" secondItem="c1l-ch-aBO" secondAttribute="top" id="aZF-zH-U70"/>
+                        <constraint firstItem="fZk-sU-7yq" firstAttribute="centerX" secondItem="c1l-ch-aBO" secondAttribute="centerX" id="hxq-kt-5ba"/>
                         <constraint firstItem="rwe-et-eaY" firstAttribute="centerX" secondItem="c1l-ch-aBO" secondAttribute="centerX" id="iId-QP-I0y"/>
                         <constraint firstItem="rwe-et-eaY" firstAttribute="centerY" secondItem="c1l-ch-aBO" secondAttribute="centerY" id="izX-RM-J5g"/>
                         <constraint firstItem="t9B-E7-xcK" firstAttribute="leading" secondItem="c1l-ch-aBO" secondAttribute="leading" id="oCp-uQ-68s"/>
+                        <constraint firstItem="fZk-sU-7yq" firstAttribute="top" secondItem="rwe-et-eaY" secondAttribute="bottom" constant="25" id="pCK-Yf-rJ4"/>
                         <constraint firstItem="t9B-E7-xcK" firstAttribute="top" secondItem="c1l-ch-aBO" secondAttribute="top" id="v9h-IT-MPQ"/>
                     </constraints>
                 </view>

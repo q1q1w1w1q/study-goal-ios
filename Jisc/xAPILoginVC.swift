@@ -75,7 +75,11 @@ class xAPILoginVC: BaseViewController, UIWebViewDelegate {
 								}
 							}
 							if (loginSuccessful) {
-								NotificationCenter.default.post(name: Notification.Name(rawValue: xAPILoginCompleteNotification), object: result?["STUDENT_ID"] as? String)
+								if STAFF {
+									NotificationCenter.default.post(name: Notification.Name(rawValue: xAPILoginCompleteNotification), object: result?["STAFF_ID"] as? String)
+								} else {
+									NotificationCenter.default.post(name: Notification.Name(rawValue: xAPILoginCompleteNotification), object: result?["STUDENT_ID"] as? String)
+								}
 								self.dismiss(animated: true, completion: {})
 							} else {
 								self.dismiss(animated: true, completion: {

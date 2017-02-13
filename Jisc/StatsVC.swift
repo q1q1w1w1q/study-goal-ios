@@ -76,9 +76,14 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 //	var pointsRefreshTimer:NSTimer?
 	@IBOutlet weak var attainmentTableView:UITableView!
 	var attainmentArray = [AttainmentObject]()
+	var staffAlert:UIAlertController? = UIAlertController(title: localized("staff_stats_alert"), message: "", preferredStyle: .alert)
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		staffAlert?.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
+		staffAlert?.addAction(UIAlertAction(title: localized("dont_show_again"), style: .default, handler: { (action) in
+			NSKeyedArchiver.archiveRootObject(true, toFile: filePath("dont_show_staff_alert"))
+		}))
 		let refreshControl = UIRefreshControl()
 		refreshControl.addTarget(self, action: #selector(StatsVC.refreshAllInfo(_:)), for: UIControlEvents.valueChanged)
 		contentScroll.addSubview(refreshControl)
@@ -196,6 +201,13 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 		getActivityPoints { 
 			
 		}
+		
+		if NSKeyedUnarchiver.unarchiveObject(withFile: filePath("dont_show_staff_alert")) == nil {
+			if let alert = staffAlert {
+				navigationController?.present(alert, animated: true, completion: nil)
+			}
+		}
+		staffAlert = nil
 	}
 	
 	func refreshAllInfo(_ sender:UIRefreshControl) {

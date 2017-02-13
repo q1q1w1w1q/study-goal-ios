@@ -131,6 +131,11 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 		addOutsideView(chooseInstitutionView2)
 	}
 	
+	@IBAction func toggleStaff(_ sender:UIButton) {
+		sender.isSelected = !sender.isSelected
+		STAFF = sender.isSelected
+	}
+	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		if (getCurrentUser() != nil || weHaveACurrentUser()) {

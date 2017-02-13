@@ -49,12 +49,15 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 	var friendsInModule = [Friend]()
 	var graphValues:(me:[Double]?, myMax:Double, otherStudent:[Double]?, otherStudentMax:Double, columnNames:[String]?)? = nil
 	var graphType = GraphType.Line
+	@IBOutlet weak var graphToggleButton:UIButton!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
 		scrollIndicator.alpha = 0.0
-		
+		if STAFF {
+			graphType = GraphType.Bar
+			graphToggleButton.isSelected = true
+		}
 		let today = todayNumber()
 		var components = DateComponents()
 		components.day = -(today - 1)
@@ -103,7 +106,7 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 	}
 	
 	@IBAction func goBack(_ sender:UIButton) {
-		navigationController?.popViewController(animated: true)
+		_ = navigationController?.popViewController(animated: true)
 	}
 	
 	@IBAction func settings(_ sender:UIButton) {
@@ -161,7 +164,6 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 		setHorizontalValues([""])
 		
 		let completion:downloadCompletionBlock = {(success, result, results, error) in
-			print("\n\n\n\n\n\n\n\(result)\n\n\n\n\n\n")
 			self.graphValues = nil
 			if (success) {
 				self.graphValues = self.xAPIEngagementDataValues(period, moduleID: moduleID, studentID: studentID, result: result, results: results)
@@ -201,7 +203,11 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 			requestOptions.compareType = .Friend
 			requestOptions.compareValue = studentID
 		}
-		xAPIManager().getEngagementData(requestOptions, completion: completion)
+		if STAFF {
+			completion(true, nil, nil, nil)
+		} else {
+			xAPIManager().getEngagementData(requestOptions, completion: completion)
+		}
 	}
 	
 	func representValues(_ sender:(me:[Double]?, myMax:Double, otherStudent:[Double]?, otherStudentMax:Double, columnNames:[String]?)?) {
@@ -306,7 +312,6 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 		} else {
 			noDataLabel.alpha = 1.0
 		}
-
 	}
 	
 	//MARK: xAPI
@@ -318,15 +323,38 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 		var otherStudentValues:[Double]? = nil
 		var otherStudentMax:Double = 0.0
 		var columnNames:[String]? = nil
-		switch (period) {
-		case .Overall:
-			if (result != nil) {
-				if let pointsArray = result!["result"] as? NSArray {
-					let info = infoFromXAPIOverall(pointsArray)
-					let dates = info.dates
-					myValues = info.myValues
-					otherStudentValues = info.otherValues
+		if STAFF {
+			switch (period) {
+			case .Overall:
+				dateFormatter.dateFormat = "yyyy"
+				let thisYear = dateFormatter.string(from: Date())
+				dateFormatter.dateFormat = "dd-MM-yyyy"
+				if var firstDay = dateFormatter.date(from: "01-01-\(thisYear)") {
 					columnNames = [String]()
+					myValues = [Double]()
+					if studentID != nil {
+						otherStudentValues = [Double]()
+					}
+					var dates = [Date]()
+					while firstDay.compare(Date()) == .orderedAscending {
+						dates.append(firstDay)
+						var sw = arc4random() % 4
+						if sw == 0 {
+							myValues?.append(0.0)
+						} else {
+							myValues?.append(Double(arc4random() % 100))
+						}
+						if studentID != nil {
+							sw = arc4random() % 4
+							if sw == 0 {
+								otherStudentValues?.append(0.0)
+							} else {
+								otherStudentValues?.append(Double(arc4random() % 100))
+							}
+						}
+						let daysToAdd = Double((arc4random() % 5) + 1)
+						firstDay = firstDay.addingTimeInterval(daysToAdd * 86400.0)
+					}
 					for (_, item) in dates.enumerated() {
 						dateFormatter.dateFormat = "dd MMM"
 						let month = dateFormatter.string(from: item)
@@ -334,151 +362,224 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 						let year = dateFormatter.string(from: item)
 						columnNames?.append("\(month) '\(year)")
 					}
-				}
-			}
-			break
-		case .SevenDays:
-			columnNames = [String]()
-			for _ in 0..<7 {
-				columnNames?.append("")
-			}
-			let today = Date()
-			for index in 0..<7 {
-				let timeDifference = (Double)(index - 6) * 86400.0
-				let dateToPut = Date(timeInterval: timeDifference, since: today)
-				dateFormatter.dateFormat = "dd/MM"
-				columnNames![index] = dateFormatter.string(from: dateToPut)
-			}
-			
-			myValues = [Double]()
-			for (_, _) in columnNames!.enumerated() {
-				myValues!.append(0.0)
-			}
-			
-			if (result != nil) {
-				if var keys = result!.allKeys as? [String] {
-					keys.sort(by: { (obj1:String, obj2:String) -> Bool in
-						let value1 = (obj1 as NSString).integerValue
-						let value2 = (obj2 as NSString).integerValue
-						var sorted = true
-						if value1 > value2 {
-							sorted = false
-						}
-						return sorted
-					})
-					for (index, item) in keys.enumerated() {
-						myValues![index] = doubleFromDictionary(result!, key: item)
+				} else {
+					columnNames = columnNamesXAPI30Days()
+					myValues = [Double((arc4random() % 100) + 1), Double((arc4random() % 100) + 1), Double((arc4random() % 100) + 1), Double((arc4random() % 100) + 1)]
+					if studentID != nil {
+						otherStudentValues = [Double((arc4random() % 100) + 1), Double((arc4random() % 100) + 1), Double((arc4random() % 100) + 1), Double((arc4random() % 100) + 1)]
 					}
 				}
-			} else if let results = results as? [NSDictionary] {
-				otherStudentValues = [Double]()
-				for (_, _) in columnNames!.enumerated() {
-					otherStudentValues!.append(0.0)
+				break
+			case .SevenDays:
+				columnNames = [String]()
+				for _ in 0..<7 {
+					columnNames?.append("")
 				}
-				for (_, dictionary) in results.enumerated() {
-					if let values = dictionary["VALUES"] as? NSDictionary {
-						if var keys = values.allKeys as? [String] {
-							keys.sort(by: { (obj1:String, obj2:String) -> Bool in
-								let value1 = (obj1 as NSString).integerValue
-								let value2 = (obj2 as NSString).integerValue
-								var sorted = true
-								if value1 > value2 {
-									sorted = false
+				let today = Date()
+				for index in 0..<7 {
+					let timeDifference = (Double)(index - 6) * 86400.0
+					let dateToPut = Date(timeInterval: timeDifference, since: today)
+					dateFormatter.dateFormat = "dd/MM"
+					columnNames![index] = dateFormatter.string(from: dateToPut)
+				}
+				
+				myValues = [Double]()
+				if studentID != nil {
+					otherStudentValues = [Double]()
+				}
+				for (_, _) in columnNames!.enumerated() {
+					myValues!.append(Double((arc4random() % 100) + 1))
+					if studentID != nil {
+						otherStudentValues!.append(Double((arc4random() % 100) + 1))
+					}
+				}
+				break
+			case .ThirtyDays:
+				columnNames = columnNamesXAPI30Days()
+				myValues = [Double((arc4random() % 100) + 1), Double((arc4random() % 100) + 1), Double((arc4random() % 100) + 1), Double((arc4random() % 100) + 1)]
+				if studentID != nil {
+					otherStudentValues = [Double((arc4random() % 100) + 1), Double((arc4random() % 100) + 1), Double((arc4random() % 100) + 1), Double((arc4random() % 100) + 1)]
+				}
+				break
+			}
+			
+			if (myValues != nil) {
+				for (_, item) in myValues!.enumerated() {
+					if (myMax < item) {
+						myMax = item
+					}
+				}
+			}
+			
+			if (otherStudentValues != nil) {
+				for (_, item) in otherStudentValues!.enumerated() {
+					if (otherStudentMax < item) {
+						otherStudentMax = item
+					}
+				}
+			}
+		} else {
+			switch (period) {
+			case .Overall:
+				if (result != nil) {
+					if let pointsArray = result!["result"] as? NSArray {
+						let info = infoFromXAPIOverall(pointsArray)
+						let dates = info.dates
+						myValues = info.myValues
+						otherStudentValues = info.otherValues
+						columnNames = [String]()
+						for (_, item) in dates.enumerated() {
+							dateFormatter.dateFormat = "dd MMM"
+							let month = dateFormatter.string(from: item)
+							dateFormatter.dateFormat = "yy"
+							let year = dateFormatter.string(from: item)
+							columnNames?.append("\(month) '\(year)")
+						}
+					}
+				}
+				break
+			case .SevenDays:
+				columnNames = [String]()
+				for _ in 0..<7 {
+					columnNames?.append("")
+				}
+				let today = Date()
+				for index in 0..<7 {
+					let timeDifference = (Double)(index - 6) * 86400.0
+					let dateToPut = Date(timeInterval: timeDifference, since: today)
+					dateFormatter.dateFormat = "dd/MM"
+					columnNames![index] = dateFormatter.string(from: dateToPut)
+				}
+				
+				myValues = [Double]()
+				for (_, _) in columnNames!.enumerated() {
+					myValues!.append(0.0)
+				}
+				
+				if (result != nil) {
+					if var keys = result!.allKeys as? [String] {
+						keys.sort(by: { (obj1:String, obj2:String) -> Bool in
+							let value1 = (obj1 as NSString).integerValue
+							let value2 = (obj2 as NSString).integerValue
+							var sorted = true
+							if value1 > value2 {
+								sorted = false
+							}
+							return sorted
+						})
+						for (index, item) in keys.enumerated() {
+							myValues![index] = doubleFromDictionary(result!, key: item)
+						}
+					}
+				} else if let results = results as? [NSDictionary] {
+					otherStudentValues = [Double]()
+					for (_, _) in columnNames!.enumerated() {
+						otherStudentValues!.append(0.0)
+					}
+					for (_, dictionary) in results.enumerated() {
+						if let values = dictionary["VALUES"] as? NSDictionary {
+							if var keys = values.allKeys as? [String] {
+								keys.sort(by: { (obj1:String, obj2:String) -> Bool in
+									let value1 = (obj1 as NSString).integerValue
+									let value2 = (obj2 as NSString).integerValue
+									var sorted = true
+									if value1 > value2 {
+										sorted = false
+									}
+									return sorted
+								})
+								let studentID = stringFromDictionary(dictionary, key: "STUDENT_ID")
+								if studentID == dataManager.currentStudent!.jisc_id {
+									for (index, item) in keys.enumerated() {
+										myValues![index] = doubleFromDictionary(values, key: item)
+									}
+								} else {
+									for (index, item) in keys.enumerated() {
+										otherStudentValues![index] = doubleFromDictionary(values, key: item)
+									}
 								}
-								return sorted
-							})
+							}
+						}
+					}
+				}
+				
+				break
+			case .ThirtyDays:
+				columnNames = columnNamesXAPI30Days()
+				myValues = [0.0, 0.0, 0.0, 0.0]
+				if (result != nil) {
+					if let keys = result!.allKeys as? [String] {
+						for (_, item) in keys.enumerated() {
+							let absValue = abs((item as NSString).integerValue)
+							if (absValue < 7) {
+								myValues![3] = myValues![3] + doubleFromDictionary(result!, key: item)
+							} else if (absValue < 14) {
+								myValues![2] = myValues![2] + doubleFromDictionary(result!, key: item)
+							} else if (absValue < 21) {
+								myValues![1] = myValues![1] + doubleFromDictionary(result!, key: item)
+							} else {
+								myValues![0] = myValues![0] + doubleFromDictionary(result!, key: item)
+							}
+						}
+					}
+				} else if let results = results as? [NSDictionary] {
+					otherStudentValues = [0.0, 0.0, 0.0, 0.0]
+					for (_, dictionary) in results.enumerated() {
+						if let values = dictionary["VALUES"] as? NSDictionary {
 							let studentID = stringFromDictionary(dictionary, key: "STUDENT_ID")
 							if studentID == dataManager.currentStudent!.jisc_id {
-								for (index, item) in keys.enumerated() {
-									myValues![index] = doubleFromDictionary(values, key: item)
+								if let keys = values.allKeys as? [String] {
+									for (_, item) in keys.enumerated() {
+										let absValue = abs((item as NSString).integerValue)
+										if (absValue < 7) {
+											myValues![3] = myValues![3] + doubleFromDictionary(values, key: item)
+										} else if (absValue < 14) {
+											myValues![2] = myValues![2] + doubleFromDictionary(values, key: item)
+										} else if (absValue < 21) {
+											myValues![1] = myValues![1] + doubleFromDictionary(values, key: item)
+										} else {
+											myValues![0] = myValues![0] + doubleFromDictionary(values, key: item)
+										}
+									}
 								}
 							} else {
-								for (index, item) in keys.enumerated() {
-									otherStudentValues![index] = doubleFromDictionary(values, key: item)
+								if let keys = values.allKeys as? [String] {
+									for (_, item) in keys.enumerated() {
+										let absValue = abs((item as NSString).integerValue)
+										if (absValue < 7) {
+											otherStudentValues![3] = otherStudentValues![3] + doubleFromDictionary(values, key: item)
+										} else if (absValue < 14) {
+											otherStudentValues![2] = otherStudentValues![2] + doubleFromDictionary(values, key: item)
+										} else if (absValue < 21) {
+											otherStudentValues![1] = otherStudentValues![1] + doubleFromDictionary(values, key: item)
+										} else {
+											otherStudentValues![0] = otherStudentValues![0] + doubleFromDictionary(values, key: item)
+										}
+									}
 								}
 							}
 						}
+					}
+				}
+				break
+			}
+			
+			if (myValues != nil) {
+				for (_, item) in myValues!.enumerated() {
+					if (myMax < item) {
+						myMax = item
 					}
 				}
 			}
 			
-			break
-		case .ThirtyDays:
-			columnNames = columnNamesXAPI30Days()
-			myValues = [0.0, 0.0, 0.0, 0.0]
-			if (result != nil) {
-				if let keys = result!.allKeys as? [String] {
-					for (_, item) in keys.enumerated() {
-						let absValue = abs((item as NSString).integerValue)
-						if (absValue < 7) {
-							myValues![3] = myValues![3] + doubleFromDictionary(result!, key: item)
-						} else if (absValue < 14) {
-							myValues![2] = myValues![2] + doubleFromDictionary(result!, key: item)
-						} else if (absValue < 21) {
-							myValues![1] = myValues![1] + doubleFromDictionary(result!, key: item)
-						} else {
-							myValues![0] = myValues![0] + doubleFromDictionary(result!, key: item)
-						}
-					}
-				}
-			} else if let results = results as? [NSDictionary] {
-				otherStudentValues = [0.0, 0.0, 0.0, 0.0]
-				for (_, dictionary) in results.enumerated() {
-					if let values = dictionary["VALUES"] as? NSDictionary {
-						let studentID = stringFromDictionary(dictionary, key: "STUDENT_ID")
-						if studentID == dataManager.currentStudent!.jisc_id {
-							if let keys = values.allKeys as? [String] {
-								for (_, item) in keys.enumerated() {
-									let absValue = abs((item as NSString).integerValue)
-									if (absValue < 7) {
-										myValues![3] = myValues![3] + doubleFromDictionary(values, key: item)
-									} else if (absValue < 14) {
-										myValues![2] = myValues![2] + doubleFromDictionary(values, key: item)
-									} else if (absValue < 21) {
-										myValues![1] = myValues![1] + doubleFromDictionary(values, key: item)
-									} else {
-										myValues![0] = myValues![0] + doubleFromDictionary(values, key: item)
-									}
-								}
-							}
-						} else {
-							if let keys = values.allKeys as? [String] {
-								for (_, item) in keys.enumerated() {
-									let absValue = abs((item as NSString).integerValue)
-									if (absValue < 7) {
-										otherStudentValues![3] = otherStudentValues![3] + doubleFromDictionary(values, key: item)
-									} else if (absValue < 14) {
-										otherStudentValues![2] = otherStudentValues![2] + doubleFromDictionary(values, key: item)
-									} else if (absValue < 21) {
-										otherStudentValues![1] = otherStudentValues![1] + doubleFromDictionary(values, key: item)
-									} else {
-										otherStudentValues![0] = otherStudentValues![0] + doubleFromDictionary(values, key: item)
-									}
-								}
-							}
-						}
+			if (otherStudentValues != nil) {
+				for (_, item) in otherStudentValues!.enumerated() {
+					if (otherStudentMax < item) {
+						otherStudentMax = item
 					}
 				}
 			}
-			break
 		}
-		
-		if (myValues != nil) {
-			for (_, item) in myValues!.enumerated() {
-				if (myMax < item) {
-					myMax = item
-				}
-			}
-		}
-		
-		if (otherStudentValues != nil) {
-			for (_, item) in otherStudentValues!.enumerated() {
-				if (otherStudentMax < item) {
-					otherStudentMax = item
-				}
-			}
-		}
-		
 		values = (myValues, myMax, otherStudentValues, otherStudentMax, columnNames)
 		
 		return values

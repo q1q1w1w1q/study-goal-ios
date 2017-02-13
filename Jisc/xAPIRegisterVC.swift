@@ -20,7 +20,13 @@ class xAPIRegisterVC: BaseViewController {
 	}
 	
 	@IBAction func close(_ sender:UIButton) {
-		self.dismiss(animated: true, completion: {})
+		self.dismiss(animated: true, completion: {
+			if let cookies = HTTPCookieStorage.shared.cookies {
+				for cookie in cookies {
+					HTTPCookieStorage.shared.deleteCookie(cookie)
+				}
+			}
+		})
 	}
 	
 	func register(){

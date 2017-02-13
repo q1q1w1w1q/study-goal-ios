@@ -408,8 +408,14 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
 	func getStudentDetails(_ completion:@escaping xAPICompletionBlock) {
 		completionBlock = completion
 		var request:URLRequest?
-		if let url = urlWithHost("https://sp.data.alpha.jisc.ac.uk/", path: "student/") {
-			request = URLRequest(url: url)
+		if STAFF {
+			if let url = urlWithHost("https://sp.data.alpha.jisc.ac.uk/", path: "staff/") {
+				request = URLRequest(url: url)
+			}
+		} else {
+			if let url = urlWithHost("https://sp.data.alpha.jisc.ac.uk/", path: "student/") {
+				request = URLRequest(url: url)
+			}
 		}
 		if let token = xAPIToken() {
 			request?.addValue("Bearer \(token)\"}", forHTTPHeaderField: "Authorization")

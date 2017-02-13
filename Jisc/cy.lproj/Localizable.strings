@@ -374,3 +374,5 @@
 "no_data" = "No data";
 "no_requests" = "Does dim ceisiadau ffrind newydd gyda chi ar y foment.";
 "do_you_want_to_respond" = "Ydych eisiau ymateb nawr?";
+"staff_stats_alert" = "Statistics given are for demonstration purposes only and not affected by user actions.";
+"dont_show_again" = "Don't show again";

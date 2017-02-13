@@ -375,3 +375,5 @@
 "no_data" = "No data";
 "no_requests" = "You do not have any new friend requests at the moment.";
 "do_you_want_to_respond" = "Do you want to respond now?";
+"staff_stats_alert" = "Statistics given are for demonstration purposes only and not affected by user actions.";
+"dont_show_again" = "Don't show again";

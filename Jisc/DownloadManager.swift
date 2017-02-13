@@ -16,6 +16,7 @@ let hostName = URL(string: hostPath)?.host
 
 let getInstitutesPath = "fn_get_institutions"
 let loginPath = "fn_login"
+let staffLoginPath = "fn_staff_login"
 let forgotPasswordPath = "fn_forgot_password"
 let sendFriendRequestPath = "fn_send_friend_request"
 let acceptFriendRequestPath = "fn_accept_friend_request"
@@ -553,8 +554,13 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 			language = newLanguage
 		}
 		dictionary["language"] = language
-		let request = createPostRequest(loginPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true)
-		startConnectionWithRequest(request)
+		if STAFF {
+			let request = createPostRequest(staffLoginPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true)
+			startConnectionWithRequest(request)
+		} else {
+			let request = createPostRequest(loginPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true)
+			startConnectionWithRequest(request)
+		}
 	}
 	
 	func forgotPassword(_ email:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {

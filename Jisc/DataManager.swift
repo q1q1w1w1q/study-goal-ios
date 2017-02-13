@@ -999,42 +999,55 @@ class DataManager: NSObject {
 	//MARK: Get Modules
 	
 	func getStudentModules(_ completion:@escaping dataManagerCompletionBlock) {
-		xAPIManager().getModules { (success, result, results, error) in
-			if (success) {
-				if (result != nil) {
-					if let courses = result!["courses"] as? [NSDictionary] {
-						for (_, item) in courses.enumerated() {
-							let object = Course.insertInManagedObjectContext(managedContext, dictionary: item)
-							object.student = self.currentStudent!
-						}
-					}
-					if let modules = result!["modules"] as? [NSDictionary] {
-						for (_, item) in modules.enumerated() {
-//							let object = Module.insertInManagedObjectContext(managedContext, array: array)
-							let object = Module.insertInManagedObjectContext(managedContext, dictionary: item)
-							self.currentStudent!.addModule(object)
-						}
-					}
-					self.safelySaveContext()
-				}
-			}
-			if (!self.currentStudent!.institution.isLearningAnalytics.boolValue) {
-				for (_, item) in self.modules().enumerated() {
-					self.deleteObject(item)
-				}
-				self.safelySaveContext()
-//				var array = [String]()
-//				array.append(localized("no_module"))
-//				array.append("")
-//				let object = Module.insertInManagedObjectContext(managedContext, array: array)
-				let object = Module.insertInManagedObjectContext(managedContext, dictionary: ["":localized("no_module")])
+		if STAFF {
+			let modulesCount = 3
+			for i in stride(from: 1, through: modulesCount, by: 1) {
+				let key = "DUMMY_\(i)"
+				let moduleName = "Dummy Module \(i)"
+				let dictionary = NSMutableDictionary()
+				dictionary[key] = moduleName
+				let object = Module.insertInManagedObjectContext(managedContext, dictionary: dictionary)
 				self.currentStudent!.addModule(object)
 			}
-			var reason = kDefaultFailureReason
-			if (error != nil) {
-				reason = error!
+			completion(true, kDefaultFailureReason)
+		} else {
+			xAPIManager().getModules { (success, result, results, error) in
+				if (success) {
+					if (result != nil) {
+						if let courses = result!["courses"] as? [NSDictionary] {
+							for (_, item) in courses.enumerated() {
+								let object = Course.insertInManagedObjectContext(managedContext, dictionary: item)
+								object.student = self.currentStudent!
+							}
+						}
+						if let modules = result!["modules"] as? [NSDictionary] {
+							for (_, item) in modules.enumerated() {
+								//							let object = Module.insertInManagedObjectContext(managedContext, array: array)
+								let object = Module.insertInManagedObjectContext(managedContext, dictionary: item)
+								self.currentStudent!.addModule(object)
+							}
+						}
+						self.safelySaveContext()
+					}
+				}
+				if (!self.currentStudent!.institution.isLearningAnalytics.boolValue) {
+					for (_, item) in self.modules().enumerated() {
+						self.deleteObject(item)
+					}
+					self.safelySaveContext()
+					//				var array = [String]()
+					//				array.append(localized("no_module"))
+					//				array.append("")
+					//				let object = Module.insertInManagedObjectContext(managedContext, array: array)
+					let object = Module.insertInManagedObjectContext(managedContext, dictionary: ["":localized("no_module")])
+					self.currentStudent!.addModule(object)
+				}
+				var reason = kDefaultFailureReason
+				if (error != nil) {
+					reason = error!
+				}
+				completion(success, reason)
 			}
-			completion(success, reason)
 		}
 //		DownloadManager().getStudentModules(currentStudent!.id, alertAboutInternet: false) { (success, result, results, error) -> Void in
 //			if (success) {
