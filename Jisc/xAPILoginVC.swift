@@ -61,8 +61,10 @@ class xAPILoginVC: BaseViewController, UIWebViewDelegate {
 					let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
 					
 					if let token = jsonResponse["jwt"] as? String {
+                        
+                        // Token can be replaced here for testing individuals.
 						setXAPIToken(token)
-						
+
 						webView.alpha = 0.0
 
 						xAPIManager().getStudentDetails({ (success, result, results, error) in

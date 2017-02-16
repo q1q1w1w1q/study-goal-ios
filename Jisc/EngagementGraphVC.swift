@@ -8,7 +8,7 @@
 
 import UIKit
 
-let periods:[kXAPIEngagementScope] = [.Overall, .SevenDays, .ThirtyDays]
+let periods:[kXAPIEngagementScope] = [.SevenDays, .ThirtyDays]
 let myColor = UIColor(red: 0.53, green: 0.39, blue: 0.78, alpha: 1.0)
 let otherStudentColor = UIColor(red: 0.22, green: 0.57, blue: 0.93, alpha: 1.0)
 
@@ -23,7 +23,7 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 	@IBOutlet weak var blueDot:UIImageView!
 	@IBOutlet weak var comparisonStudentName:UILabel!
 	var selectedModule:Int = 0
-	var selectedPeriod:Int = 2
+	var selectedPeriod:Int = 1 // 30 days
 	var selectedStudent:Int = 0
 	@IBOutlet weak var graphView:UIView!
 	@IBOutlet weak var graphContainer:UIView!
@@ -845,7 +845,7 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 	@IBAction func showPeriodSelector(_ sender:UIButton) {
 		graphScroll.setContentOffset(graphScroll.contentOffset, animated: false)
 		var array:[String] = [String]()
-		array.append(localized("overall"))
+		//array.append(localized("overall"))
 		array.append(localized("last_7_days"))
 		array.append(localized("last_30_days"))
 		periodSelectorView = CustomPickerView.create(localized("choose_period"), delegate: self, contentArray: array, selectedItem: selectedPeriod)
