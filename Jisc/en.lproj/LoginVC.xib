@@ -651,7 +651,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lDx-iI-Upj" customClass="ViewWithRoundedCorners" customModule="Jisc" customModuleProvider="target">
-                    <rect key="frame" x="30" y="105" width="315" height="458"/>
+                    <rect key="frame" x="30" y="104.5" width="315" height="458"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1xV-1b-gSk">
                             <rect key="frame" x="0.0" y="0.0" width="315" height="40"/>
@@ -660,7 +660,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="315" height="40"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms and Conditions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVE-JM-ebg" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                    <rect key="frame" x="63" y="12" width="190" height="20"/>
+                                    <rect key="frame" x="62.5" y="11.5" width="190" height="20"/>
                                     <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="20"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -800,7 +800,7 @@
                     <rect key="frame" x="45" y="181" width="285" height="205"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RESET YOUR PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zG-6A-2dR" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="57" y="12" width="172" height="17"/>
+                            <rect key="frame" x="57.5" y="12" width="171.5" height="17"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -824,7 +824,7 @@ email address below and click on the ‘Request Password Reset’ button. We wil
                             <rect key="frame" x="0.0" y="101" width="285" height="35"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="forgotPasswordEmailIcon" translatesAutoresizingMaskIntoConstraints="NO" id="97Z-gW-tPO">
-                                    <rect key="frame" x="10" y="11" width="17" height="15"/>
+                                    <rect key="frame" x="10" y="10" width="17" height="15"/>
                                 </imageView>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hd9-Cx-m5X" customClass="LocalizableTextField" customModule="Jisc" customModuleProvider="target">
                                     <rect key="frame" x="42" y="5" width="228" height="25"/>
@@ -1067,9 +1067,23 @@ email address below and click on the ‘Request Password Reset’ button. We wil
                                 <action selector="toggleStaff:" destination="-1" eventType="touchUpInside" id="rD9-h5-7rj"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UE1-eF-LrD">
+                            <rect key="frame" x="111" y="435" width="152" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="152" id="OcL-nI-fsg"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                            <inset key="titleEdgeInsets" minX="5" minY="3" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Keep me logged in" image="checkBoxBigOFF"/>
+                            <state key="selected" image="checkBoxBig"/>
+                            <connections>
+                                <action selector="toggleKeepMeLoggedIn:" destination="-1" eventType="touchUpInside" id="qzm-S4-bGK"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstItem="UE1-eF-LrD" firstAttribute="top" secondItem="fZk-sU-7yq" secondAttribute="bottom" constant="20" id="3sJ-PF-axZ"/>
                         <constraint firstItem="VHG-84-2hX" firstAttribute="leading" secondItem="c1l-ch-aBO" secondAttribute="leading" id="7nN-Zl-o5S"/>
                         <constraint firstAttribute="trailing" secondItem="VHG-84-2hX" secondAttribute="trailing" id="DAZ-7j-0HJ"/>
                         <constraint firstAttribute="bottom" secondItem="VHG-84-2hX" secondAttribute="bottom" id="Xhr-5C-xKE"/>
@@ -1079,6 +1093,7 @@ email address below and click on the ‘Request Password Reset’ button. We wil
                         <constraint firstItem="rwe-et-eaY" firstAttribute="centerY" secondItem="c1l-ch-aBO" secondAttribute="centerY" id="izX-RM-J5g"/>
                         <constraint firstItem="t9B-E7-xcK" firstAttribute="leading" secondItem="c1l-ch-aBO" secondAttribute="leading" id="oCp-uQ-68s"/>
                         <constraint firstItem="fZk-sU-7yq" firstAttribute="top" secondItem="rwe-et-eaY" secondAttribute="bottom" constant="25" id="pCK-Yf-rJ4"/>
+                        <constraint firstItem="UE1-eF-LrD" firstAttribute="centerX" secondItem="fZk-sU-7yq" secondAttribute="centerX" id="usM-0e-r7h"/>
                         <constraint firstItem="t9B-E7-xcK" firstAttribute="top" secondItem="c1l-ch-aBO" secondAttribute="top" id="v9h-IT-MPQ"/>
                     </constraints>
                 </view>

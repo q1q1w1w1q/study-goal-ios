@@ -8,7 +8,7 @@
 
 import UIKit
 
-let LOG_ACTIVITY = true
+let LOG_ACTIVITY = false
 
 //let hostPath = "http://therapy-box.com/jisc/"
 let hostPath = "http://stuapp.analytics.alpha.jisc.ac.uk/"
@@ -554,7 +554,7 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 			language = newLanguage
 		}
 		dictionary["language"] = language
-		if STAFF {
+		if staff() {
 			let request = createPostRequest(staffLoginPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true)
 			startConnectionWithRequest(request)
 		} else {

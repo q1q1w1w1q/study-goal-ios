@@ -133,7 +133,12 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 	
 	@IBAction func toggleStaff(_ sender:UIButton) {
 		sender.isSelected = !sender.isSelected
-		STAFF = sender.isSelected
+		setStaff(sender.isSelected)
+	}
+	
+	@IBAction func toggleKeepMeLoggedIn(_ sender:UIButton) {
+		sender.isSelected = !sender.isSelected
+		setKeepMeLoggenIn(sender.isSelected)
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -142,6 +147,35 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 			launchImage.frame = view.bounds
 			launchImage.contentMode = .scaleAspectFill
 			view.addSubview(launchImage)
+		}
+		
+		if keepMeLoggedIn() {
+			if JWTStillValid() {
+				xAPIManager().getStudentDetails({ (success, result, results, error) in
+					var loginSuccessful = false
+					if let result = result {
+						if let shibID = result["APPSHIB_ID"] as? String {
+							if (shibID != "null") {
+								loginSuccessful = true
+							}
+						}
+					}
+					if (loginSuccessful) {
+						if staff() {
+							NotificationCenter.default.post(name: Notification.Name(rawValue: xAPILoginCompleteNotification), object: result?["STAFF_ID"] as? String)
+						} else {
+							NotificationCenter.default.post(name: Notification.Name(rawValue: xAPILoginCompleteNotification), object: result?["STUDENT_ID"] as? String)
+						}
+						self.dismiss(animated: true, completion: {})
+					} else {
+						setKeepMeLoggenIn(false)
+						clearXAPIToken()
+					}
+				})
+			} else {
+				setKeepMeLoggenIn(false)
+				clearXAPIToken()
+			}
 		}
 	}
 	
@@ -495,7 +529,7 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 		selectedInstitute = (indexPath as NSIndexPath).row
 		view.layoutIfNeeded()
 		closeInstitutesSelector(UIButton())
-		dataManager.pickedIntitution = selectedInstituteObject
+		dataManager.pickedInstitution = selectedInstituteObject
 		
 		if (selectedInstituteObject.isLearningAnalytics.boolValue) {
 //			self.xAPILoginComplete()

@@ -6,10 +6,9 @@
 //  Copyright © 2015 Therapy Box. All rights reserved.
 //
 
-import Foundation
 import UIKit
+import CoreData
 
-var STAFF = false
 let onSimulator = TARGET_IPHONE_SIMULATOR == 1
 
 enum ScreenWidth:CGFloat {
@@ -180,6 +179,11 @@ func xAPIToken() -> String? {
 
 func setXAPIToken(_ sender:String) {
 	NSKeyedArchiver.archiveRootObject(sender, toFile: filePath("xAPIToken"))
+	if keepMeLoggedIn() {
+		if let institutionId = dataManager.pickedInstitution?.id {
+			NSKeyedArchiver.archiveRootObject(institutionId, toFile: filePath("institutionId"))
+		}
+	}
 }
 
 func clearXAPIToken() {
@@ -188,6 +192,7 @@ func clearXAPIToken() {
 	} catch {
 		print("clear xAPI token error: \(error)")
 	}
+	setStaff(false)
 }
 
 //MARK: IDPs
@@ -538,4 +543,103 @@ func localizedWith2Parameters(_ key:String?, parameter1:String?, parameter2:Stri
 		}
 	}
 	return string
+}
+
+func staff() -> Bool {
+	var staff = false
+	if let value = NSKeyedUnarchiver.unarchiveObject(withFile: filePath("staff")) as? Bool {
+		staff = value
+	}
+	return staff
+}
+
+func setStaff(_ value:Bool) {
+	NSKeyedArchiver.archiveRootObject(value, toFile: filePath("staff"))
+}
+
+//MARK: - Keep me logged in
+
+func keepMeLoggedIn() -> Bool {
+	var keepMeLoggenIn = false
+	if let value = NSKeyedUnarchiver.unarchiveObject(withFile: filePath("keepMeLoggedIn")) as? Bool {
+		keepMeLoggenIn = value
+	}
+	return keepMeLoggenIn
+}
+
+func setKeepMeLoggenIn(_ value:Bool) {
+	NSKeyedArchiver.archiveRootObject(value, toFile: filePath("keepMeLoggedIn"))
+}
+
+func JWTStillValid() -> Bool {
+	var valid = false
+	if let jwt = xAPIToken() {
+		if let dictionary = decodeJWT(jwt) {
+			if let expiryTimeStamp = dictionary["exp"] as? Double {
+				let expiryDate = Date(timeIntervalSince1970: expiryTimeStamp)
+				if expiryDate.compare(Date()) == .orderedDescending {
+					valid = true
+				}
+			}
+		}
+	}
+	if valid {
+		if let institutionId = NSKeyedUnarchiver.unarchiveObject(withFile: filePath("institutionId")) as? String {
+			let fetchRequest:NSFetchRequest<Institution> = NSFetchRequest(entityName: institutionEntityName)
+			fetchRequest.predicate = NSPredicate(format: "id == %@", institutionId)
+			var institution:Institution?
+			do {
+				try institution = managedContext.fetch(fetchRequest).first as Institution?
+				if institution != nil {
+					dataManager.pickedInstitution = institution
+				}
+			} catch {}
+		}
+	}
+	if dataManager.pickedInstitution == nil {
+		valid = false
+	}
+	return valid
+}
+
+//MARK: - Decode JWT
+
+func base64encode(_ input: Data) -> String {
+	let data = input.base64EncodedData(options: NSData.Base64EncodingOptions(rawValue: 0))
+	let string = String(data: data, encoding: .utf8)!
+	return string
+		.replacingOccurrences(of: "+", with: "-", options: NSString.CompareOptions(rawValue: 0), range: nil)
+		.replacingOccurrences(of: "/", with: "_", options: NSString.CompareOptions(rawValue: 0), range: nil)
+		.replacingOccurrences(of: "=", with: "", options: NSString.CompareOptions(rawValue: 0), range: nil)
+}
+
+func base64decode(_ input: String) -> Data? {
+	let rem = input.characters.count % 4
+	
+	var ending = ""
+	if rem > 0 {
+		let amount = 4 - rem
+		ending = String(repeating: "=", count: amount)
+	}
+	
+	let base64 = input.replacingOccurrences(of: "-", with: "+", options: NSString.CompareOptions(rawValue: 0), range: nil)
+		.replacingOccurrences(of: "_", with: "/", options: NSString.CompareOptions(rawValue: 0), range: nil) + ending
+	
+	return Data(base64Encoded: base64, options: NSData.Base64DecodingOptions(rawValue: 0))
+}
+
+func decodeJWT(_ jwt:String) -> NSDictionary? {
+	var data:Data?
+	let parts = jwt.components(separatedBy: ".")
+	if parts.count > 1 {
+		data = base64decode(parts[1])
+	}
+	var dictionary:NSDictionary?
+	if let data = data {
+		do {
+			let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)
+			dictionary = jsonObject as? NSDictionary
+		} catch {}
+	}
+	return dictionary
 }

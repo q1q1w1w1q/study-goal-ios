@@ -38,6 +38,9 @@ class xAPILoginVC: BaseViewController, UIWebViewDelegate {
 		urlString += idp
 		urlString += "&target=https://sp.data.alpha.jisc.ac.uk/secure/auth.php?u="
 		urlString += UUID!
+		if keepMeLoggedIn() {
+			urlString += "lt=true"
+		}
 		
 		if let URL = URL(string: urlString) {
 			let request = URLRequest(url: URL)
@@ -61,10 +64,8 @@ class xAPILoginVC: BaseViewController, UIWebViewDelegate {
 					let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
 					
 					if let token = jsonResponse["jwt"] as? String {
-                        
-                        // Token can be replaced here for testing individuals.
 						setXAPIToken(token)
-
+						
 						webView.alpha = 0.0
 
 						xAPIManager().getStudentDetails({ (success, result, results, error) in
@@ -77,7 +78,7 @@ class xAPILoginVC: BaseViewController, UIWebViewDelegate {
 								}
 							}
 							if (loginSuccessful) {
-								if STAFF {
+								if staff() {
 									NotificationCenter.default.post(name: Notification.Name(rawValue: xAPILoginCompleteNotification), object: result?["STAFF_ID"] as? String)
 								} else {
 									NotificationCenter.default.post(name: Notification.Name(rawValue: xAPILoginCompleteNotification), object: result?["STUDENT_ID"] as? String)

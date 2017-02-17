@@ -54,7 +54,7 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		scrollIndicator.alpha = 0.0
-		if STAFF {
+		if staff() {
 			graphType = GraphType.Bar
 			graphToggleButton.isSelected = true
 		}
@@ -125,7 +125,7 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 	}
 	
 	func getEngagementData() {
-//		let myID = dataManager.currentStudent!.id
+		//		let myID = dataManager.currentStudent!.id
 		let period = periods[selectedPeriod]
 		var moduleID:String? = nil
 		var courseID:String? = nil
@@ -203,7 +203,7 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 			requestOptions.compareType = .Friend
 			requestOptions.compareValue = studentID
 		}
-		if STAFF {
+		if staff() {
 			completion(true, nil, nil, nil)
 		} else {
 			xAPIManager().getEngagementData(requestOptions, completion: completion)
@@ -323,7 +323,7 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 		var otherStudentValues:[Double]? = nil
 		var otherStudentMax:Double = 0.0
 		var columnNames:[String]? = nil
-		if STAFF {
+		if staff() {
 			switch (period) {
 			case .Overall:
 				dateFormatter.dateFormat = "yyyy"
@@ -870,7 +870,7 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 			for (_, item) in colleagues.enumerated() {
 				array.append("\(item.firstName) \(item.lastName)")
 			}
-//			array.append(localized("top_10_percent"))
+			//			array.append(localized("top_10_percent"))
 			array.append(localized("average"))
 			compareToSelectorView = CustomPickerView.create(localized("choose_student"), delegate: self, contentArray: array, selectedItem: selectedStudent)
 			view.addSubview(compareToSelectorView)
@@ -880,18 +880,18 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 	func friendsInTheSameCourse() -> [Friend] {
 		var array:[Friend] = [Friend]()
 		
-//		for (_, colleague) in dataManager.studentsInTheSameCourse().enumerate() {
-//			var colleagueIsFriend = false
-//			for (_, friend) in dataManager.friends().enumerate() {
-//				if (colleague.id == friend.id) {
-//					colleagueIsFriend = true
-//					break
-//				}
-//			}
-//			if (colleagueIsFriend) {
-//				array.append(colleague)
-//			}
-//		}
+		//		for (_, colleague) in dataManager.studentsInTheSameCourse().enumerate() {
+		//			var colleagueIsFriend = false
+		//			for (_, friend) in dataManager.friends().enumerate() {
+		//				if (colleague.id == friend.id) {
+		//					colleagueIsFriend = true
+		//					break
+		//				}
+		//			}
+		//			if (colleagueIsFriend) {
+		//				array.append(colleague)
+		//			}
+		//		}
 		
 		for (_, friend) in dataManager.friends().enumerated() {
 			if (!friend.jisc_id.isEmpty) {
@@ -970,14 +970,14 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 						self.blueDot.alpha = 1.0
 						self.comparisonStudentName.alpha = 1.0
 					})
-//				} else if (selectedStudent == friendsInTheSameCourse().count + 1) {
-//					compareToButton.setTitle(localized("top_10_percent"), for: UIControlState())
-//					comparisonStudentName.text = localized("top_10_percent")
-//					UIView.animate(withDuration: 0.25, animations: { () -> Void in
-//						self.blueDot.alpha = 1.0
-//						self.comparisonStudentName.alpha = 1.0
-//					})
-//				} else if (selectedStudent == friendsInTheSameCourse().count + 2) {
+					//				} else if (selectedStudent == friendsInTheSameCourse().count + 1) {
+					//					compareToButton.setTitle(localized("top_10_percent"), for: UIControlState())
+					//					comparisonStudentName.text = localized("top_10_percent")
+					//					UIView.animate(withDuration: 0.25, animations: { () -> Void in
+					//						self.blueDot.alpha = 1.0
+					//						self.comparisonStudentName.alpha = 1.0
+					//					})
+					//				} else if (selectedStudent == friendsInTheSameCourse().count + 2) {
 				} else if (selectedStudent == friendsInTheSameCourse().count + 1) {
 					compareToButton.setTitle(localized("average"), for: UIControlState())
 					comparisonStudentName.text = localized("average")

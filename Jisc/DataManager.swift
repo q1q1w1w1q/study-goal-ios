@@ -80,7 +80,7 @@ func labsModel() -> (context:NSManagedObjectContext, id:String, name:String, pre
 class DataManager: NSObject {
 	
 	var currentStudent:Student?
-	var pickedIntitution:Institution?
+	var pickedInstitution:Institution?
 	var studentLastWeekRankings:[Int:Int] = [Int:Int]()
 	var studentOverallRankings:[Int:Int] = [Int:Int]()
 	var runningLogs:[RunningLogContainer] = [RunningLogContainer]()
@@ -941,8 +941,8 @@ class DataManager: NSObject {
 		DownloadManager().loginWithXAPI(jwt, alertAboutInternet: true) { (success, result, results, error) in
 			if (result != nil) {
 				dataManager.currentStudent = Student.insertInManagedObjectContext(managedContext, dictionary: result!)
-				if (dataManager.pickedIntitution != nil) {
-					dataManager.currentStudent?.institution = dataManager.pickedIntitution!
+				if (dataManager.pickedInstitution != nil) {
+					dataManager.currentStudent?.institution = dataManager.pickedInstitution!
 				}
 				self.safelySaveContext()
 				self.getStudentData(completion)
@@ -999,7 +999,7 @@ class DataManager: NSObject {
 	//MARK: Get Modules
 	
 	func getStudentModules(_ completion:@escaping dataManagerCompletionBlock) {
-		if STAFF {
+		if staff() {
 			let modulesCount = 3
 			for i in stride(from: 1, through: modulesCount, by: 1) {
 				let key = "DUMMY_\(i)"

@@ -408,7 +408,7 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
 	func getStudentDetails(_ completion:@escaping xAPICompletionBlock) {
 		completionBlock = completion
 		var request:URLRequest?
-		if STAFF {
+		if staff() {
 			if let url = urlWithHost("https://sp.data.alpha.jisc.ac.uk/", path: "staff/") {
 				request = URLRequest(url: url)
 			}

@@ -107,22 +107,22 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PuM-4m-3QT">
-                    <rect key="frame" x="241.5" y="313.5" width="285" height="397"/>
+                    <rect key="frame" x="241.5" y="309" width="285" height="406"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W2I-Nd-qov">
-                            <rect key="frame" x="22" y="0.0" width="241" height="105"/>
+                            <rect key="frame" x="13" y="0.0" width="259" height="105"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="252" image="studentHat" translatesAutoresizingMaskIntoConstraints="NO" id="QOK-x7-1CN">
-                                    <rect key="frame" x="57" y="0.0" width="127" height="58"/>
+                                    <rect key="frame" x="66" y="0.0" width="127" height="58"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jisc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ul0-4X-o05">
-                                    <rect key="frame" x="173" y="41" width="32" height="22"/>
+                                    <rect key="frame" x="182" y="37" width="39.5" height="26"/>
                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="22"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Learning analytics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="teU-jO-kbM">
-                                    <rect key="frame" x="0.0" y="58" width="241" height="47"/>
+                                    <rect key="frame" x="0.0" y="58" width="259" height="47"/>
                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="32"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -145,7 +145,7 @@
                             <rect key="frame" x="0.0" y="125" width="285" height="0.0"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CHOOSE YOUR INSTITUTION" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gup-MC-WOw" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                    <rect key="frame" x="5" y="0.0" width="275" height="23"/>
+                                    <rect key="frame" x="5" y="0.0" width="275" height="27"/>
                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="23"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -155,7 +155,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g5N-K8-7yv" customClass="ViewWithRoundedCorners" customModule="Jisc" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="38" width="285" height="35"/>
+                                    <rect key="frame" x="0.0" y="42" width="285" height="35"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A36-j0-2oi">
                                             <rect key="frame" x="0.0" y="0.0" width="285" height="35"/>
@@ -228,10 +228,10 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qsK-Kc-KQk">
-                            <rect key="frame" x="0.0" y="145" width="285" height="118"/>
+                            <rect key="frame" x="0.0" y="145" width="285" height="122"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOG IN TO YOUR ACCOUNT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y5E-qc-XXp" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                    <rect key="frame" x="5" y="0.0" width="275" height="23"/>
+                                    <rect key="frame" x="5" y="0.0" width="275" height="27"/>
                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="23"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -241,7 +241,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EP0-Uj-TW3" customClass="ViewWithRoundedCorners" customModule="Jisc" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="38" width="285" height="35"/>
+                                    <rect key="frame" x="0.0" y="42" width="285" height="35"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginEmailIcon" translatesAutoresizingMaskIntoConstraints="NO" id="sAl-k9-oHl">
                                             <rect key="frame" x="10" y="10" width="16" height="16"/>
@@ -276,7 +276,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="24r-3W-MTJ" customClass="ViewWithRoundedCorners" customModule="Jisc" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="83" width="285" height="35"/>
+                                    <rect key="frame" x="0.0" y="87" width="285" height="35"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginPasswordIcon" translatesAutoresizingMaskIntoConstraints="NO" id="8XR-bH-B6s">
                                             <rect key="frame" x="10" y="10.5" width="15" height="14"/>
@@ -333,10 +333,10 @@
                             </variation>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lX7-gi-5mW">
-                            <rect key="frame" x="0.0" y="283" width="285" height="114"/>
+                            <rect key="frame" x="0.0" y="287" width="285" height="119"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="619-mP-liT" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
-                                    <rect key="frame" x="8" y="8" width="118" height="27"/>
+                                    <rect key="frame" x="8" y="8" width="118" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="118" id="9dM-Dy-YU2"/>
                                     </constraints>
@@ -353,7 +353,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OHL-Xc-fCm" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
-                                    <rect key="frame" x="166" y="8" width="111" height="27"/>
+                                    <rect key="frame" x="155" y="8" width="122" height="30"/>
                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="3" maxX="0.0" maxY="0.0"/>
                                     <state key="normal" title="Forgot password?"/>
@@ -365,10 +365,10 @@
                                     </connections>
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="csT-sI-BM9">
-                                    <rect key="frame" x="51" y="50" width="184" height="16"/>
+                                    <rect key="frame" x="46.5" y="53" width="193" height="18"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mUG-v4-zYw" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="64" height="16"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="64" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="64" id="iYr-hy-Ude"/>
                                             </constraints>
@@ -385,7 +385,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dEl-tR-tAC" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
-                                            <rect key="frame" x="66" y="0.0" width="118" height="16"/>
+                                            <rect key="frame" x="66" y="0.0" width="127" height="18"/>
                                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="13"/>
                                             <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="0.0"/>
                                             <state key="normal" title="Terms and Conditions"/>
@@ -397,7 +397,7 @@
                                             </connections>
                                         </button>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TIQ-ds-yTs">
-                                            <rect key="frame" x="66" y="15" width="118" height="1"/>
+                                            <rect key="frame" x="66" y="17" width="127" height="1"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="u4g-Iz-KPb"/>
@@ -420,7 +420,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xfu-ql-7gp" customClass="ViewWithRoundedCorners" customModule="Jisc" customModuleProvider="target">
-                                    <rect key="frame" x="82" y="81" width="121" height="33"/>
+                                    <rect key="frame" x="82" y="86" width="121" height="33"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x68-dA-v2o" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="121" height="33"/>
@@ -651,7 +651,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lDx-iI-Upj" customClass="ViewWithRoundedCorners" customModule="Jisc" customModuleProvider="target">
-                    <rect key="frame" x="130" y="343" width="508" height="338"/>
+                    <rect key="frame" x="130" y="325.5" width="508" height="373"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1xV-1b-gSk">
                             <rect key="frame" x="0.0" y="0.0" width="508" height="40"/>
@@ -660,7 +660,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="508" height="40"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms and Conditions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVE-JM-ebg" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                    <rect key="frame" x="159" y="12" width="190" height="20"/>
+                                    <rect key="frame" x="156.5" y="10.5" width="195.5" height="23.5"/>
                                     <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="20"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -681,13 +681,13 @@
                             </constraints>
                         </view>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wyq-SG-JmL">
-                            <rect key="frame" x="0.0" y="40" width="508" height="230"/>
+                            <rect key="frame" x="0.0" y="40" width="508" height="265"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Stf-BY-wAK">
-                                    <rect key="frame" x="0.0" y="0.0" width="508" height="230"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="508" height="265"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRd-e1-lN9">
-                                            <rect key="frame" x="15" y="20" width="478" height="210"/>
+                                            <rect key="frame" x="15" y="20" width="478" height="245"/>
                                             <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</string>
                                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
                                             <color key="textColor" red="0.74509803919999995" green="0.53725490200000003" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -713,7 +713,7 @@
                             </constraints>
                         </scrollView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EOh-P0-hrw" customClass="ViewWithRoundedCorners" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="194" y="290" width="121" height="33"/>
+                            <rect key="frame" x="194" y="325" width="121" height="33"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3L-zv-hMq" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="121" height="33"/>
@@ -803,10 +803,10 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZQt-YK-nAZ">
-                    <rect key="frame" x="241.5" y="359.5" width="285" height="205"/>
+                    <rect key="frame" x="241.5" y="355" width="285" height="214"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RESET YOUR PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zG-6A-2dR" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="57" y="12" width="172" height="17"/>
+                            <rect key="frame" x="40" y="12" width="206" height="20"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -816,7 +816,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FoD-g0-qLh" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="47" width="285" height="36"/>
+                            <rect key="frame" x="0.0" y="50" width="285" height="42"/>
                             <string key="text">It is often forgotten that password thing. Enter your
 email address below and click on the ‘Request Password Reset’ button. We will contact you shortly!</string>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="12"/>
@@ -827,7 +827,7 @@ email address below and click on the ‘Request Password Reset’ button. We wil
                             </userDefinedRuntimeAttributes>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wm9-Rr-DCI" customClass="ViewWithRoundedCorners" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="101" width="285" height="35"/>
+                            <rect key="frame" x="0.0" y="110" width="285" height="35"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="forgotPasswordEmailIcon" translatesAutoresizingMaskIntoConstraints="NO" id="97Z-gW-tPO">
                                     <rect key="frame" x="10" y="10.5" width="17" height="15"/>
@@ -863,7 +863,7 @@ email address below and click on the ‘Request Password Reset’ button. We wil
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6AS-qY-ano" customClass="ViewWithRoundedCorners" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="82" y="154" width="121" height="33"/>
+                            <rect key="frame" x="82" y="163" width="121" height="33"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vbg-So-SEs" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="121" height="33"/>
@@ -1073,6 +1073,19 @@ email address below and click on the ‘Request Password Reset’ button. We wil
                                 <action selector="toggleStaff:" destination="-1" eventType="touchUpInside" id="IlW-vE-4vE"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XIp-Aq-HMj">
+                            <rect key="frame" x="308" y="614" width="152" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="152" id="jVF-QI-cDe"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                            <inset key="titleEdgeInsets" minX="5" minY="3" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Keep me logged in" image="checkBoxBigOFF"/>
+                            <state key="selected" image="checkBoxBig"/>
+                            <connections>
+                                <action selector="toggleKeepMeLoggedIn:" destination="-1" eventType="touchUpInside" id="mUf-fa-iZR"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -1083,9 +1096,11 @@ email address below and click on the ‘Request Password Reset’ button. We wil
                         <constraint firstAttribute="bottom" secondItem="LNK-pv-idK" secondAttribute="bottom" id="T4H-Dv-4hw"/>
                         <constraint firstItem="LNK-pv-idK" firstAttribute="leading" secondItem="L4R-re-eqY" secondAttribute="leading" id="ePh-Ae-33y"/>
                         <constraint firstItem="2AW-Pu-9Bv" firstAttribute="top" secondItem="L4R-re-eqY" secondAttribute="top" id="g0N-PW-wVT"/>
+                        <constraint firstItem="XIp-Aq-HMj" firstAttribute="top" secondItem="cDB-Ux-6KO" secondAttribute="bottom" constant="20" id="kgd-hf-qFn"/>
                         <constraint firstItem="cDB-Ux-6KO" firstAttribute="top" secondItem="aPo-ae-YRk" secondAttribute="bottom" constant="25" id="lhp-5U-84W"/>
                         <constraint firstItem="aPo-ae-YRk" firstAttribute="centerX" secondItem="L4R-re-eqY" secondAttribute="centerX" id="mqu-8D-cFn"/>
                         <constraint firstItem="2AW-Pu-9Bv" firstAttribute="leading" secondItem="L4R-re-eqY" secondAttribute="leading" id="skz-yH-TIc"/>
+                        <constraint firstItem="XIp-Aq-HMj" firstAttribute="centerX" secondItem="cDB-Ux-6KO" secondAttribute="centerX" id="xo5-RB-eDt"/>
                     </constraints>
                 </view>
             </subviews>
