@@ -1920,7 +1920,7 @@
 				INFOPLIST_FILE = Jisc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.therapybox.studentapp;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.jisc.studygoal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2ed7f47f-b191-4fc0-acb9-d8a2d55557cc";
 				PROVISIONING_PROFILE_SPECIFIER = XGRoup_Development;
@@ -1940,14 +1940,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Therapy Box Limited (JG53BNN66L)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = JG53BNN66L;
+				DEVELOPMENT_TEAM = D5QJ7EBR49;
 				INFOPLIST_FILE = Jisc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.therapybox.studentapp;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.jisc.studygoal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "8f520bed-6bd5-4ceb-b126-5d8c1b64e15d";
+				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: uk.ac.jisc.studygoal";
 				SWIFT_OBJC_BRIDGING_HEADER = "Jisc/Jisc-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
