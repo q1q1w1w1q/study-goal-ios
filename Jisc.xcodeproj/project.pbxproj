@@ -185,6 +185,8 @@
 		DAE578421D911E4A00ABDCAD /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE578411D911E4A00ABDCAD /* Reachability.swift */; };
 		DAE697B21BE3850D00760DE4 /* BigTitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE697B11BE3850D00760DE4 /* BigTitleButton.swift */; };
 		DAEA56691BF0E52A007A3C86 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAEA56671BF0E52A007A3C86 /* Student.swift */; };
+		DAECB12A1E5ED613004760C8 /* CheckinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAECB1281E5ED613004760C8 /* CheckinVC.swift */; };
+		DAECB12B1E5ED613004760C8 /* CheckinVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAECB1291E5ED613004760C8 /* CheckinVC.xib */; };
 		DAFB88BE1C107208000CCD65 /* Mark+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFB88BC1C107208000CCD65 /* Mark+CoreDataProperties.swift */; };
 		DAFB88BF1C107208000CCD65 /* Mark.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFB88BD1C107208000CCD65 /* Mark.swift */; };
 		DAFB88C21C1083B9000CCD65 /* MarkValue+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFB88C01C1083B9000CCD65 /* MarkValue+CoreDataProperties.swift */; };
@@ -462,6 +464,8 @@
 		DAE697B11BE3850D00760DE4 /* BigTitleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigTitleButton.swift; sourceTree = "<group>"; };
 		DAEA56671BF0E52A007A3C86 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		DAEC83241D90080C00799B42 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = Charts/Charts.xcodeproj; sourceTree = "<group>"; };
+		DAECB1281E5ED613004760C8 /* CheckinVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckinVC.swift; sourceTree = "<group>"; };
+		DAECB1291E5ED613004760C8 /* CheckinVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckinVC.xib; sourceTree = "<group>"; };
 		DAFB88BB1C10718F000CCD65 /* Jisc1.7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jisc1.7.xcdatamodel; sourceTree = "<group>"; };
 		DAFB88BC1C107208000CCD65 /* Mark+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Mark+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DAFB88BD1C107208000CCD65 /* Mark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mark.swift; sourceTree = "<group>"; };
@@ -731,6 +735,7 @@
 				DAD644DA1C623B3E00AA62E8 /* LocalizableClasses */,
 				DA425AB21BD5115500C77D76 /* Login */,
 				DAA2AEEF1BCE85AB00ED796A /* Feed */,
+				DAECB1241E5ED5E6004760C8 /* CheckIn */,
 				DAA2AEEE1BCE85A600ED796A /* Stats */,
 				DAA2AEED1BCE859F00ED796A /* Log */,
 				DAA2AEEC1BCE859200ED796A /* Target */,
@@ -1146,6 +1151,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		DAECB1241E5ED5E6004760C8 /* CheckIn */ = {
+			isa = PBXGroup;
+			children = (
+				DAECB1281E5ED613004760C8 /* CheckinVC.swift */,
+				DAECB1291E5ED613004760C8 /* CheckinVC.xib */,
+			);
+			name = CheckIn;
+			sourceTree = "<group>";
+		};
 		F09FDE158F6D96A35F852D20 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1313,6 +1327,7 @@
 				DAD644C81C6227C800AA62E8 /* Localizable.strings in Resources */,
 				DAB0C8BB1C4CEC2300F7A3C6 /* NewTrophyAlert.xib in Resources */,
 				DAB0C8AF1C4CEBF500F7A3C6 /* TrophiesVC.xib in Resources */,
+				DAECB12B1E5ED613004760C8 /* CheckinVC.xib in Resources */,
 				DAB0C7BF1C4CE82500F7A3C6 /* LoginVC.xib in Resources */,
 				DAB0C8251C4CE9C700F7A3C6 /* LogVC.xib in Resources */,
 				DAB0C8671C4CEA9E00F7A3C6 /* TargetVC~ipad.xib in Resources */,
@@ -1427,6 +1442,7 @@
 				DAD5738D1C3D108F0080B49B /* StudentTrophy+CoreDataProperties.swift in Sources */,
 				DA209D531C08A56100E678DF /* SentFriendRequest+CoreDataProperties.swift in Sources */,
 				DAC32DAE1BCF964300C4FBF5 /* LogActivityVC.swift in Sources */,
+				DAECB12A1E5ED613004760C8 /* CheckinVC.swift in Sources */,
 				DAD8BD7A1DB8C4D4004F21DE /* DoubleBarView.swift in Sources */,
 				DAA2AEA71BCE785900ED796A /* AppDelegate.swift in Sources */,
 				DAA2AEFA1BCE85DB00ED796A /* LogVC.swift in Sources */,

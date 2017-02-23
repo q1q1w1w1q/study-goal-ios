@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 
 let onSimulator = TARGET_IPHONE_SIMULATOR == 1
+var isSocial = false
 
 enum ScreenWidth:CGFloat {
 	case small = 320.0

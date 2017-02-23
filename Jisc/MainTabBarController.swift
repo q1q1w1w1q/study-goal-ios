@@ -12,6 +12,7 @@ import QuartzCore
 class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
 	
 	let feedViewController = FeedVC()
+	let checkinViewController = CheckinVC()
 	let statsViewController = StatsVC()
 	let logViewController = LogVC()
 	let targetViewController = TargetVC()
@@ -27,6 +28,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
 	
 	func createdViewControllers() -> [UIViewController]? {
 		feedViewController.tabBarItem = tabBarItem("Feed")
+		checkinViewController.tabBarItem = tabBarItem("Checkin")
 		statsViewController.tabBarItem = tabBarItem("Stats")
 		logViewController.tabBarItem = tabBarItem("Log")
 		targetViewController.tabBarItem = tabBarItem("Target")
@@ -46,14 +48,16 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
 		
 		let navigationController1 = UINavigationController(rootViewController: feedViewController)
 		navigationController1.isNavigationBarHidden = true
-		let navigationController2 = UINavigationController(rootViewController: statsViewController)
+		let navigationController2 = UINavigationController(rootViewController: checkinViewController)
 		navigationController2.isNavigationBarHidden = true
-		let navigationController3 = UINavigationController(rootViewController: logViewController)
+		let navigationController3 = UINavigationController(rootViewController: statsViewController)
 		navigationController3.isNavigationBarHidden = true
-		let navigationController4 = UINavigationController(rootViewController: targetViewController)
+		let navigationController4 = UINavigationController(rootViewController: logViewController)
 		navigationController4.isNavigationBarHidden = true
+		let navigationController5 = UINavigationController(rootViewController: targetViewController)
+		navigationController5.isNavigationBarHidden = true
 		
-		let viewControllers = [navigationController1, navigationController2, navigationController3, navigationController4]
+		let viewControllers = [navigationController1, navigationController2, navigationController3, navigationController4, navigationController5]
 		return viewControllers
 	}
 	

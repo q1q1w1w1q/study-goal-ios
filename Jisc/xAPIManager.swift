@@ -214,7 +214,6 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
 			request = URLRequest(url: url)
 			if (withJWT) {
 				if let token = xAPIToken() {
-					print("Token: \(token)")
 					request?.addValue("\(token)\"}", forHTTPHeaderField: "Authorization")
 				}
 			}

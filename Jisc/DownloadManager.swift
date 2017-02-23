@@ -8,7 +8,7 @@
 
 import UIKit
 
-let LOG_ACTIVITY = false
+let LOG_ACTIVITY = true
 
 //let hostPath = "http://therapy-box.com/jisc/"
 let hostPath = "http://stuapp.analytics.alpha.jisc.ac.uk/"
@@ -460,6 +460,13 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		data = (NSString(format: "Content-Disposition: form-data; name=\"language\"\r\n\r\n%@", language)).data(using: String.Encoding.utf8.rawValue)
 		body.append(data!)
 		
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		data = (NSString(format: "Content-Disposition: form-data; name=\"is_social\"\r\n\r\n%@", social)).data(using: String.Encoding.utf8.rawValue)
+		body.append(data!)
+		
 		data = (NSString(format: "\r\n--%@\r\n", boundary)).data(using: String.Encoding.utf8.rawValue)
 		body.append(data!)
 		let fileName = "\(myID)_\(Date().timeIntervalSince1970)"
@@ -554,6 +561,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 			language = newLanguage
 		}
 		dictionary["language"] = language
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		dictionary["is_social"] = social
 		if staff() {
 			let request = createPostRequest(staffLoginPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true)
 			startConnectionWithRequest(request)
@@ -573,6 +585,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 			language = newLanguage
 		}
 		dictionary["language"] = language
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		dictionary["is_social"] = social
 		startConnectionWithRequest(createPostRequest(forgotPasswordPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
@@ -587,6 +604,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 			language = newLanguage
 		}
 		dictionary["language"] = language
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		dictionary["is_social"] = social
 		startConnectionWithRequest(createPostRequest(sendFriendRequestPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
@@ -601,6 +623,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 			language = newLanguage
 		}
 		dictionary["language"] = language
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		dictionary["is_social"] = social
 		startConnectionWithRequest(createPostRequest(sendFriendRequestByEmailPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
@@ -615,6 +642,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 			language = newLanguage
 		}
 		dictionary["language"] = language
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		dictionary["is_social"] = social
 		startConnectionWithRequest(createPutRequest(acceptFriendRequestPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
@@ -625,7 +657,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage
 		}
-		startConnectionWithRequest(createDeleteRequest("\(deleteFriendRequestPath)?deleted_user=\(from)&student_id=\(to)&language=\(language)", withAuthorizationHeader: true))
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		startConnectionWithRequest(createDeleteRequest("\(deleteFriendRequestPath)?deleted_user=\(from)&student_id=\(to)&language=\(language)&is_social=\(social)", withAuthorizationHeader: true))
 	}
 	
 	func cancelPendingFriendRequest(_ myID:String, friendID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -635,7 +671,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage
 		}
-		startConnectionWithRequest(createDeleteRequest("\(cancelFriendRequestPath)?student_id=\(myID)&friend_id=\(friendID)&language=\(language)", withAuthorizationHeader: true))
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		startConnectionWithRequest(createDeleteRequest("\(cancelFriendRequestPath)?student_id=\(myID)&friend_id=\(friendID)&language=\(language)&is_social=\(social)", withAuthorizationHeader: true))
 	}
 	
 	func changeFriendSettings(_ myID:String, friendID:String, privacy:FriendRequestPrivacyOptions, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -649,6 +689,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 			language = newLanguage
 		}
 		dictionary["language"] = language
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		dictionary["is_social"] = social
 		startConnectionWithRequest(createPutRequest(changeFriendSettingsPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
@@ -663,6 +708,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 			language = newLanguage
 		}
 		dictionary["language"] = language
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		dictionary["is_social"] = social
 		startConnectionWithRequest(createPutRequest(hideFriendPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
@@ -677,6 +727,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 			language = newLanguage
 		}
 		dictionary["language"] = language
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		dictionary["is_social"] = social
 		startConnectionWithRequest(createPutRequest(unhideFriendPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
@@ -687,7 +742,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage
 		}
-		startConnectionWithRequest(createDeleteRequest("\(deleteFriendPath)?student_id=\(myID)&friend_id=\(friendToDeleteID)&language=\(language)", withAuthorizationHeader: true))
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		startConnectionWithRequest(createDeleteRequest("\(deleteFriendPath)?student_id=\(myID)&friend_id=\(friendToDeleteID)&language=\(language)&is_social=\(social)", withAuthorizationHeader: true))
 	}
 	
 	func getStudentsInTheSameCourse(_ myID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -697,7 +756,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage
 		}
-		startConnectionWithRequest(createGetRequest("\(getStudentsInTheSameCoursePath)?student_id=\(myID)&language=\(language)", withAuthorizationHeader: true))
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		startConnectionWithRequest(createGetRequest("\(getStudentsInTheSameCoursePath)?student_id=\(myID)&language=\(language)&is_social=\(social)", withAuthorizationHeader: true))
 	}
 	
 	func getStudentByEmail(_ myID:String, email:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -707,7 +770,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage
 		}
-		startConnectionWithRequest(createGetRequest("\(getStudentByEmailPath)?student_id=\(myID)&email=\(email)&language=\(language)", withAuthorizationHeader: true))
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		startConnectionWithRequest(createGetRequest("\(getStudentByEmailPath)?student_id=\(myID)&email=\(email)&language=\(language)&is_social=\(social)", withAuthorizationHeader: true))
 	}
 	
 	func searchStudentByEmail(_ myID:String, email:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -717,7 +784,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage
 		}
-		startConnectionWithRequest(createGetRequest("\(searchStudentByEmailPath)?student_id=\(myID)&email=\(email)&language=\(language)", withAuthorizationHeader: true))
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		startConnectionWithRequest(createGetRequest("\(searchStudentByEmailPath)?student_id=\(myID)&email=\(email)&language=\(language)&is_social=\(social)", withAuthorizationHeader: true))
 	}
 	
 	func getFriendsList(_ myID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -727,7 +798,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage
 		}
-		startConnectionWithRequest(createGetRequest("\(getFriendsListPath)?student_id=\(myID)&language=\(language)", withAuthorizationHeader: true))
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		startConnectionWithRequest(createGetRequest("\(getFriendsListPath)?student_id=\(myID)&language=\(language)&is_social=\(social)", withAuthorizationHeader: true))
 	}
 	
 	func getFriendRequests(_ myID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -737,7 +812,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage
 		}
-		startConnectionWithRequest(createGetRequest("\(getFriendRequestsPath)?student_id=\(myID)&language=\(language)", withAuthorizationHeader: true))
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		startConnectionWithRequest(createGetRequest("\(getFriendRequestsPath)?student_id=\(myID)&language=\(language)&is_social=\(social)", withAuthorizationHeader: true))
 	}
 	
 	func getStudentDetails(_ myID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -747,7 +826,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage
 		}
-		startConnectionWithRequest(createGetRequest("\(getStudentDetailsPath)?student_id=\(myID)&language=\(language)", withAuthorizationHeader: true))
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		startConnectionWithRequest(createGetRequest("\(getStudentDetailsPath)?student_id=\(myID)&language=\(language)&is_social=\(social)", withAuthorizationHeader: true))
 	}
 	
 	func getStudentActivityLogs(_ myID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -757,7 +840,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage
 		}
-		startConnectionWithRequest(createGetRequest("\(getStudentActivityLogsPath)?student_id=\(myID)&language=\(language)", withAuthorizationHeader: true))
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		startConnectionWithRequest(createGetRequest("\(getStudentActivityLogsPath)?student_id=\(myID)&language=\(language)&is_social=\(social)", withAuthorizationHeader: true))
 	}
 	
 	func getStudentModules(_ myID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -767,7 +854,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage
 		}
-		startConnectionWithRequest(createGetRequest("\(getStudentModulesPath)?student_id=\(myID)&language=\(language)", withAuthorizationHeader: true))
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		startConnectionWithRequest(createGetRequest("\(getStudentModulesPath)?student_id=\(myID)&language=\(language)&is_social=\(social)", withAuthorizationHeader: true))
 	}
 	
 	func addActivityLog(_ log:ActivityLog, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -779,6 +870,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 			language = newLanguage
 		}
 		dictionary["language"] = language
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		dictionary["is_social"] = social
 		startConnectionWithRequest(createPostRequest(addActivityLogPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
@@ -797,6 +893,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 			language = newLanguage
 		}
 		dictionary["language"] = language
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		dictionary["is_social"] = social
 		startConnectionWithRequest(createPutRequest(editActivityLogPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
@@ -807,7 +908,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage
 		}
-		startConnectionWithRequest(createGetRequest("\(viewActivityLogPath)?student_id=\(dataManager.currentStudent!.id)&log_id=\(logID)&language=\(language)", withAuthorizationHeader: true))
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		startConnectionWithRequest(createGetRequest("\(viewActivityLogPath)?student_id=\(dataManager.currentStudent!.id)&log_id=\(logID)&language=\(language)&is_social=\(social)", withAuthorizationHeader: true))
 	}
 	
 	func deleteActivityLog(_ logID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -817,7 +922,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage
 		}
-		startConnectionWithRequest(createDeleteRequest("\(deleteActivityLogPath)?student_id=\(dataManager.currentStudent!.id)&log_id=\(logID)&language=\(language)", withAuthorizationHeader: true))
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		startConnectionWithRequest(createDeleteRequest("\(deleteActivityLogPath)?student_id=\(dataManager.currentStudent!.id)&log_id=\(logID)&language=\(language)&is_social=\(social)", withAuthorizationHeader: true))
 	}
 	
 	func getTargets(_ myID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -827,7 +936,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage
 		}
-		startConnectionWithRequest(createGetRequest("\(getTargetsPath)?student_id=\(myID)&language=\(language)", withAuthorizationHeader: true))
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		startConnectionWithRequest(createGetRequest("\(getTargetsPath)?student_id=\(myID)&language=\(language)&is_social=\(social)", withAuthorizationHeader: true))
 	}
 	
 	func addTarget(_ myID:String, target:Target, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -840,6 +953,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 			language = newLanguage
 		}
 		dictionary["language"] = language
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		dictionary["is_social"] = social
 		startConnectionWithRequest(createPostRequest(addTargetPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
@@ -862,6 +980,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 			language = newLanguage
 		}
 		dictionary["language"] = language
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		dictionary["is_social"] = social
 		startConnectionWithRequest(createPutRequest(editTargetPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
@@ -872,7 +995,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage
 		}
-		startConnectionWithRequest(createGetRequest("\(viewTargetDetailsPath)?student_id=\(dataManager.currentStudent!.id)&target_id=\(targetID)&language=\(language)", withAuthorizationHeader: true))
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		startConnectionWithRequest(createGetRequest("\(viewTargetDetailsPath)?student_id=\(dataManager.currentStudent!.id)&target_id=\(targetID)&language=\(language)&is_social=\(social)", withAuthorizationHeader: true))
 	}
 	
 	func deleteTarget(_ targetID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -885,6 +1012,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 			language = newLanguage
 		}
 		dictionary["language"] = language
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		dictionary["is_social"] = social
 		startConnectionWithRequest(createPutRequest(deleteTargetPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
@@ -898,6 +1030,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 			language = newLanguage
 		}
 		dictionary["language"] = language
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		dictionary["is_social"] = social
 		startConnectionWithRequest(createPutRequest(checkTargetCompletionStatusPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
@@ -908,7 +1045,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage
 		}
-		startConnectionWithRequest(createGetRequest("\(getStretchTargetsPath)?student_id=\(myID)&language=\(language)", withAuthorizationHeader: true))
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		startConnectionWithRequest(createGetRequest("\(getStretchTargetsPath)?student_id=\(myID)&language=\(language)&is_social=\(social)", withAuthorizationHeader: true))
 	}
 	
 	func addStretchTarget(_ targetID:String, stretchTimeInMinutes:Int, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -923,6 +1064,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 			language = newLanguage
 		}
 		dictionary["language"] = language
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		dictionary["is_social"] = social
 		startConnectionWithRequest(createPostRequest(addStretchTargetPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
@@ -938,6 +1084,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 			language = newLanguage
 		}
 		dictionary["language"] = language
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		dictionary["is_social"] = social
 		startConnectionWithRequest(createPutRequest(editStretchTargetPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
@@ -948,7 +1099,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage
 		}
-		startConnectionWithRequest(createGetRequest("\(viewStretchTargetPath)?student_id=\(dataManager.currentStudent!.id)&stretch_target_id=\(stretchTargetID)&language=\(language)", withAuthorizationHeader: true))
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		startConnectionWithRequest(createGetRequest("\(viewStretchTargetPath)?student_id=\(dataManager.currentStudent!.id)&stretch_target_id=\(stretchTargetID)&language=\(language)&is_social=\(social)", withAuthorizationHeader: true))
 	}
 	
 	func deleteStretchTarget(_ stretchTargetID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -962,6 +1117,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 			language = newLanguage
 		}
 		dictionary["language"] = language
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		dictionary["is_social"] = social
 		startConnectionWithRequest(createPutRequest(deleteStretchTargetPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
@@ -976,6 +1136,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 			language = newLanguage
 		}
 		dictionary["language"] = language
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		dictionary["is_social"] = social
 		startConnectionWithRequest(createPutRequest(completeStretchTargetPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
@@ -986,7 +1151,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage
 		}
-		startConnectionWithRequest(createGetRequest("\(getTrophiesPath)&language=\(language)", withAuthorizationHeader: true))
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		startConnectionWithRequest(createGetRequest("\(getTrophiesPath)&language=\(language)&is_social=\(social)", withAuthorizationHeader: true))
 	}
 	
 	func getStudentTrophies(_ myID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -996,7 +1165,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage
 		}
-		startConnectionWithRequest(createGetRequest("\(getStudentTrophiesPath)?student_id=\(myID)&language=\(language)", withAuthorizationHeader: true))
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		startConnectionWithRequest(createGetRequest("\(getStudentTrophiesPath)?student_id=\(myID)&language=\(language)&is_social=\(social)", withAuthorizationHeader: true))
 	}
 	
 	func getFeeds(_ myID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -1006,7 +1179,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage
 		}
-		startConnectionWithRequest(createGetRequest("\(getFeedsPath)?student_id=\(myID)&language=\(language)", withAuthorizationHeader: true))
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		startConnectionWithRequest(createGetRequest("\(getFeedsPath)?student_id=\(myID)&language=\(language)&is_social=\(social)", withAuthorizationHeader: true))
 	}
 	
 	func postFeedMessage(_ myID:String, message:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -1020,6 +1197,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 			language = newLanguage
 		}
 		dictionary["language"] = language
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		dictionary["is_social"] = social
 		startConnectionWithRequest(createPostRequest(postFeedMessagePath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
@@ -1030,7 +1212,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage
 		}
-		startConnectionWithRequest(createDeleteRequest("\(deleteFeedPath)?feed_id=\(feedID)&student_id=\(myID)&language=\(language)", withAuthorizationHeader: true))
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		startConnectionWithRequest(createDeleteRequest("\(deleteFeedPath)?feed_id=\(feedID)&student_id=\(myID)&language=\(language)&is_social=\(social)", withAuthorizationHeader: true))
 	}
 	
 	func hideFeed(_ feedID:String, myID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -1044,6 +1230,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 			language = newLanguage
 		}
 		dictionary["language"] = language
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		dictionary["is_social"] = social
 		startConnectionWithRequest(createPutRequest(hideFeedPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
@@ -1058,6 +1249,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 			language = newLanguage
 		}
 		dictionary["language"] = language
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		dictionary["is_social"] = social
 		startConnectionWithRequest(createPutRequest(unhideFeedPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
@@ -1093,7 +1289,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage
 		}
-		startConnectionWithRequest(createGetRequest("\(getAppSettingsPath)?student_id=\(myID)&language=\(language)", withAuthorizationHeader: true))
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		startConnectionWithRequest(createGetRequest("\(getAppSettingsPath)?student_id=\(myID)&language=\(language)&is_social=\(social)", withAuthorizationHeader: true))
 	}
 	
 	func editProfile(_ myID:String, image:UIImage?, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -1113,7 +1313,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage
 		}
-		startConnectionWithRequest(createGetRequest("\(getMarksObtainedByStudentPath)?student_id=\(myID)&language=\(language)", withAuthorizationHeader: true))
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		startConnectionWithRequest(createGetRequest("\(getMarksObtainedByStudentPath)?student_id=\(myID)&language=\(language)&is_social=\(social)", withAuthorizationHeader: true))
 	}
 	
 	func getActivityPoints(_ myID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -1123,7 +1327,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage
 		}
-		startConnectionWithRequest(createGetRequest("\(getActivityPointsPath)?student_id=\(myID)&language=\(language)", withAuthorizationHeader: true))
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		startConnectionWithRequest(createGetRequest("\(getActivityPointsPath)?student_id=\(myID)&language=\(language)&is_social=\(social)", withAuthorizationHeader: true))
 	}
 	
 	func getCurentWeekRanking(_ myID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -1133,7 +1341,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage
 		}
-		startConnectionWithRequest(createGetRequest("\(getCurrentWeekRankingPath)?student_id=\(myID)&language=\(language)", withAuthorizationHeader: true))
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		startConnectionWithRequest(createGetRequest("\(getCurrentWeekRankingPath)?student_id=\(myID)&language=\(language)&is_social=\(social)", withAuthorizationHeader: true))
 	}
 	
 	func getOverallRanking(_ myID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -1143,7 +1355,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage
 		}
-		startConnectionWithRequest(createGetRequest("\(getOverallRankingPath)?student_id=\(myID)&language=\(language)", withAuthorizationHeader: true))
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		startConnectionWithRequest(createGetRequest("\(getOverallRankingPath)?student_id=\(myID)&language=\(language)&is_social=\(social)", withAuthorizationHeader: true))
 	}
 	
 	func getAssignmentRanking(_ myID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -1153,7 +1369,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage
 		}
-		startConnectionWithRequest(createGetRequest("\(getAssignmentRankingPath)?student_id=\(myID)&language=\(language)", withAuthorizationHeader: true))
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		startConnectionWithRequest(createGetRequest("\(getAssignmentRankingPath)?student_id=\(myID)&language=\(language)&is_social=\(social)", withAuthorizationHeader: true))
 	}
 	
 	func getEngagementData(_ myID:String, timePeriod:kTimePeriod, moduleID:String?, compareToID:String?, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -1171,14 +1391,22 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage
 		}
-		path = "\(path)&language=\(language)"
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		path = "\(path)&language=\(language)&is_social=\(social)"
 		startConnectionWithRequest(createGetRequest(path, withAuthorizationHeader: true))
 	}
 	
 	func getConsentSettings(_ myID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
 		shouldNotifyAboutInternetConnection = alertAboutInternet
 		completionBlock = completion
-		startConnectionWithRequest(createGetRequest("\(getConsentSettingsPath)?student_id=\(myID)", withAuthorizationHeader: true))
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		startConnectionWithRequest(createGetRequest("\(getConsentSettingsPath)?student_id=\(myID)&is_social=\(social)", withAuthorizationHeader: true))
 	}
 	
 	func setConsentSettings(_ myID:String, alertAboutInternet:Bool, analytics:Bool, privacy:Bool, completion:@escaping downloadCompletionBlock) {
@@ -1193,6 +1421,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 			language = newLanguage
 		}
 		dictionary["language"] = language
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		dictionary["is_social"] = social
 		startConnectionWithRequest(createPostRequest(setConsentSettingsPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
@@ -1203,7 +1436,11 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage
 		}
-		startConnectionWithRequest(createGetRequest("\(getPeopleOnStudentModulePath)?student_id=\(myID)&language=\(language)", withAuthorizationHeader: true))
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		startConnectionWithRequest(createGetRequest("\(getPeopleOnStudentModulePath)?student_id=\(myID)&language=\(language)&is_social=\(social)", withAuthorizationHeader: true))
 	}
 	
 	func getFriendsByModule(_ studentdID:String, module:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -1213,6 +1450,10 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage
 		}
-		startConnectionWithRequest(createGetRequest("\(getFriendsByModulePath)?student_id=\(studentdID)&module=\(module)&language=\(language)", withAuthorizationHeader: true))
+		var social = "no"
+		if isSocial {
+			social = "yes"
+		}
+		startConnectionWithRequest(createGetRequest("\(getFriendsByModulePath)?student_id=\(studentdID)&module=\(module)&language=\(language)&is_social=\(social)", withAuthorizationHeader: true))
 	}
 }
