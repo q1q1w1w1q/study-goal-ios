@@ -16,6 +16,10 @@
 		DA109DE81BFF5B9500940CA1 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA109DE61BFF5B9500940CA1 /* Feed.swift */; };
 		DA162E261CAD39B100E0C3D0 /* xAPILoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA162E241CAD39B100E0C3D0 /* xAPILoginVC.swift */; };
 		DA162E271CAD39B100E0C3D0 /* xAPILoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA162E251CAD39B100E0C3D0 /* xAPILoginVC.xib */; };
+		DA2093FD1E69BD76001D979A /* SocialLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2093FB1E69BD76001D979A /* SocialLoginVC.swift */; };
+		DA2093FE1E69BD76001D979A /* SocialLoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA2093FC1E69BD76001D979A /* SocialLoginVC.xib */; };
+		DA2094001E69BDA3001D979A /* SocialLoginVC~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA2093FF1E69BDA3001D979A /* SocialLoginVC~ipad.xib */; };
+		DA2094071E69CDE5001D979A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA2094061E69CDE5001D979A /* GoogleService-Info.plist */; };
 		DA209D531C08A56100E678DF /* SentFriendRequest+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA209D511C08A56100E678DF /* SentFriendRequest+CoreDataProperties.swift */; };
 		DA209D541C08A56100E678DF /* SentFriendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA209D521C08A56100E678DF /* SentFriendRequest.swift */; };
 		DA2393311D520583006970A4 /* Course+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA23932F1D520583006970A4 /* Course+CoreDataProperties.swift */; };
@@ -272,6 +276,10 @@
 		DA162E241CAD39B100E0C3D0 /* xAPILoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xAPILoginVC.swift; sourceTree = "<group>"; };
 		DA162E251CAD39B100E0C3D0 /* xAPILoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = xAPILoginVC.xib; sourceTree = "<group>"; };
 		DA1E7F8D1C1EBE9D009343B1 /* Jisc1.8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jisc1.8.xcdatamodel; sourceTree = "<group>"; };
+		DA2093FB1E69BD76001D979A /* SocialLoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialLoginVC.swift; sourceTree = "<group>"; };
+		DA2093FC1E69BD76001D979A /* SocialLoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialLoginVC.xib; sourceTree = "<group>"; };
+		DA2093FF1E69BDA3001D979A /* SocialLoginVC~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SocialLoginVC~ipad.xib"; sourceTree = "<group>"; };
+		DA2094061E69CDE5001D979A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DA209D501C089D6300E678DF /* Jisc1.6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jisc1.6.xcdatamodel; sourceTree = "<group>"; };
 		DA209D511C08A56100E678DF /* SentFriendRequest+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SentFriendRequest+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DA209D521C08A56100E678DF /* SentFriendRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentFriendRequest.swift; sourceTree = "<group>"; };
@@ -325,7 +333,7 @@
 		DA7F1D411BD9035B004EA957 /* TrophiesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrophiesVC.swift; sourceTree = "<group>"; };
 		DA7F1D451BD905E1004EA957 /* SelectLanguageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectLanguageVC.swift; sourceTree = "<group>"; };
 		DA7F1D511BD91882004EA957 /* OneFeedItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneFeedItemCell.swift; sourceTree = "<group>"; };
-		DA819EA11BDA20D900810C14 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
+		DA819EA11BDA20D900810C14 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		DA868B161BE79C0E00032225 /* EngagementGraphVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngagementGraphVC.swift; sourceTree = "<group>"; };
 		DA9904E91C046B6F00B6013C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		DA9C72831C9815A10012B5DD /* xAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xAPIManager.swift; sourceTree = "<group>"; };
@@ -550,6 +558,9 @@
 		DA425AB21BD5115500C77D76 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				DA2093FB1E69BD76001D979A /* SocialLoginVC.swift */,
+				DA2093FC1E69BD76001D979A /* SocialLoginVC.xib */,
+				DA2093FF1E69BDA3001D979A /* SocialLoginVC~ipad.xib */,
 				DAD1D7E31C50EF18005BA786 /* Common */,
 				DAD1D7E21C50EF16005BA786 /* iPhone */,
 				DAD1D7E11C50EF13005BA786 /* iPad */,
@@ -654,6 +665,7 @@
 		DAA2AE9A1BCE785900ED796A = {
 			isa = PBXGroup;
 			children = (
+				DA2094061E69CDE5001D979A /* GoogleService-Info.plist */,
 				DAEC83241D90080C00799B42 /* Charts.xcodeproj */,
 				DAA2AEA51BCE785900ED796A /* Jisc */,
 				DAA2AEA41BCE785900ED796A /* Products */,
@@ -1196,7 +1208,7 @@
 				TargetAttributes = {
 					DAA2AEA21BCE785900ED796A = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = D5QJ7EBR49;
+						DevelopmentTeam = DNNJ9E4596;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Manual;
 					};
@@ -1312,6 +1324,7 @@
 				DAD66C951C523A2900074B79 /* TrophiesSilver.xcassets in Resources */,
 				DAD644C81C6227C800AA62E8 /* Localizable.strings in Resources */,
 				DAB0C8BB1C4CEC2300F7A3C6 /* NewTrophyAlert.xib in Resources */,
+				DA2094071E69CDE5001D979A /* GoogleService-Info.plist in Resources */,
 				DAB0C8AF1C4CEBF500F7A3C6 /* TrophiesVC.xib in Resources */,
 				DAB0C7BF1C4CE82500F7A3C6 /* LoginVC.xib in Resources */,
 				DAB0C8251C4CE9C700F7A3C6 /* LogVC.xib in Resources */,
@@ -1329,9 +1342,11 @@
 				DAB0C8131C4CE98C00F7A3C6 /* EngagementGraphVC~ipad.xib in Resources */,
 				DAB0C7E91C4CE90C00F7A3C6 /* FoundStudentCell.xib in Resources */,
 				DAB0C80D1C4CE97400F7A3C6 /* EngagementGraphVC.xib in Resources */,
+				DA2094001E69BDA3001D979A /* SocialLoginVC~ipad.xib in Resources */,
 				DAD8BD7C1DB8C4DC004F21DE /* DoubleBarView.xib in Resources */,
 				DAC369EF1CC7BBA000F156B1 /* xAPIRegisterVC.xib in Resources */,
 				DAC634F51C807DFE0084E314 /* StagSans-Book-App.ttf in Resources */,
+				DA2093FE1E69BD76001D979A /* SocialLoginVC.xib in Resources */,
 				DAB0C89D1C4CEB5900F7A3C6 /* OneFriendCell.xib in Resources */,
 				DA593A681C47A03300C68513 /* ActivityTypesIconsBig.xcassets in Resources */,
 				DAB0C8A31C4CEB6800F7A3C6 /* SelectHomeScreenVC.xib in Resources */,
@@ -1384,7 +1399,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1462,6 +1477,7 @@
 				DA7F1D431BD9035B004EA957 /* TrophiesVC.swift in Sources */,
 				DAFB88C31C1083B9000CCD65 /* MarkValue.swift in Sources */,
 				DA7F1D3F1BD8FBD9004EA957 /* SelectHomeScreenVC.swift in Sources */,
+				DA2093FD1E69BD76001D979A /* SocialLoginVC.swift in Sources */,
 				DAFB88BF1C107208000CCD65 /* Mark.swift in Sources */,
 				DA7F1D531BD91882004EA957 /* OneFeedItemCell.swift in Sources */,
 				DAD6AE281C57B76300BCBBDD /* TrophyDetailsView.swift in Sources */,
@@ -1915,15 +1931,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Jisc (D5QJ7EBR49)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = D5QJ7EBR49;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = DNNJ9E4596;
 				INFOPLIST_FILE = Jisc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.jisc.studygoal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8f520bed-6bd5-4ceb-b126-5d8c1b64e15d";
-				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: uk.ac.jisc.studygoal";
+				PROVISIONING_PROFILE = "2ed7f47f-b191-4fc0-acb9-d8a2d55557cc";
+				PROVISIONING_PROFILE_SPECIFIER = XGRoup_Development;
 				SWIFT_OBJC_BRIDGING_HEADER = "Jisc/Jisc-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;

@@ -9,6 +9,10 @@
 import UIKit
 import CoreData
 import MediaPlayer
+import FBSDKLoginKit
+import Google
+import Fabric
+import TwitterKit
 
 enum kAppLanguage:String {
 	case English = "en"
@@ -27,6 +31,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
 		window = UIWindow(frame: UIScreen.main.bounds)
 		window?.backgroundColor = UIColor.black
 		window?.makeKeyAndVisible()
+		
+		FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+		var configureError: NSError?
+		GGLContext.sharedInstance().configureWithError(&configureError)
+		Fabric.with([Twitter.self])
 		
 		window!.layer.addSublayer(CALayer())
 		
@@ -102,6 +111,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
 			if let keyboardFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
 				keyboardHeight = keyboardFrame.size.height
 			}
+		}
+	}
+	
+	func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+		let facebook = FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
+		if !facebook {
+			return GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation)
+		} else {
+			return facebook
 		}
 	}
 
