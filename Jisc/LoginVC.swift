@@ -497,7 +497,7 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 	//MARK: UITableView Datasource
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return filteredInstitutions.count
+		return filteredInstitutions.count + 1
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -517,38 +517,47 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 		let theCell = cell as? InstituteCell
 		if (theCell != nil) {
-			theCell?.loadInstitute(filteredInstitutions[(indexPath as NSIndexPath).row])
+			if indexPath.row < filteredInstitutions.count {
+				theCell?.loadInstitute(filteredInstitutions[indexPath.row])
+			} else {
+				theCell?.noInstitute()
+			}
 		}
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		
-		let selectedInstituteObject = filteredInstitutions[(indexPath as NSIndexPath).row]
-		chosenInstitutionLabel.text = selectedInstituteObject.name
-		chosenInstitutionLabel.textColor = UIColor.black
-		selectedInstitute = (indexPath as NSIndexPath).row
-		view.layoutIfNeeded()
-		closeInstitutesSelector(UIButton())
-		dataManager.pickedInstitution = selectedInstituteObject
-		
-		if (selectedInstituteObject.isLearningAnalytics.boolValue) {
-//			self.xAPILoginComplete()
-			xAPIManager().getIDPS { (success, result, results, error) in
-				if (result != nil) {
-					let vc:xAPILoginVC = xAPILoginVC()
-					vc.idp = getIDPForInstitution(selectedInstituteObject.name, dictionary: result!)
-					self.navigationController?.present(vc, animated: true, completion: nil)
-				}
-			}
+		if indexPath.row >= filteredInstitutions.count {
+			let nvc = UINavigationController(rootViewController: SocialLoginVC())
+			nvc.isNavigationBarHidden = true
+			navigationController?.present(nvc, animated: true, completion: nil)
 		} else {
-			print("not learning analityics");
-		}
-		
-		instituteTextField.resignFirstResponder()
-		
-		if (onSimulator) {
-			emailTextField.text = "vinson@gmail.com"
-			passwordTextField.text = "vinson123"
+			let selectedInstituteObject = filteredInstitutions[(indexPath as NSIndexPath).row]
+			chosenInstitutionLabel.text = selectedInstituteObject.name
+			chosenInstitutionLabel.textColor = UIColor.black
+			selectedInstitute = (indexPath as NSIndexPath).row
+			view.layoutIfNeeded()
+			closeInstitutesSelector(UIButton())
+			dataManager.pickedInstitution = selectedInstituteObject
+			
+			if (selectedInstituteObject.isLearningAnalytics.boolValue) {
+				//			self.xAPILoginComplete()
+				xAPIManager().getIDPS { (success, result, results, error) in
+					if (result != nil) {
+						let vc:xAPILoginVC = xAPILoginVC()
+						vc.idp = getIDPForInstitution(selectedInstituteObject.name, dictionary: result!)
+						self.navigationController?.present(vc, animated: true, completion: nil)
+					}
+				}
+			} else {
+				print("not learning analityics");
+			}
+			
+			instituteTextField.resignFirstResponder()
+			
+			if (onSimulator) {
+				emailTextField.text = "vinson@gmail.com"
+				passwordTextField.text = "vinson123"
+			}
 		}
 	}
 }
