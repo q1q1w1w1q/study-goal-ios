@@ -472,4 +472,22 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
 		}
 		startConnectionWithRequest(createGetRequest(path, withJWT: true))
 	}
+	
+	func checkIn(pin:String, location:String, timestamp:String, completion:@escaping xAPICompletionBlock) {
+		completionBlock = completion
+		var request:URLRequest?
+		if let urlString = "https://api.x-staging.data.alpha.jisc.ac.uk/att/checkin?checkinpin=\(pin)&geo_tag=\(location)&timestamp=\(timestamp)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+			if let url = URL(string: urlString) {
+				request = URLRequest(url: url)  
+			}
+		}
+		if var request = request {
+			if let token = xAPIToken() {
+				request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+			}
+			startConnectionWithRequest(request)
+		} else {
+			completionBlock?(false, nil, nil, "Error creating the url request")
+		}
+	}
 }

@@ -55,6 +55,9 @@
                                 <constraint firstAttribute="height" constant="40" id="P08-JK-6eR"/>
                             </constraints>
                             <state key="normal" image="settingsButton"/>
+                            <connections>
+                                <action selector="settings:" destination="-1" eventType="touchUpInside" id="JQs-Qs-kgo"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -79,8 +82,8 @@
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="ymB-sn-PeU"/>
-                            <exclude reference="mK8-wS-jha"/>
                             <exclude reference="N7b-Q0-FQr"/>
+                            <exclude reference="mK8-wS-jha"/>
                         </mask>
                     </variation>
                 </view>
@@ -316,6 +319,9 @@
                                         <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="send_pin"/>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="uppercaseNormal" value="NO"/>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="sendPin:" destination="-1" eventType="touchUpInside" id="sY1-DZ-Cty"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>

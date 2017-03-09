@@ -304,6 +304,30 @@ class DataManager: NSObject {
 		return array
 	}
 	
+	func socialInstitution() -> Institution {
+		let fetchRequest:NSFetchRequest<Institution> = NSFetchRequest(entityName: institutionEntityName)
+		fetchRequest.predicate = NSPredicate(format: "name == %@", "Social")
+		var object:Institution?
+		do {
+			if let institution = try managedContext.fetch(fetchRequest).first {
+				object = institution
+			}
+		} catch let error as NSError {
+			print("get social institution error: \(error.localizedDescription)")
+		}
+		if let institution = object {
+			return institution
+		} else {
+			let dictionary = NSMutableDictionary()
+			dictionary["id"] = "SOCIAL"
+			dictionary["is_learning_analytics"] = "no"
+			dictionary["name"] = "Social"
+			dictionary["accesskey"] = "key"
+			dictionary["secret"] = "secret"
+			return Institution.insertInManagedObjectContext(managedContext, dictionary: dictionary)
+		}
+	}
+	
 	//MARK: ActivityLogs
 	
 	func activityLogsArray() -> [ActivityLog] {
@@ -820,12 +844,15 @@ class DataManager: NSObject {
 	
 	//MARK: Login
 	
-	func completedLogin(_ success:Bool, result:NSDictionary?, results:NSArray?, error:String?, completion:@escaping dataManagerCompletionBlock) {
+	func completedLogin(_ success:Bool, social:Bool, result:NSDictionary?, results:NSArray?, error:String?, completion:@escaping dataManagerCompletionBlock) {
 		var loginSuccessfull = true
 		var reason = kDefaultFailureReason
 		if (success) {
 			if (result != nil) {
 				self.currentStudent = Student.insertInManagedObjectContext(managedContext, dictionary: result!)
+				if social {
+					self.currentStudent?.institution = self.socialInstitution()
+				}
 				self.safelySaveContext()
 				self.getStudentData(completion)
 			} else {
@@ -928,7 +955,7 @@ class DataManager: NSObject {
 			LoadingView.show()
 		}
 		DownloadManager().login(instituteID, email: email, password: password, alertAboutInternet: true, completion: { (success, result, results, error) -> Void in
-			self.completedLogin(success, result: result, results: results, error: error, completion: completion)
+			self.completedLogin(success, social: false, result: result, results: results, error: error, completion: completion)
 		})
 	}
 	
@@ -948,6 +975,30 @@ class DataManager: NSObject {
 				self.getStudentData(completion)
 			} else {
 				completion(false, "Something went wrong")
+			}
+		}
+	}
+	
+	func socialLogin(email:String, name:String, userId:String, completion:@escaping dataManagerCompletionBlock) {
+		cleanUserSpecificData()
+		inheritSilent = true
+		DispatchQueue.main.async { () -> Void in
+			LoadingView.show()
+		}
+		let mgr = DownloadManager()
+		mgr.socialLogin(email: email, name: name, userId: userId, alertAboutInternet: true) { (success, result, results, error) in
+			if success {
+				self.completedLogin(success, social: true, result: result, results: results, error: error, completion: completion)
+			} else if mgr.code == .forbidden {
+				completion(false, localized("social_login_error"))
+				DispatchQueue.main.async { () -> Void in
+					LoadingView.hide()
+				}
+			} else {
+				completion(false, localized("an_unknown_error_occured_please_try_again"))
+				DispatchQueue.main.async { () -> Void in
+					LoadingView.hide()
+				}
 			}
 		}
 	}
@@ -1000,7 +1051,7 @@ class DataManager: NSObject {
 	
 	func getStudentModules(_ completion:@escaping dataManagerCompletionBlock) {
 		if staff() {
-			let modulesCount = 3
+			let modulesCount = 2
 			for i in stride(from: 1, through: modulesCount, by: 1) {
 				let key = "DUMMY_\(i)"
 				let moduleName = "Dummy Module \(i)"

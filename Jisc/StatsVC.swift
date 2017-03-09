@@ -82,7 +82,9 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 		super.viewDidLoad()
 		staffAlert?.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
 		staffAlert?.addAction(UIAlertAction(title: localized("dont_show_again"), style: .default, handler: { (action) in
-			NSKeyedArchiver.archiveRootObject(true, toFile: filePath("dont_show_staff_alert"))
+			if let studentId = dataManager.currentStudent?.id {
+				NSKeyedArchiver.archiveRootObject(true, toFile: filePath("dont_show_staff_alert\(studentId)"))
+			}
 		}))
 		let refreshControl = UIRefreshControl()
 		refreshControl.addTarget(self, action: #selector(StatsVC.refreshAllInfo(_:)), for: UIControlEvents.valueChanged)
@@ -202,9 +204,13 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 			
 		}
 		
-		if NSKeyedUnarchiver.unarchiveObject(withFile: filePath("dont_show_staff_alert")) == nil {
-			if let alert = staffAlert {
-				navigationController?.present(alert, animated: true, completion: nil)
+		if staff() {
+			if let studentId = dataManager.currentStudent?.id {
+				if NSKeyedUnarchiver.unarchiveObject(withFile: filePath("dont_show_staff_alert\(studentId)")) == nil {
+					if let alert = staffAlert {
+						navigationController?.present(alert, animated: true, completion: nil)
+					}
+				}
 			}
 		}
 		staffAlert = nil

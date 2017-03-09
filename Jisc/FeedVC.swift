@@ -99,33 +99,39 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
 	}
 	
 	@IBAction func postMessage(_ sender:UIButton) {
-		UIView.animate(withDuration: 0.25, animations: { () -> Void in
-			self.blockView.alpha = 0.0
-			self.postsViewTopSpace.constant = 0.0
-			self.postsViewHeight.constant = 0.0
-			self.view.layoutIfNeeded()
-		}, completion: { (done) -> Void in
-			self.newPostTextView.resignFirstResponder()
-			if (!self.newPostTextView.text.replacingOccurrences(of: " ", with: "").isEmpty) {
-				if (!self.newPostTextView.text.isEmpty) {
-					DownloadManager().postFeedMessage(dataManager.currentStudent!.id, message: self.newPostTextView.text, alertAboutInternet: true, completion: { (success, result, results, error) -> Void in
-						if (success) {
-							AlertView.showAlert(true, message: localized("message_posted_successfully"), completion: nil)
-						} else {
-							var failureReason = kDefaultFailureReason
-							if (error != nil) {
-								failureReason = error!
+		if isDemo {
+			let alert = UIAlertController(title: "", message: localized("demo_mode_postfeed"), preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
+			navigationController?.present(alert, animated: true, completion: nil)
+		} else {
+			UIView.animate(withDuration: 0.25, animations: { () -> Void in
+				self.blockView.alpha = 0.0
+				self.postsViewTopSpace.constant = 0.0
+				self.postsViewHeight.constant = 0.0
+				self.view.layoutIfNeeded()
+			}, completion: { (done) -> Void in
+				self.newPostTextView.resignFirstResponder()
+				if (!self.newPostTextView.text.replacingOccurrences(of: " ", with: "").isEmpty) {
+					if (!self.newPostTextView.text.isEmpty) {
+						DownloadManager().postFeedMessage(dataManager.currentStudent!.id, message: self.newPostTextView.text, alertAboutInternet: true, completion: { (success, result, results, error) -> Void in
+							if (success) {
+								AlertView.showAlert(true, message: localized("message_posted_successfully"), completion: nil)
+							} else {
+								var failureReason = kDefaultFailureReason
+								if (error != nil) {
+									failureReason = error!
+								}
+								AlertView.showAlert(false, message: failureReason, completion: nil)
 							}
-							AlertView.showAlert(false, message: failureReason, completion: nil)
-						}
-						self.newPostTextView.text = ""
-						dataManager.getStudentFeeds({ (success, failureReason) -> Void in
-							self.feedsTableView.reloadData()
+							self.newPostTextView.text = ""
+							dataManager.getStudentFeeds({ (success, failureReason) -> Void in
+								self.feedsTableView.reloadData()
+							})
 						})
-					})
+					}
 				}
-			}
-		}) 
+			}) 
+		}
 	}
 	
 	//MARK: UITableView Datasource

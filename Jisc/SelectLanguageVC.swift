@@ -41,30 +41,36 @@ class SelectLanguageVC: BaseViewController {
 	}
 	
 	@IBAction func selectLanguage(_ sender:UIButton) {
-		var selectedLanguage = kLanguage(rawValue: sender.tag)
-		if (getAppLanguage() != selectedLanguage) {
-			setAppLanguage(selectedLanguage)
-			if (selectedLanguage == nil) {
-				selectedLanguage = .english
-			}
-			runningActivititesTimer.invalidate()
-			DELEGATE.mainController?.feedViewController.refreshTimer?.invalidate()
-			dataManager.firstTrophyCheck = true
-			switch (selectedLanguage!) {
-			case .english:
-				DownloadManager().changeAppSettings(dataManager.currentStudent!.id, settingType: "language", settingValue: "english", alertAboutInternet: true, completion: { (success, result, results, error) -> Void in
-					self.highlightSelectedItem()
-					BundleLocalization.sharedInstance().language = kAppLanguage.English.rawValue
-					DELEGATE.initializeApp()
-				})
-				break
-			case .welsh:
-				DownloadManager().changeAppSettings(dataManager.currentStudent!.id, settingType: "language", settingValue: "welsh", alertAboutInternet: true, completion: { (success, result, results, error) -> Void in
-					self.highlightSelectedItem()
-					BundleLocalization.sharedInstance().language = kAppLanguage.Welsh.rawValue
-					DELEGATE.initializeApp()
-				})
-				break
+		if isDemo {
+			let alert = UIAlertController(title: "", message: localized("demo_mode_changeappsettings"), preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
+			navigationController?.present(alert, animated: true, completion: nil)
+		} else {
+			var selectedLanguage = kLanguage(rawValue: sender.tag)
+			if (getAppLanguage() != selectedLanguage) {
+				setAppLanguage(selectedLanguage)
+				if (selectedLanguage == nil) {
+					selectedLanguage = .english
+				}
+				runningActivititesTimer.invalidate()
+				DELEGATE.mainController?.feedViewController.refreshTimer?.invalidate()
+				dataManager.firstTrophyCheck = true
+				switch (selectedLanguage!) {
+				case .english:
+					DownloadManager().changeAppSettings(dataManager.currentStudent!.id, settingType: "language", settingValue: "english", alertAboutInternet: true, completion: { (success, result, results, error) -> Void in
+						self.highlightSelectedItem()
+						BundleLocalization.sharedInstance().language = kAppLanguage.English.rawValue
+						DELEGATE.initializeApp()
+					})
+					break
+				case .welsh:
+					DownloadManager().changeAppSettings(dataManager.currentStudent!.id, settingType: "language", settingValue: "welsh", alertAboutInternet: true, completion: { (success, result, results, error) -> Void in
+						self.highlightSelectedItem()
+						BundleLocalization.sharedInstance().language = kAppLanguage.Welsh.rawValue
+						DELEGATE.initializeApp()
+					})
+					break
+				}
 			}
 		}
 	}

@@ -49,39 +49,45 @@ class SelectHomeScreenVC: BaseViewController {
 	}
 	
 	@IBAction func selectScreen(_ sender:UIButton) {
-		var selectedScreen = kHomeScreenTab(rawValue: sender.tag)
-		if (dataManager.currentStudent != nil) {
-			if (!dataManager.currentStudent!.institution.isLearningAnalytics.boolValue) {
-				if (selectedScreen == .stats) {
-					return
+		if isDemo {
+			let alert = UIAlertController(title: "", message: localized("demo_mode_changeappsettings"), preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
+			navigationController?.present(alert, animated: true, completion: nil)
+		} else {
+			var selectedScreen = kHomeScreenTab(rawValue: sender.tag)
+			if (dataManager.currentStudent != nil) {
+				if (!dataManager.currentStudent!.institution.isLearningAnalytics.boolValue) {
+					if (selectedScreen == .stats) {
+						return
+					}
 				}
 			}
-		}
-		setHomeScreenTab(selectedScreen)
-		if (selectedScreen == nil) {
-			selectedScreen = .feed
-		}
-		switch (selectedScreen!) {
-		case .feed:
-			DownloadManager().changeAppSettings(dataManager.currentStudent!.id, settingType: "home_screen", settingValue: "feed", alertAboutInternet: true, completion: { (success, result, results, error) -> Void in
-				self.highlightSelectedItem()
-			})
-			break
-		case .stats:
-			DownloadManager().changeAppSettings(dataManager.currentStudent!.id, settingType: "home_screen", settingValue: "stats", alertAboutInternet: true, completion: { (success, result, results, error) -> Void in
-				self.highlightSelectedItem()
-			})
-			break
-		case .log:
-			DownloadManager().changeAppSettings(dataManager.currentStudent!.id, settingType: "home_screen", settingValue: "log", alertAboutInternet: true, completion: { (success, result, results, error) -> Void in
-				self.highlightSelectedItem()
-			})
-			break
-		case .target:
-			DownloadManager().changeAppSettings(dataManager.currentStudent!.id, settingType: "home_screen", settingValue: "target", alertAboutInternet: true, completion: { (success, result, results, error) -> Void in
-				self.highlightSelectedItem()
-			})
-			break
+			setHomeScreenTab(selectedScreen)
+			if (selectedScreen == nil) {
+				selectedScreen = .feed
+			}
+			switch (selectedScreen!) {
+			case .feed:
+				DownloadManager().changeAppSettings(dataManager.currentStudent!.id, settingType: "home_screen", settingValue: "feed", alertAboutInternet: true, completion: { (success, result, results, error) -> Void in
+					self.highlightSelectedItem()
+				})
+				break
+			case .stats:
+				DownloadManager().changeAppSettings(dataManager.currentStudent!.id, settingType: "home_screen", settingValue: "stats", alertAboutInternet: true, completion: { (success, result, results, error) -> Void in
+					self.highlightSelectedItem()
+				})
+				break
+			case .log:
+				DownloadManager().changeAppSettings(dataManager.currentStudent!.id, settingType: "home_screen", settingValue: "log", alertAboutInternet: true, completion: { (success, result, results, error) -> Void in
+					self.highlightSelectedItem()
+				})
+				break
+			case .target:
+				DownloadManager().changeAppSettings(dataManager.currentStudent!.id, settingType: "home_screen", settingValue: "target", alertAboutInternet: true, completion: { (success, result, results, error) -> Void in
+					self.highlightSelectedItem()
+				})
+				break
+			}
 		}
 	}
 }

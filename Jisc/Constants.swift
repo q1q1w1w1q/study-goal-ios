@@ -10,7 +10,6 @@ import UIKit
 import CoreData
 
 let onSimulator = TARGET_IPHONE_SIMULATOR == 1
-var isSocial = false
 
 enum ScreenWidth:CGFloat {
 	case small = 320.0
@@ -167,6 +166,8 @@ func shouldRememberXAPIUser() -> Bool {
 	}
 }
 
+var isDemo = false
+
 func setShouldRememberXAPIUser(_ save:Bool) {
 	NSKeyedArchiver.archiveRootObject(save, toFile: filePath("shouldRememberXAPIUser"))
 }
@@ -194,6 +195,8 @@ func clearXAPIToken() {
 		print("clear xAPI token error: \(error)")
 	}
 	setStaff(false)
+	setSocial(false)
+	isDemo = false
 }
 
 //MARK: IDPs
@@ -556,6 +559,18 @@ func staff() -> Bool {
 
 func setStaff(_ value:Bool) {
 	NSKeyedArchiver.archiveRootObject(value, toFile: filePath("staff"))
+}
+
+func social() -> Bool {
+	var social = false
+	if let value = NSKeyedUnarchiver.unarchiveObject(withFile: filePath("social")) as? Bool {
+		social = value
+	}
+	return social
+}
+
+func setSocial(_ value:Bool) {
+	NSKeyedArchiver.archiveRootObject(value, toFile: filePath("social"))
 }
 
 //MARK: - Keep me logged in

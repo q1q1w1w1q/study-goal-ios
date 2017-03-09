@@ -230,6 +230,22 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 		return UIStatusBarStyle.lightContent
 	}
 	
+	func socialLogin(email:String, name:String, userId:String) {
+		dataManager.pickedInstitution = dataManager.socialInstitution()
+		dataManager.socialLogin(email: email, name: name, userId: userId) { (success, failureReason) in
+			if (success) {
+				if let student = dataManager.currentStudent {
+					dataManager.currentStudent?.jisc_id = student.id
+				}
+				RunLoop.current.add(runningActivititesTimer, forMode: RunLoopMode.commonModes)
+				DELEGATE.mainController = MainTabBarController()
+				DELEGATE.window?.rootViewController = DELEGATE.mainController
+			} else {
+				UIAlertView(title: localized("error"), message: failureReason, delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
+			}
+		}
+	}
+	
 	func xAPILoginComplete(_ notification:Notification) {
 		if let token = xAPIToken() {
 			dataManager.loginWithXAPI(token, completion: { (success, failureReason) in
@@ -237,9 +253,6 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 					if let jisc_id = notification.object as? String {
 						dataManager.currentStudent?.jisc_id = jisc_id
 					}
-					currentlyLoggedInStudentInstitute = ""
-					currentlyLoggedInStudentEmail = ""
-					currentlyLoggedInStudentPassword = ""
 					deleteCurrentUser()
 					setShouldRememberXAPIUser(self.rememberMeButton.isSelected)
 					RunLoop.current.add(runningActivititesTimer, forMode: RunLoopMode.commonModes)
@@ -328,7 +341,9 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 		filteredInstitutions.removeAll()
 		let fetchRequest:NSFetchRequest<Institution> = NSFetchRequest(entityName: institutionEntityName)
 		if (!string.isEmpty) {
-			fetchRequest.predicate = NSPredicate(format: "name CONTAINS[cd] %@", string)
+			fetchRequest.predicate = NSPredicate(format: "name CONTAINS[cd] %@ AND name != %@", string, "Social")
+		} else {
+			fetchRequest.predicate = NSPredicate(format: "name != %@", string, "Social")
 		}
 		fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
 		do {
@@ -338,6 +353,16 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 			}
 		} catch let error as NSError {
 			print("filter institutions error: \(error.localizedDescription)")
+		}
+		var socialIndex = -1
+		for (index, item) in filteredInstitutions.enumerated() {
+			if item.name == "Social" {
+				socialIndex = index
+				break
+			}
+		}
+		if socialIndex >= 0 {
+			filteredInstitutions.remove(at: socialIndex)
 		}
 	}
 	
@@ -438,6 +463,26 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 		sender.isSelected = !sender.isSelected
 	}
 	
+	@IBAction func demo(_ sender:UIButton?) {
+		setXAPIToken("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE0ODgzNjU2NzcsImp0aSI6IjFtbjhnU3YrWk9mVzJlYXV1NmVrN0Rzbm1MUjA0dDRyT0V0SEQ5Z1BGdk09IiwiaXNzIjoiaHR0cDpcL1wvc3AuZGF0YVwvYXV0aCIsIm5iZiI6MTQ4ODM2NTY2NywiZXhwIjoxNjYyNTY0NTY2NywiZGF0YSI6eyJlcHBuIjoiIiwicGlkIjoiZGVtb3VzZXJAZGVtby5hYy51ayIsImFmZmlsaWF0aW9uIjoic3R1ZGVudEBkZW1vLmFjLnVrIn19.xM6KkBFvHW7vtf6dF-X4f_6G3t_KGPVNylN_rMJROsh1MXIg9sK5j77L0Jzg1JR8fhXZf-0jFMnZz6FMotAeig")
+		xAPIManager().getStudentDetails({ (success, result, results, error) in
+			var loginSuccessful = false
+			if let result = result {
+				if let shibID = result["APPSHIB_ID"] as? String {
+					if (shibID != "null") {
+						loginSuccessful = true
+					}
+				}
+			}
+			if (loginSuccessful) {
+				isDemo = true
+				NotificationCenter.default.post(name: Notification.Name(rawValue: xAPILoginCompleteNotification), object: result?["STUDENT_ID"] as? String)
+			} else {
+				
+			}
+		})
+	}
+	
 	//MARK: UITextField Delegate
 	
 	func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -527,7 +572,9 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if indexPath.row >= filteredInstitutions.count {
-			let nvc = UINavigationController(rootViewController: SocialLoginVC())
+			let vc = SocialLoginVC()
+			vc.loginVC = self
+			let nvc = UINavigationController(rootViewController: vc)
 			nvc.isNavigationBarHidden = true
 			navigationController?.present(nvc, animated: true, completion: nil)
 		} else {
@@ -549,7 +596,7 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 					}
 				}
 			} else {
-				print("not learning analityics");
+				print("not learning analityics: \(selectedInstituteObject.name)");
 			}
 			
 			instituteTextField.resignFirstResponder()
