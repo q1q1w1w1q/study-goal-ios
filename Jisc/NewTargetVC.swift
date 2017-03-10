@@ -12,7 +12,7 @@ import CoreData
 let timeSpans = [kTargetTimeSpan.Daily, kTargetTimeSpan.Weekly, kTargetTimeSpan.Monthly]
 let targetReasonPlaceholder = localized("add_a_reason_to_keep_this_target")
 
-class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate, UIAlertViewDelegate, CustomPickerViewDelegate {
+class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate, UIAlertViewDelegate, CustomPickerViewDelegate, UITextFieldDelegate {
 	
 	@IBOutlet weak var activityTypeButton:UIButton!
 	@IBOutlet weak var chooseActivityButton:UIButton!
@@ -38,6 +38,8 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 	var theTarget:Target?
 	@IBOutlet weak var titleLabel:UILabel!
 	var isEditingTarget:Bool = false
+	@IBOutlet weak var addModuleView:UIView!
+	@IBOutlet weak var addModuleTextField:UITextField!
 	
 	var initialSelectedActivityType = 0
 	var initialSelectedActivity = 0
@@ -153,6 +155,21 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 			UIAlertView(title: localized("confirmation"), message: localized("would_you_like_to_save_the_changes_you_made"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
 		} else {
 			navigationController?.popViewController(animated: true)
+		}
+	}
+	
+	func addModule() {
+		addModuleTextField.becomeFirstResponder()
+		UIView.animate(withDuration: 0.25) {
+			self.addModuleView.alpha = 1.0
+		}
+	}
+	
+	@IBAction func closeAddModule(_ sender:UIButton?) {
+		addModuleTextField.text = ""
+		addModuleTextField.resignFirstResponder()
+		UIView.animate(withDuration: 0.25) {
+			self.addModuleView.alpha = 0.0
 		}
 	}
 	
@@ -310,17 +327,30 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 	}
 	
 	@IBAction func showModuleSelector(_ sender:UIButton) {
-		if (!dataManager.currentStudent!.institution.isLearningAnalytics.boolValue) {
-			return
+		if social() {
+			if dataManager.modules().count == 1 {
+				addModule()
+			} else {
+				var array:[String] = [String]()
+				for (_, item) in dataManager.modules().enumerated() {
+					array.append(item.name)
+				}
+				moduleSelectorView = CustomPickerView.create(localized("choose_module"), delegate: self, contentArray: array, selectedItem: selectedModule)
+				view.addSubview(moduleSelectorView)
+			}
+		} else {
+			if (!dataManager.currentStudent!.institution.isLearningAnalytics.boolValue) {
+				return
+			}
+			closeActiveTextEntries()
+			var array:[String] = [String]()
+			array.append(localized("any_module"))
+			for (_, item) in dataManager.modules().enumerated() {
+				array.append(item.name)
+			}
+			moduleSelectorView = CustomPickerView.create(localized("choose_module"), delegate: self, contentArray: array, selectedItem: selectedModule)
+			view.addSubview(moduleSelectorView)
 		}
-		closeActiveTextEntries()
-		var array:[String] = [String]()
-		array.append(localized("any_module"))
-		for (_, item) in dataManager.modules().enumerated() {
-			array.append(item.name)
-		}
-		moduleSelectorView = CustomPickerView.create(localized("choose_module"), delegate: self, contentArray: array, selectedItem: selectedModule)
-		view.addSubview(moduleSelectorView)
 	}
 	
 	//MARK: CustomPickerView Delegate
@@ -353,8 +383,17 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 			}
 			break
 		case moduleSelectorView:
-			selectedModule = selectedRow
-			moduleButton.setTitle(view.contentArray[selectedRow], for: UIControlState())
+			if social() {
+				if selectedRow == dataManager.modules().count - 1 {
+					addModule()
+				} else {
+					selectedModule = selectedRow
+					moduleButton.setTitle(view.contentArray[selectedRow], for: UIControlState())
+				}
+			} else {
+				selectedModule = selectedRow
+				moduleButton.setTitle(view.contentArray[selectedRow], for: UIControlState())
+			}
 			break
 		default:break
 		}
@@ -509,5 +548,31 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 			}
 		default:break
 		}
+	}
+	
+	//MARK: - UITextField Delegate
+	
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		textField.resignFirstResponder()
+		if let text = textField.text {
+			DownloadManager().addSocialModule(studentId: dataManager.currentStudent!.id, module: text, alertAboutInternet: true, completion: { (success, result, results, error) in
+				DownloadManager().getSocialModules(studentId: dataManager.currentStudent!.id, alertAboutInternet: false, completion: { (success, result, results, error) in
+					if (success) {
+						if let modules = results as? [String] {
+							for (_, item) in modules.enumerated() {
+								let dictionary = NSMutableDictionary()
+								dictionary[item] = item
+								let object = Module.insertInManagedObjectContext(managedContext, dictionary: dictionary)
+								dataManager.currentStudent!.addModule(object)
+							}
+						}
+					}
+					self.selectedModule = 0
+					self.moduleButton.setTitle(dataManager.moduleNameAtIndex(self.selectedModule), for: UIControlState())
+				})
+			})
+		}
+		closeAddModule(nil)
+		return true
 	}
 }

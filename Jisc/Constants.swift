@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 
 let onSimulator = TARGET_IPHONE_SIMULATOR == 1
+let demoXAPIToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE0ODgzNjU2NzcsImp0aSI6IjFtbjhnU3YrWk9mVzJlYXV1NmVrN0Rzbm1MUjA0dDRyT0V0SEQ5Z1BGdk09IiwiaXNzIjoiaHR0cDpcL1wvc3AuZGF0YVwvYXV0aCIsIm5iZiI6MTQ4ODM2NTY2NywiZXhwIjoxNjYyNTY0NTY2NywiZGF0YSI6eyJlcHBuIjoiIiwicGlkIjoiZGVtb3VzZXJAZGVtby5hYy51ayIsImFmZmlsaWF0aW9uIjoic3R1ZGVudEBkZW1vLmFjLnVrIn19.xM6KkBFvHW7vtf6dF-X4f_6G3t_KGPVNylN_rMJROsh1MXIg9sK5j77L0Jzg1JR8fhXZf-0jFMnZz6FMotAeig"
 
 enum ScreenWidth:CGFloat {
 	case small = 320.0
@@ -166,8 +167,6 @@ func shouldRememberXAPIUser() -> Bool {
 	}
 }
 
-var isDemo = false
-
 func setShouldRememberXAPIUser(_ save:Bool) {
 	NSKeyedArchiver.archiveRootObject(save, toFile: filePath("shouldRememberXAPIUser"))
 }
@@ -194,9 +193,6 @@ func clearXAPIToken() {
 	} catch {
 		print("clear xAPI token error: \(error)")
 	}
-	setStaff(false)
-	setSocial(false)
-	isDemo = false
 }
 
 //MARK: IDPs
@@ -549,30 +545,6 @@ func localizedWith2Parameters(_ key:String?, parameter1:String?, parameter2:Stri
 	return string
 }
 
-func staff() -> Bool {
-	var staff = false
-	if let value = NSKeyedUnarchiver.unarchiveObject(withFile: filePath("staff")) as? Bool {
-		staff = value
-	}
-	return staff
-}
-
-func setStaff(_ value:Bool) {
-	NSKeyedArchiver.archiveRootObject(value, toFile: filePath("staff"))
-}
-
-func social() -> Bool {
-	var social = false
-	if let value = NSKeyedUnarchiver.unarchiveObject(withFile: filePath("social")) as? Bool {
-		social = value
-	}
-	return social
-}
-
-func setSocial(_ value:Bool) {
-	NSKeyedArchiver.archiveRootObject(value, toFile: filePath("social"))
-}
-
 //MARK: - Keep me logged in
 
 func keepMeLoggedIn() -> Bool {
@@ -616,6 +588,30 @@ func JWTStillValid() -> Bool {
 		valid = false
 	}
 	return valid
+}
+
+func staff() -> Bool {
+	var staff = false
+	if let user = dataManager.currentStudent {
+		staff = user.staff.boolValue
+	}
+	return staff
+}
+
+func social() -> Bool {
+	var social = false
+	if let user = dataManager.currentStudent {
+		social = user.social.boolValue
+	}
+	return social
+}
+
+func demo() -> Bool {
+	var demo = false
+	if let user = dataManager.currentStudent {
+		demo = user.demo.boolValue
+	}
+	return demo
 }
 
 //MARK: - Decode JWT

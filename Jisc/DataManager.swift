@@ -315,15 +315,16 @@ class DataManager: NSObject {
 		} catch let error as NSError {
 			print("get social institution error: \(error.localizedDescription)")
 		}
+		let dictionary = NSMutableDictionary()
+		dictionary["id"] = "SOCIAL"
+		dictionary["is_learning_analytics"] = "yes"
+		dictionary["name"] = "Social"
+		dictionary["accesskey"] = "key"
+		dictionary["secret"] = "secret"
 		if let institution = object {
+			institution.loadDictionary(dictionary)
 			return institution
 		} else {
-			let dictionary = NSMutableDictionary()
-			dictionary["id"] = "SOCIAL"
-			dictionary["is_learning_analytics"] = "no"
-			dictionary["name"] = "Social"
-			dictionary["accesskey"] = "key"
-			dictionary["secret"] = "secret"
 			return Institution.insertInManagedObjectContext(managedContext, dictionary: dictionary)
 		}
 	}
@@ -520,6 +521,20 @@ class DataManager: NSObject {
 			}
 		} catch let error as NSError {
 			print("get modules error: \(error.localizedDescription)")
+		}
+		if social() {
+			array.sort { (module1, module2) -> Bool in
+				var sorted = true
+				if module1.name > module2.name {
+					sorted = false
+				}
+				if module1.id == "add_module" {
+					sorted = false
+				} else if module2.id == "add_module" {
+					sorted = true
+				}
+				return sorted
+			}
 		}
 		return array
 	}
@@ -1050,7 +1065,27 @@ class DataManager: NSObject {
 	//MARK: Get Modules
 	
 	func getStudentModules(_ completion:@escaping dataManagerCompletionBlock) {
-		if staff() {
+		if social() {
+			DownloadManager().getSocialModules(studentId: self.currentStudent!.id, alertAboutInternet: false, completion: { (success, result, results, error) in
+				if (success) {
+					if let modules = results as? [String] {
+						for (_, item) in modules.enumerated() {
+							let dictionary = NSMutableDictionary()
+							dictionary[item] = item
+							let object = Module.insertInManagedObjectContext(managedContext, dictionary: dictionary)
+							dataManager.currentStudent!.addModule(object)
+						}
+					}
+				}
+				let key = "add_module"
+				let moduleName = "Add Module"
+				let dictionary = NSMutableDictionary()
+				dictionary[key] = moduleName
+				let object = Module.insertInManagedObjectContext(managedContext, dictionary: dictionary)
+				self.currentStudent!.addModule(object)
+				completion(true, "")
+			})
+		} else if staff() {
 			let modulesCount = 2
 			for i in stride(from: 1, through: modulesCount, by: 1) {
 				let key = "DUMMY_\(i)"
@@ -1060,7 +1095,7 @@ class DataManager: NSObject {
 				let object = Module.insertInManagedObjectContext(managedContext, dictionary: dictionary)
 				self.currentStudent!.addModule(object)
 			}
-			completion(true, kDefaultFailureReason)
+			completion(true, "")
 		} else {
 			xAPIManager().getModules { (success, result, results, error) in
 				if (success) {

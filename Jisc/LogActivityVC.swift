@@ -14,7 +14,7 @@ A log cannot last longer than 8 hours
 
 let maxHours = 8
 
-class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate, UIAlertViewDelegate, CustomPickerViewDelegate {
+class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate, UIAlertViewDelegate, CustomPickerViewDelegate, UITextFieldDelegate {
 	
 	@IBOutlet weak var titleLabel:UILabel!
 	@IBOutlet weak var contentScroll:UIScrollView!
@@ -26,6 +26,9 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 	@IBOutlet weak var minutesLabel:UILabel!
 	@IBOutlet weak var closeTimePickerButton:UIButton!
 	@IBOutlet weak var timePickerBottomSpace:NSLayoutConstraint!
+	@IBOutlet weak var hoursTextField:UITextField!
+	@IBOutlet weak var minutesTextField:UITextField!
+	@IBOutlet weak var toolbar:UIView!
 	var selectedHours:Int = 0
 	var selectedMinutes:Int = 0
 	@IBOutlet weak var selectedDateLabel:UILabel!
@@ -35,6 +38,8 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 	@IBOutlet weak var datePicker:UIDatePicker!
 	var theActivity:ActivityLog?
 	var isEditingLog:Bool = false
+	@IBOutlet weak var addModuleView:UIView!
+	@IBOutlet weak var addModuleTextField:UITextField!
 	
 	var initialSelectedModule = 0
 	var initialSelectedActivityType = 0
@@ -79,6 +84,13 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		if iPad {
+			hoursTextField.font = UIFont(name: "MyriadPro-Light", size: 44.0)
+			minutesTextField.font = UIFont(name: "MyriadPro-Light", size: 44.0)
+		} else {
+			hoursTextField.font = UIFont(name: "MyriadPro-Light", size: 52.0)
+			minutesTextField.font = UIFont(name: "MyriadPro-Light", size: 52.0)
+		}
 		datePicker.maximumDate = Date()
 		chooseActivityLabel.adjustsFontSizeToFitWidth = true
 		selectedDateLabel.adjustsFontSizeToFitWidth = true
@@ -137,6 +149,21 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 		return UIStatusBarStyle.lightContent
 	}
 	
+	func addModule() {
+		addModuleTextField.becomeFirstResponder()
+		UIView.animate(withDuration: 0.25) {
+			self.addModuleView.alpha = 1.0
+		}
+	}
+	
+	@IBAction func closeAddModule(_ sender:UIButton?) {
+		addModuleTextField.text = ""
+		addModuleTextField.resignFirstResponder()
+		UIView.animate(withDuration: 0.25) {
+			self.addModuleView.alpha = 0.0
+		}
+	}
+	
 	func completeDateString(_ date:Date) -> String {
 		dateFormatter.dateFormat = "d"
 		let day = Int(dateFormatter.string(from: date))
@@ -159,7 +186,7 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 		if (changesWereMade()) {
 			UIAlertView(title: localized("confirmation"), message: localized("would_you_like_to_save_the_changes_you_made"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
 		} else {
-			navigationController?.popToRootViewController(animated: true)
+			_ = navigationController?.popToRootViewController(animated: true)
 		}
 	}
 	
@@ -189,23 +216,43 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 	}
 	
 	func closeActiveTextEntries() {
+		view.endEditing(true)
+		hoursTextField.text = "0\(selectedHours)"
+		if selectedMinutes < 10 {
+			minutesTextField.text = "0\(selectedMinutes)"
+		} else {
+			minutesTextField.text = "\(selectedMinutes)"
+		}
 		closeTextView(UIBarButtonItem())
 	}
 	
 	//MARK: Show/Close Selectors
 	
 	@IBAction func showModuleSelector(_ sender:UIButton) {
-		if (!dataManager.currentStudent!.institution.isLearningAnalytics.boolValue) {
-			return
-		}
-		if (!isEditingLog) {
-			closeActiveTextEntries()
-			var array:[String] = [String]()
-			for (_, item) in dataManager.modules().enumerated() {
-				array.append(item.name)
+		if social() {
+			if dataManager.modules().count == 1 {
+				addModule()
+			} else {
+				var array:[String] = [String]()
+				for (_, item) in dataManager.modules().enumerated() {
+					array.append(item.name)
+				}
+				moduleSelectorView = CustomPickerView.create(localized("choose_module"), delegate: self, contentArray: array, selectedItem: selectedModule)
+				view.addSubview(moduleSelectorView)
 			}
-			moduleSelectorView = CustomPickerView.create(localized("choose_module"), delegate: self, contentArray: array, selectedItem: selectedModule)
-			view.addSubview(moduleSelectorView)
+		} else {
+			if (!dataManager.currentStudent!.institution.isLearningAnalytics.boolValue) {
+				return
+			}
+			if (!isEditingLog) {
+				closeActiveTextEntries()
+				var array:[String] = [String]()
+				for (_, item) in dataManager.modules().enumerated() {
+					array.append(item.name)
+				}
+				moduleSelectorView = CustomPickerView.create(localized("choose_module"), delegate: self, contentArray: array, selectedItem: selectedModule)
+				view.addSubview(moduleSelectorView)
+			}
 		}
 	}
 	
@@ -242,8 +289,17 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 	func view(_ view: CustomPickerView, selectedRow: Int) {
 		switch (view) {
 		case moduleSelectorView:
-			selectedModule = selectedRow
-			moduleButton.setTitle(dataManager.moduleNameAtIndex(selectedModule), for: UIControlState())
+			if social() {
+				if selectedRow == dataManager.modules().count - 1 {
+					addModule()
+				} else {
+					selectedModule = selectedRow
+					moduleButton.setTitle(dataManager.moduleNameAtIndex(selectedModule), for: UIControlState())
+				}
+			} else {
+				selectedModule = selectedRow
+				moduleButton.setTitle(dataManager.moduleNameAtIndex(selectedModule), for: UIControlState())
+			}
 			break
 		case activityTypeSelectorView:
 			selectedActivityType = selectedRow
@@ -345,7 +401,7 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 				dataManager.editActivityLog(theActivity!, completion: { (success, failureReason) -> Void in
 					if (success) {
 						AlertView.showAlert(true, message: localized("saved_successfully"), completion: { (done) -> Void in
-							self.navigationController?.popToRootViewController(animated: true)
+							_ = self.navigationController?.popToRootViewController(animated: true)
 						})
 					} else {
 						managedContext.rollback()
@@ -366,7 +422,7 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 				dataManager.addActivityLog(newActivity, completion: { (success, failureReason) -> Void in
 					if (success) {
 						AlertView.showAlert(true, message: localized("saved_successfully"), completion: { (done) -> Void in
-							self.navigationController?.popToRootViewController(animated: true)
+							_ = self.navigationController?.popToRootViewController(animated: true)
 						})
 					} else {
 						AlertView.showAlert(false, message: failureReason, completion: nil)
@@ -382,7 +438,7 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 	func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
 		if (buttonIndex == 0) {
 			managedContext.rollback()
-			navigationController?.popToRootViewController(animated: true)
+			_ = navigationController?.popToRootViewController(animated: true)
 		} else {
 			save(UIButton())
 		}
@@ -490,5 +546,108 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 	
 	@IBAction func closeTextView(_ sender:UIBarButtonItem) {
 		noteTextView.resignFirstResponder()
+	}
+	
+	//MARK: - UITextField Delegate
+	
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		if textField == addModuleTextField {
+			textField.resignFirstResponder()
+			if let text = textField.text {
+				DownloadManager().addSocialModule(studentId: dataManager.currentStudent!.id, module: text, alertAboutInternet: true, completion: { (success, result, results, error) in
+					DownloadManager().getSocialModules(studentId: dataManager.currentStudent!.id, alertAboutInternet: false, completion: { (success, result, results, error) in
+						if (success) {
+							if let modules = results as? [String] {
+								for (_, item) in modules.enumerated() {
+									let dictionary = NSMutableDictionary()
+									dictionary[item] = item
+									let object = Module.insertInManagedObjectContext(managedContext, dictionary: dictionary)
+									dataManager.currentStudent!.addModule(object)
+								}
+							}
+						}
+						self.selectedModule = 0
+						self.moduleButton.setTitle(dataManager.moduleNameAtIndex(self.selectedModule), for: UIControlState())
+					})
+				})
+			}
+			closeAddModule(nil)
+		}
+		return true
+	}
+	
+	func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+		toolbar.alpha = 0.0
+		var shouldBegin = true
+		if selectedHours == maxHours && textField == minutesTextField {
+			shouldBegin = false
+			AlertView.showAlert(false, message: localizedWith1Parameter("time_spent_max", parameter: "\(maxHours)"), completion: nil)
+		} else {
+			textField.text = ""
+		}
+		return shouldBegin
+	}
+	
+	func textFieldDidBeginEditing(_ textField: UITextField) {
+		UIView.animate(withDuration: 0.25, animations: { () -> Void in
+			self.scrollBottomSpace.constant = keyboardHeight - 44.0
+			self.view.layoutIfNeeded()
+		})
+	}
+	
+	func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+		if selectedHours == maxHours && textField == hoursTextField {
+			minutesTextField.text = "00"
+			selectedMinutes = 0
+		}
+		UIView.animate(withDuration: 0.25, animations: { () -> Void in
+			self.scrollBottomSpace.constant = 0.0
+			self.view.layoutIfNeeded()
+		})
+		return true
+	}
+	
+	func textFieldDidEndEditing(_ textField: UITextField) {
+		toolbar.alpha = 1.0
+	}
+	
+	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+		var shouldChange = false
+		if string.isEmpty || textField == addModuleTextField {
+			shouldChange = true
+		} else {
+			if "0123456789".contains(string) {
+				shouldChange = true
+				switch textField {
+				case hoursTextField:
+					if string == "9" {
+						shouldChange = false
+					} else {
+						textField.text = "0\(string)"
+						selectedHours = (string as NSString).integerValue
+						textField.resignFirstResponder()
+					}
+					break
+				case minutesTextField:
+					if let text = textField.text {
+						if text.isEmpty {
+							if !"012345".contains(string) {
+								shouldChange = false
+							}
+						} else {
+							if let text = textField.text {
+								textField.text = (text as NSString).replacingCharacters(in: range, with: string)
+								selectedMinutes = ((text as NSString).replacingCharacters(in: range, with: string) as NSString).integerValue
+								textField.resignFirstResponder()
+							}
+						}
+					}
+					break
+				default:
+					break
+				}
+			}
+		}
+		return shouldChange
 	}
 }

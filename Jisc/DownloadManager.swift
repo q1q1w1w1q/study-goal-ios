@@ -1437,7 +1437,7 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		completionBlock = completion
 		var dictionary = [String:String]()
 		dictionary["student_id"] = studentId
-		dictionary["Module"] = module
+		dictionary["module"] = module
 		var language = "en"
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage

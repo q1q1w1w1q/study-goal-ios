@@ -21,6 +21,7 @@ extension Student {
 	@NSManaged var addressLine4: String
 	@NSManaged var age: NSNumber
 	@NSManaged var countryCode: String
+	@NSManaged var demo: NSNumber
 	@NSManaged var disabilityCode: String
 	@NSManaged var dob: Date
 	@NSManaged var email: String
@@ -39,6 +40,9 @@ extension Student {
 	@NSManaged var postalCode: String
 	@NSManaged var raceCode: String
 	@NSManaged var sexCode: String
+	@NSManaged var social: NSNumber
+	@NSManaged var staff: NSNumber
+	@NSManaged var totalActivityPoints: NSNumber
 	@NSManaged var activityLogs: NSSet
 	@NSManaged var friendRequests: NSSet
 	@NSManaged var friends: NSSet
@@ -49,6 +53,5 @@ extension Student {
 	@NSManaged var stretchTargets: NSSet
 	@NSManaged var sentFriendRequests: NSSet
 	@NSManaged var marks: NSSet
-	@NSManaged var totalActivityPoints: NSNumber
 	@NSManaged var trophies: NSSet
 }

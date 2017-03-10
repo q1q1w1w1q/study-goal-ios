@@ -106,7 +106,6 @@ class SocialLoginVC: BaseViewController, GIDSignInUIDelegate {
 	//MARK: - Google Delegate
 	
 	func sign(inWillDispatch signIn: GIDSignIn!, error: Error!) {
-		print("SE APELEAZA ACESTA?")
 		if error == nil {
 			var dataOk = false
 			if let signIn = signIn {
@@ -148,7 +147,6 @@ class SocialLoginVC: BaseViewController, GIDSignInUIDelegate {
 	}
 	
 	func finishedWithEmail(_ email:String, name:String, userId:String) {
-		setSocial(true)
 		navigationController?.dismiss(animated: true, completion: { 
 			self.loginVC?.socialLogin(email: email, name: name, userId: userId)
 		})

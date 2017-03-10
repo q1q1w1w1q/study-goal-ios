@@ -133,7 +133,6 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 	
 	@IBAction func toggleStaff(_ sender:UIButton) {
 		sender.isSelected = !sender.isSelected
-		setStaff(sender.isSelected)
 	}
 	
 	@IBAction func toggleKeepMeLoggedIn(_ sender:UIButton) {
@@ -161,8 +160,8 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 						}
 					}
 					if (loginSuccessful) {
-						if staff() {
-							NotificationCenter.default.post(name: Notification.Name(rawValue: xAPILoginCompleteNotification), object: result?["STAFF_ID"] as? String)
+						if let staffId = result?["STAFF_ID"] as? String {
+							NotificationCenter.default.post(name: Notification.Name(rawValue: xAPILoginCompleteNotification), object: staffId)
 						} else {
 							NotificationCenter.default.post(name: Notification.Name(rawValue: xAPILoginCompleteNotification), object: result?["STUDENT_ID"] as? String)
 						}
@@ -252,6 +251,9 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 				if (success) {
 					if let jisc_id = notification.object as? String {
 						dataManager.currentStudent?.jisc_id = jisc_id
+					}
+					if xAPIToken() == demoXAPIToken {
+						dataManager.currentStudent?.demo = true
 					}
 					deleteCurrentUser()
 					setShouldRememberXAPIUser(self.rememberMeButton.isSelected)
@@ -464,7 +466,7 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 	}
 	
 	@IBAction func demo(_ sender:UIButton?) {
-		setXAPIToken("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE0ODgzNjU2NzcsImp0aSI6IjFtbjhnU3YrWk9mVzJlYXV1NmVrN0Rzbm1MUjA0dDRyT0V0SEQ5Z1BGdk09IiwiaXNzIjoiaHR0cDpcL1wvc3AuZGF0YVwvYXV0aCIsIm5iZiI6MTQ4ODM2NTY2NywiZXhwIjoxNjYyNTY0NTY2NywiZGF0YSI6eyJlcHBuIjoiIiwicGlkIjoiZGVtb3VzZXJAZGVtby5hYy51ayIsImFmZmlsaWF0aW9uIjoic3R1ZGVudEBkZW1vLmFjLnVrIn19.xM6KkBFvHW7vtf6dF-X4f_6G3t_KGPVNylN_rMJROsh1MXIg9sK5j77L0Jzg1JR8fhXZf-0jFMnZz6FMotAeig")
+		setXAPIToken(demoXAPIToken)
 		xAPIManager().getStudentDetails({ (success, result, results, error) in
 			var loginSuccessful = false
 			if let result = result {
@@ -475,7 +477,6 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 				}
 			}
 			if (loginSuccessful) {
-				isDemo = true
 				NotificationCenter.default.post(name: Notification.Name(rawValue: xAPILoginCompleteNotification), object: result?["STUDENT_ID"] as? String)
 			} else {
 				
@@ -587,7 +588,6 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 			dataManager.pickedInstitution = selectedInstituteObject
 			
 			if (selectedInstituteObject.isLearningAnalytics.boolValue) {
-				//			self.xAPILoginComplete()
 				xAPIManager().getIDPS { (success, result, results, error) in
 					if (result != nil) {
 						let vc:xAPILoginVC = xAPILoginVC()
@@ -600,11 +600,6 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 			}
 			
 			instituteTextField.resignFirstResponder()
-			
-			if (onSimulator) {
-				emailTextField.text = "vinson@gmail.com"
-				passwordTextField.text = "vinson123"
-			}
 		}
 	}
 }

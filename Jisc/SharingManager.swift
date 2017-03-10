@@ -117,7 +117,6 @@ class SharingManager: NSObject, MFMailComposeViewControllerDelegate {
 				AlertView.showAlert(true, message: self.successMessage, completion: nil)
 			}
 			break
-		default: break
 		}
 		controller.dismiss(animated: true, completion: nil)
 	}

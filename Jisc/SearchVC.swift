@@ -290,7 +290,7 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
 	//MARK: Actions With Other Students
 	
 	func sendFriendRequest(_ completion:@escaping downloadCompletionBlock) {
-		if isDemo {
+		if demo() {
 			let alert = UIAlertController(title: "", message: localized("demo_mode_sendfriendrequest"), preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
 			navigationController?.present(alert, animated: true, completion: nil)

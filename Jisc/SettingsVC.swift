@@ -83,7 +83,7 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 		let navigationController = (notification as NSNotification).userInfo?["navigationController"] as? UINavigationController
 		if (viewController != nil && navigationController != nil) {
 			if (viewController! != self && navigationController != self.navigationController) {
-				self.navigationController?.popToRootViewController(animated: false)
+				_ = self.navigationController?.popToRootViewController(animated: false)
 			}
 		}
 	}
@@ -320,7 +320,7 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 	}
 	
 	@IBAction func selectScreen(_ sender:UIButton) {
-		if isDemo {
+		if demo() {
 			let alert = UIAlertController(title: "", message: localized("demo_mode_changeappsettings"), preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
 			navigationController?.present(alert, animated: true, completion: nil)
@@ -395,7 +395,7 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 	}
 	
 	@IBAction func selectLanguage(_ sender:UIButton) {
-		if isDemo {
+		if demo() {
 			let alert = UIAlertController(title: "", message: localized("demo_mode_changeappsettings"), preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
 			navigationController?.present(alert, animated: true, completion: nil)

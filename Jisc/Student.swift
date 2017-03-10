@@ -58,6 +58,9 @@ class Student: NSManagedObject {
 		raceCode = stringFromDictionary(userData, key: "race_code")
 		sexCode = stringFromDictionary(userData, key: "sex_code")
 		jisc_id = stringFromDictionary(dictionary, key: "jisc_student_id")
+		social = boolFromDictionary(userData, key: "is_social_login") as NSNumber
+		staff = boolFromDictionary(userData, key: "is_staff") as NSNumber
+		demo = false
 		
 		let name = stringFromDictionary(userData, key: "name")
 		if (!name.isEmpty) {

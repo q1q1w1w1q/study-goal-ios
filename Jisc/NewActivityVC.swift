@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataSource, CustomPickerViewDelegate {
+class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataSource, CustomPickerViewDelegate, UITextFieldDelegate {
 	
 	@IBOutlet weak var titleLabel:UILabel!
 	var reminderMinutes:Int = 1
@@ -35,6 +35,8 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 	var activityTypeSelectorView:CustomPickerView = CustomPickerView()
 	var activitySelectorView:CustomPickerView = CustomPickerView()
 	@IBOutlet weak var parametersView:UIView!
+	@IBOutlet weak var addModuleView:UIView!
+	@IBOutlet weak var addModuleTextField:UITextField!
 	
 	init(activity:ActivityLog, atIndex:Int) {
 		theActivity = activity
@@ -149,6 +151,21 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 		navigationController?.popViewController(animated: true)
 	}
 	
+	func addModule() {
+		addModuleTextField.becomeFirstResponder()
+		UIView.animate(withDuration: 0.25) {
+			self.addModuleView.alpha = 1.0
+		}
+	}
+	
+	@IBAction func closeAddModule(_ sender:UIButton?) {
+		addModuleTextField.text = ""
+		addModuleTextField.resignFirstResponder()
+		UIView.animate(withDuration: 0.25) { 
+			self.addModuleView.alpha = 0.0
+		}
+	}
+	
 	@IBAction func settings(_ sender:UIButton) {
 		let vc = SettingsVC()
 		navigationController?.pushViewController(vc, animated: true)
@@ -182,15 +199,28 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 	//MARK: Show/Close Selectors
 	
 	@IBAction func showModuleSelector(_ sender:UIButton) {
-		if (!dataManager.currentStudent!.institution.isLearningAnalytics.boolValue) {
-			return
+		if social() {
+			if dataManager.modules().count == 1 {
+				addModule()
+			} else {
+				var array:[String] = [String]()
+				for (_, item) in dataManager.modules().enumerated() {
+					array.append(item.name)
+				}
+				moduleSelectorView = CustomPickerView.create(localized("choose_module"), delegate: self, contentArray: array, selectedItem: selectedModule)
+				view.addSubview(moduleSelectorView)
+			}
+		} else {
+			if (!dataManager.currentStudent!.institution.isLearningAnalytics.boolValue) {
+				return
+			}
+			var array:[String] = [String]()
+			for (_, item) in dataManager.modules().enumerated() {
+				array.append(item.name)
+			}
+			moduleSelectorView = CustomPickerView.create(localized("choose_module"), delegate: self, contentArray: array, selectedItem: selectedModule)
+			view.addSubview(moduleSelectorView)
 		}
-		var array:[String] = [String]()
-		for (_, item) in dataManager.modules().enumerated() {
-			array.append(item.name)
-		}
-		moduleSelectorView = CustomPickerView.create(localized("choose_module"), delegate: self, contentArray: array, selectedItem: selectedModule)
-		view.addSubview(moduleSelectorView)
 	}
 	
 	@IBAction func showActivityTypeSelector(_ sender:UIButton) {
@@ -220,8 +250,17 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 	func view(_ view: CustomPickerView, selectedRow: Int) {
 		switch (view) {
 		case moduleSelectorView:
-			selectedModule = selectedRow
-			moduleButton.setTitle(dataManager.moduleNameAtIndex(selectedModule), for: UIControlState())
+			if social() {
+				if selectedRow == dataManager.modules().count - 1 {
+					addModule()
+				} else {
+					selectedModule = selectedRow
+					moduleButton.setTitle(dataManager.moduleNameAtIndex(selectedModule), for: UIControlState())
+				}
+			} else {
+				selectedModule = selectedRow
+				moduleButton.setTitle(dataManager.moduleNameAtIndex(selectedModule), for: UIControlState())
+			}
 			break
 		case activityTypeSelectorView:
 			selectedActivityType = selectedRow
@@ -431,5 +470,31 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 	
 	func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
 		return 80.0
+	}
+	
+	//MARK: - UITextField Delegate
+	
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		textField.resignFirstResponder()
+		if let text = textField.text {
+			DownloadManager().addSocialModule(studentId: dataManager.currentStudent!.id, module: text, alertAboutInternet: true, completion: { (success, result, results, error) in
+				DownloadManager().getSocialModules(studentId: dataManager.currentStudent!.id, alertAboutInternet: false, completion: { (success, result, results, error) in
+					if (success) {
+						if let modules = results as? [String] {
+							for (_, item) in modules.enumerated() {
+								let dictionary = NSMutableDictionary()
+								dictionary[item] = item
+								let object = Module.insertInManagedObjectContext(managedContext, dictionary: dictionary)
+								dataManager.currentStudent!.addModule(object)
+							}
+						}
+					}
+					self.selectedModule = 0
+					self.moduleButton.setTitle(dataManager.moduleNameAtIndex(self.selectedModule), for: UIControlState())
+				})
+			})
+		}
+		closeAddModule(nil)
+		return true
 	}
 }

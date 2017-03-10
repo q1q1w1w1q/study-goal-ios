@@ -163,7 +163,7 @@ class ActivityDetailsVC: BaseViewController, UITableViewDataSource, UITableViewD
 	}
 	
 	@IBAction func editLog(_ sender:UIButton!) {
-		if isDemo {
+		if demo() {
 			let alert = UIAlertController(title: "", message: localized("demo_mode_editactivitylog"), preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
 			navigationController?.present(alert, animated: true, completion: nil)
@@ -179,7 +179,7 @@ class ActivityDetailsVC: BaseViewController, UITableViewDataSource, UITableViewD
 	}
 	
 	@IBAction func deleteLog(_ sender:UIButton!) {
-		if isDemo {
+		if demo() {
 			let alert = UIAlertController(title: "", message: localized("demo_mode_deleteactivitylog"), preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
 			navigationController?.present(alert, animated: true, completion: nil)

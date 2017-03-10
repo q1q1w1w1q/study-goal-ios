@@ -92,7 +92,7 @@ class OneActivityCell: UITableViewCell, UIAlertViewDelegate {
 	}
 	
 	@IBAction func deleteActivity(_ sender:UIButton) {
-		if isDemo {
+		if demo() {
 			let alert = UIAlertController(title: "", message: localized("demo_mode_deleteactivitylog"), preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
 			parent?.navigationController?.present(alert, animated: true, completion: nil)
@@ -102,7 +102,7 @@ class OneActivityCell: UITableViewCell, UIAlertViewDelegate {
 	}
 	
 	@IBAction func editActivity(_ sender:UIButton) {
-		if isDemo {
+		if demo() {
 			let alert = UIAlertController(title: "", message: localized("demo_mode_editactivitylog"), preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
 			parent?.navigationController?.present(alert, animated: true, completion: nil)

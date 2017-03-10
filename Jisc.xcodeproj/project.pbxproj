@@ -280,6 +280,7 @@
 		DA11B6AE1E7164F700F823B8 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		DA162E241CAD39B100E0C3D0 /* xAPILoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xAPILoginVC.swift; sourceTree = "<group>"; };
 		DA162E251CAD39B100E0C3D0 /* xAPILoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = xAPILoginVC.xib; sourceTree = "<group>"; };
+		DA1A43751E72981900917437 /* Jisc3.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jisc3.3.xcdatamodel; sourceTree = "<group>"; };
 		DA1E7F8D1C1EBE9D009343B1 /* Jisc1.8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jisc1.8.xcdatamodel; sourceTree = "<group>"; };
 		DA2093FB1E69BD76001D979A /* SocialLoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialLoginVC.swift; sourceTree = "<group>"; };
 		DA2093FC1E69BD76001D979A /* SocialLoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialLoginVC.xib; sourceTree = "<group>"; };
@@ -1222,7 +1223,7 @@
 				TargetAttributes = {
 					DAA2AEA21BCE785900ED796A = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = DNNJ9E4596;
+						DevelopmentTeam = JG53BNN66L;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Manual;
 					};
@@ -1948,7 +1949,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Jisc (D5QJ7EBR49)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = DNNJ9E4596;
+				DEVELOPMENT_TEAM = JG53BNN66L;
 				INFOPLIST_FILE = Jisc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1972,7 +1973,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Jisc (D5QJ7EBR49)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = D5QJ7EBR49;
+				DEVELOPMENT_TEAM = JG53BNN66L;
 				INFOPLIST_FILE = Jisc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2013,6 +2014,7 @@
 		DAA2AEAD1BCE785900ED796A /* Jisc.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				DA1A43751E72981900917437 /* Jisc3.3.xcdatamodel */,
 				DA9D2CB11DA29AB400C842B4 /* Jisc3.2.xcdatamodel */,
 				DA9D2CAD1DA299A500C842B4 /* Jisc3.1.xcdatamodel */,
 				DA23932E1D5203DE006970A4 /* Jisc3.0.xcdatamodel */,
@@ -2037,7 +2039,7 @@
 				DA46D96F1BF2444B00AA1476 /* Jisc1.1.xcdatamodel */,
 				DAA2AEAE1BCE785900ED796A /* Jisc.xcdatamodel */,
 			);
-			currentVersion = DA9D2CB11DA29AB400C842B4 /* Jisc3.2.xcdatamodel */;
+			currentVersion = DA1A43751E72981900917437 /* Jisc3.3.xcdatamodel */;
 			path = Jisc.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

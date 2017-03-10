@@ -37,7 +37,7 @@ class TargetVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 	}
 	
 	@IBAction func newTarget(_ sender:UIButton) {
-		if isDemo {
+		if demo() {
 			let alert = UIAlertController(title: "", message: localized("demo_mode_addtarget"), preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
 			navigationController?.present(alert, animated: true, completion: nil)

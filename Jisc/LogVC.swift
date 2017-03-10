@@ -82,7 +82,7 @@ class LogVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, Cus
 	}
 	
 	@IBAction func showNewActivitySelector(_ sender:UIButton) {
-		if isDemo {
+		if demo() {
 			let alert = UIAlertController(title: "", message: localized("demo_mode_addactivitylog"), preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
 			navigationController?.present(alert, animated: true, completion: nil)

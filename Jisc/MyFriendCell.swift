@@ -36,7 +36,7 @@ class MyFriendCell: BasicSearchCell, UIAlertViewDelegate {
 	}
 	
 	@IBAction func hideOrUnhideFriend(_ sender:UIButton) {
-		if isDemo {
+		if demo() {
 			sender.isSelected = !sender.isSelected
 		} else {
 			parent?.friendToTakeActionWith = theFriend
@@ -64,7 +64,7 @@ class MyFriendCell: BasicSearchCell, UIAlertViewDelegate {
 	}
 	
 	@IBAction func deleteFriend(_ sender:UIButton) {
-		if isDemo {
+		if demo() {
 			let alert = UIAlertController(title: "", message: localized("demo_mode_deletefriend"), preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
 			parent?.navigationController?.present(alert, animated: true, completion: nil)

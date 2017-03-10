@@ -95,7 +95,7 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
 	}
 	
 	@IBAction func editTarget(_ sender:UIButton) {
-		if isDemo {
+		if demo() {
 			let alert = UIAlertController(title: "", message: localized("demo_mode_edittarget"), preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
 			navigationController?.present(alert, animated: true, completion: nil)
@@ -110,7 +110,7 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
 	}
 	
 	@IBAction func deleteTarget(_ sender:UIButton) {
-		if isDemo {
+		if demo() {
 			let alert = UIAlertController(title: "", message: localized("demo_mode_deletetarget"), preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
 			navigationController?.present(alert, animated: true, completion: nil)
