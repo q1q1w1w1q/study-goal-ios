@@ -244,17 +244,19 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 			target.timeSpan = timeSpan.rawValue
 			if (selectedModule > 0 && selectedModule - 1 < dataManager.modules().count) {
 				target.module = dataManager.modules()[selectedModule - 1]
+			} else {
+				target.module = nil
 			}
 			target.because = because
 			if (theTarget != nil) {
 				dataManager.editTarget(theTarget!, completion: { (success, failureReason) -> Void in
 					if (success) {
 						AlertView.showAlert(true, message: localized("saved_successfully")) { (done) -> Void in
-							self.navigationController?.popViewController(animated: true)
+							_ = self.navigationController?.popViewController(animated: true)
 						}
 					} else {
 						AlertView.showAlert(false, message: failureReason) { (done) -> Void in
-							self.navigationController?.popViewController(animated: true)
+							_ = self.navigationController?.popViewController(animated: true)
 						}
 					}
 				})
@@ -266,11 +268,11 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 				dataManager.addTarget(target, completion: { (success, failureReason) -> Void in
 					if (success) {
 						AlertView.showAlert(true, message: localized("saved_successfully")) { (done) -> Void in
-							self.navigationController?.popViewController(animated: true)
+							_ = self.navigationController?.popViewController(animated: true)
 						}
 					} else {
 						AlertView.showAlert(false, message: failureReason) { (done) -> Void in
-							self.navigationController?.popViewController(animated: true)
+							_ = self.navigationController?.popViewController(animated: true)
 						}
 					}
 				})
@@ -328,16 +330,13 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 	
 	@IBAction func showModuleSelector(_ sender:UIButton) {
 		if social() {
-			if dataManager.modules().count == 1 {
-				addModule()
-			} else {
-				var array:[String] = [String]()
-				for (_, item) in dataManager.modules().enumerated() {
-					array.append(item.name)
-				}
-				moduleSelectorView = CustomPickerView.create(localized("choose_module"), delegate: self, contentArray: array, selectedItem: selectedModule)
-				view.addSubview(moduleSelectorView)
+			var array:[String] = [String]()
+			array.append(localized("any_module"))
+			for (_, item) in dataManager.modules().enumerated() {
+				array.append(item.name)
 			}
+			moduleSelectorView = CustomPickerView.create(localized("choose_module"), delegate: self, contentArray: array, selectedItem: selectedModule)
+			view.addSubview(moduleSelectorView)
 		} else {
 			if (!dataManager.currentStudent!.institution.isLearningAnalytics.boolValue) {
 				return
@@ -384,7 +383,7 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 			break
 		case moduleSelectorView:
 			if social() {
-				if selectedRow == dataManager.modules().count - 1 {
+				if selectedRow == dataManager.modules().count {
 					addModule()
 				} else {
 					selectedModule = selectedRow

@@ -40,6 +40,7 @@
                 <outlet property="loginViewVerticalAlignment" destination="Vqd-yf-rAr" id="WpQ-eT-ZWB"/>
                 <outlet property="passwordTextField" destination="kNK-xW-hOQ" id="1pv-Hn-6Fu"/>
                 <outlet property="rememberMeButton" destination="619-mP-liT" id="MwA-Qy-p27"/>
+                <outlet property="staffButton" destination="fZk-sU-7yq" id="c42-Pz-JRJ"/>
                 <outlet property="studentHatHeight" destination="YIt-Yj-PDB" id="lrs-hL-J4H"/>
                 <outlet property="studentHatView" destination="W2I-Nd-qov" id="jQV-Fl-N8A"/>
                 <outlet property="termsAndConditionsButton" destination="dEl-tR-tAC" id="25z-r2-iug"/>
@@ -800,7 +801,7 @@
                     <rect key="frame" x="45" y="181" width="285" height="205"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RESET YOUR PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zG-6A-2dR" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="57" y="12" width="171.5" height="17"/>
+                            <rect key="frame" x="57" y="12" width="172" height="17"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -1080,18 +1081,6 @@ email address below and click on the ‘Request Password Reset’ button. We wil
                                 <action selector="toggleKeepMeLoggedIn:" destination="-1" eventType="touchUpInside" id="qzm-S4-bGK"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="73R-PK-mwb">
-                            <rect key="frame" x="315" y="631" width="60" height="36"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="60" id="aPk-Qr-CP4"/>
-                                <constraint firstAttribute="height" constant="36" id="qAN-Ul-z0g"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
-                            <state key="normal" title="Demo"/>
-                            <connections>
-                                <action selector="demo:" destination="-1" eventType="touchUpInside" id="cHJ-g7-kTO"/>
-                            </connections>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -1103,10 +1092,8 @@ email address below and click on the ‘Request Password Reset’ button. We wil
                         <constraint firstItem="fZk-sU-7yq" firstAttribute="centerX" secondItem="c1l-ch-aBO" secondAttribute="centerX" id="hxq-kt-5ba"/>
                         <constraint firstItem="rwe-et-eaY" firstAttribute="centerX" secondItem="c1l-ch-aBO" secondAttribute="centerX" id="iId-QP-I0y"/>
                         <constraint firstItem="rwe-et-eaY" firstAttribute="centerY" secondItem="c1l-ch-aBO" secondAttribute="centerY" id="izX-RM-J5g"/>
-                        <constraint firstAttribute="bottom" secondItem="73R-PK-mwb" secondAttribute="bottom" id="l4p-l8-pCW"/>
                         <constraint firstItem="t9B-E7-xcK" firstAttribute="leading" secondItem="c1l-ch-aBO" secondAttribute="leading" id="oCp-uQ-68s"/>
                         <constraint firstItem="fZk-sU-7yq" firstAttribute="top" secondItem="rwe-et-eaY" secondAttribute="bottom" constant="25" id="pCK-Yf-rJ4"/>
-                        <constraint firstAttribute="trailing" secondItem="73R-PK-mwb" secondAttribute="trailing" id="qBU-Fu-vzI"/>
                         <constraint firstItem="UE1-eF-LrD" firstAttribute="centerX" secondItem="fZk-sU-7yq" secondAttribute="centerX" id="usM-0e-r7h"/>
                         <constraint firstItem="t9B-E7-xcK" firstAttribute="top" secondItem="c1l-ch-aBO" secondAttribute="top" id="v9h-IT-MPQ"/>
                     </constraints>

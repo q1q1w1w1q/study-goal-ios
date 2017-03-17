@@ -40,6 +40,7 @@
                 <outlet property="loginViewVerticalAlignment" destination="Vqd-yf-rAr" id="WpQ-eT-ZWB"/>
                 <outlet property="passwordTextField" destination="kNK-xW-hOQ" id="1pv-Hn-6Fu"/>
                 <outlet property="rememberMeButton" destination="619-mP-liT" id="MwA-Qy-p27"/>
+                <outlet property="staffButton" destination="cDB-Ux-6KO" id="mqm-Oc-Klg"/>
                 <outlet property="studentHatHeight" destination="YIt-Yj-PDB" id="lrs-hL-J4H"/>
                 <outlet property="studentHatView" destination="W2I-Nd-qov" id="jQV-Fl-N8A"/>
                 <outlet property="termsAndConditionsButton" destination="dEl-tR-tAC" id="25z-r2-iug"/>
@@ -660,7 +661,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="508" height="40"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms and Conditions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVE-JM-ebg" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                    <rect key="frame" x="159.5" y="12.5" width="190" height="20"/>
+                                    <rect key="frame" x="160" y="13" width="190" height="20"/>
                                     <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="20"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -806,7 +807,7 @@
                     <rect key="frame" x="241.5" y="359.5" width="285" height="205"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RESET YOUR PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zG-6A-2dR" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="57.5" y="12" width="171.5" height="17"/>
+                            <rect key="frame" x="57" y="12" width="171.5" height="17"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -1086,28 +1087,14 @@ email address below and click on the ‘Request Password Reset’ button. We wil
                                 <action selector="toggleKeepMeLoggedIn:" destination="-1" eventType="touchUpInside" id="mUf-fa-iZR"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HhA-NZ-eVW">
-                            <rect key="frame" x="708" y="988" width="60" height="36"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="36" id="8WP-X7-tVj"/>
-                                <constraint firstAttribute="width" constant="60" id="AcB-Yq-0P7"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
-                            <state key="normal" title="Demo"/>
-                            <connections>
-                                <action selector="demo:" destination="-1" eventType="touchUpInside" id="6RM-Nt-HFI"/>
-                            </connections>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="aPo-ae-YRk" firstAttribute="centerY" secondItem="L4R-re-eqY" secondAttribute="centerY" id="6Tl-KA-wcG"/>
                         <constraint firstAttribute="trailing" secondItem="LNK-pv-idK" secondAttribute="trailing" id="7Jb-g1-nGa"/>
-                        <constraint firstAttribute="bottom" secondItem="HhA-NZ-eVW" secondAttribute="bottom" id="DSZ-D6-bSm"/>
                         <constraint firstItem="cDB-Ux-6KO" firstAttribute="centerX" secondItem="L4R-re-eqY" secondAttribute="centerX" id="LXM-yO-nSz"/>
                         <constraint firstItem="LNK-pv-idK" firstAttribute="top" secondItem="L4R-re-eqY" secondAttribute="top" id="SGK-Tp-4FZ"/>
                         <constraint firstAttribute="bottom" secondItem="LNK-pv-idK" secondAttribute="bottom" id="T4H-Dv-4hw"/>
-                        <constraint firstAttribute="trailing" secondItem="HhA-NZ-eVW" secondAttribute="trailing" id="eF7-61-tnm"/>
                         <constraint firstItem="LNK-pv-idK" firstAttribute="leading" secondItem="L4R-re-eqY" secondAttribute="leading" id="ePh-Ae-33y"/>
                         <constraint firstItem="2AW-Pu-9Bv" firstAttribute="top" secondItem="L4R-re-eqY" secondAttribute="top" id="g0N-PW-wVT"/>
                         <constraint firstItem="XIp-Aq-HMj" firstAttribute="top" secondItem="cDB-Ux-6KO" secondAttribute="bottom" constant="20" id="kgd-hf-qFn"/>

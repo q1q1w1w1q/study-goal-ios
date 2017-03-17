@@ -33,11 +33,11 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
 		logViewController.tabBarItem = tabBarItem("Log")
 		targetViewController.tabBarItem = tabBarItem("Target")
 		
-		if (dataManager.currentStudent != nil) {
-			if (!dataManager.currentStudent!.institution.isLearningAnalytics.boolValue) {
-				statsViewController.tabBarItem.isEnabled = false
-			}
-		}
+//		if (dataManager.currentStudent != nil) {
+//			if (!dataManager.currentStudent!.institution.isLearningAnalytics.boolValue) {
+//				statsViewController.tabBarItem.isEnabled = false
+//			}
+//		}
 		
 		tabBar.backgroundImage = UIImage(named: "darkGray")
 		tabBar.layer.masksToBounds = true

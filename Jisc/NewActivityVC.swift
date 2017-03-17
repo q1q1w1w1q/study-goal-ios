@@ -394,15 +394,15 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 			dataManager.stopRunningActivity(theActivity!, completion: { (success, failureReason) -> Void in
 				if (success) {
 					AlertView.showAlert(true, message: localized("activity_stopped"), completion: { (done) -> Void in
-						self.navigationController?.popViewController(animated: true)
+						_ = self.navigationController?.popViewController(animated: true)
 					})
 				} else if (failureReason == "timeZero") {
 					AlertView.showAlert(false, message: localized("activity_was_cancelled_due_to_short_time_spent"), completion: { (done) -> Void in
-						self.navigationController?.popViewController(animated: true)
+						_ = self.navigationController?.popViewController(animated: true)
 					})
 				} else {
 					AlertView.showAlert(false, message: failureReason, completion: { (done) -> Void in
-						self.navigationController?.popViewController(animated: true)
+						_ = self.navigationController?.popViewController(animated: true)
 					})
 				}
 			})

@@ -39,4 +39,10 @@ class InstituteCell: UITableViewCell {
 		instituteName.text = localized("institution_not_listed")
 		layoutIfNeeded()
 	}
+	
+	func demoInstitute() {
+		instituteName.textAlignment = .center
+		instituteName.text = localized("demo")
+		layoutIfNeeded()
+	}
 }

@@ -150,6 +150,7 @@
 		DAC369EF1CC7BBA000F156B1 /* xAPIRegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAC369ED1CC7BBA000F156B1 /* xAPIRegisterVC.xib */; };
 		DAC634F51C807DFE0084E314 /* StagSans-Book-App.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAC634F31C807DFE0084E314 /* StagSans-Book-App.ttf */; };
 		DAC634F61C807DFE0084E314 /* StagSans-Light-App.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAC634F41C807DFE0084E314 /* StagSans-Light-App.ttf */; };
+		DACEE6641E7985860039DCA6 /* CheckinVC~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DACEE6631E7985860039DCA6 /* CheckinVC~ipad.xib */; };
 		DAD4C81F1BF4E78E001C4435 /* Friend+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD4C8191BF4E78E001C4435 /* Friend+CoreDataProperties.swift */; };
 		DAD4C8201BF4E78E001C4435 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD4C81A1BF4E78E001C4435 /* Friend.swift */; };
 		DAD4C8211BF4E78E001C4435 /* FriendRequest+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD4C81B1BF4E78E001C4435 /* FriendRequest+CoreDataProperties.swift */; };
@@ -429,6 +430,7 @@
 		DAC634F31C807DFE0084E314 /* StagSans-Book-App.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "StagSans-Book-App.ttf"; sourceTree = "<group>"; };
 		DAC634F41C807DFE0084E314 /* StagSans-Light-App.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "StagSans-Light-App.ttf"; sourceTree = "<group>"; };
 		DACEA19C1CE2031600223B6E /* Jisc2.9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jisc2.9.xcdatamodel; sourceTree = "<group>"; };
+		DACEE6631E7985860039DCA6 /* CheckinVC~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CheckinVC~ipad.xib"; sourceTree = "<group>"; };
 		DAD4C8181BF4E594001C4435 /* Jisc1.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jisc1.3.xcdatamodel; sourceTree = "<group>"; };
 		DAD4C8191BF4E78E001C4435 /* Friend+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Friend+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DAD4C81A1BF4E78E001C4435 /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
@@ -529,6 +531,7 @@
 			children = (
 				DA11B6AA1E7164E600F823B8 /* CheckinVC.swift */,
 				DA11B6AB1E7164E600F823B8 /* CheckinVC.xib */,
+				DACEE6631E7985860039DCA6 /* CheckinVC~ipad.xib */,
 			);
 			name = CheckIn;
 			sourceTree = "<group>";
@@ -1223,7 +1226,7 @@
 				TargetAttributes = {
 					DAA2AEA21BCE785900ED796A = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = JG53BNN66L;
+						DevelopmentTeam = DNNJ9E4596;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Manual;
 					};
@@ -1293,6 +1296,7 @@
 				DA0081E21DF833DD0034786A /* splash_screen_iPad.mp4 in Resources */,
 				DAB0C8431C4CEA2F00F7A3C6 /* LogActivityVC~ipad.xib in Resources */,
 				DA0081E01DF833D50034786A /* splash_screen.mp4 in Resources */,
+				DACEE6641E7985860039DCA6 /* CheckinVC~ipad.xib in Resources */,
 				DAB0C88B1C4CEB2400F7A3C6 /* SettingsVC~ipad.xib in Resources */,
 				DAB0C8851C4CEB1200F7A3C6 /* SettingsVC.xib in Resources */,
 				DAC634F61C807DFE0084E314 /* StagSans-Light-App.ttf in Resources */,
@@ -1947,13 +1951,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Jisc (D5QJ7EBR49)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = JG53BNN66L;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Marcel Chirila (L9YM46QZF6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Marcel Chirila (L9YM46QZF6)";
+				DEVELOPMENT_TEAM = DNNJ9E4596;
 				INFOPLIST_FILE = Jisc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.jisc.studygoal;
+				PRODUCT_BUNDLE_IDENTIFIER = com.therapybox.studentapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2ed7f47f-b191-4fc0-acb9-d8a2d55557cc";
 				PROVISIONING_PROFILE_SPECIFIER = XGRoup_Development;
@@ -1971,16 +1975,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Jisc (D5QJ7EBR49)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Therapy Box Limited (JG53BNN66L)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Therapy Box Limited (JG53BNN66L)";
 				DEVELOPMENT_TEAM = JG53BNN66L;
 				INFOPLIST_FILE = Jisc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.jisc.studygoal;
+				PRODUCT_BUNDLE_IDENTIFIER = com.therapybox.studentapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5d97501c-8d35-4898-a546-f49aa851addd";
-				PROVISIONING_PROFILE_SPECIFIER = "study-goal-development-profile";
+				PROVISIONING_PROFILE = "3bab5311-a927-4353-b2e5-c97a4649990d";
+				PROVISIONING_PROFILE_SPECIFIER = "XC: com.therapybox.studentapp";
 				SWIFT_OBJC_BRIDGING_HEADER = "Jisc/Jisc-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

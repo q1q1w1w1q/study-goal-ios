@@ -43,7 +43,7 @@ class MyFriendsView: LocalizableView, UIAlertViewDelegate, MFMailComposeViewCont
 
 	override func awakeFromNib() {
 		super.awakeFromNib()
-		Bundle.main.loadNibNamed("", owner: nil, options: nil)
+//		Bundle.main.loadNibNamed("", owner: nil, options: nil)
 		searchStudentsResultsTable.register(UINib(nibName: kFoundStudentCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kFoundStudentCellIdentifier)
 		newRequestsTable.register(UINib(nibName: kNewRequestCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kNewRequestCellIdentifier)
 		myFriendsTable.register(UINib(nibName: kMyFriendCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kMyFriendCellIdentifier)

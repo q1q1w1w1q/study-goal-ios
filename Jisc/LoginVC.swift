@@ -33,6 +33,7 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 	@IBOutlet weak var termsAndConditionsButton:UIButton!
 	@IBOutlet weak var termsAndConditionsUnderlineView:UIView!
 	@IBOutlet weak var loginButton:UIButton!
+	@IBOutlet weak var staffButton:UIButton!
 	
 	@IBOutlet var termsAndConditionsView:UIView!
 	
@@ -57,6 +58,7 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		staffChecked = false
 		chosenInstitutionLabel.adjustsFontSizeToFitWidth = true
 		instituteTextField.superview?.layer.borderColor = UIColor(white: 0.5, alpha: 0.5).cgColor
 		instituteTextField.superview?.layer.borderWidth = 1.0
@@ -91,22 +93,6 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 			}
 		}
 		
-//		let mgr = DownloadManager()
-//		mgr.silent = true
-//		mgr.getInstitutes(false) { (success, result, results, error) -> Void in
-//			if (success) {
-//				if (results != nil) {
-//					for (_, item) in results!.enumerate() {
-//						if let dictionary = item as? [String:String] {
-//							Institution.insertInManagedObjectContext(managedContext, dictionary: dictionary)
-//						}
-//					}
-//				}
-//			}
-//
-//			
-//			
-//			
 //			var dictionary = [String:String]()
 //			dictionary["id"] = "1"
 //			dictionary["is_learning_analytics"] = "yes"
@@ -114,17 +100,6 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 //			dictionary["accesskey"] = "key"
 //			dictionary["secret"] = "secret"
 //			Institution.insertInManagedObjectContext(managedContext, dictionary: dictionary)
-//
-//			
-//			
-//			
-//			
-//			dataManager.safelySaveContext()
-//			self.filterInstitutions("")
-//			self.institutesTable.reloadData()
-//			self.institutesTableHeight.constant = self.institutesTable.contentSize.height
-//			self.view.layoutIfNeeded()
-//		}
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(LoginVC.xAPILoginComplete(_:)), name: NSNotification.Name(rawValue: xAPILoginCompleteNotification), object: nil)
 		
@@ -133,6 +108,8 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 	
 	@IBAction func toggleStaff(_ sender:UIButton) {
 		sender.isSelected = !sender.isSelected
+		staffChecked = sender.isSelected
+		setStaff(sender.isSelected)
 	}
 	
 	@IBAction func toggleKeepMeLoggedIn(_ sender:UIButton) {
@@ -254,6 +231,7 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 					}
 					if xAPIToken() == demoXAPIToken {
 						dataManager.currentStudent?.demo = true
+						dataManager.currentStudent?.institution = dataManager.demoInstitution()
 					}
 					deleteCurrentUser()
 					setShouldRememberXAPIUser(self.rememberMeButton.isSelected)
@@ -465,8 +443,12 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 		sender.isSelected = !sender.isSelected
 	}
 	
-	@IBAction func demo(_ sender:UIButton?) {
+	@IBAction func demoLogin() {
 		setXAPIToken(demoXAPIToken)
+		dataManager.pickedInstitution = dataManager.demoInstitution()
+		staffButton.isSelected = false
+		staffChecked = false
+		setStaff(false)
 		xAPIManager().getStudentDetails({ (success, result, results, error) in
 			var loginSuccessful = false
 			if let result = result {
@@ -543,7 +525,7 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 	//MARK: UITableView Datasource
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return filteredInstitutions.count + 1
+		return filteredInstitutions.count + 2
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -565,14 +547,21 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 		if (theCell != nil) {
 			if indexPath.row < filteredInstitutions.count {
 				theCell?.loadInstitute(filteredInstitutions[indexPath.row])
-			} else {
+			} else if indexPath.row == filteredInstitutions.count {
 				theCell?.noInstitute()
+			} else {
+				theCell?.demoInstitute()
 			}
 		}
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		if indexPath.row >= filteredInstitutions.count {
+		if indexPath.row > filteredInstitutions.count {
+			demoLogin()
+		} else if indexPath.row == filteredInstitutions.count {
+			staffChecked = false
+			setStaff(false)
+			staffButton.isSelected = false
 			let vc = SocialLoginVC()
 			vc.loginVC = self
 			let nvc = UINavigationController(rootViewController: vc)

@@ -396,3 +396,6 @@
 "demo_mode_edittarget" = "Targets can't be deleted in demo mode.";
 "demo_mode_changeappsettings" = "Demo mode only. You can't change the settings.";
 "demo_mode_deletefriend" = "Friends can’t be deleted in demo mode.";
+"demo_mode_acceptrequest" = "You can't accept friend requests in demo mode.";
+"demo_mode_deleterequest" = "You can't reject friend requests in demo mode.";
+"demo" = "Demo";

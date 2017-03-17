@@ -329,6 +329,31 @@ class DataManager: NSObject {
 		}
 	}
 	
+	func demoInstitution() -> Institution {
+		let fetchRequest:NSFetchRequest<Institution> = NSFetchRequest(entityName: institutionEntityName)
+		fetchRequest.predicate = NSPredicate(format: "name == %@", "Demo")
+		var object:Institution?
+		do {
+			if let institution = try managedContext.fetch(fetchRequest).first {
+				object = institution
+			}
+		} catch let error as NSError {
+			print("get demo institution error: \(error.localizedDescription)")
+		}
+		let dictionary = NSMutableDictionary()
+		dictionary["id"] = "DEMO"
+		dictionary["is_learning_analytics"] = "yes"
+		dictionary["name"] = "Demo"
+		dictionary["accesskey"] = "key"
+		dictionary["secret"] = "secret"
+		if let institution = object {
+			institution.loadDictionary(dictionary)
+			return institution
+		} else {
+			return Institution.insertInManagedObjectContext(managedContext, dictionary: dictionary)
+		}
+	}
+	
 	//MARK: ActivityLogs
 	
 	func activityLogsArray() -> [ActivityLog] {
@@ -867,6 +892,8 @@ class DataManager: NSObject {
 				self.currentStudent = Student.insertInManagedObjectContext(managedContext, dictionary: result!)
 				if social {
 					self.currentStudent?.institution = self.socialInstitution()
+				} else if demo() {
+					self.currentStudent?.institution = self.demoInstitution()
 				}
 				self.safelySaveContext()
 				self.getStudentData(completion)
