@@ -290,17 +290,11 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
 	//MARK: Actions With Other Students
 	
 	func sendFriendRequest(_ completion:@escaping downloadCompletionBlock) {
-		if demo() {
-			let alert = UIAlertController(title: "", message: localized("demo_mode_sendfriendrequest"), preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
-			navigationController?.present(alert, animated: true, completion: nil)
-		} else {
-			if (colleagueToTakeActionWith != nil) {
-				let privacy = FriendRequestPrivacyOptions(results: myResultSwitch.isOn, engagement: courseEngagementSwitch.isOn, activity: activityLogSwitch.isOn)
-				let myID = dataManager.currentStudent!.id
-				let studentID = colleagueToTakeActionWith!.id
-				DownloadManager().sendFriendRequest(myID, to: studentID, privacy: privacy, alertAboutInternet: true, completion: completion)
-			}
+		if (colleagueToTakeActionWith != nil) {
+			let privacy = FriendRequestPrivacyOptions(results: myResultSwitch.isOn, engagement: courseEngagementSwitch.isOn, activity: activityLogSwitch.isOn)
+			let myID = dataManager.currentStudent!.id
+			let studentID = colleagueToTakeActionWith!.id
+			DownloadManager().sendFriendRequest(myID, to: studentID, privacy: privacy, alertAboutInternet: true, completion: completion)
 		}
 	}
 	

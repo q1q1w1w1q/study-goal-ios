@@ -1409,19 +1409,43 @@ class DataManager: NSObject {
 	
 	func addTarget(_ target:Target, completion:@escaping dataManagerCompletionBlock) {
 		DownloadManager().addTarget(currentStudent!.id, target: target, alertAboutInternet: true) { (success, result, results, error) -> Void in
-			self.refreshStudentTargets(success, error: error, completion: completion)
+			if success {
+				self.refreshStudentTargets(success, error: error, completion: completion)
+			} else {
+				var failureReason = kDefaultFailureReason
+				if error != nil {
+					failureReason = error!
+				}
+				AlertView.showAlert(false, message: failureReason, completion: nil)
+			}
 		}
 	}
 	
 	func editTarget(_ target:Target, completion:@escaping dataManagerCompletionBlock) {
 		DownloadManager().editTarget(target, alertAboutInternet: true) { (success, result, results, error) -> Void in
-			self.refreshStudentTargets(success, error: error, completion: completion)
+			if success {
+				self.refreshStudentTargets(success, error: error, completion: completion)
+			} else {
+				var failureReason = kDefaultFailureReason
+				if error != nil {
+					failureReason = error!
+				}
+				AlertView.showAlert(false, message: failureReason, completion: nil)
+			}
 		}
 	}
 	
 	func deleteTarget(_ target:Target, completion:@escaping dataManagerCompletionBlock) {
 		DownloadManager().deleteTarget(target.id, alertAboutInternet: true, completion: { (success, result, results, error) -> Void in
-			self.refreshStudentTargets(success, error: error, completion: completion)
+			if success {
+				self.refreshStudentTargets(success, error: error, completion: completion)
+			} else {
+				var failureReason = kDefaultFailureReason
+				if error != nil {
+					failureReason = error!
+				}
+				AlertView.showAlert(false, message: failureReason, completion: nil)
+			}
 		})
 	}
 	
@@ -1483,19 +1507,43 @@ class DataManager: NSObject {
 	
 	func addStretchTarget(_ targetID:String, minutes:Int, completion:@escaping dataManagerCompletionBlock) {
 		DownloadManager().addStretchTarget(targetID, stretchTimeInMinutes: minutes, alertAboutInternet: true) { (success, result, results, error) -> Void in
-			self.refreshStudentStretchTargets(success, error: error, completion: completion)
+			if success {
+				self.refreshStudentStretchTargets(success, error: error, completion: completion)
+			} else {
+				var failureReason = kDefaultFailureReason
+				if error != nil {
+					failureReason = error!
+				}
+				AlertView.showAlert(false, message: failureReason, completion: nil)
+			}
 		}
 	}
 	
 	func editStretchTarget(_ stretchTargetID:String, minutes:Int, completion:@escaping dataManagerCompletionBlock) {
 		DownloadManager().editStretchTarget(stretchTargetID, stretchTimeInMinutes: minutes, alertAboutInternet: true) { (success, result, results, error) -> Void in
-			self.refreshStudentStretchTargets(success, error: error, completion: completion)
+			if success {
+				self.refreshStudentStretchTargets(success, error: error, completion: completion)
+			} else {
+				var failureReason = kDefaultFailureReason
+				if error != nil {
+					failureReason = error!
+				}
+				AlertView.showAlert(false, message: failureReason, completion: nil)
+			}
 		}
 	}
 	
 	func deleteStretchTarget(_ stretchTargetID:String, completion:@escaping dataManagerCompletionBlock) {
 		DownloadManager().deleteStretchTarget(stretchTargetID, alertAboutInternet: true) { (success, result, results, error) -> Void in
-			self.refreshStudentStretchTargets(success, error: error, completion: completion)
+			if success {
+				self.refreshStudentStretchTargets(success, error: error, completion: completion)
+			} else {
+				var failureReason = kDefaultFailureReason
+				if error != nil {
+					failureReason = error!
+				}
+				AlertView.showAlert(false, message: failureReason, completion: nil)
+			}
 		}
 	}
 	

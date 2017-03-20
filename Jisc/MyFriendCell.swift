@@ -64,13 +64,7 @@ class MyFriendCell: BasicSearchCell, UIAlertViewDelegate {
 	}
 	
 	@IBAction func deleteFriend(_ sender:UIButton) {
-		if demo() {
-			let alert = UIAlertController(title: "", message: localized("demo_mode_deletefriend"), preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
-			parent?.navigationController?.present(alert, animated: true, completion: nil)
-		} else {
-			UIAlertView(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_delete_this_friend"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
-		}
+		UIAlertView(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_delete_this_friend"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
 	}
 	
 	//MARK: UIAlertView Delegate
@@ -79,14 +73,30 @@ class MyFriendCell: BasicSearchCell, UIAlertViewDelegate {
 		if (buttonIndex == 1) {
 			parent?.friendToTakeActionWith = theFriend
 			parent?.deleteFriend({ (success, result, results, error) -> Void in
-				self.parent?.refreshData()
-				AlertView.showAlert(true, message: localized("friend_deleted_successfully"), completion: nil)
+				if success {
+					self.parent?.refreshData()
+					AlertView.showAlert(true, message: localized("friend_deleted_successfully"), completion: nil)
+				} else {
+					var failureReason = kDefaultFailureReason
+					if (error != nil) {
+						failureReason = error!
+					}
+					AlertView.showAlert(false, message: failureReason, completion: nil)
+				}
 			})
 			
 			iPadParent?.friendToTakeActionWith = theFriend
 			iPadParent?.deleteFriend({ (success, result, results, error) -> Void in
-				self.iPadParent?.refreshData()
-				AlertView.showAlert(true, message: localized("friend_deleted_successfully"), completion: nil)
+				if success {
+					self.parent?.refreshData()
+					AlertView.showAlert(true, message: localized("friend_deleted_successfully"), completion: nil)
+				} else {
+					var failureReason = kDefaultFailureReason
+					if (error != nil) {
+						failureReason = error!
+					}
+					AlertView.showAlert(false, message: failureReason, completion: nil)
+				}
 			})
 		}
 	}

@@ -95,29 +95,17 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
 	}
 	
 	@IBAction func editTarget(_ sender:UIButton) {
-		if demo() {
-			let alert = UIAlertController(title: "", message: localized("demo_mode_edittarget"), preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
-			navigationController?.present(alert, animated: true, completion: nil)
-		} else {
-			closeCellOptions()
-			if (indexPath != nil) {
-				let target = dataManager.targets()[(indexPath! as NSIndexPath).row]
-				let vc = NewTargetVC(target: target)
-				navigationController?.pushViewController(vc, animated: true)
-			}
+		closeCellOptions()
+		if (indexPath != nil) {
+			let target = dataManager.targets()[(indexPath! as NSIndexPath).row]
+			let vc = NewTargetVC(target: target)
+			navigationController?.pushViewController(vc, animated: true)
 		}
 	}
 	
 	@IBAction func deleteTarget(_ sender:UIButton) {
-		if demo() {
-			let alert = UIAlertController(title: "", message: localized("demo_mode_deletetarget"), preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
-			navigationController?.present(alert, animated: true, completion: nil)
-		} else {
-			if (indexPath != nil) {
-				UIAlertView(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_delete_this_target"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
-			}
+		if (indexPath != nil) {
+			UIAlertView(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_delete_this_target"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
 		}
 	}
 	
@@ -196,9 +184,13 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
 		if (buttonIndex > 0) {
 			let target = dataManager.targets()[(indexPath! as NSIndexPath).row]
 			dataManager.deleteTarget(target) { (success, failureReason) -> Void in
+				if success {
 				AlertView.showAlert(true, message: localized("target_deleted_successfully"), completion: nil)
 				self.tableView?.deleteRows(at: [self.indexPath!], with: UITableViewRowAnimation.automatic)
 				self.tableView?.reloadData()
+				} else {
+					AlertView.showAlert(false, message: failureReason, completion: nil)
+				}
 			}
 			dataManager.deleteObject(target)
 		}
