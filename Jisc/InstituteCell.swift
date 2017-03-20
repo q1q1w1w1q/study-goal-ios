@@ -29,14 +29,7 @@ class InstituteCell: UITableViewCell {
 	
 	func loadInstitute(_ institute:Institution) {
 		self.institute = institute
-		instituteName.textAlignment = .left
 		instituteName.text = self.institute?.name
-		layoutIfNeeded()
-	}
-	
-	func noInstitute() {
-		instituteName.textAlignment = .center
-		instituteName.text = localized("institution_not_listed")
 		layoutIfNeeded()
 	}
 }
