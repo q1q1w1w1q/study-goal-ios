@@ -594,7 +594,7 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 			let theCell:TrophiesCelliPad? = cell as? TrophiesCelliPad
 			if (theCell != nil) {
 				theCell?.parent = self
-				let leftIndex = (indexPath as NSIndexPath).row * 4
+				let leftIndex = indexPath.row * 4
 				let middleLeftIndex = leftIndex + 1
 				let middleRightIndex = middleLeftIndex + 1
 				let rightIndex = middleRightIndex + 1
@@ -623,7 +623,7 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 			let theCell:TrophiesCelliPad? = cell as? TrophiesCelliPad
 			if (theCell != nil) {
 				theCell?.parent = self
-				let leftIndex = (indexPath as NSIndexPath).row * 4
+				let leftIndex = indexPath.row * 4
 				var leftTotal:Int = 0
 				let middleLeftIndex = leftIndex + 1
 				var middleLeftTotal:Int = 0
