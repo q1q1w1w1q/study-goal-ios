@@ -229,7 +229,7 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 	//MARK: Show/Close Selectors
 	
 	@IBAction func showModuleSelector(_ sender:UIButton) {
-		if social() {
+		if currentUserType() == .social {
 			if dataManager.modules().count == 1 {
 				addModule()
 			} else {
@@ -289,7 +289,7 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 	func view(_ view: CustomPickerView, selectedRow: Int) {
 		switch (view) {
 		case moduleSelectorView:
-			if social() {
+			if currentUserType() == .social {
 				if selectedRow == dataManager.modules().count - 1 {
 					addModule()
 				} else {

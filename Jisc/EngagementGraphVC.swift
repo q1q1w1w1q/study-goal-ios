@@ -55,7 +55,7 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		scrollIndicator.alpha = 0.0
-		if staff() {
+		if currentUserType() == .staff {
 			graphType = GraphType.Bar
 			graphToggleButton.isSelected = true
 		}
@@ -206,7 +206,7 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 			requestOptions.compareType = .Friend
 			requestOptions.compareValue = studentID
 		}
-		if staff() {
+		if currentUserType() == .staff {
 			completion(true, nil, nil, nil)
 		} else {
 			xAPIManager().getEngagementData(requestOptions, completion: completion)
@@ -326,7 +326,7 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 		var otherStudentValues:[Double]? = nil
 		var otherStudentMax:Double = 0.0
 		var columnNames:[String]? = nil
-		if staff() {
+		if currentUserType() == .staff {
 			switch (period) {
 			case .Overall:
 				dateFormatter.dateFormat = "yyyy"

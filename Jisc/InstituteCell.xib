@@ -25,7 +25,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ByW-MY-VG6">
-                        <rect key="frame" x="20" y="8.5" width="272" height="14"/>
+                        <rect key="frame" x="0.0" y="8" width="312" height="14"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
                         <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -44,8 +44,8 @@
                     <constraint firstAttribute="bottom" secondItem="9Se-Rv-9tG" secondAttribute="bottom" id="EY7-cj-Z15"/>
                     <constraint firstAttribute="trailing" secondItem="9Se-Rv-9tG" secondAttribute="trailing" id="Iry-Hy-LxR"/>
                     <constraint firstItem="ByW-MY-VG6" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Rrx-Ry-W6d"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="ByW-MY-VG6" secondAttribute="trailing" constant="20" id="ev8-MA-2fG"/>
-                    <constraint firstItem="ByW-MY-VG6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="fPd-XD-jiu"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="ByW-MY-VG6" secondAttribute="trailing" id="ev8-MA-2fG"/>
+                    <constraint firstItem="ByW-MY-VG6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="fPd-XD-jiu"/>
                     <constraint firstItem="9Se-Rv-9tG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="mfH-zZ-mpU"/>
                 </constraints>
             </tableViewCellContentView>

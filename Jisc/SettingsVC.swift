@@ -142,7 +142,7 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 	}
 	
 	@IBAction func goBack(_ sender:UIButton) {
-		navigationController?.popViewController(animated: true)
+		_ = navigationController?.popViewController(animated: true)
 	}
 	
 	func addCurrentView(_ view:UIView) {
@@ -320,7 +320,7 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 	}
 	
 	@IBAction func selectScreen(_ sender:UIButton) {
-		if demo() {
+		if currentUserType() == .demo {
 			let alert = UIAlertController(title: "", message: localized("demo_mode_change_app_settings"), preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
 			navigationController?.present(alert, animated: true, completion: nil)
@@ -395,7 +395,7 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 	}
 	
 	@IBAction func selectLanguage(_ sender:UIButton) {
-		if demo() {
+		if currentUserType() == .demo {
 			let alert = UIAlertController(title: "", message: localized("demo_mode_change_app_settings"), preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
 			navigationController?.present(alert, animated: true, completion: nil)
@@ -484,20 +484,7 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 	
 	func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
 		if (buttonIndex == 1) {
-			if let cookies = HTTPCookieStorage.shared.cookies {
-				for cookie in cookies {
-					HTTPCookieStorage.shared.deleteCookie(cookie)
-				}
-			}
-			runningActivititesTimer.invalidate()
-			DELEGATE.mainController?.feedViewController.refreshTimer?.invalidate()
-			dataManager.currentStudent = nil
-			dataManager.firstTrophyCheck = true
-			deleteCurrentUser()
-			clearXAPIToken()
-			let nvc = UINavigationController(rootViewController: LoginVC())
-			nvc.isNavigationBarHidden = true
-			DELEGATE.window?.rootViewController = nvc
+			dataManager.logout()
 		}
 	}
 	

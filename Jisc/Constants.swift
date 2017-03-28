@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 
+let xAPILoginCompleteNotification = "xAPILoginCompleteNotification"
+
 let onSimulator = TARGET_IPHONE_SIMULATOR == 1
 let demoXAPIToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE0ODgzNjU2NzcsImp0aSI6IjFtbjhnU3YrWk9mVzJlYXV1NmVrN0Rzbm1MUjA0dDRyT0V0SEQ5Z1BGdk09IiwiaXNzIjoiaHR0cDpcL1wvc3AuZGF0YVwvYXV0aCIsIm5iZiI6MTQ4ODM2NTY2NywiZXhwIjoxNjYyNTY0NTY2NywiZGF0YSI6eyJlcHBuIjoiIiwicGlkIjoiZGVtb3VzZXJAZGVtby5hYy51ayIsImFmZmlsaWF0aW9uIjoic3R1ZGVudEBkZW1vLmFjLnVrIn19.xM6KkBFvHW7vtf6dF-X4f_6G3t_KGPVNylN_rMJROsh1MXIg9sK5j77L0Jzg1JR8fhXZf-0jFMnZz6FMotAeig"
 //let demoXAPIToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE0ODg0NDkxNzksImp0aSI6IjdnOHFHVWlDKzRIdTdyN2ZUcTBOcldjaUpGTzByR1wvdUhpZVhvN0NBSjZvPSIsImlzcyI6Imh0dHA6XC9cL3NwLmRhdGFcL2F1dGgiLCJuYmYiOjE0ODg0NDkxNjksImV4cCI6MTQ5MjU5NjM2OSwiZGF0YSI6eyJlcHBuIjoiIiwicGlkIjoiczE1MTI0OTNAZ2xvcy5hYy51ayIsImFmZmlsaWF0aW9uIjoic3RhZmZAZ2xvcy5hYy51ayJ9fQ.xO_Yk6ZgTWgg0UHVXglFKD1tMP2wq98b8IU4alaGQvjtlYcjoz5W8gZbAX0Gcktl0nDs_bkvsB1g5OaYkkY6yg"
@@ -19,14 +21,6 @@ enum ScreenWidth:CGFloat {
 	case medium = 375.0
 	case large = 414.0
 	case iPad = 1024.0
-}
-
-var currentlyLoggedInStudentInstitute = ""
-var currentlyLoggedInStudentEmail = ""
-var currentlyLoggedInStudentPassword = ""
-
-func weHaveACurrentUser() -> Bool {
-	return (!currentlyLoggedInStudentInstitute.isEmpty && !currentlyLoggedInStudentEmail.isEmpty && !currentlyLoggedInStudentPassword.isEmpty)
 }
 
 let trophyDataArray:NSArray = NSArray(contentsOfFile: Bundle.main.path(forResource: "trophies", ofType: "plist")!)!
@@ -134,45 +128,6 @@ func setHomeScreenTab(_ tab:kHomeScreenTab?) {
 	NSKeyedArchiver.archiveRootObject(homeScreenTab!.rawValue, toFile: filePath("homeScreenTab"))
 }
 
-//MARK: Current User
-
-func getCurrentUser() -> [String:String]? {
-	let dictionary:[String:String]? = NSKeyedUnarchiver.unarchiveObject(withFile: filePath("currentUser")) as? [String:String]
-	return dictionary
-}
-
-func saveCurrentUser(_ instituteID:String, email:String, password:String) {
-	var dictionary:[String:String] = [String:String]()
-	dictionary["instituteID"] = instituteID
-	dictionary["email"] = email
-	dictionary["password"] = password
-	NSKeyedArchiver.archiveRootObject(dictionary, toFile: filePath("currentUser"))
-}
-
-func deleteCurrentUser() {
-	currentlyLoggedInStudentInstitute = ""
-	currentlyLoggedInStudentEmail = ""
-	currentlyLoggedInStudentPassword = ""
-	do {
-		try FileManager.default.removeItem(atPath: filePath("currentUser"))
-	} catch {
-		print("delete user error: \(error)")
-	}
-}
-
-func shouldRememberXAPIUser() -> Bool {
-	let shouldRemember = NSKeyedUnarchiver.unarchiveObject(withFile: filePath("shouldRememberXAPIUser")) as? Bool
-	if (shouldRemember != nil) {
-		return shouldRemember!
-	} else {
-		return false
-	}
-}
-
-func setShouldRememberXAPIUser(_ save:Bool) {
-	NSKeyedArchiver.archiveRootObject(save, toFile: filePath("shouldRememberXAPIUser"))
-}
-
 //MARK: xAPI Token
 
 func xAPIToken() -> String? {
@@ -182,18 +137,15 @@ func xAPIToken() -> String? {
 
 func setXAPIToken(_ sender:String) {
 	NSKeyedArchiver.archiveRootObject(sender, toFile: filePath("xAPIToken"))
-	if keepMeLoggedIn() {
-		if let institutionId = dataManager.pickedInstitution?.id {
-			NSKeyedArchiver.archiveRootObject(institutionId, toFile: filePath("institutionId"))
-		}
-	}
 }
 
 func clearXAPIToken() {
-	do {
-		try FileManager.default.removeItem(atPath: filePath("xAPIToken"))
-	} catch {
-		print("clear xAPI token error: \(error)")
+	if !shouldRememberMe() {
+		do {
+			try FileManager.default.removeItem(atPath: filePath("xAPIToken"))
+		} catch {
+			print("clear xAPI token error: \(error)")
+		}
 	}
 }
 
@@ -547,19 +499,7 @@ func localizedWith2Parameters(_ key:String?, parameter1:String?, parameter2:Stri
 	return string
 }
 
-//MARK: - Keep me logged in
-
-func keepMeLoggedIn() -> Bool {
-	var keepMeLoggenIn = false
-	if let value = NSKeyedUnarchiver.unarchiveObject(withFile: filePath("keepMeLoggedIn")) as? Bool {
-		keepMeLoggenIn = value
-	}
-	return keepMeLoggenIn
-}
-
-func setKeepMeLoggenIn(_ value:Bool) {
-	NSKeyedArchiver.archiveRootObject(value, toFile: filePath("keepMeLoggedIn"))
-}
+//MARK: - Decode JWT
 
 func JWTStillValid() -> Bool {
 	var valid = false
@@ -573,56 +513,8 @@ func JWTStillValid() -> Bool {
 			}
 		}
 	}
-	if valid {
-		if let institutionId = NSKeyedUnarchiver.unarchiveObject(withFile: filePath("institutionId")) as? String {
-			let fetchRequest:NSFetchRequest<Institution> = NSFetchRequest(entityName: institutionEntityName)
-			fetchRequest.predicate = NSPredicate(format: "id == %@", institutionId)
-			var institution:Institution?
-			do {
-				try institution = managedContext.fetch(fetchRequest).first as Institution?
-				if institution != nil {
-					dataManager.pickedInstitution = institution
-				}
-			} catch {}
-		}
-	}
-	if dataManager.pickedInstitution == nil {
-		valid = false
-	}
 	return valid
 }
-
-var staffChecked = false
-
-func staff() -> Bool {
-	var staff = staffChecked
-	if let value = NSKeyedUnarchiver.unarchiveObject(withFile: filePath("staff")) as? Bool {
-		staff = value
-	}
-	return staff
-}
-
-func setStaff(_ value:Bool) {
-	NSKeyedArchiver.archiveRootObject(value, toFile: filePath("staff"))
-}
-
-func social() -> Bool {
-	var social = false
-	if let user = dataManager.currentStudent {
-		social = user.social.boolValue
-	}
-	return social
-}
-
-func demo() -> Bool {
-	var demo = false
-	if let user = dataManager.currentStudent {
-		demo = user.demo.boolValue
-	}
-	return demo
-}
-
-//MARK: - Decode JWT
 
 func base64encode(_ input: Data) -> String {
 	let data = input.base64EncodedData(options: NSData.Base64EncodingOptions(rawValue: 0))

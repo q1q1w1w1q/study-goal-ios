@@ -128,7 +128,7 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 		super.viewDidDisappear(animated)
 		timeActivityTimer?.invalidate()
 		if (DELEGATE.mainController?.selectedIndex != 2) {
-			navigationController?.popViewController(animated: true)
+			_ = navigationController?.popViewController(animated: true)
 		}
 	}
 	
@@ -148,7 +148,7 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 	}
 	
 	@IBAction func goBack(_ sender:UIButton) {
-		navigationController?.popViewController(animated: true)
+		_ = navigationController?.popViewController(animated: true)
 	}
 	
 	func addModule() {
@@ -199,7 +199,7 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 	//MARK: Show/Close Selectors
 	
 	@IBAction func showModuleSelector(_ sender:UIButton) {
-		if social() {
+		if currentUserType() == .social {
 			if dataManager.modules().count == 1 {
 				addModule()
 			} else {
@@ -250,7 +250,7 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 	func view(_ view: CustomPickerView, selectedRow: Int) {
 		switch (view) {
 		case moduleSelectorView:
-			if social() {
+			if currentUserType() == .social {
 				if selectedRow == dataManager.modules().count - 1 {
 					addModule()
 				} else {
