@@ -24,28 +24,14 @@ class AttainmentCell: UITableViewCell {
 		super.setSelected(selected, animated: animated)
 	}
 	
-//	func loadAttainment(mark:Mark) {
-//		nameLabel.text = mark.name
-//		var sum = 0
-//		for (_, item) in mark.values.enumerate() {
-//			let value = item as? MarkValue
-//			if (value != nil) {
-//				sum += value!.value.integerValue
-//			}
-//		}
-//		positionLabel.text = "\(sum)"
-//	}
-	
-//	func loadAssignmentRanking(ranking:(name:String, rank:Int)) {
-//		nameLabel.text = ranking.name
-//		positionLabel.text = "\(ranking.rank)%"
-//	}
-	
-	func loadAttainmentObject(_ object:AttainmentObject) {
-		dateFormatter.dateFormat = "dd/MM/yy"
-		nameLabel.text = "\(dateFormatter.string(from: object.date)) \(object.moduleName)"
-//		let percentage = (Int)((object.points / object.maxPoints) * 100)
-//		let percentage = (Int)(object.percentage)
-		positionLabel.text = object.grade
+	func loadAttainmentObject(_ object:AttainmentObject?) {
+		if let object = object {
+			dateFormatter.dateFormat = "dd/MM/yy"
+			nameLabel.text = "\(dateFormatter.string(from: object.date)) \(object.moduleName)"
+			positionLabel.text = object.grade
+		} else {
+			nameLabel.text = localized("attainment_info")
+			positionLabel.text = ""
+		}
 	}
 }

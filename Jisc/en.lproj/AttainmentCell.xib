@@ -1,14 +1,17 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="MyriadPro-Regular.otf">
+        <array key="MyriadPro-Regular.otf">
             <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -23,34 +26,36 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iPw-VT-NQb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="34"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maths Assignment 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fus-fw-mHn">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" text="Maths Assignment 1" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fus-fw-mHn">
                                 <rect key="frame" x="8" y="9" width="144" height="17"/>
                                 <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
-                                <color key="textColor" red="0.6705882353" green="0.50196078430000002" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.6705882353" green="0.50196078430000002" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top 20%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n7D-Uy-9Aq">
-                                <rect key="frame" x="251" y="9" width="61" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top 20%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n7D-Uy-9Aq">
+                                <rect key="frame" x="160" y="9" width="152" height="17"/>
                                 <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
-                                <color key="textColor" red="0.6705882353" green="0.50196078430000002" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.6705882353" green="0.50196078430000002" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dOV-FL-YZ0">
                                 <rect key="frame" x="0.0" y="33" width="320" height="1"/>
-                                <color key="backgroundColor" white="0.90198396380000001" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.90198397636413574" green="0.90198397636413574" blue="0.90198397636413574" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="4y6-z6-9gz"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Fus-fw-mHn" firstAttribute="leading" secondItem="iPw-VT-NQb" secondAttribute="leading" constant="8" id="75D-QS-OZE"/>
                             <constraint firstItem="n7D-Uy-9Aq" firstAttribute="centerY" secondItem="iPw-VT-NQb" secondAttribute="centerY" id="AQt-Ly-yRD"/>
                             <constraint firstAttribute="trailing" secondItem="dOV-FL-YZ0" secondAttribute="trailing" id="Aks-Pt-v78"/>
                             <constraint firstItem="dOV-FL-YZ0" firstAttribute="leading" secondItem="iPw-VT-NQb" secondAttribute="leading" id="Arb-CK-CEw"/>
-                            <constraint firstItem="Fus-fw-mHn" firstAttribute="centerY" secondItem="iPw-VT-NQb" secondAttribute="centerY" id="Bev-UG-XFb"/>
                             <constraint firstAttribute="bottom" secondItem="dOV-FL-YZ0" secondAttribute="bottom" id="OQk-iB-3CF"/>
+                            <constraint firstItem="n7D-Uy-9Aq" firstAttribute="leading" secondItem="Fus-fw-mHn" secondAttribute="trailing" constant="8" id="XLG-3w-MFx"/>
+                            <constraint firstItem="Fus-fw-mHn" firstAttribute="top" secondItem="iPw-VT-NQb" secondAttribute="top" constant="9" id="Y9E-eT-rJL"/>
+                            <constraint firstAttribute="bottom" secondItem="Fus-fw-mHn" secondAttribute="bottom" constant="8" id="ZPc-vy-Dy7"/>
                             <constraint firstAttribute="trailing" secondItem="n7D-Uy-9Aq" secondAttribute="trailing" constant="8" id="bGR-1y-bO7"/>
                         </constraints>
                     </view>

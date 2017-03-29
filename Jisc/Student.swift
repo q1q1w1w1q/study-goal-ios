@@ -39,6 +39,7 @@ class Student: NSManagedObject {
 		addressLine2 = stringFromDictionary(userData, key: "address_line_2")
 		addressLine3 = stringFromDictionary(userData, key: "address_line_3")
 		addressLine4 = stringFromDictionary(userData, key: "address_line_4")
+		affiliation = stringFromDictionary(userData, key: "affiliation")
 		age = intFromDictionary(userData, key: "age") as NSNumber
 		countryCode = stringFromDictionary(userData, key: "country_code")
 		disabilityCode = stringFromDictionary(userData, key: "disability_code")
