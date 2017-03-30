@@ -525,7 +525,7 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 	//MARK: UITableView Datasource
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return filteredInstitutions.count + 2
+		return filteredInstitutions.count + 1
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
