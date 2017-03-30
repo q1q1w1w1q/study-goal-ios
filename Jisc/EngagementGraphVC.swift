@@ -492,7 +492,7 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 									return sorted
 								})
 								let studentID = stringFromDictionary(dictionary, key: "STUDENT_ID")
-								if studentID.contains(dataManager.currentStudent!.jisc_id) {
+								if studentID.contains((demo()?"1000":dataManager.currentStudent!.jisc_id)) {
 									for (index, item) in keys.enumerated() {
 										myValues![index] = doubleFromDictionary(values, key: item)
 									}
@@ -530,7 +530,7 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 					for (_, dictionary) in results.enumerated() {
 						if let values = dictionary["VALUES"] as? NSDictionary {
 							let studentID = stringFromDictionary(dictionary, key: "STUDENT_ID")
-							if studentID.contains(dataManager.currentStudent!.jisc_id) {
+							if studentID.contains((demo()?"1000":dataManager.currentStudent!.jisc_id)) {
 								if let keys = values.allKeys as? [String] {
 									for (_, item) in keys.enumerated() {
 										let absValue = abs((item as NSString).integerValue)
