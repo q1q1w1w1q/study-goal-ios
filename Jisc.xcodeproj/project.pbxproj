@@ -1227,7 +1227,7 @@
 				TargetAttributes = {
 					DAA2AEA21BCE785900ED796A = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = R48Q33464V;
+						DevelopmentTeam = D5QJ7EBR49;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Manual;
 					};
@@ -1952,16 +1952,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Marcel Chirila (8J95YKX7C3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Marcel Chirila (8J95YKX7C3)";
-				DEVELOPMENT_TEAM = R48Q33464V;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Jisc (D5QJ7EBR49)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jisc (D5QJ7EBR49)";
+				DEVELOPMENT_TEAM = D5QJ7EBR49;
 				INFOPLIST_FILE = Jisc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.therapybox.studentapp;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.jisc.studygoal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6f53dcc2-b476-4a66-9617-f6edb0dd09b2";
-				PROVISIONING_PROFILE_SPECIFIER = XGRoup_Development;
+				PROVISIONING_PROFILE = "8f520bed-6bd5-4ceb-b126-5d8c1b64e15d";
+				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: uk.ac.jisc.studygoal";
 				SWIFT_OBJC_BRIDGING_HEADER = "Jisc/Jisc-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1976,16 +1976,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Therapy Box Limited (JG53BNN66L)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Therapy Box Limited (JG53BNN66L)";
-				DEVELOPMENT_TEAM = JG53BNN66L;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Jisc (D5QJ7EBR49)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jisc (D5QJ7EBR49)";
+				DEVELOPMENT_TEAM = D5QJ7EBR49;
 				INFOPLIST_FILE = Jisc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.therapybox.studentapp;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.jisc.studygoal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3bab5311-a927-4353-b2e5-c97a4649990d";
-				PROVISIONING_PROFILE_SPECIFIER = "XC: com.therapybox.studentapp";
+				PROVISIONING_PROFILE = "8f520bed-6bd5-4ceb-b126-5d8c1b64e15d";
+				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: uk.ac.jisc.studygoal";
 				SWIFT_OBJC_BRIDGING_HEADER = "Jisc/Jisc-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
