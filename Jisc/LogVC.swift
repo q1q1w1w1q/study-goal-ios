@@ -176,7 +176,7 @@ class LogVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, Cus
 	
 	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 		let theCell:OneActivityCell? = cell as? OneActivityCell
-		let activity = dataManager.activityLogsArray()[(indexPath as NSIndexPath).row]
+		let activity = dataManager.activityLogsArray()[indexPath.row]
 		theCell?.loadActivity(activity, navigationController:navigationController, tableView:tableView)
 		theCell?.parent = self
 	}
@@ -185,7 +185,7 @@ class LogVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, Cus
 		if (aCellIsOpen) {
 			tableView.reloadData()
 		} else {
-			let activity = dataManager.activityLogsArray()[(indexPath as NSIndexPath).row]
+			let activity = dataManager.activityLogsArray()[indexPath.row]
 			let vc = ActivityDetailsVC(activity: activity)
 			navigationController?.pushViewController(vc, animated: true)
 		}

@@ -584,7 +584,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 		if (theCell != nil) {
 //			let attainment = dataManager.myMarks()[indexPath.row]
 //			let assignment = dataManager.myAssignmentRankings[indexPath.row]
-			let attObject = attainmentArray[(indexPath as NSIndexPath).row]
+			let attObject = attainmentArray[indexPath.row]
 //			theCell!.loadAttainment(attainment)
 //			theCell!.loadAssignmentRanking(assignment)
 			theCell!.loadAttainmentObject(attObject)

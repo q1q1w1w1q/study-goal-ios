@@ -159,12 +159,12 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
 		if (theCell != nil) {
 			theCell!.tableView = tableView
 			theCell!.navigationController = self.navigationController
-			theCell!.loadFeedPost(dataManager.myFeeds()[(indexPath as NSIndexPath).row])
+			theCell!.loadFeedPost(dataManager.myFeeds()[indexPath.row])
 		}
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let feed = dataManager.myFeeds()[(indexPath as NSIndexPath).row]
+		let feed = dataManager.myFeeds()[indexPath.row]
 		if (feed.activityType == "friend_request") {
 			if (!feed.isMine()) {
 				let message = localized("do_you_want_to_respond")
@@ -176,16 +176,34 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
 				}))
 				alert.addAction(UIAlertAction(title: localized("no"), style: .cancel, handler: { (action) in }))
 				self.navigationController?.present(alert, animated: true, completion: nil)
-//				let fetchRequest:NSFetchRequest<FriendRequest> = NSFetchRequest(entityName: friendRequestEntityName)
-//				fetchRequest.predicate = NSPredicate(format: "id == %@", feed.from)
-//				do {
-//					if let request = try managedContext.fetch(fetchRequest).first {
-//						
-//					}
-//				} catch let error as NSError {
-//					print("get friend request for colleagues table failed: \(error.localizedDescription)")
-//				}
 			}
+		}
+	}
+	
+	func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+		var style = UITableViewCellEditingStyle.none
+		if dataManager.myFeeds()[indexPath.row].isMine() {
+			style = .delete
+		}
+		return style
+	}
+	
+	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+		if editingStyle == .delete {
+			let feed = dataManager.myFeeds()[indexPath.row]
+			DownloadManager().deleteFeed(feed.id, myID: dataManager.currentStudent!.id, alertAboutInternet: true, completion: { (success, dictionary, array, error) in
+				if success {
+					dataManager.getStudentFeeds({ (success, error) in
+						tableView.reloadData()
+					})
+				} else {
+					var failureReason = kDefaultFailureReason
+					if (error != nil) {
+						failureReason = error!
+					}
+					AlertView.showAlert(false, message: failureReason, completion: nil)
+				}
+			})
 		}
 	}
 	
