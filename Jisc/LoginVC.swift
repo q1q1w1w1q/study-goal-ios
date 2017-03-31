@@ -33,6 +33,7 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 	@IBOutlet weak var termsAndConditionsButton:UIButton!
 	@IBOutlet weak var termsAndConditionsUnderlineView:UIView!
 	@IBOutlet weak var loginButton:UIButton!
+	@IBOutlet weak var staffButton:UIButton!
 	
 	@IBOutlet var termsAndConditionsView:UIView!
 	
@@ -57,6 +58,7 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		staffChecked = false
 		chosenInstitutionLabel.adjustsFontSizeToFitWidth = true
 		instituteTextField.superview?.layer.borderColor = UIColor(white: 0.5, alpha: 0.5).cgColor
 		instituteTextField.superview?.layer.borderWidth = 1.0
@@ -91,22 +93,6 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 			}
 		}
 		
-//		let mgr = DownloadManager()
-//		mgr.silent = true
-//		mgr.getInstitutes(false) { (success, result, results, error) -> Void in
-//			if (success) {
-//				if (results != nil) {
-//					for (_, item) in results!.enumerate() {
-//						if let dictionary = item as? [String:String] {
-//							Institution.insertInManagedObjectContext(managedContext, dictionary: dictionary)
-//						}
-//					}
-//				}
-//			}
-//
-//			
-//			
-//			
 //			var dictionary = [String:String]()
 //			dictionary["id"] = "1"
 //			dictionary["is_learning_analytics"] = "yes"
@@ -114,17 +100,6 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 //			dictionary["accesskey"] = "key"
 //			dictionary["secret"] = "secret"
 //			Institution.insertInManagedObjectContext(managedContext, dictionary: dictionary)
-//
-//			
-//			
-//			
-//			
-//			dataManager.safelySaveContext()
-//			self.filterInstitutions("")
-//			self.institutesTable.reloadData()
-//			self.institutesTableHeight.constant = self.institutesTable.contentSize.height
-//			self.view.layoutIfNeeded()
-//		}
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(LoginVC.xAPILoginComplete(_:)), name: NSNotification.Name(rawValue: xAPILoginCompleteNotification), object: nil)
 		
@@ -133,6 +108,7 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 	
 	@IBAction func toggleStaff(_ sender:UIButton) {
 		sender.isSelected = !sender.isSelected
+		staffChecked = sender.isSelected
 		setStaff(sender.isSelected)
 	}
 	
@@ -161,8 +137,8 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 						}
 					}
 					if (loginSuccessful) {
-						if staff() {
-							NotificationCenter.default.post(name: Notification.Name(rawValue: xAPILoginCompleteNotification), object: result?["STAFF_ID"] as? String)
+						if let staffId = result?["STAFF_ID"] as? String {
+							NotificationCenter.default.post(name: Notification.Name(rawValue: xAPILoginCompleteNotification), object: staffId)
 						} else {
 							NotificationCenter.default.post(name: Notification.Name(rawValue: xAPILoginCompleteNotification), object: result?["STUDENT_ID"] as? String)
 						}
@@ -230,6 +206,22 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 		return UIStatusBarStyle.lightContent
 	}
 	
+	func socialLogin(email:String, name:String, userId:String) {
+		dataManager.pickedInstitution = dataManager.socialInstitution()
+		dataManager.socialLogin(email: email, name: name, userId: userId) { (success, failureReason) in
+			if (success) {
+				if let student = dataManager.currentStudent {
+					dataManager.currentStudent?.jisc_id = student.id
+				}
+				RunLoop.current.add(runningActivititesTimer, forMode: RunLoopMode.commonModes)
+				DELEGATE.mainController = MainTabBarController()
+				DELEGATE.window?.rootViewController = DELEGATE.mainController
+			} else {
+				UIAlertView(title: localized("error"), message: failureReason, delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
+			}
+		}
+	}
+	
 	func xAPILoginComplete(_ notification:Notification) {
 		if let token = xAPIToken() {
 			dataManager.loginWithXAPI(token, completion: { (success, failureReason) in
@@ -237,9 +229,10 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 					if let jisc_id = notification.object as? String {
 						dataManager.currentStudent?.jisc_id = jisc_id
 					}
-					currentlyLoggedInStudentInstitute = ""
-					currentlyLoggedInStudentEmail = ""
-					currentlyLoggedInStudentPassword = ""
+					if xAPIToken() == demoXAPIToken {
+						dataManager.currentStudent?.demo = true
+						dataManager.currentStudent?.institution = dataManager.demoInstitution()
+					}
 					deleteCurrentUser()
 					setShouldRememberXAPIUser(self.rememberMeButton.isSelected)
 					RunLoop.current.add(runningActivititesTimer, forMode: RunLoopMode.commonModes)
@@ -328,7 +321,9 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 		filteredInstitutions.removeAll()
 		let fetchRequest:NSFetchRequest<Institution> = NSFetchRequest(entityName: institutionEntityName)
 		if (!string.isEmpty) {
-			fetchRequest.predicate = NSPredicate(format: "name CONTAINS[cd] %@", string)
+			fetchRequest.predicate = NSPredicate(format: "name CONTAINS[cd] %@ AND name != %@", string, "Social")
+		} else {
+			fetchRequest.predicate = NSPredicate(format: "name != %@", string, "Social")
 		}
 		fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
 		do {
@@ -338,6 +333,16 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 			}
 		} catch let error as NSError {
 			print("filter institutions error: \(error.localizedDescription)")
+		}
+		var socialIndex = -1
+		for (index, item) in filteredInstitutions.enumerated() {
+			if item.name == "Social" {
+				socialIndex = index
+				break
+			}
+		}
+		if socialIndex >= 0 {
+			filteredInstitutions.remove(at: socialIndex)
 		}
 	}
 	
@@ -438,6 +443,29 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 		sender.isSelected = !sender.isSelected
 	}
 	
+	@IBAction func demoLogin() {
+		setXAPIToken(demoXAPIToken)
+		dataManager.pickedInstitution = dataManager.demoInstitution()
+		staffButton.isSelected = false
+		staffChecked = false
+		setStaff(false)
+		xAPIManager().getStudentDetails({ (success, result, results, error) in
+			var loginSuccessful = false
+			if let result = result {
+				if let shibID = result["APPSHIB_ID"] as? String {
+					if (shibID != "null") {
+						loginSuccessful = true
+					}
+				}
+			}
+			if (loginSuccessful) {
+				NotificationCenter.default.post(name: Notification.Name(rawValue: xAPILoginCompleteNotification), object: result?["STUDENT_ID"] as? String)
+			} else {
+				
+			}
+		})
+	}
+	
 	//MARK: UITextField Delegate
 	
 	func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -497,7 +525,7 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 	//MARK: UITableView Datasource
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return filteredInstitutions.count
+		return filteredInstitutions.count + 2
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -517,38 +545,50 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 		let theCell = cell as? InstituteCell
 		if (theCell != nil) {
-			theCell?.loadInstitute(filteredInstitutions[(indexPath as NSIndexPath).row])
+			if indexPath.row < filteredInstitutions.count {
+				theCell?.loadInstitute(filteredInstitutions[indexPath.row])
+			} else if indexPath.row == filteredInstitutions.count {
+				theCell?.noInstitute()
+			} else {
+				theCell?.demoInstitute()
+			}
 		}
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		
-		let selectedInstituteObject = filteredInstitutions[(indexPath as NSIndexPath).row]
-		chosenInstitutionLabel.text = selectedInstituteObject.name
-		chosenInstitutionLabel.textColor = UIColor.black
-		selectedInstitute = (indexPath as NSIndexPath).row
-		view.layoutIfNeeded()
-		closeInstitutesSelector(UIButton())
-		dataManager.pickedInstitution = selectedInstituteObject
-		
-		if (selectedInstituteObject.isLearningAnalytics.boolValue) {
-//			self.xAPILoginComplete()
-			xAPIManager().getIDPS { (success, result, results, error) in
-				if (result != nil) {
-					let vc:xAPILoginVC = xAPILoginVC()
-					vc.idp = getIDPForInstitution(selectedInstituteObject.name, dictionary: result!)
-					self.navigationController?.present(vc, animated: true, completion: nil)
-				}
-			}
+		if indexPath.row > filteredInstitutions.count {
+			demoLogin()
+		} else if indexPath.row == filteredInstitutions.count {
+			staffChecked = false
+			setStaff(false)
+			staffButton.isSelected = false
+			let vc = SocialLoginVC()
+			vc.loginVC = self
+			let nvc = UINavigationController(rootViewController: vc)
+			nvc.isNavigationBarHidden = true
+			navigationController?.present(nvc, animated: true, completion: nil)
 		} else {
-			print("not learning analityics");
-		}
-		
-		instituteTextField.resignFirstResponder()
-		
-		if (onSimulator) {
-			emailTextField.text = "vinson@gmail.com"
-			passwordTextField.text = "vinson123"
+			let selectedInstituteObject = filteredInstitutions[(indexPath as NSIndexPath).row]
+			chosenInstitutionLabel.text = selectedInstituteObject.name
+			chosenInstitutionLabel.textColor = UIColor.black
+			selectedInstitute = (indexPath as NSIndexPath).row
+			view.layoutIfNeeded()
+			closeInstitutesSelector(UIButton())
+			dataManager.pickedInstitution = selectedInstituteObject
+			
+			if (selectedInstituteObject.isLearningAnalytics.boolValue) {
+				xAPIManager().getIDPS { (success, result, results, error) in
+					if (result != nil) {
+						let vc:xAPILoginVC = xAPILoginVC()
+						vc.idp = getIDPForInstitution(selectedInstituteObject.name, dictionary: result!)
+						self.navigationController?.present(vc, animated: true, completion: nil)
+					}
+				}
+			} else {
+				print("not learning analityics: \(selectedInstituteObject.name)");
+			}
+			
+			instituteTextField.resignFirstResponder()
 		}
 	}
 }

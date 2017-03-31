@@ -22,6 +22,7 @@
             <connections>
                 <outlet property="blueDot" destination="nlb-AN-rMF" id="T8Y-p8-l1W"/>
                 <outlet property="compareToButton" destination="Vgk-yA-4JK" id="a6i-Ag-wHs"/>
+                <outlet property="compareToView" destination="wOX-qq-w0e" id="VA5-4A-ZJw"/>
                 <outlet property="comparisonStudentName" destination="OLZ-xR-yhh" id="Sct-aI-RJa"/>
                 <outlet property="graphContainer" destination="Y3h-HB-31x" id="tRt-vZ-Qa5"/>
                 <outlet property="graphContainerWidth" destination="aFV-at-844" id="VyL-Gg-4I8"/>

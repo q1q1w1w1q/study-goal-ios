@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,6 +24,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewActivityVC" customModule="Jisc" customModuleProvider="target">
             <connections>
                 <outlet property="activityTypeButton" destination="IdB-fj-tMI" id="edK-oK-kEB"/>
+                <outlet property="addModuleTextField" destination="Ftu-7q-e1T" id="lO7-10-7xQ"/>
+                <outlet property="addModuleView" destination="Z9k-Ac-QvL" id="sBr-fR-FYs"/>
                 <outlet property="chooseActivityButton" destination="wj6-94-IIc" id="VlF-GV-LAK"/>
                 <outlet property="chooseActivityLabel" destination="dm6-mx-RTy" id="oT9-Ti-8Ub"/>
                 <outlet property="closeReminderTimePickerButton" destination="v6h-Xx-Mbv" id="6fw-Xv-Nzl"/>
@@ -779,6 +781,39 @@
                         <constraint firstItem="QjJ-9Q-xWL" firstAttribute="leading" secondItem="4mC-0C-UHS" secondAttribute="leading" id="zrb-g9-psQ"/>
                     </constraints>
                 </view>
+                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z9k-Ac-QvL">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zeZ-iR-3Zw">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <connections>
+                                <action selector="closeAddModule:" destination="-1" eventType="touchUpInside" id="HZX-Zn-SFE"/>
+                            </connections>
+                        </button>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ftu-7q-e1T">
+                            <rect key="frame" x="20" y="64" width="335" height="36"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="36" id="UWh-eh-muR"/>
+                            </constraints>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" name="MyriadPro-Light" family="Myriad Pro" pointSize="17"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="3Ey-6l-MfM"/>
+                            </connections>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Ftu-7q-e1T" secondAttribute="trailing" constant="20" id="9DX-Rm-hUw"/>
+                        <constraint firstItem="zeZ-iR-3Zw" firstAttribute="top" secondItem="Z9k-Ac-QvL" secondAttribute="top" id="CLO-gO-eu1"/>
+                        <constraint firstAttribute="trailing" secondItem="zeZ-iR-3Zw" secondAttribute="trailing" id="EOG-Ud-1TP"/>
+                        <constraint firstItem="zeZ-iR-3Zw" firstAttribute="leading" secondItem="Z9k-Ac-QvL" secondAttribute="leading" id="IJQ-zF-bVT"/>
+                        <constraint firstAttribute="bottom" secondItem="zeZ-iR-3Zw" secondAttribute="bottom" id="P0I-l2-QOF"/>
+                        <constraint firstItem="Ftu-7q-e1T" firstAttribute="top" secondItem="Z9k-Ac-QvL" secondAttribute="top" constant="64" id="Vrm-Tw-KrO"/>
+                        <constraint firstItem="Ftu-7q-e1T" firstAttribute="leading" secondItem="Z9k-Ac-QvL" secondAttribute="leading" constant="20" id="bTB-4A-ELK"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.98431372549019602" green="0.98431372549019602" blue="0.98431372549019602" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -787,11 +822,15 @@
                 <constraint firstItem="MQg-UM-9nY" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" constant="-60" id="ATN-qV-2EY"/>
                 <constraint firstAttribute="bottom" secondItem="v6h-Xx-Mbv" secondAttribute="bottom" id="EhD-wa-zzJ"/>
                 <constraint firstItem="1bY-St-DnH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="FQZ-3J-0mX"/>
+                <constraint firstAttribute="bottom" secondItem="Z9k-Ac-QvL" secondAttribute="bottom" id="GtG-1O-Ywb"/>
                 <constraint firstItem="MQg-UM-9nY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="OFr-cS-6h9"/>
                 <constraint firstItem="v6h-Xx-Mbv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="SfL-Ng-Chn"/>
+                <constraint firstItem="Z9k-Ac-QvL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="YVR-wh-fs9"/>
                 <constraint firstAttribute="bottom" secondItem="MQg-UM-9nY" secondAttribute="bottom" id="ZJ7-fS-eYR"/>
                 <constraint firstAttribute="trailing" secondItem="1bY-St-DnH" secondAttribute="trailing" id="kzv-tL-VVf"/>
+                <constraint firstItem="Z9k-Ac-QvL" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="mw9-AQ-b5p"/>
                 <constraint firstAttribute="trailing" secondItem="MQg-UM-9nY" secondAttribute="trailing" id="nQo-Yo-4x6"/>
+                <constraint firstAttribute="trailing" secondItem="Z9k-Ac-QvL" secondAttribute="trailing" id="pCP-62-sXP"/>
                 <constraint firstItem="v6h-Xx-Mbv" firstAttribute="top" secondItem="1bY-St-DnH" secondAttribute="bottom" id="uwd-Pg-485"/>
                 <constraint firstItem="MQg-UM-9nY" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="vpv-eB-8RF"/>
                 <constraint firstAttribute="trailing" secondItem="4mC-0C-UHS" secondAttribute="trailing" id="xHf-mh-RTf"/>

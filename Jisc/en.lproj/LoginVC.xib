@@ -40,6 +40,7 @@
                 <outlet property="loginViewVerticalAlignment" destination="Vqd-yf-rAr" id="WpQ-eT-ZWB"/>
                 <outlet property="passwordTextField" destination="kNK-xW-hOQ" id="1pv-Hn-6Fu"/>
                 <outlet property="rememberMeButton" destination="619-mP-liT" id="MwA-Qy-p27"/>
+                <outlet property="staffButton" destination="fZk-sU-7yq" id="c42-Pz-JRJ"/>
                 <outlet property="studentHatHeight" destination="YIt-Yj-PDB" id="lrs-hL-J4H"/>
                 <outlet property="studentHatView" destination="W2I-Nd-qov" id="jQV-Fl-N8A"/>
                 <outlet property="termsAndConditionsButton" destination="dEl-tR-tAC" id="25z-r2-iug"/>
@@ -651,7 +652,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lDx-iI-Upj" customClass="ViewWithRoundedCorners" customModule="Jisc" customModuleProvider="target">
-                    <rect key="frame" x="30" y="104.5" width="315" height="458"/>
+                    <rect key="frame" x="30" y="105" width="315" height="458"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1xV-1b-gSk">
                             <rect key="frame" x="0.0" y="0.0" width="315" height="40"/>
@@ -660,7 +661,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="315" height="40"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms and Conditions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVE-JM-ebg" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                    <rect key="frame" x="62.5" y="11.5" width="190" height="20"/>
+                                    <rect key="frame" x="63" y="12" width="190" height="20"/>
                                     <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="20"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -800,7 +801,7 @@
                     <rect key="frame" x="45" y="181" width="285" height="205"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RESET YOUR PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zG-6A-2dR" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="57.5" y="12" width="171.5" height="17"/>
+                            <rect key="frame" x="57" y="12" width="172" height="17"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>

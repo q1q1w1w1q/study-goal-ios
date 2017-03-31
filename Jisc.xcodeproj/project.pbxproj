@@ -14,8 +14,15 @@
 		DA0F591D1C3EBDC200FF5B7A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0F591C1C3EBDC200FF5B7A /* MediaPlayer.framework */; };
 		DA109DE71BFF5B9500940CA1 /* Feed+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA109DE51BFF5B9500940CA1 /* Feed+CoreDataProperties.swift */; };
 		DA109DE81BFF5B9500940CA1 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA109DE61BFF5B9500940CA1 /* Feed.swift */; };
+		DA11B6AC1E7164E600F823B8 /* CheckinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA11B6AA1E7164E600F823B8 /* CheckinVC.swift */; };
+		DA11B6AD1E7164E600F823B8 /* CheckinVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA11B6AB1E7164E600F823B8 /* CheckinVC.xib */; };
+		DA11B6AF1E7164F700F823B8 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA11B6AE1E7164F700F823B8 /* MainTabBarController.swift */; };
 		DA162E261CAD39B100E0C3D0 /* xAPILoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA162E241CAD39B100E0C3D0 /* xAPILoginVC.swift */; };
 		DA162E271CAD39B100E0C3D0 /* xAPILoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA162E251CAD39B100E0C3D0 /* xAPILoginVC.xib */; };
+		DA2093FD1E69BD76001D979A /* SocialLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2093FB1E69BD76001D979A /* SocialLoginVC.swift */; };
+		DA2093FE1E69BD76001D979A /* SocialLoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA2093FC1E69BD76001D979A /* SocialLoginVC.xib */; };
+		DA2094001E69BDA3001D979A /* SocialLoginVC~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA2093FF1E69BDA3001D979A /* SocialLoginVC~ipad.xib */; };
+		DA2094071E69CDE5001D979A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA2094061E69CDE5001D979A /* GoogleService-Info.plist */; };
 		DA209D531C08A56100E678DF /* SentFriendRequest+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA209D511C08A56100E678DF /* SentFriendRequest+CoreDataProperties.swift */; };
 		DA209D541C08A56100E678DF /* SentFriendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA209D521C08A56100E678DF /* SentFriendRequest.swift */; };
 		DA2393311D520583006970A4 /* Course+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA23932F1D520583006970A4 /* Course+CoreDataProperties.swift */; };
@@ -74,7 +81,6 @@
 		DAA2AEAF1BCE785900ED796A /* Jisc.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DAA2AEAD1BCE785900ED796A /* Jisc.xcdatamodeld */; };
 		DAA2AEB11BCE785900ED796A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAA2AEB01BCE785900ED796A /* Assets.xcassets */; };
 		DAA2AEBC1BCE79EA00ED796A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2AEBB1BCE79EA00ED796A /* Constants.swift */; };
-		DAA2AEBF1BCE7DD700ED796A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2AEBD1BCE7DD700ED796A /* MainTabBarController.swift */; };
 		DAA2AEC21BCE7E7400ED796A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAA2AEC11BCE7E7400ED796A /* UIKit.framework */; };
 		DAA2AEC51BCE7EAF00ED796A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAA2AEC41BCE7EAF00ED796A /* Foundation.framework */; };
 		DAA2AEF21BCE85C000ED796A /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2AEF01BCE85C000ED796A /* FeedVC.swift */; };
@@ -144,6 +150,7 @@
 		DAC369EF1CC7BBA000F156B1 /* xAPIRegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAC369ED1CC7BBA000F156B1 /* xAPIRegisterVC.xib */; };
 		DAC634F51C807DFE0084E314 /* StagSans-Book-App.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAC634F31C807DFE0084E314 /* StagSans-Book-App.ttf */; };
 		DAC634F61C807DFE0084E314 /* StagSans-Light-App.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAC634F41C807DFE0084E314 /* StagSans-Light-App.ttf */; };
+		DACEE6641E7985860039DCA6 /* CheckinVC~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DACEE6631E7985860039DCA6 /* CheckinVC~ipad.xib */; };
 		DAD4C81F1BF4E78E001C4435 /* Friend+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD4C8191BF4E78E001C4435 /* Friend+CoreDataProperties.swift */; };
 		DAD4C8201BF4E78E001C4435 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD4C81A1BF4E78E001C4435 /* Friend.swift */; };
 		DAD4C8211BF4E78E001C4435 /* FriendRequest+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD4C81B1BF4E78E001C4435 /* FriendRequest+CoreDataProperties.swift */; };
@@ -269,9 +276,17 @@
 		DA109DE41BFF5A1800940CA1 /* Jisc1.5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jisc1.5.xcdatamodel; sourceTree = "<group>"; };
 		DA109DE51BFF5B9500940CA1 /* Feed+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Feed+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DA109DE61BFF5B9500940CA1 /* Feed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
+		DA11B6AA1E7164E600F823B8 /* CheckinVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckinVC.swift; sourceTree = "<group>"; };
+		DA11B6AB1E7164E600F823B8 /* CheckinVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckinVC.xib; sourceTree = "<group>"; };
+		DA11B6AE1E7164F700F823B8 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		DA162E241CAD39B100E0C3D0 /* xAPILoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xAPILoginVC.swift; sourceTree = "<group>"; };
 		DA162E251CAD39B100E0C3D0 /* xAPILoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = xAPILoginVC.xib; sourceTree = "<group>"; };
+		DA1A43751E72981900917437 /* Jisc3.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jisc3.3.xcdatamodel; sourceTree = "<group>"; };
 		DA1E7F8D1C1EBE9D009343B1 /* Jisc1.8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jisc1.8.xcdatamodel; sourceTree = "<group>"; };
+		DA2093FB1E69BD76001D979A /* SocialLoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialLoginVC.swift; sourceTree = "<group>"; };
+		DA2093FC1E69BD76001D979A /* SocialLoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialLoginVC.xib; sourceTree = "<group>"; };
+		DA2093FF1E69BDA3001D979A /* SocialLoginVC~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SocialLoginVC~ipad.xib"; sourceTree = "<group>"; };
+		DA2094061E69CDE5001D979A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DA209D501C089D6300E678DF /* Jisc1.6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jisc1.6.xcdatamodel; sourceTree = "<group>"; };
 		DA209D511C08A56100E678DF /* SentFriendRequest+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SentFriendRequest+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DA209D521C08A56100E678DF /* SentFriendRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentFriendRequest.swift; sourceTree = "<group>"; };
@@ -325,7 +340,7 @@
 		DA7F1D411BD9035B004EA957 /* TrophiesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrophiesVC.swift; sourceTree = "<group>"; };
 		DA7F1D451BD905E1004EA957 /* SelectLanguageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectLanguageVC.swift; sourceTree = "<group>"; };
 		DA7F1D511BD91882004EA957 /* OneFeedItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneFeedItemCell.swift; sourceTree = "<group>"; };
-		DA819EA11BDA20D900810C14 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
+		DA819EA11BDA20D900810C14 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		DA868B161BE79C0E00032225 /* EngagementGraphVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngagementGraphVC.swift; sourceTree = "<group>"; };
 		DA9904E91C046B6F00B6013C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		DA9C72831C9815A10012B5DD /* xAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xAPIManager.swift; sourceTree = "<group>"; };
@@ -339,7 +354,6 @@
 		DAA2AEB01BCE785900ED796A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DAA2AEB51BCE785900ED796A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DAA2AEBB1BCE79EA00ED796A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		DAA2AEBD1BCE7DD700ED796A /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		DAA2AEC11BCE7E7400ED796A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DAA2AEC41BCE7EAF00ED796A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DAA2AEF01BCE85C000ED796A /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
@@ -416,6 +430,7 @@
 		DAC634F31C807DFE0084E314 /* StagSans-Book-App.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "StagSans-Book-App.ttf"; sourceTree = "<group>"; };
 		DAC634F41C807DFE0084E314 /* StagSans-Light-App.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "StagSans-Light-App.ttf"; sourceTree = "<group>"; };
 		DACEA19C1CE2031600223B6E /* Jisc2.9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jisc2.9.xcdatamodel; sourceTree = "<group>"; };
+		DACEE6631E7985860039DCA6 /* CheckinVC~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CheckinVC~ipad.xib"; sourceTree = "<group>"; };
 		DAD4C8181BF4E594001C4435 /* Jisc1.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jisc1.3.xcdatamodel; sourceTree = "<group>"; };
 		DAD4C8191BF4E78E001C4435 /* Friend+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Friend+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DAD4C81A1BF4E78E001C4435 /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
@@ -509,6 +524,16 @@
 				DAD1D7FB1C50F110005BA786 /* iPad */,
 			);
 			name = Trophies;
+			sourceTree = "<group>";
+		};
+		DA11B6A91E7164D800F823B8 /* CheckIn */ = {
+			isa = PBXGroup;
+			children = (
+				DA11B6AA1E7164E600F823B8 /* CheckinVC.swift */,
+				DA11B6AB1E7164E600F823B8 /* CheckinVC.xib */,
+				DACEE6631E7985860039DCA6 /* CheckinVC~ipad.xib */,
+			);
+			name = CheckIn;
 			sourceTree = "<group>";
 		};
 		DA366D391BDE7C0C00EC555E /* searchCells */ = {
@@ -654,6 +679,7 @@
 		DAA2AE9A1BCE785900ED796A = {
 			isa = PBXGroup;
 			children = (
+				DA2094061E69CDE5001D979A /* GoogleService-Info.plist */,
 				DAEC83241D90080C00799B42 /* Charts.xcodeproj */,
 				DAA2AEA51BCE785900ED796A /* Jisc */,
 				DAA2AEA41BCE785900ED796A /* Products */,
@@ -677,7 +703,7 @@
 				DAA2AEBB1BCE79EA00ED796A /* Constants.swift */,
 				DAA2AEA61BCE785900ED796A /* AppDelegate.swift */,
 				DAC32D931BCF8B9800C4FBF5 /* LaunchScreen.xib */,
-				DAA2AEBD1BCE7DD700ED796A /* MainTabBarController.swift */,
+				DA11B6AE1E7164F700F823B8 /* MainTabBarController.swift */,
 				DA76411C1BD7BE4000A7D5C1 /* AlertView.swift */,
 				DA76411A1BD7BE3300A7D5C1 /* AlertView.xib */,
 				DAD644CA1C6227C800AA62E8 /* Localizable.strings */,
@@ -731,6 +757,7 @@
 				DAD644DA1C623B3E00AA62E8 /* LocalizableClasses */,
 				DA425AB21BD5115500C77D76 /* Login */,
 				DAA2AEEF1BCE85AB00ED796A /* Feed */,
+				DA11B6A91E7164D800F823B8 /* CheckIn */,
 				DAA2AEEE1BCE85A600ED796A /* Stats */,
 				DAA2AEED1BCE859F00ED796A /* Log */,
 				DAA2AEEC1BCE859200ED796A /* Target */,
@@ -836,6 +863,7 @@
 			isa = PBXGroup;
 			children = (
 				DAD66C9A1C52745500074B79 /* LoginVC~ipad.xib */,
+				DA2093FF1E69BDA3001D979A /* SocialLoginVC~ipad.xib */,
 			);
 			name = iPad;
 			sourceTree = "<group>";
@@ -844,6 +872,7 @@
 			isa = PBXGroup;
 			children = (
 				DAB0C7C11C4CE82500F7A3C6 /* LoginVC.xib */,
+				DA2093FC1E69BD76001D979A /* SocialLoginVC.xib */,
 			);
 			name = iPhone;
 			sourceTree = "<group>";
@@ -858,6 +887,7 @@
 				DA162E251CAD39B100E0C3D0 /* xAPILoginVC.xib */,
 				DAC369EC1CC7BBA000F156B1 /* xAPIRegisterVC.swift */,
 				DAC369ED1CC7BBA000F156B1 /* xAPIRegisterVC.xib */,
+				DA2093FB1E69BD76001D979A /* SocialLoginVC.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -1266,6 +1296,7 @@
 				DA0081E21DF833DD0034786A /* splash_screen_iPad.mp4 in Resources */,
 				DAB0C8431C4CEA2F00F7A3C6 /* LogActivityVC~ipad.xib in Resources */,
 				DA0081E01DF833D50034786A /* splash_screen.mp4 in Resources */,
+				DACEE6641E7985860039DCA6 /* CheckinVC~ipad.xib in Resources */,
 				DAB0C88B1C4CEB2400F7A3C6 /* SettingsVC~ipad.xib in Resources */,
 				DAB0C8851C4CEB1200F7A3C6 /* SettingsVC.xib in Resources */,
 				DAC634F61C807DFE0084E314 /* StagSans-Light-App.ttf in Resources */,
@@ -1301,6 +1332,7 @@
 				DAB0C82B1C4CE9DB00F7A3C6 /* LogVC~ipad.xib in Resources */,
 				DAB0C8371C4CE9FF00F7A3C6 /* NewActivityVC~ipad.xib in Resources */,
 				DAB0C8011C4CE94F00F7A3C6 /* StatsVC~ipad.xib in Resources */,
+				DA11B6AD1E7164E600F823B8 /* CheckinVC.xib in Resources */,
 				DA3F7B871C996B9B00E15678 /* ConsentVC.xib in Resources */,
 				DAB0C7EF1C4CE91A00F7A3C6 /* NewRequestCell.xib in Resources */,
 				DABB0CC51C59FED5001A291D /* SingleTargetDetailsView.xib in Resources */,
@@ -1312,6 +1344,7 @@
 				DAD66C951C523A2900074B79 /* TrophiesSilver.xcassets in Resources */,
 				DAD644C81C6227C800AA62E8 /* Localizable.strings in Resources */,
 				DAB0C8BB1C4CEC2300F7A3C6 /* NewTrophyAlert.xib in Resources */,
+				DA2094071E69CDE5001D979A /* GoogleService-Info.plist in Resources */,
 				DAB0C8AF1C4CEBF500F7A3C6 /* TrophiesVC.xib in Resources */,
 				DAB0C7BF1C4CE82500F7A3C6 /* LoginVC.xib in Resources */,
 				DAB0C8251C4CE9C700F7A3C6 /* LogVC.xib in Resources */,
@@ -1329,9 +1362,11 @@
 				DAB0C8131C4CE98C00F7A3C6 /* EngagementGraphVC~ipad.xib in Resources */,
 				DAB0C7E91C4CE90C00F7A3C6 /* FoundStudentCell.xib in Resources */,
 				DAB0C80D1C4CE97400F7A3C6 /* EngagementGraphVC.xib in Resources */,
+				DA2094001E69BDA3001D979A /* SocialLoginVC~ipad.xib in Resources */,
 				DAD8BD7C1DB8C4DC004F21DE /* DoubleBarView.xib in Resources */,
 				DAC369EF1CC7BBA000F156B1 /* xAPIRegisterVC.xib in Resources */,
 				DAC634F51C807DFE0084E314 /* StagSans-Book-App.ttf in Resources */,
+				DA2093FE1E69BD76001D979A /* SocialLoginVC.xib in Resources */,
 				DAB0C89D1C4CEB5900F7A3C6 /* OneFriendCell.xib in Resources */,
 				DA593A681C47A03300C68513 /* ActivityTypesIconsBig.xcassets in Resources */,
 				DAB0C8A31C4CEB6800F7A3C6 /* SelectHomeScreenVC.xib in Resources */,
@@ -1384,7 +1419,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1446,6 +1481,7 @@
 				DAD573901C3D108F0080B49B /* Trophy.swift in Sources */,
 				DAFB88BE1C107208000CCD65 /* Mark+CoreDataProperties.swift in Sources */,
 				DA46D97B1BF2482400AA1476 /* Module+CoreDataProperties.swift in Sources */,
+				DA11B6AF1E7164F700F823B8 /* MainTabBarController.swift in Sources */,
 				DAAB37E71BDA63D800D56BDE /* GraphGenerator.swift in Sources */,
 				DA46D97A1BF2482400AA1476 /* Institution+CoreDataProperties.swift in Sources */,
 				DABB7C0F1C045E2900180749 /* SharingManager.swift in Sources */,
@@ -1462,6 +1498,7 @@
 				DA7F1D431BD9035B004EA957 /* TrophiesVC.swift in Sources */,
 				DAFB88C31C1083B9000CCD65 /* MarkValue.swift in Sources */,
 				DA7F1D3F1BD8FBD9004EA957 /* SelectHomeScreenVC.swift in Sources */,
+				DA2093FD1E69BD76001D979A /* SocialLoginVC.swift in Sources */,
 				DAFB88BF1C107208000CCD65 /* Mark.swift in Sources */,
 				DA7F1D531BD91882004EA957 /* OneFeedItemCell.swift in Sources */,
 				DAD6AE281C57B76300BCBBDD /* TrophyDetailsView.swift in Sources */,
@@ -1492,9 +1529,9 @@
 				DAD5738E1C3D108F0080B49B /* StudentTrophy.swift in Sources */,
 				DAD4C8201BF4E78E001C4435 /* Friend.swift in Sources */,
 				DAC2AA101BEA44E70064D0AE /* BasicSearchCell.swift in Sources */,
-				DAA2AEBF1BCE7DD700ED796A /* MainTabBarController.swift in Sources */,
 				DA46D95A1BF1EA3200AA1476 /* Module.swift in Sources */,
 				DABB0CC81C5A13D5001A291D /* TargetPieChart.swift in Sources */,
+				DA11B6AC1E7164E600F823B8 /* CheckinVC.swift in Sources */,
 				DAEA56691BF0E52A007A3C86 /* Student.swift in Sources */,
 				DAD644DC1C623B5500AA62E8 /* LocalizableTextField.swift in Sources */,
 				DAD644D71C6239F600AA62E8 /* LocalizableLabel.swift in Sources */,
@@ -1914,16 +1951,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Jisc (D5QJ7EBR49)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tom Glanville (3XW45FP468)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tom Glanville (3XW45FP468)";
 				DEVELOPMENT_TEAM = D5QJ7EBR49;
 				INFOPLIST_FILE = Jisc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.jisc.studygoal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8f520bed-6bd5-4ceb-b126-5d8c1b64e15d";
-				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: uk.ac.jisc.studygoal";
+				PROVISIONING_PROFILE = "5d97501c-8d35-4898-a546-f49aa851addd";
+				PROVISIONING_PROFILE_SPECIFIER = "study-goal-development-profile";
 				SWIFT_OBJC_BRIDGING_HEADER = "Jisc/Jisc-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1938,8 +1975,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Jisc (D5QJ7EBR49)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tom Glanville (3XW45FP468)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tom Glanville (3XW45FP468)";
 				DEVELOPMENT_TEAM = D5QJ7EBR49;
 				INFOPLIST_FILE = Jisc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -1981,6 +2018,7 @@
 		DAA2AEAD1BCE785900ED796A /* Jisc.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				DA1A43751E72981900917437 /* Jisc3.3.xcdatamodel */,
 				DA9D2CB11DA29AB400C842B4 /* Jisc3.2.xcdatamodel */,
 				DA9D2CAD1DA299A500C842B4 /* Jisc3.1.xcdatamodel */,
 				DA23932E1D5203DE006970A4 /* Jisc3.0.xcdatamodel */,
@@ -2005,7 +2043,7 @@
 				DA46D96F1BF2444B00AA1476 /* Jisc1.1.xcdatamodel */,
 				DAA2AEAE1BCE785900ED796A /* Jisc.xcdatamodel */,
 			);
-			currentVersion = DA9D2CB11DA29AB400C842B4 /* Jisc3.2.xcdatamodel */;
+			currentVersion = DA1A43751E72981900917437 /* Jisc3.3.xcdatamodel */;
 			path = Jisc.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

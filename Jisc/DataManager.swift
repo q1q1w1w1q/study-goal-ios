@@ -304,6 +304,56 @@ class DataManager: NSObject {
 		return array
 	}
 	
+	func socialInstitution() -> Institution {
+		let fetchRequest:NSFetchRequest<Institution> = NSFetchRequest(entityName: institutionEntityName)
+		fetchRequest.predicate = NSPredicate(format: "name == %@", "Social")
+		var object:Institution?
+		do {
+			if let institution = try managedContext.fetch(fetchRequest).first {
+				object = institution
+			}
+		} catch let error as NSError {
+			print("get social institution error: \(error.localizedDescription)")
+		}
+		let dictionary = NSMutableDictionary()
+		dictionary["id"] = "SOCIAL"
+		dictionary["is_learning_analytics"] = "yes"
+		dictionary["name"] = "Social"
+		dictionary["accesskey"] = "key"
+		dictionary["secret"] = "secret"
+		if let institution = object {
+			institution.loadDictionary(dictionary)
+			return institution
+		} else {
+			return Institution.insertInManagedObjectContext(managedContext, dictionary: dictionary)
+		}
+	}
+	
+	func demoInstitution() -> Institution {
+		let fetchRequest:NSFetchRequest<Institution> = NSFetchRequest(entityName: institutionEntityName)
+		fetchRequest.predicate = NSPredicate(format: "name == %@", "Demo")
+		var object:Institution?
+		do {
+			if let institution = try managedContext.fetch(fetchRequest).first {
+				object = institution
+			}
+		} catch let error as NSError {
+			print("get demo institution error: \(error.localizedDescription)")
+		}
+		let dictionary = NSMutableDictionary()
+		dictionary["id"] = "DEMO"
+		dictionary["is_learning_analytics"] = "yes"
+		dictionary["name"] = "Demo"
+		dictionary["accesskey"] = "key"
+		dictionary["secret"] = "secret"
+		if let institution = object {
+			institution.loadDictionary(dictionary)
+			return institution
+		} else {
+			return Institution.insertInManagedObjectContext(managedContext, dictionary: dictionary)
+		}
+	}
+	
 	//MARK: ActivityLogs
 	
 	func activityLogsArray() -> [ActivityLog] {
@@ -496,6 +546,20 @@ class DataManager: NSObject {
 			}
 		} catch let error as NSError {
 			print("get modules error: \(error.localizedDescription)")
+		}
+		if social() {
+			array.sort { (module1, module2) -> Bool in
+				var sorted = true
+				if module1.name > module2.name {
+					sorted = false
+				}
+				if module1.id == "add_module" {
+					sorted = false
+				} else if module2.id == "add_module" {
+					sorted = true
+				}
+				return sorted
+			}
 		}
 		return array
 	}
@@ -820,12 +884,17 @@ class DataManager: NSObject {
 	
 	//MARK: Login
 	
-	func completedLogin(_ success:Bool, result:NSDictionary?, results:NSArray?, error:String?, completion:@escaping dataManagerCompletionBlock) {
+	func completedLogin(_ success:Bool, social:Bool, result:NSDictionary?, results:NSArray?, error:String?, completion:@escaping dataManagerCompletionBlock) {
 		var loginSuccessfull = true
 		var reason = kDefaultFailureReason
 		if (success) {
 			if (result != nil) {
 				self.currentStudent = Student.insertInManagedObjectContext(managedContext, dictionary: result!)
+				if social {
+					self.currentStudent?.institution = self.socialInstitution()
+				} else if demo() {
+					self.currentStudent?.institution = self.demoInstitution()
+				}
 				self.safelySaveContext()
 				self.getStudentData(completion)
 			} else {
@@ -928,7 +997,7 @@ class DataManager: NSObject {
 			LoadingView.show()
 		}
 		DownloadManager().login(instituteID, email: email, password: password, alertAboutInternet: true, completion: { (success, result, results, error) -> Void in
-			self.completedLogin(success, result: result, results: results, error: error, completion: completion)
+			self.completedLogin(success, social: false, result: result, results: results, error: error, completion: completion)
 		})
 	}
 	
@@ -948,6 +1017,30 @@ class DataManager: NSObject {
 				self.getStudentData(completion)
 			} else {
 				completion(false, "Something went wrong")
+			}
+		}
+	}
+	
+	func socialLogin(email:String, name:String, userId:String, completion:@escaping dataManagerCompletionBlock) {
+		cleanUserSpecificData()
+		inheritSilent = true
+		DispatchQueue.main.async { () -> Void in
+			LoadingView.show()
+		}
+		let mgr = DownloadManager()
+		mgr.socialLogin(email: email, name: name, userId: userId, alertAboutInternet: true) { (success, result, results, error) in
+			if success {
+				self.completedLogin(success, social: true, result: result, results: results, error: error, completion: completion)
+			} else if mgr.code == .forbidden {
+				completion(false, localized("social_login_error"))
+				DispatchQueue.main.async { () -> Void in
+					LoadingView.hide()
+				}
+			} else {
+				completion(false, localized("an_unknown_error_occured_please_try_again"))
+				DispatchQueue.main.async { () -> Void in
+					LoadingView.hide()
+				}
 			}
 		}
 	}
@@ -999,8 +1092,28 @@ class DataManager: NSObject {
 	//MARK: Get Modules
 	
 	func getStudentModules(_ completion:@escaping dataManagerCompletionBlock) {
-		if staff() {
-			let modulesCount = 3
+		if social() {
+			DownloadManager().getSocialModules(studentId: self.currentStudent!.id, alertAboutInternet: false, completion: { (success, result, results, error) in
+				if (success) {
+					if let modules = results as? [String] {
+						for (_, item) in modules.enumerated() {
+							let dictionary = NSMutableDictionary()
+							dictionary[item] = item
+							let object = Module.insertInManagedObjectContext(managedContext, dictionary: dictionary)
+							dataManager.currentStudent!.addModule(object)
+						}
+					}
+				}
+				let key = "add_module"
+				let moduleName = "Add Module"
+				let dictionary = NSMutableDictionary()
+				dictionary[key] = moduleName
+				let object = Module.insertInManagedObjectContext(managedContext, dictionary: dictionary)
+				self.currentStudent!.addModule(object)
+				completion(true, "")
+			})
+		} else if staff() {
+			let modulesCount = 2
 			for i in stride(from: 1, through: modulesCount, by: 1) {
 				let key = "DUMMY_\(i)"
 				let moduleName = "Dummy Module \(i)"
@@ -1009,7 +1122,7 @@ class DataManager: NSObject {
 				let object = Module.insertInManagedObjectContext(managedContext, dictionary: dictionary)
 				self.currentStudent!.addModule(object)
 			}
-			completion(true, kDefaultFailureReason)
+			completion(true, "")
 		} else {
 			xAPIManager().getModules { (success, result, results, error) in
 				if (success) {

@@ -50,6 +50,7 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 	var graphValues:(me:[Double]?, myMax:Double, otherStudent:[Double]?, otherStudentMax:Double, columnNames:[String]?)? = nil
 	var graphType = GraphType.Line
 	@IBOutlet weak var graphToggleButton:UIButton!
+	@IBOutlet weak var compareToView:UIView!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -58,6 +59,8 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 			graphType = GraphType.Bar
 			graphToggleButton.isSelected = true
 		}
+		compareToView.alpha = 0.5
+		compareToView.isUserInteractionEnabled = false
 		let today = todayNumber()
 		var components = DateComponents()
 		components.day = -(today - 1)
@@ -150,10 +153,10 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 			let studentIndex = selectedStudent - 1
 			if (studentIndex >= 0 && studentIndex < friends.count) {
 				studentID = friends[studentIndex].jisc_id
+//			} else if (selectedStudent == friends.count + 1) {
+//				getTopTenPercent = true
+//				studentID = "top_ten"
 			} else if (selectedStudent == friends.count + 1) {
-				getTopTenPercent = true
-				studentID = "top_ten"
-			} else if (selectedStudent == friends.count + 2) {
 				getAverage = true
 				studentID = "average"
 			}
@@ -489,7 +492,7 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 									return sorted
 								})
 								let studentID = stringFromDictionary(dictionary, key: "STUDENT_ID")
-								if studentID == dataManager.currentStudent!.jisc_id {
+								if studentID.contains(dataManager.currentStudent!.jisc_id) {
 									for (index, item) in keys.enumerated() {
 										myValues![index] = doubleFromDictionary(values, key: item)
 									}
@@ -527,7 +530,7 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 					for (_, dictionary) in results.enumerated() {
 						if let values = dictionary["VALUES"] as? NSDictionary {
 							let studentID = stringFromDictionary(dictionary, key: "STUDENT_ID")
-							if studentID == dataManager.currentStudent!.jisc_id {
+							if studentID.contains(dataManager.currentStudent!.jisc_id) {
 								if let keys = values.allKeys as? [String] {
 									for (_, item) in keys.enumerated() {
 										let absValue = abs((item as NSString).integerValue)
@@ -721,22 +724,26 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 		dates.append(Date().addingTimeInterval(-(86400.0 * 27)))
 		
 		for (_, item) in dates.enumerated() {
-			dateFormatter.dateFormat = "d"
-			let firstDay = NSString(format: "%@", dateFormatter.string(from: item)).integerValue
+//			dateFormatter.dateFormat = "d"
+//			let firstDay = NSString(format: "%@", dateFormatter.string(from: item)).integerValue
 			let lastDayDate = (calendar as NSCalendar).date(byAdding: dayComponent, to: item, options: .matchStrictly)
-			var lastDay = firstDay + 6
-			var lastDayMonth = ""
-			if (lastDayDate != nil) {
-				lastDay = NSString(format: "%@", dateFormatter.string(from: lastDayDate!)).integerValue
-				dateFormatter.dateFormat = "MM"
-				lastDayMonth = dateFormatter.string(from: lastDayDate!)
-			}
-			dateFormatter.dateFormat = "MM"
-			let month = dateFormatter.string(from: item)
-			if (lastDayMonth.isEmpty || lastDayMonth == month) {
-				names.append("\(month)/\(firstDay)-\(lastDay)")
-			} else {
-				names.append("\(month)/\(firstDay)-\(lastDayMonth)/\(lastDay)")
+//			var lastDay = firstDay + 6
+//			var lastDayMonth = ""
+//			if (lastDayDate != nil) {
+//				lastDay = NSString(format: "%@", dateFormatter.string(from: lastDayDate!)).integerValue
+//				dateFormatter.dateFormat = "MM"
+//				lastDayMonth = dateFormatter.string(from: lastDayDate!)
+//			}
+//			dateFormatter.dateFormat = "MM"
+//			let month = dateFormatter.string(from: item)
+//			if (lastDayMonth.isEmpty || lastDayMonth == month) {
+//				names.append("\(month)/\(firstDay)-\(lastDay)")
+//			} else {
+//				names.append("\(month)/\(firstDay)-\(lastDayMonth)/\(lastDay)")
+//			}
+			dateFormatter.dateFormat = "dd/MM/yyyy"
+			if let date = lastDayDate {
+				names.append(dateFormatter.string(from: date))
 			}
 		}
 		return names.reversed()
@@ -861,8 +868,10 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 			for (_, item) in colleagues.enumerated() {
 				array.append("\(item.firstName) \(item.lastName)")
 			}
-			compareToSelectorView = CustomPickerView.create(localized("choose_student"), delegate: self, contentArray: array, selectedItem: selectedStudent)
-			view.addSubview(compareToSelectorView)
+			if array.count > 1 {
+				compareToSelectorView = CustomPickerView.create(localized("choose_student"), delegate: self, contentArray: array, selectedItem: selectedStudent)
+				view.addSubview(compareToSelectorView)
+			}
 		} else {
 			var array:[String] = [String]()
 			array.append(localized("no_one"))
@@ -909,9 +918,13 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 		switch (view) {
 		case moduleSelectorView:
 			if (selectedModule != selectedRow) {
+				compareToView.alpha = 1.0
+				compareToView.isUserInteractionEnabled = true
 				if (selectedModule == 0) {
 					if (selectedStudent != 0) {
 						compareToButton.setTitle(localized("no_one"), for: UIControlState())
+						compareToView.alpha = 0.5
+						compareToView.isUserInteractionEnabled = false
 						selectedStudent = 0
 					}
 				}
@@ -925,6 +938,8 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 					friendsInModule.removeAll()
 					selectedStudent = 0
 					compareToButton.setTitle(localized("no_one"), for: UIControlState())
+					compareToView.alpha = 0.5
+					compareToView.isUserInteractionEnabled = false
 					UIView.animate(withDuration: 0.25, animations: { () -> Void in
 						self.blueDot.alpha = 0.0
 						self.comparisonStudentName.alpha = 0.0
