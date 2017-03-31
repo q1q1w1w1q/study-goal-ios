@@ -102,7 +102,7 @@ class TrophiesVC: BaseViewController, UITableViewDataSource, UITableViewDelegate
 		let theCell:TrophiesCell? = cell as? TrophiesCell
 		if (theCell != nil) {
 			theCell?.parent = self
-			let leftIndex = (indexPath as NSIndexPath).row * 3
+			let leftIndex = indexPath.row * 3
 			let middleIndex = leftIndex + 1
 			let rightIndex = middleIndex + 1
 			var leftTrophy:Trophy? = nil
