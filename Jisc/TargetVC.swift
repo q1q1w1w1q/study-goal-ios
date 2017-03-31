@@ -77,7 +77,7 @@ class TargetVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 		let theCell:TargetCell? = cell as? TargetCell
 		if (theCell != nil) {
 			theCell!.parent = self
-			theCell!.loadTarget(dataManager.targets()[(indexPath as NSIndexPath).row], isLast:((indexPath as NSIndexPath).row == (dataManager.targets().count - 1)))
+			theCell!.loadTarget(dataManager.targets()[indexPath.row], isLast:(indexPath.row == (dataManager.targets().count - 1)))
 			theCell!.indexPath = indexPath
 			theCell!.tableView = tableView
 			theCell!.navigationController = navigationController
@@ -88,8 +88,8 @@ class TargetVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 		if (aCellIsOpen) {
 			tableView.reloadData()
 		} else {
-			let target = dataManager.targets()[(indexPath as NSIndexPath).row]
-			let vc = TargetDetailsVC(target: target, index: (indexPath as NSIndexPath).row)
+			let target = dataManager.targets()[indexPath.row]
+			let vc = TargetDetailsVC(target: target, index: indexPath.row)
 			navigationController?.pushViewController(vc, animated: true)
 		}
 	}

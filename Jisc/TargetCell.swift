@@ -197,14 +197,14 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
 			let target = dataManager.targets()[(indexPath! as NSIndexPath).row]
 			dataManager.deleteTarget(target) { (success, failureReason) -> Void in
 				if success {
-				AlertView.showAlert(true, message: localized("target_deleted_successfully"), completion: nil)
-				self.tableView?.deleteRows(at: [self.indexPath!], with: UITableViewRowAnimation.automatic)
-				self.tableView?.reloadData()
+					dataManager.deleteObject(target)
+					AlertView.showAlert(true, message: localized("target_deleted_successfully"), completion: nil)
+					self.tableView?.deleteRows(at: [self.indexPath!], with: UITableViewRowAnimation.automatic)
+					self.tableView?.reloadData()
 				} else {
 					AlertView.showAlert(false, message: failureReason, completion: nil)
 				}
 			}
-			dataManager.deleteObject(target)
 		}
 	}
 }

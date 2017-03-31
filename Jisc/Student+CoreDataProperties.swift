@@ -19,6 +19,7 @@ extension Student {
 	@NSManaged var addressLine2: String
 	@NSManaged var addressLine3: String
 	@NSManaged var addressLine4: String
+	@NSManaged var affiliation: String
 	@NSManaged var age: NSNumber
 	@NSManaged var countryCode: String
 	@NSManaged var demo: NSNumber

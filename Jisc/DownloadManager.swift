@@ -8,7 +8,7 @@
 
 import UIKit
 
-let LOG_ACTIVITY = false
+let LOG_ACTIVITY = true
 
 //let hostPath = "http://therapy-box.com/jisc/"
 let hostPath = "http://stuapp.analytics.alpha.jisc.ac.uk/"
@@ -1264,17 +1264,21 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 	}
 	
 	func deleteFeed(_ feedID:String, myID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
-		shouldNotifyAboutInternetConnection = alertAboutInternet
-		completionBlock = completion
-		var language = "en"
-		if let newLanguage = BundleLocalization.sharedInstance().language {
-			language = newLanguage
+		if demo() {
+			completion(false, nil, nil, localized("demo_mode_delete_feed"))
+		} else {
+			shouldNotifyAboutInternetConnection = alertAboutInternet
+			completionBlock = completion
+			var language = "en"
+			if let newLanguage = BundleLocalization.sharedInstance().language {
+				language = newLanguage
+			}
+			var additionalParameters = "language=\(language)"
+			if social() {
+				additionalParameters = "\(additionalParameters)&is_social=yes"
+			}
+			startConnectionWithRequest(createDeleteRequest("\(deleteFeedPath)?feed_id=\(feedID)&student_id=\(myID)&\(additionalParameters)", withAuthorizationHeader: true))
 		}
-		var additionalParameters = "language=\(language)"
-		if social() {
-			additionalParameters = "\(additionalParameters)&is_social=yes"
-		}
-		startConnectionWithRequest(createDeleteRequest("\(deleteFeedPath)?feed_id=\(feedID)&student_id=\(myID)&\(additionalParameters)", withAuthorizationHeader: true))
 	}
 	
 	func hideFeed(_ feedID:String, myID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {

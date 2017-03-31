@@ -130,14 +130,14 @@ class CustomPickerView: UIView, UITableViewDataSource, UITableViewDelegate {
 	//MARK: UITableView Delegate
 	
 	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-		let item = contentArray[(indexPath as NSIndexPath).row]
+		let item = contentArray[indexPath.row]
 		let theCell:ItemTypeCell? = cell as? ItemTypeCell
-		theCell?.loadItem(item, isSelected: (selectedItem == (indexPath as NSIndexPath).row))
+		theCell?.loadItem(item, isSelected: (selectedItem == indexPath.row))
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		selectedItem = (indexPath as NSIndexPath).row
-		delegate?.view(self, selectedRow: (indexPath as NSIndexPath).row)
+		selectedItem = indexPath.row
+		delegate?.view(self, selectedRow: indexPath.row)
 		closePickerView(UIButton())
 	}
 }

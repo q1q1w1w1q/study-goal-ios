@@ -521,7 +521,7 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
 			if (theCell != nil) {
 				theCell!.parent = self
 				var status:FriendshipStatus = .notFriends
-				let colleague = filteredStudents[(indexPath as NSIndexPath).row]
+				let colleague = filteredStudents[indexPath.row]
 				let fetchRequest:NSFetchRequest<FriendRequest> = NSFetchRequest(entityName: friendRequestEntityName)
 				fetchRequest.predicate = NSPredicate(format: "id == %@", colleague.id)
 				do {
@@ -562,13 +562,13 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
 			let theCell:NewRequestCell? = cell as? NewRequestCell
 			if (theCell != nil) {
 				theCell!.parent = self
-				theCell!.loadFriendRequest(dataManager.friendRequests()[(indexPath as NSIndexPath).row])
+				theCell!.loadFriendRequest(dataManager.friendRequests()[indexPath.row])
 			}
 		case myFriendsTable:
 			let theCell:MyFriendCell? = cell as? MyFriendCell
 			if (theCell != nil) {
 				theCell!.parent = self
-				theCell!.loadFriend(filteredFriends[(indexPath as NSIndexPath).row])
+				theCell!.loadFriend(filteredFriends[indexPath.row])
 			}
 		default:break
 		}
@@ -586,7 +586,7 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
 			myFriendsView.addSubview(privacyView)
 			privacyActionButton.setTitle(localized("save"), for: UIControlState())
 			addMarginConstraintsWithView(privacyView, toSuperView: myFriendsView)
-			let friend = filteredFriends[(indexPath as NSIndexPath).row]
+			let friend = filteredFriends[indexPath.row]
 			friendToTakeActionWith = friend
 			currentAction = .changeFriendSettings
 			let fullName = "\(friend.firstName) \(friend.lastName)"
