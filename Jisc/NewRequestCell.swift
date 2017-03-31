@@ -33,37 +33,41 @@ class NewRequestCell: BasicSearchCell {
 	}
 	
 	@IBAction func confirmRequest(_ sender:UIButton) {
-		if demo() {
-			let alert = UIAlertController(title: "", message: localized("demo_mode_acceptrequest"), preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
-			parent?.navigationController?.present(alert, animated: true, completion: nil)
-		} else {
-			if (theFriendRequest != nil) {
-				parent?.friendRequestToTakeActionWith = theFriendRequest
-				parent?.acceptThisFriendRequest(theFriendRequest!)
-				iPadParent?.friendRequestToTakeActionWith = theFriendRequest
-				iPadParent?.acceptThisFriendRequest(theFriendRequest!)
-			}
+		if (theFriendRequest != nil) {
+			parent?.friendRequestToTakeActionWith = theFriendRequest
+			parent?.acceptThisFriendRequest(theFriendRequest!)
+			iPadParent?.friendRequestToTakeActionWith = theFriendRequest
+			iPadParent?.acceptThisFriendRequest(theFriendRequest!)
 		}
 	}
 	
 	@IBAction func deleteRequest(_ sender:UIButton) {
-		if demo() {
-			let alert = UIAlertController(title: "", message: localized("demo_mode_deleterequest"), preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
-			parent?.navigationController?.present(alert, animated: true, completion: nil)
-		} else {
-			parent?.friendRequestToTakeActionWith = theFriendRequest
-			parent?.deleteFriendRequest({ (success, result, results, error) -> Void in
+		parent?.friendRequestToTakeActionWith = theFriendRequest
+		parent?.deleteFriendRequest({ (success, result, results, error) -> Void in
+			if success {
 				self.parent?.refreshData()
 				AlertView.showAlert(true, message: localized("deleted_successfully"), completion: nil)
-			})
-			
-			iPadParent?.friendRequestToTakeActionWith = theFriendRequest
-			iPadParent?.deleteFriendRequest({ (success, result, results, error) -> Void in
-				self.iPadParent?.refreshData()
+			} else {
+				var failureReason = kDefaultFailureReason
+				if (error != nil) {
+					failureReason = error!
+				}
+				AlertView.showAlert(false, message: failureReason, completion: nil)
+			}
+		})
+		
+		iPadParent?.friendRequestToTakeActionWith = theFriendRequest
+		iPadParent?.deleteFriendRequest({ (success, result, results, error) -> Void in
+			if success {
+				self.parent?.refreshData()
 				AlertView.showAlert(true, message: localized("deleted_successfully"), completion: nil)
-			})
-		}
+			} else {
+				var failureReason = kDefaultFailureReason
+				if (error != nil) {
+					failureReason = error!
+				}
+				AlertView.showAlert(false, message: failureReason, completion: nil)
+			}
+		})
 	}
 }

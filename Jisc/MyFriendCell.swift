@@ -79,14 +79,30 @@ class MyFriendCell: BasicSearchCell, UIAlertViewDelegate {
 		if (buttonIndex == 1) {
 			parent?.friendToTakeActionWith = theFriend
 			parent?.deleteFriend({ (success, result, results, error) -> Void in
-				self.parent?.refreshData()
-				AlertView.showAlert(true, message: localized("friend_deleted_successfully"), completion: nil)
+				if success {
+					self.parent?.refreshData()
+					AlertView.showAlert(true, message: localized("friend_deleted_successfully"), completion: nil)
+				} else {
+					var failureReason = kDefaultFailureReason
+					if (error != nil) {
+						failureReason = error!
+					}
+					AlertView.showAlert(false, message: failureReason, completion: nil)
+				}
 			})
 			
 			iPadParent?.friendToTakeActionWith = theFriend
 			iPadParent?.deleteFriend({ (success, result, results, error) -> Void in
-				self.iPadParent?.refreshData()
-				AlertView.showAlert(true, message: localized("friend_deleted_successfully"), completion: nil)
+				if success {
+					self.parent?.refreshData()
+					AlertView.showAlert(true, message: localized("friend_deleted_successfully"), completion: nil)
+				} else {
+					var failureReason = kDefaultFailureReason
+					if (error != nil) {
+						failureReason = error!
+					}
+					AlertView.showAlert(false, message: failureReason, completion: nil)
+				}
 			})
 		}
 	}

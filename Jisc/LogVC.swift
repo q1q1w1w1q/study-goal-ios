@@ -82,28 +82,22 @@ class LogVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, Cus
 	}
 	
 	@IBAction func showNewActivitySelector(_ sender:UIButton) {
-		if demo() {
-			let alert = UIAlertController(title: "", message: localized("demo_mode_addactivitylog"), preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
-			navigationController?.present(alert, animated: true, completion: nil)
-		} else {
-			if (dataManager.runningActivities().count > 0) {
-				if (dataManager.modules().count == 0) {
-					//				if (dataManager.currentStudent!.institution.isLearningAnalytics.boolValue) {
-					//					AlertView.showAlert(false, message: localized("you_have_no_modules"), completion: nil)
-					//				} else {
-					navigationController?.pushViewController(NewActivityVC(activity: dataManager.runningActivities()[0], atIndex: 0), animated: true)
-					//				}
-				} else {
-					navigationController?.pushViewController(NewActivityVC(activity: dataManager.runningActivities()[0], atIndex: 0), animated: true)
-				}
+		if (dataManager.runningActivities().count > 0) {
+			if (dataManager.modules().count == 0) {
+				//				if (dataManager.currentStudent!.institution.isLearningAnalytics.boolValue) {
+				//					AlertView.showAlert(false, message: localized("you_have_no_modules"), completion: nil)
+				//				} else {
+				navigationController?.pushViewController(NewActivityVC(activity: dataManager.runningActivities()[0], atIndex: 0), animated: true)
+				//				}
 			} else {
-				var array:[String] = [String]()
-				array.append(localized("report_activity"))
-				array.append(localized("log_recent"))
-				let logTypeSelectorView = CustomPickerView.create(localized("add"), delegate: self, contentArray: array, selectedItem: -1)
-				view.addSubview(logTypeSelectorView)
+				navigationController?.pushViewController(NewActivityVC(activity: dataManager.runningActivities()[0], atIndex: 0), animated: true)
 			}
+		} else {
+			var array:[String] = [String]()
+			array.append(localized("report_activity"))
+			array.append(localized("log_recent"))
+			let logTypeSelectorView = CustomPickerView.create(localized("add"), delegate: self, contentArray: array, selectedItem: -1)
+			view.addSubview(logTypeSelectorView)
 		}
 	}
 	

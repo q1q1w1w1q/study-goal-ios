@@ -251,6 +251,10 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 			if (theTarget != nil) {
 				dataManager.editTarget(theTarget!, completion: { (success, failureReason) -> Void in
 					if (success) {
+						for (_, item) in target.stretchTargets.enumerated() {
+							dataManager.deleteObject(item as! NSManagedObject)
+						}
+						dataManager.deleteObject(target)
 						AlertView.showAlert(true, message: localized("saved_successfully")) { (done) -> Void in
 							_ = self.navigationController?.popViewController(animated: true)
 						}
@@ -260,13 +264,10 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 						}
 					}
 				})
-				for (_, item) in target.stretchTargets.enumerated() {
-					dataManager.deleteObject(item as! NSManagedObject)
-				}
-				dataManager.deleteObject(target)
 			} else {
 				dataManager.addTarget(target, completion: { (success, failureReason) -> Void in
 					if (success) {
+						dataManager.deleteObject(target)
 						AlertView.showAlert(true, message: localized("saved_successfully")) { (done) -> Void in
 							_ = self.navigationController?.popViewController(animated: true)
 						}
@@ -276,7 +277,6 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 						}
 					}
 				})
-				dataManager.deleteObject(target)
 			}
 		}
 	}
@@ -285,7 +285,7 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 	
 	func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
 		if (buttonIndex == 0) {
-			navigationController?.popViewController(animated: true)
+			_ = navigationController?.popViewController(animated: true)
 		} else {
 			saveTarget(UIButton())
 		}

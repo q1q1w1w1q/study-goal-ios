@@ -212,12 +212,12 @@ class ActivityDetailsVC: BaseViewController, UITableViewDataSource, UITableViewD
 		if (buttonIndex == 1) {
 			if (theActivity.isRunning.boolValue) {
 				dataManager.deleteObject(theActivity)
-				self.navigationController?.popViewController(animated: true)
+				_ = self.navigationController?.popViewController(animated: true)
 			} else {
 				dataManager.deleteActivityLog(theActivity) { (success, failureReason) -> Void in
 					if (success) {
 						dataManager.deleteObject(self.theActivity)
-						self.navigationController?.popViewController(animated: true)
+						_ = self.navigationController?.popViewController(animated: true)
 					} else {
 						AlertView.showAlert(false, message: failureReason, completion: nil)
 					}

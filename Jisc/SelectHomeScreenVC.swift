@@ -45,12 +45,12 @@ class SelectHomeScreenVC: BaseViewController {
 	}
 	
 	@IBAction func goBack(_ sender:UIButton) {
-		navigationController?.popViewController(animated: true)
+		_ = navigationController?.popViewController(animated: true)
 	}
 	
 	@IBAction func selectScreen(_ sender:UIButton) {
 		if demo() {
-			let alert = UIAlertController(title: "", message: localized("demo_mode_changeappsettings"), preferredStyle: .alert)
+			let alert = UIAlertController(title: "", message: localized("demo_mode_change_app_settings"), preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
 			navigationController?.present(alert, animated: true, completion: nil)
 		} else {

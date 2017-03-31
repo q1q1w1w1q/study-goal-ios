@@ -8,7 +8,7 @@
 
 import UIKit
 
-let LOG_ACTIVITY = true
+let LOG_ACTIVITY = false
 
 //let hostPath = "http://therapy-box.com/jisc/"
 let hostPath = "http://stuapp.analytics.alpha.jisc.ac.uk/"
@@ -606,147 +606,183 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 	}
 	
 	func sendFriendRequest(_ from:String, to:String, privacy:FriendRequestPrivacyOptions, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
-		shouldNotifyAboutInternetConnection = alertAboutInternet
-		completionBlock = completion
-		var dictionary = privacy.dictionary()
-		dictionary["from_student_id"] = from
-		dictionary["to_student_id"] = to
-		var language = "en"
-		if let newLanguage = BundleLocalization.sharedInstance().language {
-			language = newLanguage
+		if demo() {
+			completion(false, nil, nil, localized("demo_mode_send_friend_request"))
+		} else {
+			shouldNotifyAboutInternetConnection = alertAboutInternet
+			completionBlock = completion
+			var dictionary = privacy.dictionary()
+			dictionary["from_student_id"] = from
+			dictionary["to_student_id"] = to
+			var language = "en"
+			if let newLanguage = BundleLocalization.sharedInstance().language {
+				language = newLanguage
+			}
+			dictionary["language"] = language
+			if social() {
+				dictionary["is_social"] = "yes"
+			}
+			startConnectionWithRequest(createPostRequest(sendFriendRequestPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 		}
-		dictionary["language"] = language
-		if social() {
-			dictionary["is_social"] = "yes"
-		}
-		startConnectionWithRequest(createPostRequest(sendFriendRequestPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
 	func sendFriendRequestToEmail(_ from:String, email:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
-		shouldNotifyAboutInternetConnection = alertAboutInternet
-		completionBlock = completion
-		var dictionary = [String:String]()
-		dictionary["from_student_id"] = from
-		dictionary["to_email"] = email
-		var language = "en"
-		if let newLanguage = BundleLocalization.sharedInstance().language {
-			language = newLanguage
+		if demo() {
+			completion(false, nil, nil, localized("demo_mode_send_friend_request"))
+		} else {
+			shouldNotifyAboutInternetConnection = alertAboutInternet
+			completionBlock = completion
+			var dictionary = [String:String]()
+			dictionary["from_student_id"] = from
+			dictionary["to_email"] = email
+			var language = "en"
+			if let newLanguage = BundleLocalization.sharedInstance().language {
+				language = newLanguage
+			}
+			dictionary["language"] = language
+			if social() {
+				dictionary["is_social"] = "yes"
+			}
+			startConnectionWithRequest(createPostRequest(sendFriendRequestByEmailPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 		}
-		dictionary["language"] = language
-		if social() {
-			dictionary["is_social"] = "yes"
-		}
-		startConnectionWithRequest(createPostRequest(sendFriendRequestByEmailPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
 	func acceptFriendRequest(_ from:String, to:String, privacy:FriendRequestPrivacyOptions, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
-		shouldNotifyAboutInternetConnection = alertAboutInternet
-		completionBlock = completion
-		var dictionary = privacy.dictionary()
-		dictionary["from_user"] = from
-		dictionary["student_id"] = to
-		var language = "en"
-		if let newLanguage = BundleLocalization.sharedInstance().language {
-			language = newLanguage
+		if demo() {
+			completion(false, nil, nil, localized("demo_mode_accept_request"))
+		} else {
+			shouldNotifyAboutInternetConnection = alertAboutInternet
+			completionBlock = completion
+			var dictionary = privacy.dictionary()
+			dictionary["from_user"] = from
+			dictionary["student_id"] = to
+			var language = "en"
+			if let newLanguage = BundleLocalization.sharedInstance().language {
+				language = newLanguage
+			}
+			dictionary["language"] = language
+			if social() {
+				dictionary["is_social"] = "yes"
+			}
+			startConnectionWithRequest(createPutRequest(acceptFriendRequestPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 		}
-		dictionary["language"] = language
-		if social() {
-			dictionary["is_social"] = "yes"
-		}
-		startConnectionWithRequest(createPutRequest(acceptFriendRequestPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
 	func deleteFriendRequest(_ from:String, to:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
-		shouldNotifyAboutInternetConnection = alertAboutInternet
-		completionBlock = completion
-		var language = "en"
-		if let newLanguage = BundleLocalization.sharedInstance().language {
-			language = newLanguage
+		if demo() {
+			completion(false, nil, nil, localized("demo_mode_delete_request"))
+		} else {
+			shouldNotifyAboutInternetConnection = alertAboutInternet
+			completionBlock = completion
+			var language = "en"
+			if let newLanguage = BundleLocalization.sharedInstance().language {
+				language = newLanguage
+			}
+			var additionalParameters = "language=\(language)"
+			if social() {
+				additionalParameters = "\(additionalParameters)&is_social=yes"
+			}
+			startConnectionWithRequest(createDeleteRequest("\(deleteFriendRequestPath)?deleted_user=\(from)&student_id=\(to)&\(additionalParameters)", withAuthorizationHeader: true))
 		}
-		var additionalParameters = "language=\(language)"
-		if social() {
-			additionalParameters = "\(additionalParameters)&is_social=yes"
-		}
-		startConnectionWithRequest(createDeleteRequest("\(deleteFriendRequestPath)?deleted_user=\(from)&student_id=\(to)&\(additionalParameters)", withAuthorizationHeader: true))
 	}
 	
 	func cancelPendingFriendRequest(_ myID:String, friendID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
-		shouldNotifyAboutInternetConnection = alertAboutInternet
-		completionBlock = completion
-		var language = "en"
-		if let newLanguage = BundleLocalization.sharedInstance().language {
-			language = newLanguage
+		if demo() {
+			completion(false, nil, nil, localized("demo_mode_send_friend_request"))
+		} else {
+			shouldNotifyAboutInternetConnection = alertAboutInternet
+			completionBlock = completion
+			var language = "en"
+			if let newLanguage = BundleLocalization.sharedInstance().language {
+				language = newLanguage
+			}
+			var additionalParameters = "language=\(language)"
+			if social() {
+				additionalParameters = "\(additionalParameters)&is_social=yes"
+			}
+			startConnectionWithRequest(createDeleteRequest("\(cancelFriendRequestPath)?student_id=\(myID)&friend_id=\(friendID)&\(additionalParameters)", withAuthorizationHeader: true))
 		}
-		var additionalParameters = "language=\(language)"
-		if social() {
-			additionalParameters = "\(additionalParameters)&is_social=yes"
-		}
-		startConnectionWithRequest(createDeleteRequest("\(cancelFriendRequestPath)?student_id=\(myID)&friend_id=\(friendID)&\(additionalParameters)", withAuthorizationHeader: true))
 	}
 	
 	func changeFriendSettings(_ myID:String, friendID:String, privacy:FriendRequestPrivacyOptions, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
-		shouldNotifyAboutInternetConnection = alertAboutInternet
-		completionBlock = completion
-		var dictionary = privacy.dictionary()
-		dictionary["student_id"] = myID
-		dictionary["friend_id"] = friendID
-		var language = "en"
-		if let newLanguage = BundleLocalization.sharedInstance().language {
-			language = newLanguage
+		if demo() {
+			completion(false, nil, nil, localized("demo_mode_change_friend_settings"))
+		} else {
+			shouldNotifyAboutInternetConnection = alertAboutInternet
+			completionBlock = completion
+			var dictionary = privacy.dictionary()
+			dictionary["student_id"] = myID
+			dictionary["friend_id"] = friendID
+			var language = "en"
+			if let newLanguage = BundleLocalization.sharedInstance().language {
+				language = newLanguage
+			}
+			dictionary["language"] = language
+			if social() {
+				dictionary["is_social"] = "yes"
+			}
+			startConnectionWithRequest(createPutRequest(changeFriendSettingsPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 		}
-		dictionary["language"] = language
-		if social() {
-			dictionary["is_social"] = "yes"
-		}
-		startConnectionWithRequest(createPutRequest(changeFriendSettingsPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
 	func hideFriend(_ myID:String, friendToHideID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
-		shouldNotifyAboutInternetConnection = alertAboutInternet
-		completionBlock = completion
-		var dictionary = [String:String]()
-		dictionary["from_student_id"] = myID
-		dictionary["to_student_id"] = friendToHideID
-		var language = "en"
-		if let newLanguage = BundleLocalization.sharedInstance().language {
-			language = newLanguage
+		if demo() {
+			completion(true, nil, nil, nil)
+		} else {
+			shouldNotifyAboutInternetConnection = alertAboutInternet
+			completionBlock = completion
+			var dictionary = [String:String]()
+			dictionary["from_student_id"] = myID
+			dictionary["to_student_id"] = friendToHideID
+			var language = "en"
+			if let newLanguage = BundleLocalization.sharedInstance().language {
+				language = newLanguage
+			}
+			dictionary["language"] = language
+			if social() {
+				dictionary["is_social"] = "yes"
+			}
+			startConnectionWithRequest(createPutRequest(hideFriendPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 		}
-		dictionary["language"] = language
-		if social() {
-			dictionary["is_social"] = "yes"
-		}
-		startConnectionWithRequest(createPutRequest(hideFriendPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
 	func unhideFriend(_ myID:String, friendToUnhideID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
-		shouldNotifyAboutInternetConnection = alertAboutInternet
-		completionBlock = completion
-		var dictionary = [String:String]()
-		dictionary["from_student_id"] = myID
-		dictionary["to_student_id"] = friendToUnhideID
-		var language = "en"
-		if let newLanguage = BundleLocalization.sharedInstance().language {
-			language = newLanguage
+		if demo() {
+			completion(true, nil, nil, nil)
+		} else {
+			shouldNotifyAboutInternetConnection = alertAboutInternet
+			completionBlock = completion
+			var dictionary = [String:String]()
+			dictionary["from_student_id"] = myID
+			dictionary["to_student_id"] = friendToUnhideID
+			var language = "en"
+			if let newLanguage = BundleLocalization.sharedInstance().language {
+				language = newLanguage
+			}
+			dictionary["language"] = language
+			if social() {
+				dictionary["is_social"] = "yes"
+			}
+			startConnectionWithRequest(createPutRequest(unhideFriendPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 		}
-		dictionary["language"] = language
-		if social() {
-			dictionary["is_social"] = "yes"
-		}
-		startConnectionWithRequest(createPutRequest(unhideFriendPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
 	func deleteFriend(_ myID:String, friendToDeleteID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
-		shouldNotifyAboutInternetConnection = alertAboutInternet
-		completionBlock = completion
-		var language = "en"
-		if let newLanguage = BundleLocalization.sharedInstance().language {
-			language = newLanguage
+		if demo() {
+			completion(false, nil, nil, localized("demo_mode_delete_friend"))
+		} else {
+			shouldNotifyAboutInternetConnection = alertAboutInternet
+			completionBlock = completion
+			var language = "en"
+			if let newLanguage = BundleLocalization.sharedInstance().language {
+				language = newLanguage
+			}
+			var additionalParameters = "language=\(language)"
+			if social() {
+				additionalParameters = "\(additionalParameters)&is_social=yes"
+			}
+			startConnectionWithRequest(createDeleteRequest("\(deleteFriendPath)?student_id=\(myID)&friend_id=\(friendToDeleteID)&\(additionalParameters)", withAuthorizationHeader: true))
 		}
-		var additionalParameters = "language=\(language)"
-		if social() {
-			additionalParameters = "\(additionalParameters)&is_social=yes"
-		}
-		startConnectionWithRequest(createDeleteRequest("\(deleteFriendPath)?student_id=\(myID)&friend_id=\(friendToDeleteID)&\(additionalParameters)", withAuthorizationHeader: true))
 	}
 	
 	func getStudentsInTheSameCourse(_ myID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -862,39 +898,47 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 	}
 	
 	func addActivityLog(_ log:ActivityLog, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
-		shouldNotifyAboutInternetConnection = alertAboutInternet
-		completionBlock = completion
-		var dictionary = log.dictionaryRepresentation()
-		var language = "en"
-		if let newLanguage = BundleLocalization.sharedInstance().language {
-			language = newLanguage
+		if demo() {
+			completion(false, nil, nil, localized("demo_mode_add_activity_log"))
+		} else {
+			shouldNotifyAboutInternetConnection = alertAboutInternet
+			completionBlock = completion
+			var dictionary = log.dictionaryRepresentation()
+			var language = "en"
+			if let newLanguage = BundleLocalization.sharedInstance().language {
+				language = newLanguage
+			}
+			dictionary["language"] = language
+			if social() {
+				dictionary["is_social"] = "yes"
+			}
+			startConnectionWithRequest(createPostRequest(addActivityLogPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 		}
-		dictionary["language"] = language
-		if social() {
-			dictionary["is_social"] = "yes"
-		}
-		startConnectionWithRequest(createPostRequest(addActivityLogPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
 	func editActivityLog(_ logID:String, activityDate:Date, timeSpentInMinutes:Int, note:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
-		shouldNotifyAboutInternetConnection = alertAboutInternet
-		completionBlock = completion
-		var dictionary = [String:String]()
-		dictionary["log_id"] = logID
-		dictionary["student_id"] = dataManager.currentStudent!.id
-		dateFormatter.dateFormat = "yyyy-MM-dd"
-		dictionary["activity_date"] = dateFormatter.string(from: activityDate)
-		dictionary["time_spent"] = "\(timeSpentInMinutes)"
-		dictionary["note"] = note
-		var language = "en"
-		if let newLanguage = BundleLocalization.sharedInstance().language {
-			language = newLanguage
+		if demo() {
+			completion(false, nil, nil, localized("demo_mode_edit_activity_log"))
+		} else {
+			shouldNotifyAboutInternetConnection = alertAboutInternet
+			completionBlock = completion
+			var dictionary = [String:String]()
+			dictionary["log_id"] = logID
+			dictionary["student_id"] = dataManager.currentStudent!.id
+			dateFormatter.dateFormat = "yyyy-MM-dd"
+			dictionary["activity_date"] = dateFormatter.string(from: activityDate)
+			dictionary["time_spent"] = "\(timeSpentInMinutes)"
+			dictionary["note"] = note
+			var language = "en"
+			if let newLanguage = BundleLocalization.sharedInstance().language {
+				language = newLanguage
+			}
+			dictionary["language"] = language
+			if social() {
+				dictionary["is_social"] = "yes"
+			}
+			startConnectionWithRequest(createPutRequest(editActivityLogPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 		}
-		dictionary["language"] = language
-		if social() {
-			dictionary["is_social"] = "yes"
-		}
-		startConnectionWithRequest(createPutRequest(editActivityLogPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
 	func viewActivityLog(_ logID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -912,17 +956,21 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 	}
 	
 	func deleteActivityLog(_ logID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
-		shouldNotifyAboutInternetConnection = alertAboutInternet
-		completionBlock = completion
-		var language = "en"
-		if let newLanguage = BundleLocalization.sharedInstance().language {
-			language = newLanguage
+		if demo() {
+			completion(false, nil, nil, localized("demo_mode_delete_activity_log"))
+		} else {
+			shouldNotifyAboutInternetConnection = alertAboutInternet
+			completionBlock = completion
+			var language = "en"
+			if let newLanguage = BundleLocalization.sharedInstance().language {
+				language = newLanguage
+			}
+			var additionalParameters = "language=\(language)"
+			if social() {
+				additionalParameters = "\(additionalParameters)&is_social=yes"
+			}
+			startConnectionWithRequest(createDeleteRequest("\(deleteActivityLogPath)?student_id=\(dataManager.currentStudent!.id)&log_id=\(logID)&\(additionalParameters)", withAuthorizationHeader: true))
 		}
-		var additionalParameters = "language=\(language)"
-		if social() {
-			additionalParameters = "\(additionalParameters)&is_social=yes"
-		}
-		startConnectionWithRequest(createDeleteRequest("\(deleteActivityLogPath)?student_id=\(dataManager.currentStudent!.id)&log_id=\(logID)&\(additionalParameters)", withAuthorizationHeader: true))
 	}
 	
 	func getTargets(_ myID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -940,44 +988,52 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 	}
 	
 	func addTarget(_ myID:String, target:Target, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
-		shouldNotifyAboutInternetConnection = alertAboutInternet
-		completionBlock = completion
-		var dictionary = target.dictionaryRepresentation()
-		dictionary["student_id"] = myID
-		var language = "en"
-		if let newLanguage = BundleLocalization.sharedInstance().language {
-			language = newLanguage
+		if demo() {
+			completion(false, nil, nil, localized("demo_mode_add_target"))
+		} else {
+			shouldNotifyAboutInternetConnection = alertAboutInternet
+			completionBlock = completion
+			var dictionary = target.dictionaryRepresentation()
+			dictionary["student_id"] = myID
+			var language = "en"
+			if let newLanguage = BundleLocalization.sharedInstance().language {
+				language = newLanguage
+			}
+			dictionary["language"] = language
+			if social() {
+				dictionary["is_social"] = "yes"
+			}
+			startConnectionWithRequest(createPostRequest(addTargetPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 		}
-		dictionary["language"] = language
-		if social() {
-			dictionary["is_social"] = "yes"
-		}
-		startConnectionWithRequest(createPostRequest(addTargetPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
 	func editTarget(_ target:Target, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
-		shouldNotifyAboutInternetConnection = alertAboutInternet
-		completionBlock = completion
-		var dictionary = [String:String]()
-		dictionary["student_id"] = dataManager.currentStudent!.id
-		dictionary["target_id"] = target.id
-		dictionary["total_time"] = "\(target.totalTime)"
-		dictionary["time_span"] = target.timeSpan
-		if (target.module != nil) {
-			dictionary["module"] = target.module!.id
+		if demo() {
+			completion(false, nil, nil, localized("demo_mode_edit_target"))
+		} else {
+			shouldNotifyAboutInternetConnection = alertAboutInternet
+			completionBlock = completion
+			var dictionary = [String:String]()
+			dictionary["student_id"] = dataManager.currentStudent!.id
+			dictionary["target_id"] = target.id
+			dictionary["total_time"] = "\(target.totalTime)"
+			dictionary["time_span"] = target.timeSpan
+			if (target.module != nil) {
+				dictionary["module"] = target.module!.id
+			}
+			if (!target.because.isEmpty) {
+				dictionary["because"] = target.because
+			}
+			var language = "en"
+			if let newLanguage = BundleLocalization.sharedInstance().language {
+				language = newLanguage
+			}
+			dictionary["language"] = language
+			if social() {
+				dictionary["is_social"] = "yes"
+			}
+			startConnectionWithRequest(createPutRequest(editTargetPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 		}
-		if (!target.because.isEmpty) {
-			dictionary["because"] = target.because
-		}
-		var language = "en"
-		if let newLanguage = BundleLocalization.sharedInstance().language {
-			language = newLanguage
-		}
-		dictionary["language"] = language
-		if social() {
-			dictionary["is_social"] = "yes"
-		}
-		startConnectionWithRequest(createPutRequest(editTargetPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
 	func viewTargetDetails(_ targetID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -995,19 +1051,23 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 	}
 	
 	func deleteTarget(_ targetID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
-		shouldNotifyAboutInternetConnection = alertAboutInternet
-		completionBlock = completion
-		var dictionary = ["target_id":targetID]
-		dictionary["student_id"] = dataManager.currentStudent!.id
-		var language = "en"
-		if let newLanguage = BundleLocalization.sharedInstance().language {
-			language = newLanguage
+		if demo() {
+			completion(false, nil, nil, localized("demo_mode_delete_target"))
+		} else {
+			shouldNotifyAboutInternetConnection = alertAboutInternet
+			completionBlock = completion
+			var dictionary = ["target_id":targetID]
+			dictionary["student_id"] = dataManager.currentStudent!.id
+			var language = "en"
+			if let newLanguage = BundleLocalization.sharedInstance().language {
+				language = newLanguage
+			}
+			dictionary["language"] = language
+			if social() {
+				dictionary["is_social"] = "yes"
+			}
+			startConnectionWithRequest(createPutRequest(deleteTargetPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 		}
-		dictionary["language"] = language
-		if social() {
-			dictionary["is_social"] = "yes"
-		}
-		startConnectionWithRequest(createPutRequest(deleteTargetPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
 	func checkTargetCompletionStatus(_ targetID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -1041,39 +1101,47 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 	}
 	
 	func addStretchTarget(_ targetID:String, stretchTimeInMinutes:Int, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
-		shouldNotifyAboutInternetConnection = alertAboutInternet
-		completionBlock = completion
-		var dictionary = [String:String]()
-		dictionary["target_id"] = targetID
-		dictionary["student_id"] = dataManager.currentStudent!.id
-		dictionary["stretch_time"] = "\(stretchTimeInMinutes)"
-		var language = "en"
-		if let newLanguage = BundleLocalization.sharedInstance().language {
-			language = newLanguage
+		if demo() {
+			completion(false, nil, nil, localized("demo_mode_add_target"))
+		} else {
+			shouldNotifyAboutInternetConnection = alertAboutInternet
+			completionBlock = completion
+			var dictionary = [String:String]()
+			dictionary["target_id"] = targetID
+			dictionary["student_id"] = dataManager.currentStudent!.id
+			dictionary["stretch_time"] = "\(stretchTimeInMinutes)"
+			var language = "en"
+			if let newLanguage = BundleLocalization.sharedInstance().language {
+				language = newLanguage
+			}
+			dictionary["language"] = language
+			if social() {
+				dictionary["is_social"] = "yes"
+			}
+			startConnectionWithRequest(createPostRequest(addStretchTargetPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 		}
-		dictionary["language"] = language
-		if social() {
-			dictionary["is_social"] = "yes"
-		}
-		startConnectionWithRequest(createPostRequest(addStretchTargetPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
 	func editStretchTarget(_ stretchTargetID:String, stretchTimeInMinutes:Int, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
-		shouldNotifyAboutInternetConnection = alertAboutInternet
-		completionBlock = completion
-		var dictionary = [String:String]()
-		dictionary["stretch_target_id"] = stretchTargetID
-		dictionary["student_id"] = dataManager.currentStudent!.id
-		dictionary["stretch_time"] = "\(stretchTimeInMinutes)"
-		var language = "en"
-		if let newLanguage = BundleLocalization.sharedInstance().language {
-			language = newLanguage
+		if demo() {
+			completion(false, nil, nil, localized("demo_mode_edit_target"))
+		} else {
+			shouldNotifyAboutInternetConnection = alertAboutInternet
+			completionBlock = completion
+			var dictionary = [String:String]()
+			dictionary["stretch_target_id"] = stretchTargetID
+			dictionary["student_id"] = dataManager.currentStudent!.id
+			dictionary["stretch_time"] = "\(stretchTimeInMinutes)"
+			var language = "en"
+			if let newLanguage = BundleLocalization.sharedInstance().language {
+				language = newLanguage
+			}
+			dictionary["language"] = language
+			if social() {
+				dictionary["is_social"] = "yes"
+			}
+			startConnectionWithRequest(createPutRequest(editStretchTargetPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 		}
-		dictionary["language"] = language
-		if social() {
-			dictionary["is_social"] = "yes"
-		}
-		startConnectionWithRequest(createPutRequest(editStretchTargetPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
 	func viewStretchTarget(_ stretchTargetID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -1091,37 +1159,45 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 	}
 	
 	func deleteStretchTarget(_ stretchTargetID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
-		shouldNotifyAboutInternetConnection = alertAboutInternet
-		completionBlock = completion
-		var dictionary = [String:String]()
-		dictionary["stretch_target_id"] = stretchTargetID
-		dictionary["student_id"] = dataManager.currentStudent!.id
-		var language = "en"
-		if let newLanguage = BundleLocalization.sharedInstance().language {
-			language = newLanguage
+		if demo() {
+			completion(false, nil, nil, localized("demo_mode_delete_target"))
+		} else {
+			shouldNotifyAboutInternetConnection = alertAboutInternet
+			completionBlock = completion
+			var dictionary = [String:String]()
+			dictionary["stretch_target_id"] = stretchTargetID
+			dictionary["student_id"] = dataManager.currentStudent!.id
+			var language = "en"
+			if let newLanguage = BundleLocalization.sharedInstance().language {
+				language = newLanguage
+			}
+			dictionary["language"] = language
+			if social() {
+				dictionary["is_social"] = "yes"
+			}
+			startConnectionWithRequest(createPutRequest(deleteStretchTargetPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 		}
-		dictionary["language"] = language
-		if social() {
-			dictionary["is_social"] = "yes"
-		}
-		startConnectionWithRequest(createPutRequest(deleteStretchTargetPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
 	func completeStretchTarget(_ stretchTargetID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
-		shouldNotifyAboutInternetConnection = alertAboutInternet
-		completionBlock = completion
-		var dictionary = [String:String]()
-		dictionary["stretch_target_id"] = stretchTargetID
-		dictionary["student_id"] = dataManager.currentStudent!.id
-		var language = "en"
-		if let newLanguage = BundleLocalization.sharedInstance().language {
-			language = newLanguage
+		if demo() {
+			completion(false, nil, nil, localized("demo_mode_add_target"))
+		} else {
+			shouldNotifyAboutInternetConnection = alertAboutInternet
+			completionBlock = completion
+			var dictionary = [String:String]()
+			dictionary["stretch_target_id"] = stretchTargetID
+			dictionary["student_id"] = dataManager.currentStudent!.id
+			var language = "en"
+			if let newLanguage = BundleLocalization.sharedInstance().language {
+				language = newLanguage
+			}
+			dictionary["language"] = language
+			if social() {
+				dictionary["is_social"] = "yes"
+			}
+			startConnectionWithRequest(createPutRequest(completeStretchTargetPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 		}
-		dictionary["language"] = language
-		if social() {
-			dictionary["is_social"] = "yes"
-		}
-		startConnectionWithRequest(createPutRequest(completeStretchTargetPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
 	func getTrophies(_ alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
@@ -1167,20 +1243,24 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 	}
 	
 	func postFeedMessage(_ myID:String, message:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
-		shouldNotifyAboutInternetConnection = alertAboutInternet
-		completionBlock = completion
-		var dictionary = [String:String]()
-		dictionary["student_id"] = myID
-		dictionary["message"] = message
-		var language = "en"
-		if let newLanguage = BundleLocalization.sharedInstance().language {
-			language = newLanguage
+		if demo() {
+			completion(false, nil, nil, localized("demo_mode_post_message"))
+		} else {
+			shouldNotifyAboutInternetConnection = alertAboutInternet
+			completionBlock = completion
+			var dictionary = [String:String]()
+			dictionary["student_id"] = myID
+			dictionary["message"] = message
+			var language = "en"
+			if let newLanguage = BundleLocalization.sharedInstance().language {
+				language = newLanguage
+			}
+			dictionary["language"] = language
+			if social() {
+				dictionary["is_social"] = "yes"
+			}
+			startConnectionWithRequest(createPostRequest(postFeedMessagePath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 		}
-		dictionary["language"] = language
-		if social() {
-			dictionary["is_social"] = "yes"
-		}
-		startConnectionWithRequest(createPostRequest(postFeedMessagePath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 	
 	func deleteFeed(_ feedID:String, myID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
