@@ -492,13 +492,25 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 									return sorted
 								})
 								let studentID = stringFromDictionary(dictionary, key: "STUDENT_ID")
-								if studentID.contains(dataManager.currentStudent!.jisc_id) {
-									for (index, item) in keys.enumerated() {
-										myValues![index] = doubleFromDictionary(values, key: item)
+								if demo() {
+									if studentID.lowercased() == "demouser" {
+										for (index, item) in keys.enumerated() {
+											myValues![index] = doubleFromDictionary(values, key: item)
+										}
+									} else {
+										for (index, item) in keys.enumerated() {
+											otherStudentValues![index] = doubleFromDictionary(values, key: item)
+										}
 									}
 								} else {
-									for (index, item) in keys.enumerated() {
-										otherStudentValues![index] = doubleFromDictionary(values, key: item)
+									if studentID.contains(dataManager.currentStudent!.jisc_id) {
+										for (index, item) in keys.enumerated() {
+											myValues![index] = doubleFromDictionary(values, key: item)
+										}
+									} else {
+										for (index, item) in keys.enumerated() {
+											otherStudentValues![index] = doubleFromDictionary(values, key: item)
+										}
 									}
 								}
 							}
@@ -530,33 +542,67 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 					for (_, dictionary) in results.enumerated() {
 						if let values = dictionary["VALUES"] as? NSDictionary {
 							let studentID = stringFromDictionary(dictionary, key: "STUDENT_ID")
-							if studentID.contains(dataManager.currentStudent!.jisc_id) {
-								if let keys = values.allKeys as? [String] {
-									for (_, item) in keys.enumerated() {
-										let absValue = abs((item as NSString).integerValue)
-										if (absValue < 7) {
-											myValues![3] = myValues![3] + doubleFromDictionary(values, key: item)
-										} else if (absValue < 14) {
-											myValues![2] = myValues![2] + doubleFromDictionary(values, key: item)
-										} else if (absValue < 21) {
-											myValues![1] = myValues![1] + doubleFromDictionary(values, key: item)
-										} else {
-											myValues![0] = myValues![0] + doubleFromDictionary(values, key: item)
+							if demo() {
+								if studentID.lowercased() == "demouser" {
+									if let keys = values.allKeys as? [String] {
+										for (_, item) in keys.enumerated() {
+											let absValue = abs((item as NSString).integerValue)
+											if (absValue < 7) {
+												myValues![3] = myValues![3] + doubleFromDictionary(values, key: item)
+											} else if (absValue < 14) {
+												myValues![2] = myValues![2] + doubleFromDictionary(values, key: item)
+											} else if (absValue < 21) {
+												myValues![1] = myValues![1] + doubleFromDictionary(values, key: item)
+											} else {
+												myValues![0] = myValues![0] + doubleFromDictionary(values, key: item)
+											}
+										}
+									}
+								} else {
+									if let keys = values.allKeys as? [String] {
+										for (_, item) in keys.enumerated() {
+											let absValue = abs((item as NSString).integerValue)
+											if (absValue < 7) {
+												otherStudentValues![3] = otherStudentValues![3] + doubleFromDictionary(values, key: item)
+											} else if (absValue < 14) {
+												otherStudentValues![2] = otherStudentValues![2] + doubleFromDictionary(values, key: item)
+											} else if (absValue < 21) {
+												otherStudentValues![1] = otherStudentValues![1] + doubleFromDictionary(values, key: item)
+											} else {
+												otherStudentValues![0] = otherStudentValues![0] + doubleFromDictionary(values, key: item)
+											}
 										}
 									}
 								}
 							} else {
-								if let keys = values.allKeys as? [String] {
-									for (_, item) in keys.enumerated() {
-										let absValue = abs((item as NSString).integerValue)
-										if (absValue < 7) {
-											otherStudentValues![3] = otherStudentValues![3] + doubleFromDictionary(values, key: item)
-										} else if (absValue < 14) {
-											otherStudentValues![2] = otherStudentValues![2] + doubleFromDictionary(values, key: item)
-										} else if (absValue < 21) {
-											otherStudentValues![1] = otherStudentValues![1] + doubleFromDictionary(values, key: item)
-										} else {
-											otherStudentValues![0] = otherStudentValues![0] + doubleFromDictionary(values, key: item)
+								if studentID.contains(dataManager.currentStudent!.jisc_id) {
+									if let keys = values.allKeys as? [String] {
+										for (_, item) in keys.enumerated() {
+											let absValue = abs((item as NSString).integerValue)
+											if (absValue < 7) {
+												myValues![3] = myValues![3] + doubleFromDictionary(values, key: item)
+											} else if (absValue < 14) {
+												myValues![2] = myValues![2] + doubleFromDictionary(values, key: item)
+											} else if (absValue < 21) {
+												myValues![1] = myValues![1] + doubleFromDictionary(values, key: item)
+											} else {
+												myValues![0] = myValues![0] + doubleFromDictionary(values, key: item)
+											}
+										}
+									}
+								} else {
+									if let keys = values.allKeys as? [String] {
+										for (_, item) in keys.enumerated() {
+											let absValue = abs((item as NSString).integerValue)
+											if (absValue < 7) {
+												otherStudentValues![3] = otherStudentValues![3] + doubleFromDictionary(values, key: item)
+											} else if (absValue < 14) {
+												otherStudentValues![2] = otherStudentValues![2] + doubleFromDictionary(values, key: item)
+											} else if (absValue < 21) {
+												otherStudentValues![1] = otherStudentValues![1] + doubleFromDictionary(values, key: item)
+											} else {
+												otherStudentValues![0] = otherStudentValues![0] + doubleFromDictionary(values, key: item)
+											}
 										}
 									}
 								}
