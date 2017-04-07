@@ -399,4 +399,5 @@
 "demo_mode_edit_target" = "You can't edit targets in demo mode";
 "demo_mode_delete_target" = "Targets can't be deleted in demo mode.";
 "demo_mode_change_app_settings" = "Demo mode only. You can't change the settings.";
+"demo_mode_change_profile_photo" = "You can't update your profile image in demo mode.";
 "demo" = "Demo";
