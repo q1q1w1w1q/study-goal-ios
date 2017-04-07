@@ -839,13 +839,16 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 		graphScroll.setContentOffset(graphScroll.contentOffset, animated: false)
 		var array:[String] = [String]()
 		array.append(localized("all_activity"))
+		var centeredIndexes = [Int]()
 		for (_, item) in dataManager.courses().enumerated() {
+			centeredIndexes.append(array.count)
 			array.append(item.name)
 		}
 		for (_, item) in dataManager.modules().enumerated() {
 			array.append(" - \(item.name)")
 		}
 		moduleSelectorView = CustomPickerView.create(localized("filter"), delegate: self, contentArray: array, selectedItem: selectedModule)
+		moduleSelectorView.centerIndexes = centeredIndexes
 		view.addSubview(moduleSelectorView)
 	}
 	
