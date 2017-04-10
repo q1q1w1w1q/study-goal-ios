@@ -58,6 +58,11 @@
 		DA46D97D1BF2482400AA1476 /* ActivityLog+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA46D9761BF2482400AA1476 /* ActivityLog+CoreDataProperties.swift */; };
 		DA593A661C479E9B00C68513 /* ActivityTypesIcons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA593A651C479E9B00C68513 /* ActivityTypesIcons.xcassets */; };
 		DA593A681C47A03300C68513 /* ActivityTypesIconsBig.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA593A671C47A03300C68513 /* ActivityTypesIconsBig.xcassets */; };
+		DA593EC11E97986C00B54909 /* BarChartHTMLCompare in Resources */ = {isa = PBXBuildFile; fileRef = DA593EC01E97986C00B54909 /* BarChartHTMLCompare */; };
+		DA593EC61E979B0B00B54909 /* ChartHTMLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA593EC51E979B0B00B54909 /* ChartHTMLManager.swift */; };
+		DA593EC81E97A29900B54909 /* BarChartHTMLSimple in Resources */ = {isa = PBXBuildFile; fileRef = DA593EC71E97A29900B54909 /* BarChartHTMLSimple */; };
+		DA593ECB1E97A2BD00B54909 /* LineChartHTMLCompare in Resources */ = {isa = PBXBuildFile; fileRef = DA593EC91E97A2BD00B54909 /* LineChartHTMLCompare */; };
+		DA593ECC1E97A2BD00B54909 /* LineChartHTMLSimple in Resources */ = {isa = PBXBuildFile; fileRef = DA593ECA1E97A2BD00B54909 /* LineChartHTMLSimple */; };
 		DA6CFB041BE119EB004A5FB0 /* NewTargetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6CFB021BE119EA004A5FB0 /* NewTargetVC.swift */; };
 		DA6CFB081BE11A85004A5FB0 /* TargetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6CFB061BE11A85004A5FB0 /* TargetCell.swift */; };
 		DA6CFB091BE11A85004A5FB0 /* TargetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA6CFB071BE11A85004A5FB0 /* TargetCell.xib */; };
@@ -327,6 +332,11 @@
 		DA4BF0561E8BFCE400DDE9F7 /* Jisc3.4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jisc3.4.xcdatamodel; sourceTree = "<group>"; };
 		DA593A651C479E9B00C68513 /* ActivityTypesIcons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ActivityTypesIcons.xcassets; sourceTree = "<group>"; };
 		DA593A671C47A03300C68513 /* ActivityTypesIconsBig.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ActivityTypesIconsBig.xcassets; sourceTree = "<group>"; };
+		DA593EC01E97986C00B54909 /* BarChartHTMLCompare */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BarChartHTMLCompare; sourceTree = "<group>"; };
+		DA593EC51E979B0B00B54909 /* ChartHTMLManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartHTMLManager.swift; sourceTree = "<group>"; };
+		DA593EC71E97A29900B54909 /* BarChartHTMLSimple */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BarChartHTMLSimple; sourceTree = "<group>"; };
+		DA593EC91E97A2BD00B54909 /* LineChartHTMLCompare */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LineChartHTMLCompare; sourceTree = "<group>"; };
+		DA593ECA1E97A2BD00B54909 /* LineChartHTMLSimple */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LineChartHTMLSimple; sourceTree = "<group>"; };
 		DA6CFB021BE119EA004A5FB0 /* NewTargetVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTargetVC.swift; sourceTree = "<group>"; };
 		DA6CFB061BE11A85004A5FB0 /* TargetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetCell.swift; sourceTree = "<group>"; };
 		DA6CFB071BE11A85004A5FB0 /* TargetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TargetCell.xib; sourceTree = "<group>"; };
@@ -948,6 +958,11 @@
 				DAFC711D1BDFE33700A06C9A /* AttainmentCell.swift */,
 				DAB0C8091C4CE96400F7A3C6 /* AttainmentCell.xib */,
 				DA868B161BE79C0E00032225 /* EngagementGraphVC.swift */,
+				DA593EC51E979B0B00B54909 /* ChartHTMLManager.swift */,
+				DA593EC71E97A29900B54909 /* BarChartHTMLSimple */,
+				DA593EC01E97986C00B54909 /* BarChartHTMLCompare */,
+				DA593ECA1E97A2BD00B54909 /* LineChartHTMLSimple */,
+				DA593EC91E97A2BD00B54909 /* LineChartHTMLCompare */,
 				DAD8BD6E1DB8BC08004F21DE /* BarGraph */,
 			);
 			name = Common;
@@ -1314,6 +1329,7 @@
 				DAD66C9C1C52745500074B79 /* LoginVC~ipad.xib in Resources */,
 				DAB0C8551C4CEA6600F7A3C6 /* ActivityDetailsVC.xib in Resources */,
 				DA593A661C479E9B00C68513 /* ActivityTypesIcons.xcassets in Resources */,
+				DA593ECC1E97A2BD00B54909 /* LineChartHTMLSimple in Resources */,
 				DAD66C6F1C52336400074B79 /* TrophiesSilverBig.xcassets in Resources */,
 				DA6CFB091BE11A85004A5FB0 /* TargetCell.xib in Resources */,
 				DAD8BD781DB8BD46004F21DE /* SingleBarView.xib in Resources */,
@@ -1332,8 +1348,11 @@
 				DAB0C8791C4CEAE700F7A3C6 /* TargetDetailsVC.xib in Resources */,
 				DAB0C82B1C4CE9DB00F7A3C6 /* LogVC~ipad.xib in Resources */,
 				DAB0C8371C4CE9FF00F7A3C6 /* NewActivityVC~ipad.xib in Resources */,
+				DA593EC11E97986C00B54909 /* BarChartHTMLCompare in Resources */,
 				DAB0C8011C4CE94F00F7A3C6 /* StatsVC~ipad.xib in Resources */,
+				DA593EC81E97A29900B54909 /* BarChartHTMLSimple in Resources */,
 				DA11B6AD1E7164E600F823B8 /* CheckinVC.xib in Resources */,
+				DA593ECB1E97A2BD00B54909 /* LineChartHTMLCompare in Resources */,
 				DA3F7B871C996B9B00E15678 /* ConsentVC.xib in Resources */,
 				DAB0C7EF1C4CE91A00F7A3C6 /* NewRequestCell.xib in Resources */,
 				DABB0CC51C59FED5001A291D /* SingleTargetDetailsView.xib in Resources */,
@@ -1515,6 +1534,7 @@
 				DA46D96A1BF1F9E900AA1476 /* Target.swift in Sources */,
 				DA46D97D1BF2482400AA1476 /* ActivityLog+CoreDataProperties.swift in Sources */,
 				DAB0C8E91C4D20DF00F7A3C6 /* NSBundle+Localization.m in Sources */,
+				DA593EC61E979B0B00B54909 /* ChartHTMLManager.swift in Sources */,
 				DAD644E01C623FFD00AA62E8 /* LocalizableView.swift in Sources */,
 				DA425AB51BD5116D00C77D76 /* LoginVC.swift in Sources */,
 				DAD4C8241BF4E78E001C4435 /* Colleague.swift in Sources */,
