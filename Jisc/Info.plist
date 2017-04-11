@@ -78,6 +78,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>We need access to your camera in order to give you the ability to update your profile photo</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We need access to your location for the checkin functionality</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We need access to your photo library in order to give you the ability to update your profile photo</string>
 	<key>UILaunchStoryboardName</key>

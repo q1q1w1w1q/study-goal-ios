@@ -7,17 +7,34 @@
 //
 
 import UIKit
+import CoreLocation
 
-class CheckinVC: BaseViewController {
+class CheckinVC: BaseViewController, CLLocationManagerDelegate {
 	
 	@IBOutlet weak var entryField:UILabel!
 	var currentPin = ""
+	let locationManager = CLLocationManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 		entryField.adjustsFontSizeToFitWidth = true
 		entryField.text = currentPin
+		locationManager.delegate = self
     }
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		CLLocationManager.authorizationStatus()
+		if (!CLLocationManager.locationServicesEnabled()) {
+			let alert = UIAlertController(title: "Sorry", message: "Location services are disabled on this device", preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+			navigationController?.present(alert, animated: true, completion: nil)
+		} else if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.notDetermined) {
+			locationManager.requestWhenInUseAuthorization()
+		} else if ((CLLocationManager.authorizationStatus() == CLAuthorizationStatus.denied) || (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.restricted)) {
+			UIApplication.shared.openURL(URL(string:UIApplicationOpenSettingsURLString)!)
+		}
+	}
 
 	@IBAction func digit(_ sender:UIButton) {
 		currentPin = currentPin + "\(sender.tag)"
@@ -96,5 +113,13 @@ class CheckinVC: BaseViewController {
 	@IBAction func settings(_ sender:UIButton) {
 		let vc = SettingsVC()
 		navigationController?.pushViewController(vc, animated: true)
+	}
+	
+	//MARK: - Location
+	
+	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+		if let location = locations.first {
+			
+		}
 	}
 }
