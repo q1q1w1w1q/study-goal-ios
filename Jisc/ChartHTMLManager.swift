@@ -15,6 +15,7 @@ let kMyValuesKey = "_my_values_"
 let kOtherNameKey = "_other_name_"
 let kOtherValuesKey = "_other_values_"
 let kColumnNamesKey = "_column_names_"
+let kYValueKey = "_y_value_"
 
 class ChartHTMLManager {
 	
@@ -86,4 +87,29 @@ class ChartHTMLManager {
 		return lineChartHTMLString
 	}
 	
+	class func simpleTargetChartWithPercentage(_ percentage:Double, graphWidth:CGFloat, graphHeight:CGFloat) -> String {
+		var targetChartHTMLString = ""
+		if let path = Bundle.main.path(forResource: "TargetGraphSimple", ofType: "") {
+			do {
+				try targetChartHTMLString = String(contentsOfFile: path)
+			} catch {}
+		}
+		targetChartHTMLString = targetChartHTMLString.replacingOccurrences(of: kYValueKey, with: "\(percentage)")
+		targetChartHTMLString = targetChartHTMLString.replacingOccurrences(of: kGraphWidthKey, with: "\(graphWidth)")
+		targetChartHTMLString = targetChartHTMLString.replacingOccurrences(of: kGraphHeightKey, with: "\(graphHeight)")
+		return targetChartHTMLString
+	}
+	
+	class func stretchTargetChartWithPercentage(_ percentage:Double, graphWidth:CGFloat, graphHeight:CGFloat) -> String {
+		var targetChartHTMLString = ""
+		if let path = Bundle.main.path(forResource: "TargetGraphStretch", ofType: "") {
+			do {
+				try targetChartHTMLString = String(contentsOfFile: path)
+			} catch {}
+		}
+		targetChartHTMLString = targetChartHTMLString.replacingOccurrences(of: kYValueKey, with: "\(percentage)")
+		targetChartHTMLString = targetChartHTMLString.replacingOccurrences(of: kGraphWidthKey, with: "\(graphWidth)")
+		targetChartHTMLString = targetChartHTMLString.replacingOccurrences(of: kGraphHeightKey, with: "\(graphHeight)")
+		return targetChartHTMLString
+	}
 }
