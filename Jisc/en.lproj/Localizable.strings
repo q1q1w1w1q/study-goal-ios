@@ -402,3 +402,7 @@
 "demo_mode_delete_feed" = "Demo mode only. You can't delete posts.";
 "demo_mode_change_picture" = "You can't update your profile image in demo mode.";
 "demo" = "Demo";
+"turn_location_on" = "Please turn location services on to register";
+"not_now" = "Not now";
+"take_me_to_settings" = "Take me to settings";
+"turn_location_off" = "Would you like to turn location services back off?";
