@@ -334,15 +334,20 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 		} catch let error as NSError {
 			print("filter institutions error: \(error.localizedDescription)")
 		}
-		var socialIndex = -1
+		removeInstitutionWithName("Social")
+		removeInstitutionWithName("Demo")
+	}
+	
+	func removeInstitutionWithName(_ name:String) {
+		var institutionIndex = -1
 		for (index, item) in filteredInstitutions.enumerated() {
-			if item.name == "Social" {
-				socialIndex = index
+			if item.name.lowercased() == name.lowercased() {
+				institutionIndex = index
 				break
 			}
 		}
-		if socialIndex >= 0 {
-			filteredInstitutions.remove(at: socialIndex)
+		if institutionIndex >= 0 {
+			filteredInstitutions.remove(at: institutionIndex)
 		}
 	}
 	
