@@ -18,13 +18,17 @@ class AlertView: UIView {
 	@IBOutlet weak var titleLabel:UILabel!
 	
 	class func showAlert(_ success:Bool, message:String, completion: ((Bool) -> Void)?) {
+		var displayedMessage = message
+		if !success && message.isEmpty {
+			displayedMessage = kDefaultFailureReason
+		}
 		let view:AlertView = Bundle.main.loadNibNamed("AlertView", owner: nil, options: nil)!.first as! AlertView
 		if (success) {
 			view.iconImage.image = UIImage(named: "alertCheckmark")
 		} else {
 			view.iconImage.image = UIImage(named: "alertFailmark")
 		}
-		view.titleLabel.text = message
+		view.titleLabel.text = displayedMessage
 		view.frame = UIScreen.main.bounds
 		view.alpha = 0
 		DELEGATE.window?.addSubview(view)

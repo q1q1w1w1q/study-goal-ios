@@ -453,8 +453,8 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 	
 	@IBAction func showSourceSelector(_ sender:UIButton) {
 		if demo() {
-			let alert = UIAlertController(title: "", message: localized("demo_mode_change_profile_photo"), preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
+			let alert = UIAlertController(title: "", message: localized("demo_mode_change_picture"), preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: localized("ok"), style: .default, handler: nil))
 			navigationController?.present(alert, animated: true, completion: nil)
 		} else {
 			var array:[String] = [String]()
@@ -600,7 +600,7 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 			let theCell:TrophiesCelliPad? = cell as? TrophiesCelliPad
 			if (theCell != nil) {
 				theCell?.parent = self
-				let leftIndex = (indexPath as NSIndexPath).row * 4
+				let leftIndex = indexPath.row * 4
 				let middleLeftIndex = leftIndex + 1
 				let middleRightIndex = middleLeftIndex + 1
 				let rightIndex = middleRightIndex + 1
@@ -629,7 +629,7 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 			let theCell:TrophiesCelliPad? = cell as? TrophiesCelliPad
 			if (theCell != nil) {
 				theCell?.parent = self
-				let leftIndex = (indexPath as NSIndexPath).row * 4
+				let leftIndex = indexPath.row * 4
 				var leftTotal:Int = 0
 				let middleLeftIndex = leftIndex + 1
 				var middleLeftTotal:Int = 0

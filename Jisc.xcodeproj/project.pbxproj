@@ -324,6 +324,7 @@
 		DA46D9751BF2482400AA1476 /* Target+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Target+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DA46D9761BF2482400AA1476 /* ActivityLog+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ActivityLog+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DA46D97E1BF24CC500AA1476 /* Jisc1.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jisc1.2.xcdatamodel; sourceTree = "<group>"; };
+		DA4BF0561E8BFCE400DDE9F7 /* Jisc3.4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jisc3.4.xcdatamodel; sourceTree = "<group>"; };
 		DA593A651C479E9B00C68513 /* ActivityTypesIcons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ActivityTypesIcons.xcassets; sourceTree = "<group>"; };
 		DA593A671C47A03300C68513 /* ActivityTypesIconsBig.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ActivityTypesIconsBig.xcassets; sourceTree = "<group>"; };
 		DA6CFB021BE119EA004A5FB0 /* NewTargetVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTargetVC.swift; sourceTree = "<group>"; };
@@ -1226,7 +1227,7 @@
 				TargetAttributes = {
 					DAA2AEA21BCE785900ED796A = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = JG53BNN66L;
+						DevelopmentTeam = R48Q33464V;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Manual;
 					};
@@ -1951,8 +1952,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Marcel Chirila (L9YM46QZF6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Marcel Chirila (L9YM46QZF6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Marcel Chirila (8J95YKX7C3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Marcel Chirila (8J95YKX7C3)";
 				DEVELOPMENT_TEAM = R48Q33464V;
 				INFOPLIST_FILE = Jisc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -2018,6 +2019,7 @@
 		DAA2AEAD1BCE785900ED796A /* Jisc.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				DA4BF0561E8BFCE400DDE9F7 /* Jisc3.4.xcdatamodel */,
 				DA1A43751E72981900917437 /* Jisc3.3.xcdatamodel */,
 				DA9D2CB11DA29AB400C842B4 /* Jisc3.2.xcdatamodel */,
 				DA9D2CAD1DA299A500C842B4 /* Jisc3.1.xcdatamodel */,
@@ -2043,7 +2045,7 @@
 				DA46D96F1BF2444B00AA1476 /* Jisc1.1.xcdatamodel */,
 				DAA2AEAE1BCE785900ED796A /* Jisc.xcdatamodel */,
 			);
-			currentVersion = DA1A43751E72981900917437 /* Jisc3.3.xcdatamodel */;
+			currentVersion = DA4BF0561E8BFCE400DDE9F7 /* Jisc3.4.xcdatamodel */;
 			path = Jisc.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

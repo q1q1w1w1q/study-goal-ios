@@ -49,7 +49,7 @@ class MyFriendsVC: BaseViewController, UITableViewDataSource, UITableViewDelegat
 		let theCell:OneFriendCell? = cell as? OneFriendCell
 		if (theCell != nil) {
 			theCell!.tableView = tableView
-			theCell!.loadFriend(dataManager.friends()[(indexPath as NSIndexPath).row])
+			theCell!.loadFriend(dataManager.friends()[indexPath.row])
 		}
 	}
 }

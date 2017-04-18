@@ -322,10 +322,12 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
 		closeCellOptions()
 		if (theTarget != nil) {
 			dataManager.deleteTarget(theTarget!) { (success, failureReason) -> Void in
-				self.navigationController?.popViewController(animated: true)
-				AlertView.showAlert(true, message: localized("target_deleted_successfully"), completion: nil)
+				if success {
+					_ = self.navigationController?.popViewController(animated: true)
+					AlertView.showAlert(true, message: localized("target_deleted_successfully"), completion: nil)
+					dataManager.deleteObject(self.theTarget!)
+				}
 			}
-			dataManager.deleteObject(theTarget!)
 		}
 	}
 	

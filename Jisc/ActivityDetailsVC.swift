@@ -249,11 +249,11 @@ class ActivityDetailsVC: BaseViewController, UITableViewDataSource, UITableViewD
 		if (theCell != nil) {
 			switch (tableView) {
 			case availableTrophiesTable:
-				let trophy = availableTrophies()[(indexPath as NSIndexPath).row]
+				let trophy = availableTrophies()[indexPath.row]
 				theCell!.loadTrophy(trophy)
 				break
 			case myTrophiesTable:
-				let trophy = myTrophies()[(indexPath as NSIndexPath).row]
+				let trophy = myTrophies()[indexPath.row]
 				theCell!.loadTrophy(trophy)
 				break
 			default:break

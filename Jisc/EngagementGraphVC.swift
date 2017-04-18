@@ -48,17 +48,17 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 	
 	var friendsInModule = [Friend]()
 	var graphValues:(me:[Double]?, myMax:Double, otherStudent:[Double]?, otherStudentMax:Double, columnNames:[String]?)? = nil
-	var graphType = GraphType.Line
+	var graphType = GraphType.Bar
 	@IBOutlet weak var graphToggleButton:UIButton!
 	@IBOutlet weak var compareToView:UIView!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		scrollIndicator.alpha = 0.0
-		if staff() {
+//		if staff() {
 			graphType = GraphType.Bar
 			graphToggleButton.isSelected = true
-		}
+//		}
 		compareToView.alpha = 0.5
 		compareToView.isUserInteractionEnabled = false
 		let today = todayNumber()

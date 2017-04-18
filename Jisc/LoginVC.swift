@@ -573,10 +573,10 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 			nvc.isNavigationBarHidden = true
 			navigationController?.present(nvc, animated: true, completion: nil)
 		} else {
-			let selectedInstituteObject = filteredInstitutions[(indexPath as NSIndexPath).row]
+			let selectedInstituteObject = filteredInstitutions[indexPath.row]
 			chosenInstitutionLabel.text = selectedInstituteObject.name
 			chosenInstitutionLabel.textColor = UIColor.black
-			selectedInstitute = (indexPath as NSIndexPath).row
+			selectedInstitute = indexPath.row
 			view.layoutIfNeeded()
 			closeInstitutesSelector(UIButton())
 			dataManager.pickedInstitution = selectedInstituteObject
