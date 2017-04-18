@@ -111,9 +111,9 @@ class CustomPickerView: UIView, UITableViewDataSource, UITableViewDelegate {
 	@IBAction func closePickerView(_ sender:UIButton) {
 		UIView.animate(withDuration: 0.25, animations: { () -> Void in
 			self.alpha = 0.0
-			}, completion: { (done) -> Void in
-				self.removeFromSuperview()
-		}) 
+		}, completion: { (done) -> Void in
+			self.removeFromSuperview()
+		})
 	}
 	
 	//MARK: UITableView Datasource
