@@ -23,6 +23,28 @@ class CheckinVC: BaseViewController, CLLocationManagerDelegate {
 		entryField.text = currentPin
 		locationManager.delegate = self
     }
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		CLLocationManager.authorizationStatus()
+		var locationOn = true
+		if (!CLLocationManager.locationServicesEnabled()) {
+			locationOn = false
+		} else if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.notDetermined) {
+			locationManager.requestWhenInUseAuthorization()
+		} else if ((CLLocationManager.authorizationStatus() == CLAuthorizationStatus.denied) || (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.restricted)) {
+			locationOn = false
+		}
+		if !locationOn {
+			let alert = UIAlertController(title: "", message: localized("turn_location_on"), preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: localized("not_now"), style: .cancel, handler: nil))
+			alert.addAction(UIAlertAction(title: localized("take_me_to_settings"), style: .default, handler: { (action) in
+				self.didChangeLocationPermissions = true
+				UIApplication.shared.openURL(URL(string:UIApplicationOpenSettingsURLString)!)
+			}))
+			navigationController?.present(alert, animated: true, completion: nil)
+		}
+	}
 
 	@IBAction func digit(_ sender:UIButton) {
 		currentPin = currentPin + "\(sender.tag)"

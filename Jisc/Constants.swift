@@ -91,9 +91,9 @@ func filePath(_ fileName:String) -> String {
 
 enum kHomeScreenTab: Int {
 	case feed = 0
-	case stats = 1
-	case log = 2
-	case target = 3
+	case stats = 2
+	case log = 3
+	case target = 4
 }
 
 func screenTabFromString(_ string:String) -> kHomeScreenTab {
