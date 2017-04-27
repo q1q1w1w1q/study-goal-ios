@@ -440,6 +440,7 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 			addAuthorizationHeader(request)
 		}
 		request?.httpMethod = "POST"
+		request?.timeoutInterval = 20.0
 		
 		let boundary = "---------------------------14737809831466499882746641449"
 		
@@ -1363,9 +1364,9 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 	
 	func editProfile(_ myID:String, image:UIImage?, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
 		shouldNotifyAboutInternetConnection = alertAboutInternet
-		if (image != nil) {
+		if let image = image {
 			completionBlock = completion
-			startConnectionWithRequest(createProfileImageUploadRequest(editProfilePath, myID: myID, image: image!, withAuthorizationHeader: true))
+			startConnectionWithRequest(createProfileImageUploadRequest(editProfilePath, myID: myID, image: image, withAuthorizationHeader: true))
 		} else {
 			completion(true, nil, nil, nil)
 		}

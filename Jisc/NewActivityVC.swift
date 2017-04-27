@@ -148,7 +148,10 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 	}
 	
 	@IBAction func goBack(_ sender:UIButton) {
+		timeActivityTimer?.invalidate()
 		navigationController?.popViewController(animated: true)
+		
+		
 	}
 	
 	func addModule() {
@@ -161,7 +164,7 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 	@IBAction func closeAddModule(_ sender:UIButton?) {
 		addModuleTextField.text = ""
 		addModuleTextField.resignFirstResponder()
-		UIView.animate(withDuration: 0.25) { 
+		UIView.animate(withDuration: 0.25) {
 			self.addModuleView.alpha = 0.0
 		}
 	}
@@ -176,7 +179,7 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 			self.closeReminderTimePickerButton.alpha = 1.0
 			self.reminderTimePickerBottomSpace.constant = 0.0
 			self.view.layoutIfNeeded()
-		}) 
+		})
 	}
 	
 	@IBAction func closeReminderTimePicker(_ sender:UIButton) {
@@ -193,7 +196,7 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 			self.closeReminderTimePickerButton.alpha = 0.0
 			self.reminderTimePickerBottomSpace.constant = -260.0
 			self.view.layoutIfNeeded()
-		}) 
+		})
 	}
 	
 	//MARK: Show/Close Selectors

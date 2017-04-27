@@ -10,7 +10,7 @@ import UIKit
 import MessageUI
 
 let kSettingsWillAppearNotification = "kSettingsWillAppearNotification"
-let maximumImageSizeInBytes:Int = 12000000
+let maximumImageSizeInBytes:Int = 500000
 
 class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CustomPickerViewDelegate, UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate {
 	
