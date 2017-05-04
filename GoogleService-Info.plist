@@ -3,15 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>147677483837-o75b77enbl2jbqnj83scjh98kq58tk5f.apps.googleusercontent.com</string>
+	<string>172717420956-qrqlhm946bqf2134qo3buut1bd342bq8.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.147677483837-o75b77enbl2jbqnj83scjh98kq58tk5f</string>
+	<string>com.googleusercontent.apps.172717420956-qrqlhm946bqf2134qo3buut1bd342bq8</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>uk.ac.jisc.studygoal</string>
+	<string>com.therapybox.studentapp</string>
 	<key>PROJECT_ID</key>
-	<string>jiscdevtest</string>
+	<string>study-goal</string>
 	<key>IS_ADS_ENABLED</key>
 	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -23,6 +23,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:147677483837:ios:9e3d46927229319e</string>
+	<string>1:172717420956:ios:55d2653d47187865</string>
 </dict>
 </plist>

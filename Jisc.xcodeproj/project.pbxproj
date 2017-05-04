@@ -22,12 +22,12 @@
 		DA2093FD1E69BD76001D979A /* SocialLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2093FB1E69BD76001D979A /* SocialLoginVC.swift */; };
 		DA2093FE1E69BD76001D979A /* SocialLoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA2093FC1E69BD76001D979A /* SocialLoginVC.xib */; };
 		DA2094001E69BDA3001D979A /* SocialLoginVC~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA2093FF1E69BDA3001D979A /* SocialLoginVC~ipad.xib */; };
-		DA2094071E69CDE5001D979A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA2094061E69CDE5001D979A /* GoogleService-Info.plist */; };
 		DA209D531C08A56100E678DF /* SentFriendRequest+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA209D511C08A56100E678DF /* SentFriendRequest+CoreDataProperties.swift */; };
 		DA209D541C08A56100E678DF /* SentFriendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA209D521C08A56100E678DF /* SentFriendRequest.swift */; };
 		DA2393311D520583006970A4 /* Course+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA23932F1D520583006970A4 /* Course+CoreDataProperties.swift */; };
 		DA2393321D520583006970A4 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2393301D520583006970A4 /* Course.swift */; };
 		DA26FB451C6CCD1500FB8CF5 /* MyFriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA26FB441C6CCD1400FB8CF5 /* MyFriendsView.swift */; };
+		DA294C191EBB7BC5005CC2A1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA294C181EBB7BC5005CC2A1 /* GoogleService-Info.plist */; };
 		DA2E9E2B1C624F060029545E /* LocalizableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2E9E2A1C624F060029545E /* LocalizableCell.swift */; };
 		DA366D191BDE610E00EC555E /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA366D171BDE610E00EC555E /* SearchVC.swift */; };
 		DA366D311BDE6C7900EC555E /* FoundStudentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA366D2F1BDE6C7900EC555E /* FoundStudentCell.swift */; };
@@ -286,7 +286,6 @@
 		DA2093FB1E69BD76001D979A /* SocialLoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialLoginVC.swift; sourceTree = "<group>"; };
 		DA2093FC1E69BD76001D979A /* SocialLoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialLoginVC.xib; sourceTree = "<group>"; };
 		DA2093FF1E69BDA3001D979A /* SocialLoginVC~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SocialLoginVC~ipad.xib"; sourceTree = "<group>"; };
-		DA2094061E69CDE5001D979A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DA209D501C089D6300E678DF /* Jisc1.6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jisc1.6.xcdatamodel; sourceTree = "<group>"; };
 		DA209D511C08A56100E678DF /* SentFriendRequest+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SentFriendRequest+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DA209D521C08A56100E678DF /* SentFriendRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentFriendRequest.swift; sourceTree = "<group>"; };
@@ -294,6 +293,7 @@
 		DA23932F1D520583006970A4 /* Course+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Course+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DA2393301D520583006970A4 /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		DA26FB441C6CCD1400FB8CF5 /* MyFriendsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFriendsView.swift; sourceTree = "<group>"; };
+		DA294C181EBB7BC5005CC2A1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DA2E9E2A1C624F060029545E /* LocalizableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableCell.swift; sourceTree = "<group>"; };
 		DA366D171BDE610E00EC555E /* SearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		DA366D2F1BDE6C7900EC555E /* FoundStudentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoundStudentCell.swift; sourceTree = "<group>"; };
@@ -680,7 +680,7 @@
 		DAA2AE9A1BCE785900ED796A = {
 			isa = PBXGroup;
 			children = (
-				DA2094061E69CDE5001D979A /* GoogleService-Info.plist */,
+				DA294C181EBB7BC5005CC2A1 /* GoogleService-Info.plist */,
 				DAEC83241D90080C00799B42 /* Charts.xcodeproj */,
 				DAA2AEA51BCE785900ED796A /* Jisc */,
 				DAA2AEA41BCE785900ED796A /* Products */,
@@ -1227,7 +1227,7 @@
 				TargetAttributes = {
 					DAA2AEA21BCE785900ED796A = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = D5QJ7EBR49;
+						DevelopmentTeam = JG53BNN66L;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Manual;
 					};
@@ -1295,6 +1295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA0081E21DF833DD0034786A /* splash_screen_iPad.mp4 in Resources */,
+				DA294C191EBB7BC5005CC2A1 /* GoogleService-Info.plist in Resources */,
 				DAB0C8431C4CEA2F00F7A3C6 /* LogActivityVC~ipad.xib in Resources */,
 				DA0081E01DF833D50034786A /* splash_screen.mp4 in Resources */,
 				DACEE6641E7985860039DCA6 /* CheckinVC~ipad.xib in Resources */,
@@ -1345,7 +1346,6 @@
 				DAD66C951C523A2900074B79 /* TrophiesSilver.xcassets in Resources */,
 				DAD644C81C6227C800AA62E8 /* Localizable.strings in Resources */,
 				DAB0C8BB1C4CEC2300F7A3C6 /* NewTrophyAlert.xib in Resources */,
-				DA2094071E69CDE5001D979A /* GoogleService-Info.plist in Resources */,
 				DAB0C8AF1C4CEBF500F7A3C6 /* TrophiesVC.xib in Resources */,
 				DAB0C7BF1C4CE82500F7A3C6 /* LoginVC.xib in Resources */,
 				DAB0C8251C4CE9C700F7A3C6 /* LogVC.xib in Resources */,
@@ -1952,16 +1952,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Jisc (D5QJ7EBR49)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jisc (D5QJ7EBR49)";
-				DEVELOPMENT_TEAM = D5QJ7EBR49;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Therapy Box Limited (JG53BNN66L)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Therapy Box Limited (JG53BNN66L)";
+				DEVELOPMENT_TEAM = JG53BNN66L;
 				INFOPLIST_FILE = Jisc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.jisc.studygoal;
+				PRODUCT_BUNDLE_IDENTIFIER = com.therapybox.studentapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8f520bed-6bd5-4ceb-b126-5d8c1b64e15d";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "2bf488da-d013-4615-ab72-4e6a4db72041";
+				PROVISIONING_PROFILE_SPECIFIER = "XC: *";
 				SWIFT_OBJC_BRIDGING_HEADER = "Jisc/Jisc-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1976,16 +1976,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Jisc (D5QJ7EBR49)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jisc (D5QJ7EBR49)";
-				DEVELOPMENT_TEAM = D5QJ7EBR49;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Therapy Box Limited (JG53BNN66L)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Therapy Box Limited (JG53BNN66L)";
+				DEVELOPMENT_TEAM = JG53BNN66L;
 				INFOPLIST_FILE = Jisc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.jisc.studygoal;
+				PRODUCT_BUNDLE_IDENTIFIER = com.therapybox.studentapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8f520bed-6bd5-4ceb-b126-5d8c1b64e15d";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "2bf488da-d013-4615-ab72-4e6a4db72041";
+				PROVISIONING_PROFILE_SPECIFIER = "XC: *";
 				SWIFT_OBJC_BRIDGING_HEADER = "Jisc/Jisc-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
