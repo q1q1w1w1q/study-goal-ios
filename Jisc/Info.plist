@@ -23,9 +23,11 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb1841301559462853</string>
+				<string>fb690473291139266</string>
 			</array>
 		</dict>
 		<dict>
@@ -36,13 +38,19 @@
 				<string>com.googleusercontent.apps.172717420956-qrqlhm946bqf2134qo3buut1bd342bq8</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array/>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>12</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
-		<string>21d350a22cfbb1eb4c5ca00b104aab7d33fc6d2a</string>
+		<string>aabe6f656cd29919a8d107f1347dc2c158eff1d7</string>
 		<key>Kits</key>
 		<array>
 			<dict>
@@ -59,7 +67,7 @@
 		</array>
 	</dict>
 	<key>FacebookAppID</key>
-	<string>1841301559462853</string>
+	<string>690473291139266</string>
 	<key>FacebookDisplayName</key>
 	<string>JiscTest</string>
 	<key>LSApplicationQueriesSchemes</key>

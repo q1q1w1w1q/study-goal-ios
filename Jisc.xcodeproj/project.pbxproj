@@ -1203,6 +1203,7 @@
 				1FC831C013D930DF7937D5B0 /* [CP] Embed Pods Frameworks */,
 				644ECD01A12C8591CF7507B6 /* [CP] Copy Pods Resources */,
 				DAB4B3701D93C531004474FE /* Embed Frameworks */,
+				9FD6B6C51EBB9AFB00B97929 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1407,6 +1408,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Jisc/Pods-Jisc-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		9FD6B6C51EBB9AFB00B97929 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" aabe6f656cd29919a8d107f1347dc2c158eff1d7 dc4aa8f2414d3d2d341edfedf82ee75f3fa683203de3f844ec2657181c139c6d";
 		};
 		F40E1C3FC2FAD62E703CA5D1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
