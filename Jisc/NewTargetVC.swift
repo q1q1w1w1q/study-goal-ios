@@ -18,15 +18,16 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 	@IBOutlet weak var chooseActivityButton:UIButton!
 	@IBOutlet weak var intervalButton:UIButton!
 	@IBOutlet weak var hoursPicker:UIPickerView!
-	@IBOutlet weak var hoursLabel:UILabel!
 	@IBOutlet weak var minutesPicker:UIPickerView!
-	@IBOutlet weak var minutesLabel:UILabel!
 	@IBOutlet weak var closeTimePickerButton:UIButton!
 	@IBOutlet weak var timePickerBottomSpace:NSLayoutConstraint!
 	@IBOutlet weak var moduleButton:UIButton!
 	@IBOutlet weak var contentScroll:UIScrollView!
 	@IBOutlet weak var scrollBottomSpace:NSLayoutConstraint!
 	@IBOutlet weak var noteTextView:UITextView!
+	@IBOutlet weak var hoursTextField:UITextField!
+	@IBOutlet weak var minutesTextField:UITextField!
+	@IBOutlet weak var toolbar:UIView!
 	var selectedHours:Int = 0
 	var selectedMinutes:Int = 0
 	var timeSpan:kTargetTimeSpan = .Weekly
@@ -68,7 +69,13 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+		if iPad {
+			hoursTextField.font = UIFont(name: "MyriadPro-Light", size: 44.0)
+			minutesTextField.font = UIFont(name: "MyriadPro-Light", size: 44.0)
+		} else {
+			hoursTextField.font = UIFont(name: "MyriadPro-Light", size: 52.0)
+			minutesTextField.font = UIFont(name: "MyriadPro-Light", size: 52.0)
+		}
 		if (theTarget != nil) {
 			isEditingTarget = true
 			selectedHours = Int(theTarget!.totalTime) / 60
@@ -127,12 +134,12 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 		if (selectedHours < 10) {
 			title = "0\(selectedHours)"
 		}
-		hoursLabel.text = title
+		hoursTextField.text = title
 		title = "\(selectedMinutes)"
 		if (selectedMinutes < 10) {
 			title = "0\(selectedMinutes)"
 		}
-		minutesLabel.text = title
+		minutesTextField.text = title
 		
 		initialSelectedActivityType = selectedActivityType
 		initialSelectedActivity = selectedActivity
@@ -374,11 +381,11 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 			intervalButton.setTitle(string, for: UIControlState())
 			if (selectedHours >= 8 && timeSpan == .Daily) {
 				selectedHours = 8
-				hoursLabel.text = "08"
+				hoursTextField.text = "08"
 				hoursPicker.selectRow(8, inComponent: 0, animated: true)
 				selectedMinutes = 0
 				minutesPicker.selectRow(0, inComponent: 0, animated: true)
-				minutesLabel.text = "00"
+				minutesTextField.text = "00"
 			}
 			break
 		case moduleSelectorView:
@@ -527,23 +534,23 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 		switch (pickerView) {
 		case hoursPicker:
 			selectedHours = row
-			hoursLabel.text = title
+			hoursTextField.text = title
 			if (selectedHours >= 8 && timeSpan == .Daily) {
 				selectedHours = 8
-				hoursLabel.text = "08"
+				hoursTextField.text = "08"
 				hoursPicker.selectRow(8, inComponent: 0, animated: true)
 				selectedMinutes = 0
 				minutesPicker.selectRow(0, inComponent: 0, animated: true)
-				minutesLabel.text = "00"
+				minutesTextField.text = "00"
 			}
 		case minutesPicker:
 			if (selectedHours >= 8 && timeSpan == .Daily) {
 				selectedMinutes = 0
 				minutesPicker.selectRow(0, inComponent: 0, animated: true)
-				minutesLabel.text = "00"
+				minutesTextField.text = "00"
 			} else {
 				selectedMinutes = row
-				minutesLabel.text = title
+				minutesTextField.text = title
 			}
 		default:break
 		}
@@ -573,5 +580,80 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 		}
 		closeAddModule(nil)
 		return true
+	}
+	
+	func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+		toolbar.alpha = 0.0
+		var shouldBegin = true
+		if selectedHours == maxHours && textField == minutesTextField {
+			shouldBegin = false
+			AlertView.showAlert(false, message: localizedWith1Parameter("time_spent_max", parameter: "\(maxHours)"), completion: nil)
+		} else {
+			textField.text = ""
+		}
+		return shouldBegin
+	}
+	
+	func textFieldDidBeginEditing(_ textField: UITextField) {
+		UIView.animate(withDuration: 0.25, animations: { () -> Void in
+			self.scrollBottomSpace.constant = keyboardHeight - 44.0
+			self.view.layoutIfNeeded()
+		})
+	}
+	
+	func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+		if selectedHours == maxHours && textField == hoursTextField {
+			minutesTextField.text = "00"
+			selectedMinutes = 0
+		}
+		UIView.animate(withDuration: 0.25, animations: { () -> Void in
+			self.scrollBottomSpace.constant = 0.0
+			self.view.layoutIfNeeded()
+		})
+		return true
+	}
+	
+	func textFieldDidEndEditing(_ textField: UITextField) {
+		toolbar.alpha = 1.0
+	}
+	
+	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+		var shouldChange = false
+		if string.isEmpty || textField == addModuleTextField {
+			shouldChange = true
+		} else {
+			if "0123456789".contains(string) {
+				shouldChange = true
+				switch textField {
+				case hoursTextField:
+					if string == "9" {
+						shouldChange = false
+					} else {
+						textField.text = "0\(string)"
+						selectedHours = (string as NSString).integerValue
+						textField.resignFirstResponder()
+					}
+					break
+				case minutesTextField:
+					if let text = textField.text {
+						if text.isEmpty {
+							if !"012345".contains(string) {
+								shouldChange = false
+							}
+						} else {
+							if let text = textField.text {
+								textField.text = (text as NSString).replacingCharacters(in: range, with: string)
+								selectedMinutes = ((text as NSString).replacingCharacters(in: range, with: string) as NSString).integerValue
+								textField.resignFirstResponder()
+							}
+						}
+					}
+					break
+				default:
+					break
+				}
+			}
+		}
+		return shouldChange
 	}
 }

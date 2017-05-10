@@ -30,6 +30,7 @@ class SocialLoginVC: BaseViewController, GIDSignInUIDelegate {
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
+//		finishedWithEmail("temp@temp.com", name: "Temp User", userId: "tempuserid1")
 		if let currentUser = GIDSignIn.sharedInstance().currentUser {
 			if let profile = currentUser.profile {
 				if let email = profile.email {
