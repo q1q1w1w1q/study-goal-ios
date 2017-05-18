@@ -69,13 +69,13 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		if iPad {
-			hoursTextField.font = UIFont(name: "MyriadPro-Light", size: 44.0)
-			minutesTextField.font = UIFont(name: "MyriadPro-Light", size: 44.0)
-		} else {
-			hoursTextField.font = UIFont(name: "MyriadPro-Light", size: 52.0)
-			minutesTextField.font = UIFont(name: "MyriadPro-Light", size: 52.0)
-		}
+//		if iPad {
+//			hoursTextField.font = UIFont(name: "MyriadPro-Light", size: 44.0)
+//			minutesTextField.font = UIFont(name: "MyriadPro-Light", size: 44.0)
+//		} else {
+//			hoursTextField.font = UIFont(name: "MyriadPro-Light", size: 52.0)
+//			minutesTextField.font = UIFont(name: "MyriadPro-Light", size: 52.0)
+//		}
 		if (theTarget != nil) {
 			isEditingTarget = true
 			selectedHours = Int(theTarget!.totalTime) / 60

@@ -19,7 +19,7 @@ class TargetVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		targetsTableView.register(UINib(nibName: kTargetCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kTargetCellIdentifier)
-		targetsTableView.contentInset = UIEdgeInsetsMake(35.0, 0, 35.0, 0)
+		targetsTableView.contentInset = UIEdgeInsetsMake(20.0, 0, 20.0, 0)
 	}
 	
 	override var preferredStatusBarStyle : UIStatusBarStyle {

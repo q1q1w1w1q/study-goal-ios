@@ -146,6 +146,7 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 	}
 	
 	func addCurrentView(_ view:UIView) {
+		view.translatesAutoresizingMaskIntoConstraints = false
 		currentTrophyDetailsView?.removeFromSuperview()
 		currentView?.removeFromSuperview()
 		currentView = view

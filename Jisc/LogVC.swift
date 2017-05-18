@@ -20,6 +20,7 @@ class LogVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, Cus
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		activityLogsTable.register(UINib(nibName: kOneActivityCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kOneActivityCellIdentifier)
+		activityLogsTable.contentInset = UIEdgeInsetsMake(20.0, 0, 20.0, 0)
 		if (dataManager.runningActivities().count > 0) {
 			activityActionButton.setImage(UIImage(named: "runningActivity"), for: UIControlState())
 		} else {
@@ -169,9 +170,7 @@ class LogVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, Cus
 	//MARK: UITableView Delegate
 	
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		let height:CGFloat = 51.0
-		return height
-
+		return 108.0
 	}
 	
 	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

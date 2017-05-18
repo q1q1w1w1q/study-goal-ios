@@ -28,7 +28,7 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		feedsTableView.register(UINib(nibName: kOneFeedItemCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kOneFeedItemCellIdentifier)
-		feedsTableView.contentInset = UIEdgeInsetsMake(10.0, 0.0, 0.0, 0.0)
+		feedsTableView.contentInset = UIEdgeInsetsMake(20.0, 0, 20.0, 0)
 		refreshTimer = Timer(timeInterval: 30, target: self, selector: #selector(FeedVC.refreshFeeds(_:)), userInfo:nil, repeats: true)
 		RunLoop.current.add(refreshTimer!, forMode: RunLoopMode.commonModes)
 		let refreshControl = UIRefreshControl()
@@ -180,32 +180,32 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
 		}
 	}
 	
-	func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-		var style = UITableViewCellEditingStyle.none
-		if dataManager.myFeeds()[indexPath.row].isMine() {
-			style = .delete
-		}
-		return style
-	}
-	
-	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-		if editingStyle == .delete {
-			let feed = dataManager.myFeeds()[indexPath.row]
-			DownloadManager().deleteFeed(feed.id, myID: dataManager.currentStudent!.id, alertAboutInternet: true, completion: { (success, dictionary, array, error) in
-				if success {
-					dataManager.getStudentFeeds({ (success, error) in
-						tableView.reloadData()
-					})
-				} else {
-					var failureReason = kDefaultFailureReason
-					if (error != nil) {
-						failureReason = error!
-					}
-					AlertView.showAlert(false, message: failureReason, completion: nil)
-				}
-			})
-		}
-	}
+//	func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+//		var style = UITableViewCellEditingStyle.none
+//		if dataManager.myFeeds()[indexPath.row].isMine() {
+//			style = .delete
+//		}
+//		return style
+//	}
+//	
+//	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//		if editingStyle == .delete {
+//			let feed = dataManager.myFeeds()[indexPath.row]
+//			DownloadManager().deleteFeed(feed.id, myID: dataManager.currentStudent!.id, alertAboutInternet: true, completion: { (success, dictionary, array, error) in
+//				if success {
+//					dataManager.getStudentFeeds({ (success, error) in
+//						tableView.reloadData()
+//					})
+//				} else {
+//					var failureReason = kDefaultFailureReason
+//					if (error != nil) {
+//						failureReason = error!
+//					}
+//					AlertView.showAlert(false, message: failureReason, completion: nil)
+//				}
+//			})
+//		}
+//	}
 	
 	//MARK: UITextView Delegate
 	

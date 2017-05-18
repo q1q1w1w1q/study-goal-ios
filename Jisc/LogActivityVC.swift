@@ -82,13 +82,13 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		if iPad {
-			hoursTextField.font = UIFont(name: "MyriadPro-Light", size: 44.0)
-			minutesTextField.font = UIFont(name: "MyriadPro-Light", size: 44.0)
-		} else {
-			hoursTextField.font = UIFont(name: "MyriadPro-Light", size: 52.0)
-			minutesTextField.font = UIFont(name: "MyriadPro-Light", size: 52.0)
-		}
+//		if iPad {
+//			hoursTextField.font = UIFont(name: "MyriadPro-Light", size: 44.0)
+//			minutesTextField.font = UIFont(name: "MyriadPro-Light", size: 44.0)
+//		} else {
+//			hoursTextField.font = UIFont(name: "MyriadPro-Light", size: 52.0)
+//			minutesTextField.font = UIFont(name: "MyriadPro-Light", size: 52.0)
+//		}
 		datePicker.maximumDate = Date()
 		chooseActivityLabel.adjustsFontSizeToFitWidth = true
 		selectedDateLabel.adjustsFontSizeToFitWidth = true

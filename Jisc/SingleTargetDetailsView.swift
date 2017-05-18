@@ -115,7 +115,7 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
 			self.alpha = 1.0
 			let progress = theTarget!.calculateProgress(false)
 			titleLabel.text = theTarget!.textForDisplay()
-			let imageName = theTarget!.activity.iconName(true)
+			let imageName = theTarget!.activity.iconName(big: true)
 			targetTypeIcon.image = UIImage(named: imageName)
 			
 			if (progress.completionPercentage >= 1.0) {

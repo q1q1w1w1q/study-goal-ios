@@ -330,6 +330,7 @@
 		DA6CFB021BE119EA004A5FB0 /* NewTargetVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTargetVC.swift; sourceTree = "<group>"; };
 		DA6CFB061BE11A85004A5FB0 /* TargetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetCell.swift; sourceTree = "<group>"; };
 		DA6CFB071BE11A85004A5FB0 /* TargetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TargetCell.xib; sourceTree = "<group>"; };
+		DA71051C1ECDED0200E559C6 /* Jisc.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Jisc.entitlements; sourceTree = "<group>"; };
 		DA7641141BD7800700A7D5C1 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		DA76411A1BD7BE3300A7D5C1 /* AlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertView.xib; sourceTree = "<group>"; };
 		DA76411C1BD7BE4000A7D5C1 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
@@ -700,6 +701,7 @@
 		DAA2AEA51BCE785900ED796A /* Jisc */ = {
 			isa = PBXGroup;
 			children = (
+				DA71051C1ECDED0200E559C6 /* Jisc.entitlements */,
 				DAA2AEAD1BCE785900ED796A /* Jisc.xcdatamodeld */,
 				DAA2AEBB1BCE79EA00ED796A /* Constants.swift */,
 				DAA2AEA61BCE785900ED796A /* AppDelegate.swift */,
@@ -1228,9 +1230,14 @@
 				TargetAttributes = {
 					DAA2AEA21BCE785900ED796A = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = JG53BNN66L;
+						DevelopmentTeam = R48Q33464V;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1966,16 +1973,17 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Therapy Box Limited (JG53BNN66L)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Therapy Box Limited (JG53BNN66L)";
-				DEVELOPMENT_TEAM = JG53BNN66L;
+				CODE_SIGN_ENTITLEMENTS = Jisc/Jisc.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Marcel Chirila (8J95YKX7C3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Marcel Chirila (8J95YKX7C3)";
+				DEVELOPMENT_TEAM = R48Q33464V;
 				INFOPLIST_FILE = Jisc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.therapybox.studentapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3bab5311-a927-4353-b2e5-c97a4649990d";
-				PROVISIONING_PROFILE_SPECIFIER = "XC: com.therapybox.studentapp";
+				PROVISIONING_PROFILE = "6f53dcc2-b476-4a66-9617-f6edb0dd09b2";
+				PROVISIONING_PROFILE_SPECIFIER = XGRoup_Development;
 				SWIFT_OBJC_BRIDGING_HEADER = "Jisc/Jisc-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1990,6 +1998,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Jisc/Jisc.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Therapy Box Limited (JG53BNN66L)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Therapy Box Limited (JG53BNN66L)";
 				DEVELOPMENT_TEAM = JG53BNN66L;

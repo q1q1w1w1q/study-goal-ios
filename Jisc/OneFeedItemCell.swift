@@ -11,6 +11,8 @@ import UIKit
 let kOneFeedItemCellNibName = "OneFeedItemCell"
 let kOneFeedItemCellIdentifier = "OneFeedItemCellIdentifier"
 
+let kAnotherFeedCellOpenedOptions = Notification.Name("kAnotherFeedCellOpenedOptions")
+
 class OneFeedItemCell: LocalizableCell {
 	
 	weak var navigationController:UINavigationController?
@@ -19,9 +21,6 @@ class OneFeedItemCell: LocalizableCell {
 	@IBOutlet weak var userImage:UIImageDownload!
 	@IBOutlet weak var contentText:UILabel!
 	@IBOutlet weak var timeStamp:UILabel!
-	@IBOutlet weak var shareButton:UIButton!
-	@IBOutlet weak var shareView:UIView!
-	@IBOutlet weak var optionsButton:UIButton!
 	@IBOutlet weak var optionsView:UIView!
 	@IBOutlet weak var userOptionsImage:UIImageDownload!
 	@IBOutlet weak var hidePostButton:UIButton!
@@ -29,6 +28,10 @@ class OneFeedItemCell: LocalizableCell {
 	@IBOutlet weak var deleteFriendButton:UIButton!
 	var theFeed:Feed?
 	@IBOutlet var buttonsWithLargeTitles:[BigTitleButton] = []
+	var optionsState:kOptionsState = .closed
+	var panStartPoint:CGPoint = CGPoint.zero
+	@IBOutlet weak var optionsButtonsWidth:NSLayoutConstraint!
+	@IBOutlet weak var optionsButtonsView:UIView!
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
@@ -37,15 +40,116 @@ class OneFeedItemCell: LocalizableCell {
 			hideFriendButton.titleLabel?.font = myriadProRegular(13)
 			deleteFriendButton.titleLabel?.font = myriadProRegular(13)
 		}
-		shareButton.alpha = 0.0
-		optionsButton.alpha = 0.0
 		optionsView.alpha = 0.0
-		shareView.alpha = 0.0
 		
 		if (buttonsWithLargeTitles.count > 0) {
 			for (_, item) in buttonsWithLargeTitles.enumerated() {
 				changeFontSizeToFit(item)
 			}
+		}
+		let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panAction(_:)))
+		panGesture.delegate = self
+		addGestureRecognizer(panGesture)
+		NotificationCenter.default.addObserver(self, selector: #selector(anotherCellOpenedOptions(_:)), name: kAnotherFeedCellOpenedOptions, object: nil)
+	}
+	
+	deinit {
+		NotificationCenter.default.removeObserver(self)
+	}
+	
+	//MARK: UIGestureRecognizer Delegate
+	
+	override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+		var shouldBegin = true
+		let panGesture = gestureRecognizer as? UIPanGestureRecognizer
+		if (panGesture != nil) {
+			let horizontalVelocity = abs(panGesture!.velocity(in: self).x)
+			let verticalVelocity = abs(panGesture!.velocity(in: self).y)
+			if (verticalVelocity > horizontalVelocity) {
+				shouldBegin = false
+			}
+		}
+		return shouldBegin
+	}
+	
+	func panAction(_ sender:UIPanGestureRecognizer) {
+		if let feed = theFeed {
+			if feed.isMine() {
+				switch (sender.state) {
+				case .began:
+					panStartPoint = sender.location(in: self)
+				case .ended:
+					let velocity = sender.velocity(in: self).x
+					if (velocity < 0) {
+						openCellOptions()
+					} else {
+						closeCellOptions()
+					}
+				case .changed:
+					let currentPoint = sender.location(in: self)
+					var difference = panStartPoint.x - currentPoint.x
+					if (optionsState == .open) {
+						difference += kButtonsWidth
+					}
+					if (difference < 0.0) {
+						difference = 0.0
+					} else if (difference > kButtonsWidth) {
+						difference = kButtonsWidth
+					}
+					optionsButtonsWidth.constant = difference
+					optionsButtonsView.setNeedsLayout()
+					layoutIfNeeded()
+				default:break
+				}
+			}
+		}
+	}
+	
+	func openCellOptions() {
+		NotificationCenter.default.post(name: kAnotherFeedCellOpenedOptions, object: self)
+		optionsState = .open
+		UIView.animate(withDuration: 0.25, animations: { () -> Void in
+			self.optionsButtonsWidth.constant = kButtonsWidth
+			self.optionsButtonsView.setNeedsLayout()
+			self.layoutIfNeeded()
+		}, completion: { (done) -> Void in
+			
+		})
+	}
+	
+	func closeCellOptions() {
+		optionsState = .closed
+		UIView.animate(withDuration: 0.25, animations: { () -> Void in
+			self.optionsButtonsWidth.constant = 0.0
+			self.optionsButtonsView.setNeedsLayout()
+			self.layoutIfNeeded()
+		})
+	}
+	
+	func anotherCellOpenedOptions(_ notification:Notification) {
+		if let senderCell = notification.object as? OneFeedItemCell {
+			if self != senderCell {
+				closeCellOptions()
+			}
+		}
+	}
+	
+	@IBAction func deleteFeed(_ sender: UIButton?) {
+		if let feed = theFeed {
+			closeCellOptions()
+			DownloadManager().deleteFeed(feed.id, myID: dataManager.currentStudent!.id, alertAboutInternet: true, completion: { (success, dictionary, array, error) in
+				if success {
+					dataManager.getStudentFeeds({ (success, error) in
+						self.tableView?.reloadData()
+					})
+				} else {
+					var failureReason = kDefaultFailureReason
+					if (error != nil) {
+						failureReason = error!
+					}
+					AlertView.showAlert(false, message: failureReason, completion: nil)
+				}
+			})
 		}
 	}
 	
@@ -72,9 +176,6 @@ class OneFeedItemCell: LocalizableCell {
 	}
 	
 	override func prepareForReuse() {
-		shareView.alpha = 0.0
-		shareButton.alpha = 0.0
-		optionsButton.alpha = 0.0
 		optionsView.alpha = 0.0
 		loadProfilePicture("")
 	}
@@ -87,10 +188,8 @@ class OneFeedItemCell: LocalizableCell {
 	func loadFeedPost(_ feed:Feed) {
 		theFeed = feed
 		if (feed.isMine()) {
-			shareButton.alpha = 1.0
 			loadProfilePicture("\(hostPath)\(dataManager.currentStudent!.photo)")
 		} else {
-			optionsButton.alpha = 1.0
 			let fromFriend = feed.fromFriend()
 			if (fromFriend != nil) {
 				loadProfilePicture("\(hostPath)\(fromFriend!.photo)")
@@ -134,41 +233,11 @@ class OneFeedItemCell: LocalizableCell {
 	}
 	
 	@IBAction func share(_ sender:UIButton) {
-		showShareButtons()
-	}
-	
-	func showShareButtons() {
-		UIView.animate(withDuration: 0.25, animations: { () -> Void in
-			self.shareButton.alpha = 0.0
-			self.shareView.alpha = 1.0
-		}) 
-	}
-	
-	func hideShareButtons() {
-		UIView.animate(withDuration: 0.25, animations: { () -> Void in
-			self.shareButton.alpha = 1.0
-			self.shareView.alpha = 0.0
-		}) 
-	}
-	
-	@IBAction func facebook(_ sender:UIButton) {
-		hideShareButtons()
-		if (theFeed != nil) {
-			sharingManager.shareText(theFeed!.shareText(), on: .facebook, nvc: navigationController, successText: localized("post_shared_successfully"))
-		}
-	}
-	
-	@IBAction func twitter(_ sender:UIButton) {
-		hideShareButtons()
-		if (theFeed != nil) {
-			sharingManager.shareText(theFeed!.shareText(), on: .twitter, nvc: navigationController, successText: localized("post_shared_successfully"))
-		}
-	}
-	
-	@IBAction func mail(_ sender:UIButton) {
-		hideShareButtons()
-		if (theFeed != nil) {
-			sharingManager.shareText(theFeed!.shareText(), on: .mail, nvc: navigationController, successText: localized("post_shared_successfully"))
+		if let feed = theFeed {
+			let controller = UIActivityViewController(activityItems: [feed.shareText()], applicationActivities: nil)
+			controller.excludedActivityTypes = [.copyToPasteboard, .airDrop]
+			controller.popoverPresentationController?.sourceView = navigationController?.view
+			navigationController?.present(controller, animated: true, completion: nil)
 		}
 	}
 	
