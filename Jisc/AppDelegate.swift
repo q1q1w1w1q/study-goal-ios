@@ -62,7 +62,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
 			}
 		}
 		
-		application.registerUserNotificationSettings(UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil))
 		NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
 		
 		let sampleTextField = UITextField()
@@ -150,6 +149,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
 	
 	func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
 		UIAlertView(title: "Time to take a break", message: notification.alertBody, delegate: nil, cancelButtonTitle: "Ok").show()
+	}
+	
+	//MARK: - Remote Notifications
+	
+	func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+		let dev = deviceToken as NSData
+		let characterSet: CharacterSet = CharacterSet( charactersIn: "<>" )
+		let deviceTokenString: String = (dev.description as NSString).trimmingCharacters(in: characterSet).replacingOccurrences(of: " ", with:"") as String
+		devicePushToken = deviceTokenString
+		if let user = dataManager.currentStudent {
+			DownloadManager().registerForRemoteNotifications(studentId: user.id, isActive: 1, alertAboutInternet: false, completion: { (success, dictionary, array, error) in
+				
+			})
+		}
 	}
 
 	// MARK: - Core Data stack

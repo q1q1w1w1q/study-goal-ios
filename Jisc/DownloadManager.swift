@@ -8,7 +8,7 @@
 
 import UIKit
 
-let LOG_ACTIVITY = true
+let LOG_ACTIVITY = false
 
 //let hostPath = "http://therapy-box.com/jisc/"
 let hostPath = "http://stuapp.analytics.alpha.jisc.ac.uk/"
@@ -467,7 +467,7 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		data = (NSString(format: "\r\n--%@\r\n", boundary)).data(using: String.Encoding.utf8.rawValue)
 		body.append(data!)
 		let fileName = "\(myID)_\(Date().timeIntervalSince1970)"
-		let string = NSString(format: "Content-Disposition: attachment; name=\"profile_photo\"; filename=\"%@.png\"\r\nContent-Type: image/png\r\n\r\n", fileName)
+		let string = NSString(format: "Content-Disposition: attachment; name=\"profile_photo\"; filename=\"%@.jpg\"\r\nContent-Type: image/jpeg\r\n\r\n", fileName)
 		data = NSString(string: string).data(using: String.Encoding.utf8.rawValue)
 		body.append(data!)
 		var newImage = image
@@ -476,6 +476,7 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 			newImage = UIImage.scaleImage(newImage, toSize: CGSize(width: newImage.size.width * 0.9, height: newImage.size.height * 0.9))
 			imageData = UIImageJPEGRepresentation(newImage, 1.0)!
 		}
+		print("image size: \(imageData.count)")
 		body.append(imageData)
 		
 		data = (NSString(format: "\r\n--%@--\r\n", boundary)).data(using: String.Encoding.utf8.rawValue)
@@ -1546,5 +1547,31 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 			additionalParameters = "\(additionalParameters)&is_social=yes"
 		}
 		startConnectionWithRequest(createGetRequest("\(getSocialModulesPath)?student_id=\(studentId)&\(additionalParameters)", withAuthorizationHeader: false))
+	}
+	
+	func registerForRemoteNotifications(studentId:String, isActive:Int, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
+		shouldNotifyAboutInternetConnection = alertAboutInternet
+		completionBlock = completion
+		var dictionary = [String:String]()
+		dictionary["student_id"] = studentId
+		dictionary["device_token"] = deviceId()
+		if let bundleId = Bundle.main.bundleIdentifier {
+			dictionary["bundle_identifier"] = bundleId
+		} else {
+			dictionary["bundle_identifier"] = "com.therapybox.studentapp"
+		}
+		dictionary["build"] = buildVersion()
+		dictionary["version"] = appVersion()
+		dictionary["is_active"] = "\(isActive)"
+		dictionary["push_token"] = devicePushToken
+		var language = "en"
+		if let newLanguage = BundleLocalization.sharedInstance().language {
+			language = newLanguage
+		}
+		dictionary["language"] = language
+		if social() {
+			dictionary["is_social"] = "yes"
+		}
+		startConnectionWithRequest(createPostRequest(addSocialModulePath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: false))
 	}
 }

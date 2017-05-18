@@ -24,6 +24,15 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
 		selectedIndex = getHomeScreenTab().rawValue
 		tabBar.frame = CGRect(x: tabBar.frame.origin.x, y: tabBar.frame.origin.y, width: tabBar.frame.size.width, height: 45)
 		self.delegate = self
+		
+		if let user = dataManager.currentStudent {
+			print("REGISTER FOR REMOTE")
+			UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil))
+			UIApplication.shared.registerForRemoteNotifications()
+			DownloadManager().registerForRemoteNotifications(studentId: user.id, isActive: 1, alertAboutInternet: false, completion: { (success, dictionary, array, error) in
+					
+			})
+		}
 	}
 	
 	func createdViewControllers() -> [UIViewController]? {
