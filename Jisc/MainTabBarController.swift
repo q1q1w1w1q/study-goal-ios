@@ -29,7 +29,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
 			UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil))
 			UIApplication.shared.registerForRemoteNotifications()
 			DownloadManager().registerForRemoteNotifications(studentId: user.id, isActive: 1, alertAboutInternet: false, completion: { (success, dictionary, array, error) in
-					
+				
 			})
 		}
 	}

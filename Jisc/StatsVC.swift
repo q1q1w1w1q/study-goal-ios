@@ -228,22 +228,24 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 		let xMGR = xAPIManager()
 		xMGR.silent = true
 		xMGR.getActivityPoints(kXAPIActivityPointsPeriod.Overall) { (success, result, results, error) in
-			if (result != nil) {
-				if let totalPoints = result!["totalPoints"] as? Int {
-					dataManager.currentStudent!.totalActivityPoints = totalPoints as NSNumber
-					self.overallActivityPoints.text = self.finelyFormatterNumber(dataManager.currentStudent!.totalActivityPoints)
-				}
-			}
-			let xMGR = xAPIManager()
-			xMGR.silent = true
-			xMGR.getActivityPoints(kXAPIActivityPointsPeriod.SevenDays) { (success, result, results, error) in
+			if let student = dataManager.currentStudent {
 				if (result != nil) {
 					if let totalPoints = result!["totalPoints"] as? Int {
-						dataManager.currentStudent!.lastWeekActivityPoints = totalPoints as NSNumber
-						self.thisWeekActivityPoints.text = self.finelyFormatterNumber(dataManager.currentStudent!.lastWeekActivityPoints)
+						student.totalActivityPoints = totalPoints as NSNumber
+						self.overallActivityPoints.text = self.finelyFormatterNumber(student.totalActivityPoints)
 					}
 				}
-				self.getAttainmentData(completion)
+				let xMGR = xAPIManager()
+				xMGR.silent = true
+				xMGR.getActivityPoints(kXAPIActivityPointsPeriod.SevenDays) { (success, result, results, error) in
+					if (result != nil) {
+						if let totalPoints = result!["totalPoints"] as? Int {
+							student.lastWeekActivityPoints = totalPoints as NSNumber
+							self.thisWeekActivityPoints.text = self.finelyFormatterNumber(student.lastWeekActivityPoints)
+						}
+					}
+					self.getAttainmentData(completion)
+				}
 			}
 		}
 	}
