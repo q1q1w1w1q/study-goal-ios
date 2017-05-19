@@ -78,6 +78,7 @@ let getFriendsByModulePath = "fn_list_friends_by_module"
 let socialLoginPath = "fn_social_login"
 let addSocialModulePath = "fn_add_module"
 let getSocialModulesPath = "fn_get_modules"
+let registerForRemoteNotificationsPath = "fn_register_device"
 
 enum kRequestStatusCode:Int {
 	case `continue` = 100
@@ -1564,6 +1565,7 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		dictionary["version"] = appVersion()
 		dictionary["is_active"] = "\(isActive)"
 		dictionary["push_token"] = devicePushToken
+		dictionary["platform"] = "ios"
 		var language = "en"
 		if let newLanguage = BundleLocalization.sharedInstance().language {
 			language = newLanguage
@@ -1572,6 +1574,6 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		if social() {
 			dictionary["is_social"] = "yes"
 		}
-		startConnectionWithRequest(createPostRequest(addSocialModulePath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: false))
+		startConnectionWithRequest(createPostRequest(registerForRemoteNotificationsPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: false))
 	}
 }
