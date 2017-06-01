@@ -467,7 +467,7 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		data = (NSString(format: "\r\n--%@\r\n", boundary)).data(using: String.Encoding.utf8.rawValue)
 		body.append(data!)
 		let fileName = "\(myID)_\(Date().timeIntervalSince1970)"
-		let string = NSString(format: "Content-Disposition: attachment; name=\"profile_photo\"; filename=\"%@.png\"\r\nContent-Type: image/png\r\n\r\n", fileName)
+		let string = NSString(format: "Content-Disposition: attachment; name=\"image_data\"; filename=\"%@.png\"\r\nContent-Type: image/png\r\n\r\n", fileName)
 		data = NSString(string: string).data(using: String.Encoding.utf8.rawValue)
 		body.append(data!)
 		var newImage = image
