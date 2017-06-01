@@ -87,6 +87,10 @@ func getSocialData() -> (email:String, name:String, userId:String) {
 
 class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, GIDSignInUIDelegate {
 
+	@IBOutlet weak var studentButton:UIButton!
+	@IBOutlet weak var staffButton:UIButton!
+	@IBOutlet weak var rememberButton:UIButton!
+	@IBOutlet weak var nextButton:UIButton!
 	@IBOutlet var loginStep2:UIView!
 	@IBOutlet var loginStep3:UIView!
 	
@@ -314,17 +318,25 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
 
 	@IBAction func imAStudent(_ sender:UIButton?) {
 		setUserType(.regular)
-		goToStep2()
+		studentButton.isSelected = true
+		staffButton.isSelected = false
+		nextButton.isEnabled = true
 	}
 	
 	@IBAction func imAMemberOfStaff(_ sender:UIButton?) {
 		setUserType(.staff)
-		goToStep2()
+		studentButton.isSelected = false
+		staffButton.isSelected = true
+		nextButton.isEnabled = true
+	}
+	
+	@IBAction func next(_ sender:UIButton?) {
+		goToStep3()
 	}
 	
 	@IBAction func rememberMe(_ sender:UIButton?) {
-		setRememberMe(true)
-		goToStep3()
+		rememberButton.isSelected = !rememberButton.isSelected
+		setRememberMe(rememberButton.isSelected)
 	}
 	
 	@IBAction func dontRememberMe(_ sender:UIButton?) {
