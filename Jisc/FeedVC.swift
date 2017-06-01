@@ -177,6 +177,14 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
 				alert.addAction(UIAlertAction(title: localized("no"), style: .cancel, handler: { (action) in }))
 				self.navigationController?.present(alert, animated: true, completion: nil)
 			}
+		} else if feed.activityType == "temp_push_notification" {
+			if let studentId = dataManager.currentStudent?.id {
+				DownloadManager().markNotificationAsRead(studentdId: studentId, notificationId: feed.id, alertAboutInternet: false, completion: { (success, dictionary, array, error) in
+					dataManager.silentStudentFeedsRefresh(true) { (success, failureReason) -> Void in
+						self.feedsTableView.reloadData()
+					}
+				})
+			}
 		}
 	}
 	

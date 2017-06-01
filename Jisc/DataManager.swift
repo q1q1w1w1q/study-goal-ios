@@ -813,6 +813,31 @@ class DataManager: NSObject {
 		} catch let error as NSError {
 			print("get feeds requests error: \(error.localizedDescription)")
 		}
+		array.sort { (feed1, feed2) -> Bool in
+			var isSorted = true
+			if feed1.activityType != "temp_push_notification" {
+				if feed2.activityType == "temp_push_notification" {
+					isSorted = false
+				}
+			}
+			if isSorted {
+				if feed1.activityType != "temp_push_notification" {
+					if feed2.activityType != "temp_push_notification" {
+						if feed1.createdDate.compare(feed2.createdDate) == .orderedAscending {
+							isSorted = false
+						}
+					}
+				}
+				if feed1.activityType == "temp_push_notification" {
+					if feed2.activityType == "temp_push_notification" {
+						if feed1.createdDate.compare(feed2.createdDate) == .orderedAscending {
+							isSorted = false
+						}
+					}
+				}
+			}
+			return isSorted
+		}
 		return array
 	}
 	
@@ -1660,7 +1685,7 @@ class DataManager: NSObject {
 					for (_, item) in results!.enumerated() {
 						let dictionary:NSDictionary? = item as? NSDictionary
 						if (dictionary != nil) {
-							Feed.insertInManagedObjectContext(managedContext, dictionary: dictionary!)
+							_ = Feed.insertInManagedObjectContext(managedContext, dictionary: dictionary!)
 						}
 					}
 				}
@@ -1670,7 +1695,7 @@ class DataManager: NSObject {
 			if (error != nil) {
 				failureReason = error!
 			}
-			completion(success, failureReason)
+			self.getPushNotifications(failureReason: failureReason, completion: completion)
 		}
 	}
 	
@@ -1685,7 +1710,7 @@ class DataManager: NSObject {
 					for (_, item) in results!.enumerated() {
 						let dictionary:NSDictionary? = item as? NSDictionary
 						if (dictionary != nil) {
-							Feed.insertInManagedObjectContext(managedContext, dictionary: dictionary!)
+							_ = Feed.insertInManagedObjectContext(managedContext, dictionary: dictionary!)
 						}
 					}
 				}
@@ -1695,7 +1720,34 @@ class DataManager: NSObject {
 			if (error != nil) {
 				failureReason = error!
 			}
-			completion(success, failureReason)
+			self.getPushNotifications(failureReason: failureReason, completion: completion)
+		}
+	}
+	
+	func getPushNotifications(failureReason:String, completion:@escaping dataManagerCompletionBlock) {
+		if let studentId = dataManager.currentStudent?.id {
+			let downloadManager = DownloadManager()
+			downloadManager.silent = true
+			downloadManager.getPushNotifications(studentdId: studentId, alertAboutInternet: false, completion: { (success, dictionary, array, error) in
+				if let array = array as? [NSDictionary] {
+					for (_, item) in array.enumerated() {
+						if let read = item["is_read"] as? String {
+							if read == "0" {
+								let dictionary = NSMutableDictionary()
+								dictionary["created_date"] = stringFromDictionary(item, key: "created")
+								dictionary["id"] = stringFromDictionary(item, key: "id")
+								dictionary["message_from"] = stringFromDictionary(item, key: "message_from")
+								dictionary["message"] = stringFromDictionary(item, key: "message")
+								dictionary["activity_type"] = "temp_push_notification"
+								_ = Feed.insertInManagedObjectContext(managedContext, dictionary: dictionary)
+							}
+						}
+					}
+				}
+				completion(success, failureReason)
+			})
+		} else {
+			completion(false, failureReason)
 		}
 	}
 	

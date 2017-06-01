@@ -79,6 +79,8 @@ let socialLoginPath = "fn_social_login"
 let addSocialModulePath = "fn_add_module"
 let getSocialModulesPath = "fn_get_modules"
 let registerForRemoteNotificationsPath = "fn_register_device"
+let getPushNotificationsPath = "fn_get_push_notifications"
+let changeReadStatusForNotificationPath = "fn_update_notifications_read_status"
 
 enum kRequestStatusCode:Int {
 	case `continue` = 100
@@ -1575,5 +1577,32 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 			dictionary["is_social"] = "yes"
 		}
 		startConnectionWithRequest(createPostRequest(registerForRemoteNotificationsPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
+	}
+	
+	func getPushNotifications(studentdId:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
+		shouldNotifyAboutInternetConnection = alertAboutInternet
+		completionBlock = completion
+		var dictionary = [String:String]()
+		dictionary["student_id"] = studentdId
+		var language = "en"
+		if let newLanguage = BundleLocalization.sharedInstance().language {
+			language = newLanguage
+		}
+		dictionary["language"] = language
+		if social() {
+			startConnectionWithRequest(createGetRequest("\(getPushNotificationsPath)?student_id=\(studentdId)&language=\(language)&is_social=yes", withAuthorizationHeader: true))
+		} else {
+			startConnectionWithRequest(createGetRequest("\(getPushNotificationsPath)?student_id=\(studentdId)&language=\(language)", withAuthorizationHeader: true))
+		}
+	}
+	
+	func markNotificationAsRead(studentdId:String, notificationId:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
+		shouldNotifyAboutInternetConnection = alertAboutInternet
+		completionBlock = completion
+		var dictionary = [String:String]()
+		dictionary["student_id"] = studentdId
+		dictionary["notification_id"] = notificationId
+		dictionary["is_social"] = "yes"
+		startConnectionWithRequest(createPutRequest(changeReadStatusForNotificationPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 	}
 }
