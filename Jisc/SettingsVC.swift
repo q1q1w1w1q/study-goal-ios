@@ -408,7 +408,7 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 					selectedLanguage = .english
 				}
 				runningActivititesTimer.invalidate()
-				DELEGATE.mainController?.feedViewController.refreshTimer?.invalidate()
+				DELEGATE.menuView?.feedViewController.refreshTimer?.invalidate()
 				dataManager.firstTrophyCheck = true
 				switch (selectedLanguage!) {
 				case .english:
@@ -497,14 +497,14 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 				}
 			}
 			runningActivititesTimer.invalidate()
-			DELEGATE.mainController?.feedViewController.refreshTimer?.invalidate()
+			DELEGATE.menuView?.feedViewController.refreshTimer?.invalidate()
 			dataManager.currentStudent = nil
 			dataManager.firstTrophyCheck = true
 			deleteCurrentUser()
 			clearXAPIToken()
-			let nvc = UINavigationController(rootViewController: LoginVC())
-			nvc.isNavigationBarHidden = true
-			DELEGATE.window?.rootViewController = nvc
+			DELEGATE.mainNavigationController = UINavigationController(rootViewController: LoginVC())
+			DELEGATE.mainNavigationController?.isNavigationBarHidden = true
+			DELEGATE.window?.rootViewController = DELEGATE.mainNavigationController
 		}
 	}
 	

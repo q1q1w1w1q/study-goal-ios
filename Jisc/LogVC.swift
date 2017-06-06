@@ -32,6 +32,10 @@ class LogVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, Cus
 		activityLogsTable.addSubview(refreshControl)
 	}
 	
+	@IBAction func openMenu(_ sender:UIButton?) {
+		DELEGATE.menuView?.open()
+	}
+	
 	func refreshActivityLogs() {
 		if (dataManager.runningActivities().count > 0) {
 			activityActionButton.setImage(UIImage(named: "runningActivity"), for: UIControlState())

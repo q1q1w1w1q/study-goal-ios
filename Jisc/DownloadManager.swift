@@ -200,15 +200,15 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 							HTTPCookieStorage.shared.deleteCookie(cookie)
 						}
 					}
-					DELEGATE.mainController?.feedViewController.refreshTimer?.invalidate()
+					DELEGATE.menuView?.feedViewController.refreshTimer?.invalidate()
 					runningActivititesTimer.invalidate()
 					dataManager.currentStudent = nil
 					dataManager.firstTrophyCheck = true
 					deleteCurrentUser()
 					clearXAPIToken()
-					let nvc = UINavigationController(rootViewController: LoginVC())
-					nvc.isNavigationBarHidden = true
-					DELEGATE.window?.rootViewController = nvc
+					DELEGATE.mainNavigationController = UINavigationController(rootViewController: LoginVC())
+					DELEGATE.mainNavigationController?.isNavigationBarHidden = true
+					DELEGATE.window?.rootViewController = DELEGATE.mainNavigationController
 					UIAlertView(title: localized("session_expired_title"), message: localized("session_expired_message"), delegate: nil, cancelButtonTitle: localized("ok")).show()
 				}
 			}

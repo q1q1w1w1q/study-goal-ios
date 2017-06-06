@@ -45,6 +45,11 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
 		}
 	}
 	
+	@IBAction func openMenu(_ sender:UIButton?) {
+		DELEGATE.menuView?.open()
+		print("open menu: \(DELEGATE.menuView)")
+	}
+	
 	func refreshFeeds(_ sender:Timer) {
 		dataManager.silentStudentFeedsRefresh(false) { (success, failureReason) -> Void in
 			self.feedsTableView.reloadData()

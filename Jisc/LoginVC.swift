@@ -214,8 +214,7 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 					dataManager.currentStudent?.jisc_id = student.id
 				}
 				RunLoop.current.add(runningActivititesTimer, forMode: RunLoopMode.commonModes)
-				DELEGATE.mainController = MainTabBarController()
-				DELEGATE.window?.rootViewController = DELEGATE.mainController
+				DELEGATE.menuView = MenuView.createView()
 			} else {
 				UIAlertView(title: localized("error"), message: failureReason, delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
 			}
@@ -236,8 +235,7 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 					deleteCurrentUser()
 					setShouldRememberXAPIUser(self.rememberMeButton.isSelected)
 					RunLoop.current.add(runningActivititesTimer, forMode: RunLoopMode.commonModes)
-					DELEGATE.mainController = MainTabBarController()
-					DELEGATE.window?.rootViewController = DELEGATE.mainController
+					DELEGATE.menuView = MenuView.createView()
 				} else {
 					UIAlertView(title: localized("error"), message: failureReason, delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
 				}
@@ -431,8 +429,7 @@ class LoginVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, U
 					if (self.rememberMeButton.isSelected) {
 						saveCurrentUser(selectedInstituteObject.id, email: self.emailTextField.text!, password: self.passwordTextField.text!)
 					}
-					DELEGATE.mainController = MainTabBarController()
-					DELEGATE.window?.rootViewController = DELEGATE.mainController
+					DELEGATE.menuView = MenuView.createView()
 				} else {
 					UIAlertView(title: localized("error"), message: failureReason, delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
 				}

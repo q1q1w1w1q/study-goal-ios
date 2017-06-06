@@ -218,6 +218,10 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 		staffAlert = nil
 	}
 	
+	@IBAction func openMenu(_ sender:UIButton?) {
+		DELEGATE.menuView?.open()
+	}
+	
 	func refreshAllInfo(_ sender:UIRefreshControl) {
 		getActivityPoints { 
 			sender.endRefreshing()

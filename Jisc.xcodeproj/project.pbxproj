@@ -35,6 +35,10 @@
 		DA366D401BDE7C3100EC555E /* MyFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA366D3E1BDE7C3100EC555E /* MyFriendCell.swift */; };
 		DA3F7B861C996B9B00E15678 /* ConsentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3F7B841C996B9B00E15678 /* ConsentVC.swift */; };
 		DA3F7B871C996B9B00E15678 /* ConsentVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA3F7B851C996B9B00E15678 /* ConsentVC.xib */; };
+		DA4085AD1EE6A8C00012A561 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4085AC1EE6A8C00012A561 /* MenuView.swift */; };
+		DA4085B41EE6A8D50012A561 /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA4085B31EE6A8D50012A561 /* MenuView.xib */; };
+		DA4085B61EE6AFD70012A561 /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4085B51EE6AFD70012A561 /* MenuButton.swift */; };
+		DA4085B81EE6AFE50012A561 /* MenuButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA4085B71EE6AFE50012A561 /* MenuButton.xib */; };
 		DA425AA81BD4E77F00C77D76 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA425AA71BD4E77F00C77D76 /* DownloadManager.swift */; };
 		DA425AAA1BD4E9D500C77D76 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA425AA91BD4E9D500C77D76 /* LoadingView.swift */; };
 		DA425AAC1BD4E9E800C77D76 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA425AAB1BD4E9E800C77D76 /* LoadingView.xib */; };
@@ -301,6 +305,10 @@
 		DA366D3E1BDE7C3100EC555E /* MyFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFriendCell.swift; sourceTree = "<group>"; };
 		DA3F7B841C996B9B00E15678 /* ConsentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsentVC.swift; sourceTree = "<group>"; };
 		DA3F7B851C996B9B00E15678 /* ConsentVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsentVC.xib; sourceTree = "<group>"; };
+		DA4085AC1EE6A8C00012A561 /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		DA4085B31EE6A8D50012A561 /* MenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuView.xib; sourceTree = "<group>"; };
+		DA4085B51EE6AFD70012A561 /* MenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
+		DA4085B71EE6AFE50012A561 /* MenuButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuButton.xib; sourceTree = "<group>"; };
 		DA425AA71BD4E77F00C77D76 /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		DA425AA91BD4E9D500C77D76 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		DA425AAB1BD4E9E800C77D76 /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
@@ -707,6 +715,10 @@
 				DAA2AEA61BCE785900ED796A /* AppDelegate.swift */,
 				DAC32D931BCF8B9800C4FBF5 /* LaunchScreen.xib */,
 				DA11B6AE1E7164F700F823B8 /* MainTabBarController.swift */,
+				DA4085AC1EE6A8C00012A561 /* MenuView.swift */,
+				DA4085B31EE6A8D50012A561 /* MenuView.xib */,
+				DA4085B51EE6AFD70012A561 /* MenuButton.swift */,
+				DA4085B71EE6AFE50012A561 /* MenuButton.xib */,
 				DA76411C1BD7BE4000A7D5C1 /* AlertView.swift */,
 				DA76411A1BD7BE3300A7D5C1 /* AlertView.xib */,
 				DAD644CA1C6227C800AA62E8 /* Localizable.strings */,
@@ -1318,6 +1330,7 @@
 				DAB0C7F51C4CE92700F7A3C6 /* MyFriendCell.xib in Resources */,
 				DAB0C8611C4CEA8900F7A3C6 /* TargetVC.xib in Resources */,
 				DAB0C8731C4CEAC400F7A3C6 /* NewTargetVC~ipad.xib in Resources */,
+				DA4085B81EE6AFE50012A561 /* MenuButton.xib in Resources */,
 				DAC32DC91BCF9F5B00C4FBF5 /* MyriadPro-Regular.otf in Resources */,
 				DAB0C8071C4CE96400F7A3C6 /* AttainmentCell.xib in Resources */,
 				DAD66C9C1C52745500074B79 /* LoginVC~ipad.xib in Resources */,
@@ -1362,6 +1375,7 @@
 				DA43DA3F1C58C1FC0092701F /* EngagementIcons.xcassets in Resources */,
 				DAB0C7D71C4CE8BA00F7A3C6 /* OneFeedItemCell.xib in Resources */,
 				DAB0C8911C4CEB3700F7A3C6 /* MyFriendsVC.xib in Resources */,
+				DA4085B41EE6A8D50012A561 /* MenuView.xib in Resources */,
 				DAB0C8311C4CE9EF00F7A3C6 /* NewActivityVC.xib in Resources */,
 				DAD6AE2A1C57B76E00BCBBDD /* TrophyDetailsView.xib in Resources */,
 				DADBA8B91BD1340300BC9CE4 /* OneActivityCell.xib in Resources */,
@@ -1463,6 +1477,7 @@
 				DA46D96E1BF2397F00AA1476 /* Institution.swift in Sources */,
 				DA46D9791BF2482400AA1476 /* Activity+CoreDataProperties.swift in Sources */,
 				DADBA8B81BD1340300BC9CE4 /* OneActivityCell.swift in Sources */,
+				DA4085AD1EE6A8C00012A561 /* MenuView.swift in Sources */,
 				DAFBC4501BFB2B6800E87023 /* StretchTarget.swift in Sources */,
 				DA3F7B861C996B9B00E15678 /* ConsentVC.swift in Sources */,
 				DA868B181BE79C0E00032225 /* EngagementGraphVC.swift in Sources */,
@@ -1518,6 +1533,7 @@
 				DA7F1D2B1BD8E1A3004EA957 /* MyFriendsVC.swift in Sources */,
 				DA7F1D2F1BD8E463004EA957 /* OneFriendCell.swift in Sources */,
 				DA7F1D431BD9035B004EA957 /* TrophiesVC.swift in Sources */,
+				DA4085B61EE6AFD70012A561 /* MenuButton.swift in Sources */,
 				DAFB88C31C1083B9000CCD65 /* MarkValue.swift in Sources */,
 				DA7F1D3F1BD8FBD9004EA957 /* SelectHomeScreenVC.swift in Sources */,
 				DA2093FD1E69BD76001D979A /* SocialLoginVC.swift in Sources */,

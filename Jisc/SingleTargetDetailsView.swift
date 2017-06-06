@@ -274,7 +274,7 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
 	}
 	
 	func view(_ view: CustomPickerView, selectedRow: Int) {
-		DELEGATE.mainController?.selectedIndex = kHomeScreenTab.log.rawValue
+		DELEGATE.menuView?.log()
 		
 		var module:Int = 0
 		var activityType:Int = 0
@@ -288,9 +288,9 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
 		}
 		
 		if (selectedRow == 0) {
-			DELEGATE.mainController?.logViewController.navigationController?.pushViewController(NewActivityVC(module:module, activityType: activityType, activity: activity), animated: true)
+			DELEGATE.menuView?.logViewController.navigationController?.pushViewController(NewActivityVC(module:module, activityType: activityType, activity: activity), animated: true)
 		} else if (selectedRow == 1) {
-			DELEGATE.mainController?.logViewController.navigationController?.pushViewController(LogActivityVC(module:module, activityType: activityType, activity: activity), animated: true)
+			DELEGATE.menuView?.logViewController.navigationController?.pushViewController(LogActivityVC(module:module, activityType: activityType, activity: activity), animated: true)
 		}
 	}
 	

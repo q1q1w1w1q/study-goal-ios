@@ -31,6 +31,10 @@ class TargetVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 		targetsTableView.reloadData()
 	}
 	
+	@IBAction func openMenu(_ sender:UIButton?) {
+		DELEGATE.menuView?.open()
+	}
+	
 	@IBAction func settings(_ sender:UIButton) {
 		let vc = SettingsVC()
 		navigationController?.pushViewController(vc, animated: true)

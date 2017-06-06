@@ -127,7 +127,7 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 	override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
 		timeActivityTimer?.invalidate()
-		if (DELEGATE.mainController?.selectedIndex != 2) {
+		if (DELEGATE.menuView?.selectedIndex != 2) {
 			navigationController?.popViewController(animated: true)
 		}
 	}

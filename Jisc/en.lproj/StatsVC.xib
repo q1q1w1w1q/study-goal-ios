@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -69,8 +69,18 @@
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lightBlue" translatesAutoresizingMaskIntoConstraints="NO" id="hxL-PE-OB7">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                         </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JO7-Xg-4OU">
+                            <rect key="frame" x="0.0" y="20" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="X77-RM-h9L"/>
+                            </constraints>
+                            <state key="normal" image="openMenuButton"/>
+                            <connections>
+                                <action selector="openMenu:" destination="-1" eventType="touchUpInside" id="rXd-hy-fSH"/>
+                            </connections>
+                        </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jisc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cjw-Oa-wRo" customClass="AppTitleLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="10" y="31" width="28" height="17"/>
+                            <rect key="frame" x="40" y="31" width="28" height="17"/>
                             <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="17"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -95,6 +105,8 @@
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstItem="Cjw-Oa-wRo" firstAttribute="centerY" secondItem="JO7-Xg-4OU" secondAttribute="centerY" id="53v-RD-jBS"/>
+                        <constraint firstItem="JO7-Xg-4OU" firstAttribute="leading" secondItem="wIq-9I-Hcn" secondAttribute="leading" id="AE0-1n-N3X"/>
                         <constraint firstItem="Z0e-sD-aUq" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="C5t-L2-8jX" secondAttribute="trailing" constant="5" id="GCU-D5-OGD"/>
                         <constraint firstAttribute="height" constant="60" id="I3z-I7-z2Z"/>
                         <constraint firstAttribute="bottom" secondItem="hxL-PE-OB7" secondAttribute="bottom" id="Kni-vv-q5y"/>
@@ -102,12 +114,13 @@
                         <constraint firstItem="C5t-L2-8jX" firstAttribute="centerX" secondItem="wIq-9I-Hcn" secondAttribute="centerX" id="LOH-yR-oNt"/>
                         <constraint firstItem="C5t-L2-8jX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Cjw-Oa-wRo" secondAttribute="trailing" constant="5" id="MHr-xL-eyA"/>
                         <constraint firstAttribute="bottom" secondItem="C5t-L2-8jX" secondAttribute="bottom" constant="10" id="Mee-0U-IEw"/>
+                        <constraint firstItem="Cjw-Oa-wRo" firstAttribute="leading" secondItem="JO7-Xg-4OU" secondAttribute="trailing" id="QiS-HD-0gA"/>
                         <constraint firstItem="hxL-PE-OB7" firstAttribute="top" secondItem="wIq-9I-Hcn" secondAttribute="top" id="RdG-bE-BIi"/>
-                        <constraint firstItem="Cjw-Oa-wRo" firstAttribute="leading" secondItem="wIq-9I-Hcn" secondAttribute="leading" constant="10" id="Rv8-iU-76h"/>
                         <constraint firstItem="hxL-PE-OB7" firstAttribute="leading" secondItem="wIq-9I-Hcn" secondAttribute="leading" id="Wim-CD-dcv"/>
                         <constraint firstAttribute="bottom" secondItem="Z0e-sD-aUq" secondAttribute="bottom" id="cKO-5H-xrn"/>
+                        <constraint firstItem="JO7-Xg-4OU" firstAttribute="top" secondItem="wIq-9I-Hcn" secondAttribute="top" constant="20" id="cha-L9-cOf"/>
                         <constraint firstItem="C5t-L2-8jX" firstAttribute="centerY" secondItem="Z0e-sD-aUq" secondAttribute="centerY" id="hNO-0h-wTb"/>
-                        <constraint firstItem="Cjw-Oa-wRo" firstAttribute="centerY" secondItem="C5t-L2-8jX" secondAttribute="centerY" id="m9v-xw-urT"/>
+                        <constraint firstItem="JO7-Xg-4OU" firstAttribute="width" secondItem="JO7-Xg-4OU" secondAttribute="height" multiplier="1:1" id="mwT-9P-4PA"/>
                         <constraint firstAttribute="bottom" secondItem="C5t-L2-8jX" secondAttribute="bottom" constant="10" id="rHP-tk-6EN"/>
                         <constraint firstAttribute="trailing" secondItem="hxL-PE-OB7" secondAttribute="trailing" id="xts-jq-85Z"/>
                         <constraint firstItem="Cjw-Oa-wRo" firstAttribute="centerY" secondItem="wIq-9I-Hcn" secondAttribute="centerY" id="yTa-1d-1bg"/>
@@ -1022,6 +1035,7 @@
         <image name="leftArrowGray" width="8" height="14"/>
         <image name="lightBlue" width="10" height="10"/>
         <image name="lilac" width="10" height="10"/>
+        <image name="openMenuButton" width="22" height="22"/>
         <image name="rightArrow" width="8" height="14"/>
         <image name="rightArrowGray" width="8" height="14"/>
         <image name="settingsButton" width="23" height="22"/>
