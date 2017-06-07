@@ -55,10 +55,8 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		scrollIndicator.alpha = 0.0
-//		if staff() {
-			graphType = GraphType.Bar
-			graphToggleButton.isSelected = true
-//		}
+		graphType = GraphType.Bar
+		graphToggleButton.isSelected = true
 		compareToView.alpha = 0.5
 		compareToView.isUserInteractionEnabled = false
 		let today = todayNumber()

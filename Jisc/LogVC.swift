@@ -19,6 +19,7 @@ class LogVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, Cus
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		automaticallyAdjustsScrollViewInsets = false
 		activityLogsTable.register(UINib(nibName: kOneActivityCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kOneActivityCellIdentifier)
 		activityLogsTable.contentInset = UIEdgeInsetsMake(20.0, 0, 20.0, 0)
 		if (dataManager.runningActivities().count > 0) {

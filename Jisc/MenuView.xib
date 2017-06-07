@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,7 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bB-wX-bhw">
+                <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bB-wX-bhw">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" red="0.17254901960784313" green="0.17254901960784313" blue="0.17254901960784313" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
@@ -29,12 +29,12 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u31-tA-evH">
-                    <rect key="frame" x="0.0" y="0.0" width="280" height="667"/>
+                    <rect key="frame" x="-280" y="0.0" width="280" height="667"/>
                     <subviews>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8tu-td-cXg">
                             <rect key="frame" x="0.0" y="0.0" width="280" height="146"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginBG" translatesAutoresizingMaskIntoConstraints="NO" id="bhu-OM-Ieb">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menuHeaderBG" translatesAutoresizingMaskIntoConstraints="NO" id="bhu-OM-Ieb">
                                     <rect key="frame" x="0.0" y="0.0" width="280" height="146"/>
                                 </imageView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ySm-tX-Ucy" userLabel="profile">
@@ -54,10 +54,10 @@
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zr6-XS-WFN">
-                                            <rect key="frame" x="104" y="4" width="166" height="65"/>
+                                            <rect key="frame" x="104" y="4.5" width="166" height="65"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fpg-Fn-DYb">
-                                                    <rect key="frame" x="0.0" y="0.0" width="84" height="21"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="83.5" height="21"/>
                                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="21"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -69,7 +69,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student ID : 3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DqR-25-eCN">
-                                                    <rect key="frame" x="0.0" y="46" width="79" height="14"/>
+                                                    <rect key="frame" x="0.0" y="46" width="78.5" height="14"/>
                                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -91,8 +91,8 @@
                                             <variation key="default">
                                                 <mask key="constraints">
                                                     <exclude reference="YLV-2k-1aD"/>
-                                                    <exclude reference="rJR-ZQ-WUD"/>
                                                     <exclude reference="Rck-uK-CAr"/>
+                                                    <exclude reference="rJR-ZQ-WUD"/>
                                                 </mask>
                                             </variation>
                                         </view>
@@ -113,8 +113,8 @@
                                     </userDefinedRuntimeAttributes>
                                     <variation key="default">
                                         <mask key="constraints">
-                                            <exclude reference="deR-HY-m3L"/>
                                             <exclude reference="O14-Ow-Haz"/>
+                                            <exclude reference="deR-HY-m3L"/>
                                         </mask>
                                     </variation>
                                 </view>
@@ -165,7 +165,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="6bB-wX-bhw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="1hh-YU-xMn"/>
-                <constraint firstItem="u31-tA-evH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="49F-zL-8yg"/>
+                <constraint firstItem="u31-tA-evH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="-280" id="49F-zL-8yg"/>
                 <constraint firstItem="u31-tA-evH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="HlC-Xs-OJ2"/>
                 <constraint firstAttribute="bottom" secondItem="6bB-wX-bhw" secondAttribute="bottom" id="KFw-HR-IGQ"/>
                 <constraint firstAttribute="trailing" secondItem="6bB-wX-bhw" secondAttribute="trailing" id="RJP-bX-cUO"/>
@@ -187,6 +187,6 @@
         </view>
     </objects>
     <resources>
-        <image name="loginBG" width="375" height="667"/>
+        <image name="menuHeaderBG" width="280" height="280"/>
     </resources>
 </document>

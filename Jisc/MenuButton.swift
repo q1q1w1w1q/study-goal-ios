@@ -23,9 +23,9 @@ class MenuButton: UIView {
 	@IBOutlet weak var button:UIButton!
 	var type = MenuButtonType.Feed
 	weak var parent:MenuView?
-
+	
 	class func insertSelfinView(_ view:UIView, buttonType: MenuButtonType, previousButton:MenuButton?, isLastButton:Bool, parent:MenuView) -> MenuButton {
-		let button = Bundle.main.loadNibNamed("MenuButton", owner: nil, options: nil)!.first as! MenuButton
+		let button = Bundle.main.loadNibNamed("\(self.classForCoder())", owner: nil, options: nil)!.first as! MenuButton
 		button.translatesAutoresizingMaskIntoConstraints = false
 		button.type = buttonType
 		button.parent = parent
@@ -78,6 +78,9 @@ class MenuButton: UIView {
 				button.isSelected = true
 			} else {
 				button.isSelected = false
+				if let stats = self as? StatsMenuButton {
+					stats.retract()
+				}
 			}
 		}
 	}
@@ -106,4 +109,65 @@ class MenuButton: UIView {
 		NotificationCenter.default.removeObserver(self)
 	}
 
+}
+
+class StatsMenuButton: MenuButton {
+	
+	@IBOutlet weak var arrow:UIImageView!
+	@IBOutlet weak var buttonsHeight:NSLayoutConstraint!
+	var expanded = false
+	
+	override func buttonAction(_ sender: UIButton?) {
+		if expanded {
+			retract()
+		} else {
+			expand()
+		}
+	}
+	
+	func expand() {
+		expanded = true
+		UIView.animate(withDuration: 0.25) {
+			self.arrow.transform = CGAffineTransform(rotationAngle: .pi / 2.0)
+			self.buttonsHeight.constant = 120.0
+			self.parent?.layoutIfNeeded()
+		}
+	}
+	
+	func retract() {
+		expanded = false
+		UIView.animate(withDuration: 0.25) {
+			self.arrow.transform = CGAffineTransform.identity
+			self.buttonsHeight.constant = 0.0
+			self.parent?.layoutIfNeeded()
+		}
+	}
+	
+	@IBAction func graph(_ sender:UIButton?) {
+		parent?.close(nil)
+		parent?.stats()
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+			self.parent?.statsViewController.goToGraph()
+		}
+		retract()
+	}
+	
+	@IBAction func attainment(_ sender:UIButton?) {
+		parent?.close(nil)
+		parent?.stats()
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+			self.parent?.statsViewController.goToAttainment()
+		}
+		retract()
+	}
+	
+	@IBAction func points(_ sender:UIButton?) {
+		parent?.close(nil)
+		parent?.stats()
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+			self.parent?.statsViewController.goToPoints()
+		}
+		retract()
+	}
+	
 }

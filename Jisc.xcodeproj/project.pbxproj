@@ -19,6 +19,8 @@
 		DA11B6AF1E7164F700F823B8 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA11B6AE1E7164F700F823B8 /* MainTabBarController.swift */; };
 		DA162E261CAD39B100E0C3D0 /* xAPILoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA162E241CAD39B100E0C3D0 /* xAPILoginVC.swift */; };
 		DA162E271CAD39B100E0C3D0 /* xAPILoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA162E251CAD39B100E0C3D0 /* xAPILoginVC.xib */; };
+		DA1996721EE818BF007524E1 /* PointsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1996701EE818BF007524E1 /* PointsCell.swift */; };
+		DA1996731EE818BF007524E1 /* PointsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA1996711EE818BF007524E1 /* PointsCell.xib */; };
 		DA2093FD1E69BD76001D979A /* SocialLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2093FB1E69BD76001D979A /* SocialLoginVC.swift */; };
 		DA2093FE1E69BD76001D979A /* SocialLoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA2093FC1E69BD76001D979A /* SocialLoginVC.xib */; };
 		DA2094001E69BDA3001D979A /* SocialLoginVC~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA2093FF1E69BDA3001D979A /* SocialLoginVC~ipad.xib */; };
@@ -39,6 +41,7 @@
 		DA4085B41EE6A8D50012A561 /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA4085B31EE6A8D50012A561 /* MenuView.xib */; };
 		DA4085B61EE6AFD70012A561 /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4085B51EE6AFD70012A561 /* MenuButton.swift */; };
 		DA4085B81EE6AFE50012A561 /* MenuButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA4085B71EE6AFE50012A561 /* MenuButton.xib */; };
+		DA4085BA1EE6EAA10012A561 /* StatsMenuButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA4085B91EE6EAA10012A561 /* StatsMenuButton.xib */; };
 		DA425AA81BD4E77F00C77D76 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA425AA71BD4E77F00C77D76 /* DownloadManager.swift */; };
 		DA425AAA1BD4E9D500C77D76 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA425AA91BD4E9D500C77D76 /* LoadingView.swift */; };
 		DA425AAC1BD4E9E800C77D76 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA425AAB1BD4E9E800C77D76 /* LoadingView.xib */; };
@@ -285,6 +288,8 @@
 		DA11B6AE1E7164F700F823B8 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		DA162E241CAD39B100E0C3D0 /* xAPILoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xAPILoginVC.swift; sourceTree = "<group>"; };
 		DA162E251CAD39B100E0C3D0 /* xAPILoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = xAPILoginVC.xib; sourceTree = "<group>"; };
+		DA1996701EE818BF007524E1 /* PointsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsCell.swift; sourceTree = "<group>"; };
+		DA1996711EE818BF007524E1 /* PointsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PointsCell.xib; sourceTree = "<group>"; };
 		DA1A43751E72981900917437 /* Jisc3.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jisc3.3.xcdatamodel; sourceTree = "<group>"; };
 		DA1E7F8D1C1EBE9D009343B1 /* Jisc1.8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jisc1.8.xcdatamodel; sourceTree = "<group>"; };
 		DA2093FB1E69BD76001D979A /* SocialLoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialLoginVC.swift; sourceTree = "<group>"; };
@@ -309,6 +314,7 @@
 		DA4085B31EE6A8D50012A561 /* MenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuView.xib; sourceTree = "<group>"; };
 		DA4085B51EE6AFD70012A561 /* MenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
 		DA4085B71EE6AFE50012A561 /* MenuButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuButton.xib; sourceTree = "<group>"; };
+		DA4085B91EE6EAA10012A561 /* StatsMenuButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatsMenuButton.xib; sourceTree = "<group>"; };
 		DA425AA71BD4E77F00C77D76 /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		DA425AA91BD4E9D500C77D76 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		DA425AAB1BD4E9E800C77D76 /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
@@ -719,6 +725,7 @@
 				DA4085B31EE6A8D50012A561 /* MenuView.xib */,
 				DA4085B51EE6AFD70012A561 /* MenuButton.swift */,
 				DA4085B71EE6AFE50012A561 /* MenuButton.xib */,
+				DA4085B91EE6EAA10012A561 /* StatsMenuButton.xib */,
 				DA76411C1BD7BE4000A7D5C1 /* AlertView.swift */,
 				DA76411A1BD7BE3300A7D5C1 /* AlertView.xib */,
 				DAD644CA1C6227C800AA62E8 /* Localizable.strings */,
@@ -961,6 +968,8 @@
 				DAA2AEF41BCE85CD00ED796A /* StatsVC.swift */,
 				DAFC711D1BDFE33700A06C9A /* AttainmentCell.swift */,
 				DAB0C8091C4CE96400F7A3C6 /* AttainmentCell.xib */,
+				DA1996701EE818BF007524E1 /* PointsCell.swift */,
+				DA1996711EE818BF007524E1 /* PointsCell.xib */,
 				DA868B161BE79C0E00032225 /* EngagementGraphVC.swift */,
 				DAD8BD6E1DB8BC08004F21DE /* BarGraph */,
 			);
@@ -1323,6 +1332,7 @@
 				DAB0C8851C4CEB1200F7A3C6 /* SettingsVC.xib in Resources */,
 				DAC634F61C807DFE0084E314 /* StagSans-Light-App.ttf in Resources */,
 				DAB0C7DD1C4CE8D200F7A3C6 /* SearchVC.xib in Resources */,
+				DA4085BA1EE6EAA10012A561 /* StatsMenuButton.xib in Resources */,
 				DAB0C7D11C4CE8A000F7A3C6 /* FeedVC~ipad.xib in Resources */,
 				DAC32DC81BCF9F5B00C4FBF5 /* MyriadPro-Light.otf in Resources */,
 				DAD66C681C52222800074B79 /* TrophiesGold.xcassets in Resources */,
@@ -1345,6 +1355,7 @@
 				DAB0C7FB1C4CE93D00F7A3C6 /* StatsVC.xib in Resources */,
 				DA162E271CAD39B100E0C3D0 /* xAPILoginVC.xib in Resources */,
 				DAB0C83D1C4CEA1600F7A3C6 /* LogActivityVC.xib in Resources */,
+				DA1996731EE818BF007524E1 /* PointsCell.xib in Resources */,
 				DAB0C85B1C4CEA7700F7A3C6 /* ActivityDetailsVC~ipad.xib in Resources */,
 				DAB0C86D1C4CEAAF00F7A3C6 /* NewTargetVC.xib in Resources */,
 				DAB0C7CB1C4CE88700F7A3C6 /* FeedVC.xib in Resources */,
@@ -1473,6 +1484,7 @@
 				DA46D9641BF1F9E900AA1476 /* ActivityLog.swift in Sources */,
 				DAD8BD731DB8BC1B004F21DE /* SingleBarView.swift in Sources */,
 				DA9C72841C9815A10012B5DD /* xAPIManager.swift in Sources */,
+				DA1996721EE818BF007524E1 /* PointsCell.swift in Sources */,
 				DAA4BEAC1BF383DF0057AEF9 /* SingleTargetDetailsView.swift in Sources */,
 				DA46D96E1BF2397F00AA1476 /* Institution.swift in Sources */,
 				DA46D9791BF2482400AA1476 /* Activity+CoreDataProperties.swift in Sources */,
