@@ -166,7 +166,7 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 		if (changesWereMade()) {
 			UIAlertView(title: localized("confirmation"), message: localized("would_you_like_to_save_the_changes_you_made"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
 		} else {
-			navigationController?.popViewController(animated: true)
+			_ = navigationController?.popViewController(animated: true)
 		}
 	}
 	
@@ -341,7 +341,7 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 	}
 	
 	@IBAction func showModuleSelector(_ sender:UIButton) {
-		if social() {
+		if currentUserType() == .social {
 			var array:[String] = [String]()
 			array.append(localized("any_module"))
 			for (_, item) in dataManager.modules().enumerated() {
@@ -409,7 +409,7 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 			}
 			break
 		case moduleSelectorView:
-			if social() {
+			if currentUserType() == .social {
 				if selectedRow == dataManager.modules().count {
 					addModule()
 				} else {

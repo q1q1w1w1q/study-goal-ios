@@ -60,7 +60,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
 //		var viewControllers = [navigationController1, navigationController2, navigationController3, navigationController4, navigationController5]
 		var viewControllers = [navigationController1, navigationController3, navigationController4, navigationController5]
 		
-		if social() {
+		if currentUserType() == .social {
 			let navigationController1 = UINavigationController(rootViewController: feedViewController)
 			navigationController1.isNavigationBarHidden = true
 			let navigationController2 = UINavigationController(rootViewController: logViewController)
