@@ -90,6 +90,8 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 		refreshControl.addTarget(self, action: #selector(StatsVC.refreshAllInfo(_:)), for: UIControlEvents.valueChanged)
 		contentScroll.addSubview(refreshControl)
 		contentScroll.alwaysBounceVertical = true
+		attainmentTableView.estimatedRowHeight = 35.0
+		attainmentTableView.rowHeight = UITableViewAutomaticDimension
 		attainmentTableView.register(UINib(nibName: kAttainmentCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kAttainmentCellIdentifier)
 		let weekPercentage = dataManager.studentLastWeekRankings[dataManager.currentStudent!.lastWeekActivityPoints.intValue]
 		let overallPercentage = dataManager.studentOverallRankings[dataManager.currentStudent!.totalActivityPoints.intValue]
@@ -560,34 +562,42 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 	//MARK: UITableView Datasource
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//		return dataManager.myMarks().count
-//		return dataManager.myAssignmentRankings.count
-		return attainmentArray.count
+		var nrRows = attainmentArray.count
+		if let student = dataManager.currentStudent {
+			if student.affiliation.contains("glos.ac.uk") {
+				nrRows += 1
+			}
+		}
+		return nrRows
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		var theCell = tableView.dequeueReusableCell(withIdentifier: kAttainmentCellIdentifier)
-		if (theCell == nil) {
-			theCell = UITableViewCell()
+		let cell = tableView.dequeueReusableCell(withIdentifier: kAttainmentCellIdentifier, for: indexPath)
+		if let theCell = cell as? AttainmentCell {
+			if indexPath.row < attainmentArray.count {
+				let attObject = attainmentArray[indexPath.row]
+				theCell.loadAttainmentObject(attObject)
+			} else {
+				theCell.loadAttainmentObject(nil)
+			}
 		}
-		return theCell!
+		return cell
 	}
 	
 	//MARK: UITableView Delegate
 	
-	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return 35.0
-	}
+//	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//		return 35.0
+//	}
 	
 	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-		let theCell:AttainmentCell? = cell as? AttainmentCell
-		if (theCell != nil) {
-//			let attainment = dataManager.myMarks()[indexPath.row]
-//			let assignment = dataManager.myAssignmentRankings[indexPath.row]
-			let attObject = attainmentArray[indexPath.row]
-//			theCell!.loadAttainment(attainment)
-//			theCell!.loadAssignmentRanking(assignment)
-			theCell!.loadAttainmentObject(attObject)
+		if let theCell = cell as? AttainmentCell {
+			if indexPath.row < attainmentArray.count {
+				let attObject = attainmentArray[indexPath.row]
+				theCell.loadAttainmentObject(attObject)
+			} else {
+				theCell.loadAttainmentObject(nil)
+			}
 		}
 	}
 }

@@ -193,25 +193,31 @@ class OneFeedItemCell: LocalizableCell {
 	}
 	
 	@IBAction func hidePost(_ sender:UIButton) {
-		hideOptions()
-		if (theFeed != nil) {
-			DownloadManager().hideFeed(theFeed!.id, myID: dataManager.currentStudent!.id, alertAboutInternet: true, completion: { (success, result, results, error) -> Void in
-				if (success) {
-					if (result != nil) {
-						let message = result!["message"] as? String
-						if (message != nil) {
-							AlertView.showAlert(true, message: message!, completion: nil)
-						}
-					}
-				} else {
-					AlertView.showAlert(false, message: kDefaultFailureReason, completion: nil)
-				}
-				dataManager.getStudentFeeds({ (success, failureReason) -> Void in
-					self.tableView?.reloadData()
-				})
-			})
+		if demo() {
+			let alert = UIAlertController(title: "", message: localized("demo_mode_postfeed"), preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
+			navigationController?.present(alert, animated: true, completion: nil)
 		} else {
-			AlertView.showAlert(false, message: kDefaultFailureReason, completion: nil)
+			hideOptions()
+			if (theFeed != nil) {
+				DownloadManager().hideFeed(theFeed!.id, myID: dataManager.currentStudent!.id, alertAboutInternet: true, completion: { (success, result, results, error) -> Void in
+					if (success) {
+						if (result != nil) {
+							let message = result!["message"] as? String
+							if (message != nil) {
+								AlertView.showAlert(true, message: message!, completion: nil)
+							}
+						}
+					} else {
+						AlertView.showAlert(false, message: kDefaultFailureReason, completion: nil)
+					}
+					dataManager.getStudentFeeds({ (success, failureReason) -> Void in
+						self.tableView?.reloadData()
+					})
+				})
+			} else {
+				AlertView.showAlert(false, message: kDefaultFailureReason, completion: nil)
+			}
 		}
 	}
 	

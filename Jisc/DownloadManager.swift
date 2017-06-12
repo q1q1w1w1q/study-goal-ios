@@ -427,6 +427,7 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 			addAuthorizationHeader(request)
 		}
 		request?.httpMethod = "POST"
+		request?.timeoutInterval = 20.0
 		
 		let boundary = "---------------------------14737809831466499882746641449"
 		
@@ -453,7 +454,7 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		data = (NSString(format: "\r\n--%@\r\n", boundary)).data(using: String.Encoding.utf8.rawValue)
 		body.append(data!)
 		let fileName = "\(myID)_\(Date().timeIntervalSince1970)"
-		let string = NSString(format: "Content-Disposition: attachment; name=\"profile_photo\"; filename=\"%@.png\"\r\nContent-Type: image/png\r\n\r\n", fileName)
+		let string = NSString(format: "Content-Disposition: attachment; name=\"image_data\"; filename=\"%@.png\"\r\nContent-Type: image/png\r\n\r\n", fileName)
 		data = NSString(string: string).data(using: String.Encoding.utf8.rawValue)
 		body.append(data!)
 		var newImage = image
@@ -1350,9 +1351,9 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 	
 	func editProfile(_ myID:String, image:UIImage?, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
 		shouldNotifyAboutInternetConnection = alertAboutInternet
-		if (image != nil) {
+		if let image = image {
 			completionBlock = completion
-			startConnectionWithRequest(createProfileImageUploadRequest(editProfilePath, myID: myID, image: image!, withAuthorizationHeader: true))
+			startConnectionWithRequest(createProfileImageUploadRequest(editProfilePath, myID: myID, image: image, withAuthorizationHeader: true))
 		} else {
 			completion(true, nil, nil, nil)
 		}

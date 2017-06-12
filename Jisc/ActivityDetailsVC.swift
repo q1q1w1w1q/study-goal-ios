@@ -163,17 +163,29 @@ class ActivityDetailsVC: BaseViewController, UITableViewDataSource, UITableViewD
 	}
 	
 	@IBAction func editLog(_ sender:UIButton!) {
-		if (theActivity.isRunning.boolValue) {
-			let vc = NewActivityVC(activity: theActivity, atIndex:dataManager.runningActivities().index(of: theActivity)!)
-			navigationController?.pushViewController(vc, animated: true)
+		if demo() {
+			let alert = UIAlertController(title: "", message: localized("demo_mode_editactivitylog"), preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
+			navigationController?.present(alert, animated: true, completion: nil)
 		} else {
-			let vc = LogActivityVC(activity: theActivity)
-			navigationController?.pushViewController(vc, animated: true)
+			if (theActivity.isRunning.boolValue) {
+				let vc = NewActivityVC(activity: theActivity, atIndex:dataManager.runningActivities().index(of: theActivity)!)
+				navigationController?.pushViewController(vc, animated: true)
+			} else {
+				let vc = LogActivityVC(activity: theActivity)
+				navigationController?.pushViewController(vc, animated: true)
+			}
 		}
 	}
 	
 	@IBAction func deleteLog(_ sender:UIButton!) {
-		UIAlertView(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_delete_this_activity_log"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
+		if demo() {
+			let alert = UIAlertController(title: "", message: localized("demo_mode_deleteactivitylog"), preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
+			navigationController?.present(alert, animated: true, completion: nil)
+		} else {
+			UIAlertView(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_delete_this_activity_log"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
+		}
 	}
 	
 	@IBAction func saveNote(_ sender:UIButton) {

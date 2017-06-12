@@ -19,6 +19,7 @@ class ItemTypeCell: UITableViewCell {
 	
 	@IBOutlet weak var titleLabel:UILabel!
 	@IBOutlet weak var checkmark:UIImageView!
+	var centered = false
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
@@ -28,7 +29,7 @@ class ItemTypeCell: UITableViewCell {
 	
 	override func setSelected(_ selected: Bool, animated: Bool) {
 		super.setSelected(selected, animated: animated)
-		if (selected) {
+		if (selected && !centered) {
 			checkmark.alpha = 1.0
 		} else {
 			checkmark.alpha = 0.0
@@ -41,13 +42,19 @@ class ItemTypeCell: UITableViewCell {
 		titleLabel.text = ""
 	}
 	
-	func loadItem(_ item:String, isSelected:Bool) {
-		if (isSelected) {
+	func loadItem(_ item:String, isSelected:Bool, centered:Bool) {
+		if isSelected {
 			checkmark.alpha = 1.0
 		} else {
 			checkmark.alpha = 0.0
 		}
 		titleLabel.text = item
+		self.centered = centered
+		if centered {
+			titleLabel.textAlignment = .center
+		} else {
+			titleLabel.textAlignment = .left
+		}
 	}
 }
 
@@ -60,6 +67,7 @@ class CustomPickerView: UIView, UITableViewDataSource, UITableViewDelegate {
 	var delegate:CustomPickerViewDelegate?
 	var contentArray:[String] = [String]()
 	var selectedItem:Int = -1
+	var centerIndexes = [Int]()
 	
 	class func create(_ title:String, delegate:CustomPickerViewDelegate, contentArray:[String], selectedItem:Int) -> CustomPickerView {
 		let view:CustomPickerView = Bundle.main.loadNibNamed("CustomPickerView", owner: nil, options: nil)!.first as! CustomPickerView
@@ -103,9 +111,9 @@ class CustomPickerView: UIView, UITableViewDataSource, UITableViewDelegate {
 	@IBAction func closePickerView(_ sender:UIButton) {
 		UIView.animate(withDuration: 0.25, animations: { () -> Void in
 			self.alpha = 0.0
-			}, completion: { (done) -> Void in
-				self.removeFromSuperview()
-		}) 
+		}, completion: { (done) -> Void in
+			self.removeFromSuperview()
+		})
 	}
 	
 	//MARK: UITableView Datasource
@@ -132,12 +140,14 @@ class CustomPickerView: UIView, UITableViewDataSource, UITableViewDelegate {
 	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 		let item = contentArray[indexPath.row]
 		let theCell:ItemTypeCell? = cell as? ItemTypeCell
-		theCell?.loadItem(item, isSelected: (selectedItem == indexPath.row))
+		theCell?.loadItem(item, isSelected: (selectedItem == indexPath.row), centered: centerIndexes.contains(indexPath.row))
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		selectedItem = indexPath.row
-		delegate?.view(self, selectedRow: indexPath.row)
-		closePickerView(UIButton())
+		if !centerIndexes.contains(indexPath.row) {
+			selectedItem = indexPath.row
+			delegate?.view(self, selectedRow: indexPath.row)
+			closePickerView(UIButton())
+		}
 	}
 }

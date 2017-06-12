@@ -10,7 +10,7 @@ import UIKit
 import MessageUI
 
 let kSettingsWillAppearNotification = "kSettingsWillAppearNotification"
-let maximumImageSizeInBytes:Int = 12000000
+let maximumImageSizeInBytes:Int = 500000
 
 class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CustomPickerViewDelegate, UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate {
 	
@@ -452,13 +452,19 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 	//MARK: Show Source Selector
 	
 	@IBAction func showSourceSelector(_ sender:UIButton) {
-		var array:[String] = [String]()
-		array.append(localized("library"))
-		if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)) {
-			array.append(localized("camera"))
+		if demo() {
+			let alert = UIAlertController(title: "", message: localized("demo_mode_change_picture"), preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: localized("ok"), style: .default, handler: nil))
+			navigationController?.present(alert, animated: true, completion: nil)
+		} else {
+			var array:[String] = [String]()
+			array.append(localized("library"))
+			if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)) {
+				array.append(localized("camera"))
+			}
+			sourcesSelectorView = CustomPickerView.create(localized("choose_source"), delegate: self, contentArray: array, selectedItem: -1)
+			view.addSubview(sourcesSelectorView)
 		}
-		sourcesSelectorView = CustomPickerView.create(localized("choose_source"), delegate: self, contentArray: array, selectedItem: -1)
-		view.addSubview(sourcesSelectorView)
 	}
 	
 	//MARK: CustomPickerView Delegate
