@@ -72,19 +72,8 @@
                                 <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="activity_log"/>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z3Q-eM-JMM">
-                            <rect key="frame" x="335" y="20" width="40" height="40"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="40" id="SEo-rf-ccp"/>
-                                <constraint firstAttribute="width" constant="40" id="r68-VF-Ygl"/>
-                            </constraints>
-                            <state key="normal" image="settingsButton"/>
-                            <connections>
-                                <action selector="settings:" destination="-1" eventType="touchUpInside" id="PIF-N0-X5y"/>
-                            </connections>
-                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mg2-8T-QRL">
-                            <rect key="frame" x="295" y="20" width="40" height="40"/>
+                            <rect key="frame" x="335" y="20" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="PZ7-y0-Hog"/>
                                 <constraint firstAttribute="width" constant="40" id="oDx-qV-P0j"/>
@@ -99,7 +88,6 @@
                     <constraints>
                         <constraint firstItem="tl6-7Z-2UA" firstAttribute="centerY" secondItem="rb2-g9-5VG" secondAttribute="centerY" id="25a-Xx-dq4"/>
                         <constraint firstAttribute="bottom" secondItem="69F-YN-fHp" secondAttribute="bottom" id="68K-HX-h6i"/>
-                        <constraint firstItem="z3Q-eM-JMM" firstAttribute="leading" secondItem="Mg2-8T-QRL" secondAttribute="trailing" id="6Gj-Uu-gp6"/>
                         <constraint firstAttribute="bottom" secondItem="Mg2-8T-QRL" secondAttribute="bottom" id="Dh4-ef-Mxe"/>
                         <constraint firstItem="69F-YN-fHp" firstAttribute="leading" secondItem="1dY-vP-8ZO" secondAttribute="leading" id="TD9-G8-gbk"/>
                         <constraint firstAttribute="trailing" secondItem="69F-YN-fHp" secondAttribute="trailing" id="Y5D-rV-j8h"/>
@@ -110,15 +98,14 @@
                         <constraint firstItem="rb2-g9-5VG" firstAttribute="leading" secondItem="1dY-vP-8ZO" secondAttribute="leading" id="eDJ-E2-AVg"/>
                         <constraint firstItem="Mtz-iW-vhD" firstAttribute="centerX" secondItem="1dY-vP-8ZO" secondAttribute="centerX" id="g9m-Of-3Ty"/>
                         <constraint firstItem="rb2-g9-5VG" firstAttribute="top" secondItem="1dY-vP-8ZO" secondAttribute="top" constant="20" id="iPM-oL-bgT"/>
-                        <constraint firstAttribute="bottom" secondItem="z3Q-eM-JMM" secondAttribute="bottom" id="jg5-XF-3EJ"/>
                         <constraint firstAttribute="bottom" secondItem="Mtz-iW-vhD" secondAttribute="bottom" constant="10" id="oDI-Ni-wVL"/>
-                        <constraint firstAttribute="trailing" secondItem="z3Q-eM-JMM" secondAttribute="trailing" id="uCF-nE-7e9"/>
                         <constraint firstItem="rb2-g9-5VG" firstAttribute="width" secondItem="rb2-g9-5VG" secondAttribute="height" multiplier="1:1" id="uVr-vR-GrM"/>
+                        <constraint firstAttribute="trailing" secondItem="Mg2-8T-QRL" secondAttribute="trailing" id="uhe-7Z-tc0"/>
                         <constraint firstItem="tl6-7Z-2UA" firstAttribute="leading" secondItem="rb2-g9-5VG" secondAttribute="trailing" id="vJg-GB-Kfz"/>
                     </constraints>
                 </view>
                 <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rb1-YN-EpK" customClass="LocalizableView" customModule="Jisc" customModuleProvider="target">
-                    <rect key="frame" x="165.5" y="323.5" width="45.5" height="20"/>
+                    <rect key="frame" x="165" y="324" width="45.5" height="20"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdD-3e-AEZ" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="45.5" height="20"/>
@@ -165,6 +152,5 @@
         <image name="addButton" width="23" height="23"/>
         <image name="lightBlue" width="10" height="10"/>
         <image name="openMenuButton" width="22" height="22"/>
-        <image name="settingsButton" width="23" height="22"/>
     </resources>
 </document>

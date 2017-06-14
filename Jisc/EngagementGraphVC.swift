@@ -8,15 +8,6 @@
 
 import UIKit
 
-let periods:[kXAPIEngagementScope] = [.SevenDays, .ThirtyDays]
-let myColor = UIColor(red: 0.53, green: 0.39, blue: 0.78, alpha: 1.0)
-let otherStudentColor = UIColor(red: 0.22, green: 0.57, blue: 0.93, alpha: 1.0)
-
-enum GraphType {
-	case Line
-	case Bar
-}
-
 class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollViewDelegate {
 	
 	@IBOutlet weak var titleLabel:UILabel!

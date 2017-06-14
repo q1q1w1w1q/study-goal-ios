@@ -319,7 +319,7 @@
 "saved_successfully" = "Saved Successfully";
 "time_spent_max" = "Time spent cannot be more than %@ hours.";
 "choose_interval" = "Choose Interval";
-"are_you_sure_you_want_you_log_out" = "Are you sure you want you log out?";
+"are_you_sure_you_want_to_log_out" = "Are you sure you want to log out?";
 "set" = "Set";
 "add_a_reason_to_keep_this_target" = "Add a reason to keep this target";
 "empty_feed_page_message" = "Welcome to Jisc.\nThis page will be populated with your feeds.";

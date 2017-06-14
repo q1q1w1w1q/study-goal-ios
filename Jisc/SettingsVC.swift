@@ -282,7 +282,7 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 	}
 	
 	@IBAction func logout(_ sender:UIButton) {
-		UIAlertView(title: localized("confirmation"), message: localized("are_you_sure_you_want_you_log_out"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
+		UIAlertView(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_log_out"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
 	}
 	
 	func showDetailsForTrophy(_ trophy:Trophy?) {

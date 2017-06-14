@@ -54,7 +54,11 @@ class MenuView: UIView {
 			}
 		} else {
 			lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Feed, previousButton: lastButton, isLastButton: false, parent: view)
-			lastButton = StatsMenuButton.insertSelfinView(view.menuContent, buttonType: .Stats, previousButton: lastButton, isLastButton: false, parent: view)
+			if iPad {
+				lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Stats, previousButton: lastButton, isLastButton: false, parent: view)
+			} else {
+				lastButton = StatsMenuButton.insertSelfinView(view.menuContent, buttonType: .Stats, previousButton: lastButton, isLastButton: false, parent: view)
+			}
 			lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Log, previousButton: lastButton, isLastButton: false, parent: view)
 			lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Target, previousButton: lastButton, isLastButton: false, parent: view)
 			if index == 0 {
@@ -69,6 +73,7 @@ class MenuView: UIView {
 				view.feed()
 			}
 		}
+		lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Settings, previousButton: lastButton, isLastButton: false, parent: view)
 		lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Logout, previousButton: lastButton, isLastButton: true, parent: view)
 		if let nvcView = DELEGATE.mainNavigationController?.view {
 			nvcView.addSubview(view)
@@ -135,8 +140,14 @@ class MenuView: UIView {
 		close(nil)
 	}
 	
+	func settings() {
+		let vc = SettingsVC()
+		DELEGATE.mainNavigationController?.pushViewController(vc, animated: true)
+		close(nil)
+	}
+	
 	func logout() {
-		let alert = UIAlertController(title: localized("confirmation"), message: localized("are_you_sure_you_want_you_log_out"), preferredStyle: .alert)
+		let alert = UIAlertController(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_log_out"), preferredStyle: .alert)
 		alert.addAction(UIAlertAction(title: localized("no"), style: .cancel, handler: nil))
 		alert.addAction(UIAlertAction(title: localized("yes"), style: .default, handler: { (action) in
 			if let cookies = HTTPCookieStorage.shared.cookies {

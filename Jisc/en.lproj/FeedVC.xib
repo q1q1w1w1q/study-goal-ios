@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -48,7 +48,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity Feed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PcW-zO-QQB" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="125" y="28" width="125" height="22"/>
+                            <rect key="frame" x="125.5" y="28" width="124.5" height="22"/>
                             <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="22"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -57,7 +57,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JjQ-TZ-Wku">
-                            <rect key="frame" x="295" y="20" width="40" height="40"/>
+                            <rect key="frame" x="335" y="20" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="8UB-bl-mNZ"/>
                                 <constraint firstAttribute="width" constant="40" id="wuz-qT-lqR"/>
@@ -65,17 +65,6 @@
                             <state key="normal" image="profileButton"/>
                             <connections>
                                 <action selector="search:" destination="-1" eventType="touchUpInside" id="1bf-NJ-hvD"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d8I-WW-Oud">
-                            <rect key="frame" x="335" y="20" width="40" height="40"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="40" id="SKp-BV-HSj"/>
-                                <constraint firstAttribute="height" constant="40" id="wxe-x8-1tc"/>
-                            </constraints>
-                            <state key="normal" image="settingsButton"/>
-                            <connections>
-                                <action selector="settings:" destination="-1" eventType="touchUpInside" id="BZH-3Z-Tfe"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vzj-3E-TFb">
@@ -90,7 +79,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jisc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3OW-AT-bG5" customClass="AppTitleLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="40" y="32" width="28" height="17"/>
+                            <rect key="frame" x="40" y="32" width="27.5" height="17"/>
                             <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="17"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -99,7 +88,6 @@
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="PcW-zO-QQB" secondAttribute="bottom" constant="10" id="3cB-dy-7Mj"/>
-                        <constraint firstItem="d8I-WW-Oud" firstAttribute="leading" secondItem="JjQ-TZ-Wku" secondAttribute="trailing" id="Ch2-Wr-7q1"/>
                         <constraint firstAttribute="bottom" secondItem="K7a-1n-psX" secondAttribute="bottom" id="D5v-Xv-fdt"/>
                         <constraint firstItem="vzj-3E-TFb" firstAttribute="top" secondItem="ukK-yt-Ndy" secondAttribute="top" constant="20" id="D7L-tV-2aV"/>
                         <constraint firstItem="K7a-1n-psX" firstAttribute="leading" secondItem="ukK-yt-Ndy" secondAttribute="leading" id="HVZ-Pw-4q2"/>
@@ -113,8 +101,7 @@
                         <constraint firstAttribute="height" constant="60" id="cZM-4C-l8y"/>
                         <constraint firstItem="3OW-AT-bG5" firstAttribute="centerY" secondItem="vzj-3E-TFb" secondAttribute="centerY" id="iya-5w-nXE"/>
                         <constraint firstItem="3OW-AT-bG5" firstAttribute="leading" secondItem="vzj-3E-TFb" secondAttribute="trailing" id="jHp-A8-UwQ"/>
-                        <constraint firstAttribute="bottom" secondItem="d8I-WW-Oud" secondAttribute="bottom" id="r7I-Uk-G9P"/>
-                        <constraint firstAttribute="trailing" secondItem="d8I-WW-Oud" secondAttribute="trailing" id="toS-fa-sv8"/>
+                        <constraint firstAttribute="trailing" secondItem="JjQ-TZ-Wku" secondAttribute="trailing" id="vLg-FZ-DvJ"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="126" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fnt-Uh-q2a">
@@ -143,10 +130,10 @@
                     </connections>
                 </button>
                 <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JoS-Dx-q4Z" customClass="LocalizableView" customModule="Jisc" customModuleProvider="target">
-                    <rect key="frame" x="165" y="324" width="46" height="20"/>
+                    <rect key="frame" x="165.5" y="323.5" width="45.5" height="20"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSc-KH-gWl" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="46" height="20"/>
+                            <rect key="frame" x="0.0" y="0.0" width="45.5" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="280" id="VcK-3d-2RN"/>
                             </constraints>
@@ -197,7 +184,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lpw-Xv-Sg3">
-                                    <rect key="frame" x="122" y="28" width="132" height="22"/>
+                                    <rect key="frame" x="122.5" y="28" width="131.5" height="22"/>
                                     <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="22"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -223,13 +210,13 @@
                             </variation>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4iQ-M0-Opu">
-                            <rect key="frame" x="8" y="70" width="359" height="125"/>
+                            <rect key="frame" x="8" y="70" width="359" height="124.5"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Mo-s7-1Ma">
-                                    <rect key="frame" x="1" y="1" width="357" height="123"/>
+                                    <rect key="frame" x="1" y="1" width="357" height="122.5"/>
                                     <subviews>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ujS-AG-9pM">
-                                            <rect key="frame" x="8" y="8" width="341" height="107"/>
+                                            <rect key="frame" x="8" y="8" width="341" height="106.5"/>
                                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             <connections>
@@ -256,7 +243,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="37I-M5-sNJ" customClass="ViewWithRoundedCorners" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="246" y="203" width="121" height="33"/>
+                            <rect key="frame" x="246" y="202.5" width="121" height="33"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TeQ-Zc-IL9" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="121" height="33"/>
@@ -358,6 +345,5 @@
         <image name="openMenuButton" width="22" height="22"/>
         <image name="profileButton" width="23" height="23"/>
         <image name="purple2" width="10" height="10"/>
-        <image name="settingsButton" width="23" height="22"/>
     </resources>
 </document>

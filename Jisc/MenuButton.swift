@@ -13,6 +13,7 @@ enum MenuButtonType:String {
 	case Stats = "Stats"
 	case Log = "Log"
 	case Target = "Target"
+	case Settings = "Settings"
 	case Logout = "Logout"
 }
 
@@ -47,6 +48,10 @@ class MenuButton: UIView {
 		case .Target:
 			button.button.setImage(UIImage(named: "TargetVCMenuIcon"), for: .normal)
 			button.button.setImage(UIImage(named: "TargetVCMenuIconSelected"), for: .selected)
+			break
+		case .Settings:
+			button.button.setImage(UIImage(named: "settingsMenuIcon"), for: .normal)
+			button.button.setImage(UIImage(named: "settingsMenuIconSelected"), for: .selected)
 			break
 		case .Logout:
 			button.button.setImage(UIImage(named: "logoutMenuIcon"), for: .normal)
@@ -98,6 +103,9 @@ class MenuButton: UIView {
 			break
 		case .Target:
 			parent?.target()
+			break
+		case .Settings:
+			parent?.settings()
 			break
 		case .Logout:
 			parent?.logout()

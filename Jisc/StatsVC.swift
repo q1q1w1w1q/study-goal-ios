@@ -51,10 +51,19 @@ class PointsObject {
 	}
 }
 
+let periods:[kXAPIEngagementScope] = [.SevenDays, .ThirtyDays]
+let myColor = UIColor(red: 0.53, green: 0.39, blue: 0.78, alpha: 1.0)
+let otherStudentColor = UIColor(red: 0.22, green: 0.57, blue: 0.93, alpha: 1.0)
+
+enum GraphType {
+	case Line
+	case Bar
+}
+
 class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, CustomPickerViewDelegate, UIScrollViewDelegate {
 	
 	@IBOutlet weak var contentCenterX:NSLayoutConstraint!
-	@IBOutlet weak var pageSegment:UISegmentedControl!
+	@IBOutlet weak var pageSegment:UISegmentedControl?
 	@IBOutlet weak var titleLabel:UILabel!
 	@IBOutlet weak var blueDot:UIImageView!
 	@IBOutlet weak var comparisonStudentName:UILabel!
@@ -154,9 +163,9 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 		initialGraphWidth = graphContainerWidth.constant
 		
 		getEngagementData()
-		getActivityPoints {
+		getActivityPoints(period: .SevenDays, completion: {
 			
-		}
+		})
 		goToAttainment()
 	}
 	
@@ -228,11 +237,11 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 		}
 	}
 	
-	func getActivityPoints(_ completion:@escaping (() -> Void)) {
+	func getActivityPoints(period:kXAPIActivityPointsPeriod, completion:@escaping (() -> Void)) {
 		pointsArray.removeAll()
 		let xMGR = xAPIManager()
 		xMGR.silent = true
-		xMGR.getActivityPoints(kXAPIActivityPointsPeriod.Overall) { (success, result, results, error) in
+		xMGR.getActivityPoints(period) { (success, result, results, error) in
 			if (result != nil) {
 				if let totalPoints = result!["totalPoints"] as? Int {
 					dataManager.currentStudent!.totalActivityPoints = totalPoints as NSNumber
@@ -253,17 +262,6 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 			}
 			self.pointsTable.reloadData()
 			completion()
-//			let xMGR = xAPIManager()
-//			xMGR.silent = true
-//			xMGR.getActivityPoints(kXAPIActivityPointsPeriod.SevenDays) { (success, result, results, error) in
-//				if (result != nil) {
-//					if let totalPoints = result!["totalPoints"] as? Int {
-//						dataManager.currentStudent!.lastWeekActivityPoints = totalPoints as NSNumber
-//						self.thisWeekActivityPoints.text = self.finelyFormatterNumber(dataManager.currentStudent!.lastWeekActivityPoints)
-//					}
-//				}
-//				completion()
-//			}
 		}
 	}
 	
@@ -311,32 +309,38 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 	}
 	
 	func goToGraph() {
-		if pageSegment.selectedSegmentIndex != 0 {
-			pageSegment.selectedSegmentIndex = 0
-		}
-		UIView.animate(withDuration: 0.25) {
-			self.contentCenterX.constant = self.view.frame.size.width
-			self.view.layoutIfNeeded()
+		if let pageSegment = pageSegment {
+			if pageSegment.selectedSegmentIndex != 0 {
+				pageSegment.selectedSegmentIndex = 0
+			}
+			UIView.animate(withDuration: 0.25) {
+				self.contentCenterX.constant = self.view.frame.size.width
+				self.view.layoutIfNeeded()
+			}
 		}
 	}
 	
 	func goToAttainment() {
-		if pageSegment.selectedSegmentIndex != 1 {
-			pageSegment.selectedSegmentIndex = 1
-		}
-		UIView.animate(withDuration: 0.25) {
-			self.contentCenterX.constant = 0.0
-			self.view.layoutIfNeeded()
+		if let pageSegment = pageSegment {
+			if pageSegment.selectedSegmentIndex != 1 {
+				pageSegment.selectedSegmentIndex = 1
+			}
+			UIView.animate(withDuration: 0.25) {
+				self.contentCenterX.constant = 0.0
+				self.view.layoutIfNeeded()
+			}
 		}
 	}
 	
 	func goToPoints() {
-		if pageSegment.selectedSegmentIndex != 2 {
-			pageSegment.selectedSegmentIndex = 2
-		}
-		UIView.animate(withDuration: 0.25) {
-			self.contentCenterX.constant = -self.view.frame.size.width
-			self.view.layoutIfNeeded()
+		if let pageSegment = pageSegment {
+			if pageSegment.selectedSegmentIndex != 2 {
+				pageSegment.selectedSegmentIndex = 2
+			}
+			UIView.animate(withDuration: 0.25) {
+				self.contentCenterX.constant = -self.view.frame.size.width
+				self.view.layoutIfNeeded()
+			}
 		}
 	}
 	
@@ -347,15 +351,34 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 				compareToButton.setTitle(localized("no_one"), for: UIControlState())
 				selectedStudent = 0
 			}
+			selectedPeriod = 0
 			titleLabel.text = "\(localized("last_7_days")) \(localized("engagement"))"
 			break
 		case 1:
+			selectedPeriod = 1
 			titleLabel.text = "\(localized("last_30_days")) \(localized("engagement"))"
 			break
 		default:
 			break
 		}
 		getEngagementData()
+	}
+	
+	@IBAction func changePointsPeriod(_ sender:UISegmentedControl) {
+		switch sender.selectedSegmentIndex {
+		case 0:
+			getActivityPoints(period: .SevenDays, completion: {
+				
+			})
+			break
+		case 1:
+			getActivityPoints(period: .Overall, completion: {
+				
+			})
+			break
+		default:
+			break
+		}
 	}
 	
 	//MARK: UITableView Datasource
@@ -1352,13 +1375,15 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 	//MARK: UIScrollView Delegate
 	
 	func scrollViewDidScroll(_ scrollView: UIScrollView) {
-		let maximumIndicatorPosition = scrollView.frame.size.width - scrollIndicator.frame.size.width
-		let maximumOffset = scrollView.contentSize.width - scrollView.frame.size.width
-		if (maximumOffset != 0.0) {
-			let offsetPercentage = scrollView.contentOffset.x / maximumOffset
-			let currentIndicatorPosition = maximumIndicatorPosition * offsetPercentage
-			indicatorLeading.constant = currentIndicatorPosition + scrollView.contentOffset.x
-			view.layoutIfNeeded()
+		if scrollView == graphScroll {
+			let maximumIndicatorPosition = scrollView.frame.size.width - scrollIndicator.frame.size.width
+			let maximumOffset = scrollView.contentSize.width - scrollView.frame.size.width
+			if (maximumOffset != 0.0) {
+				let offsetPercentage = scrollView.contentOffset.x / maximumOffset
+				let currentIndicatorPosition = maximumIndicatorPosition * offsetPercentage
+				indicatorLeading.constant = currentIndicatorPosition + scrollView.contentOffset.x
+				view.layoutIfNeeded()
+			}
 		}
 	}
 }
