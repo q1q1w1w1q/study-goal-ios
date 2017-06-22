@@ -148,7 +148,10 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 	}
 	
 	@IBAction func goBack(_ sender:UIButton) {
+		timeActivityTimer?.invalidate()
 		navigationController?.popViewController(animated: true)
+		
+		
 	}
 	
 	func addModule() {
@@ -161,7 +164,7 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 	@IBAction func closeAddModule(_ sender:UIButton?) {
 		addModuleTextField.text = ""
 		addModuleTextField.resignFirstResponder()
-		UIView.animate(withDuration: 0.25) { 
+		UIView.animate(withDuration: 0.25) {
 			self.addModuleView.alpha = 0.0
 		}
 	}
@@ -176,7 +179,7 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 			self.closeReminderTimePickerButton.alpha = 1.0
 			self.reminderTimePickerBottomSpace.constant = 0.0
 			self.view.layoutIfNeeded()
-		}) 
+		})
 	}
 	
 	@IBAction func closeReminderTimePicker(_ sender:UIButton) {
@@ -193,7 +196,7 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 			self.closeReminderTimePickerButton.alpha = 0.0
 			self.reminderTimePickerBottomSpace.constant = -260.0
 			self.view.layoutIfNeeded()
-		}) 
+		})
 	}
 	
 	//MARK: Show/Close Selectors
@@ -285,53 +288,67 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 	//MARK: Start/Stop Activity
 	
 	@IBAction func startActivity(_ sender:UIButton) {
-		if (theActivity != nil) {
-			parametersView.alpha = 0.5
-			parametersView.isUserInteractionEnabled = false
-			shouldSave = true
-			if (theActivity!.isPaused.boolValue) {
-				let pauseInterval = Date().timeIntervalSince(theActivity!.pauseDate as Date)
-				theActivity!.date = theActivity!.date.addingTimeInterval(pauseInterval)
-				theActivity!.pauseDate = Date()
-				theActivity!.isPaused = false
-				dataManager.safelySaveContext()
-				let notificationTime = getLocalNotificationTime(theActivity!.id)
-				if (notificationTime != nil) {
-					reminderMinutes = Int(notificationTime! / 60.0)
-					theActivity!.startBreatherNotificationAfter(reminderMinutes)
+		var moduleIsOk = true
+		if social() {
+			if let moduleID = theActivity?.module?.id {
+				if moduleID == "add_module" {
+					moduleIsOk = false
 				}
-				AlertView.showAlert(true, message: localized("activity_resumed"), completion: nil)
-				startActivityButton.setTitle(localized("pause"), for: UIControlState())
-			} else if (theActivity!.isRunning.boolValue) {
-				theActivity!.isPaused = true
-				theActivity!.pauseDate = Date()
-				theActivity!.timeSpent = (Int(abs(theActivity!.date.timeIntervalSinceNow)) / 60) as NSNumber
-				updateSpentTimeLabel()
-				dataManager.safelySaveContext()
-				AlertView.showAlert(true, message: localized("activity_paused"), completion: nil)
-				deleteLocalNotification(theActivity!.id)
-				startActivityButton.setTitle(localized("resume"), for: UIControlState())
-			} else {
-				theActivity!.isRunning = true
-				theActivity!.date = Date()//.dateByAddingTimeInterval(-80 * 60 - 50)
-				theActivity!.modifiedDate = Date()
-				theActivity!.startBreatherNotificationAfter(reminderMinutes)
-				stopActivityButton.isEnabled = true
-				dataManager.safelySaveContext()
-				AlertView.showAlert(true, message: localized("activity_started"), completion: nil)
-				startActivityButton.setTitle(localized("pause"), for: UIControlState())
 			}
+		}
+		if moduleIsOk {
+			if (theActivity != nil) {
+				parametersView.alpha = 0.5
+				parametersView.isUserInteractionEnabled = false
+				shouldSave = true
+				if (theActivity!.isPaused.boolValue) {
+					let pauseInterval = Date().timeIntervalSince(theActivity!.pauseDate as Date)
+					theActivity!.date = theActivity!.date.addingTimeInterval(pauseInterval)
+					theActivity!.pauseDate = Date()
+					theActivity!.isPaused = false
+					dataManager.safelySaveContext()
+					let notificationTime = getLocalNotificationTime(theActivity!.id)
+					if (notificationTime != nil) {
+						reminderMinutes = Int(notificationTime! / 60.0)
+						theActivity!.startBreatherNotificationAfter(reminderMinutes)
+					}
+					AlertView.showAlert(true, message: localized("activity_resumed"), completion: nil)
+					startActivityButton.setTitle(localized("pause"), for: UIControlState())
+				} else if (theActivity!.isRunning.boolValue) {
+					theActivity!.isPaused = true
+					theActivity!.pauseDate = Date()
+					theActivity!.timeSpent = (Int(abs(theActivity!.date.timeIntervalSinceNow)) / 60) as NSNumber
+					updateSpentTimeLabel()
+					dataManager.safelySaveContext()
+					AlertView.showAlert(true, message: localized("activity_paused"), completion: nil)
+					deleteLocalNotification(theActivity!.id)
+					startActivityButton.setTitle(localized("resume"), for: UIControlState())
+				} else {
+					theActivity!.isRunning = true
+					theActivity!.date = Date()//.dateByAddingTimeInterval(-80 * 60 - 50)
+					theActivity!.modifiedDate = Date()
+					theActivity!.startBreatherNotificationAfter(reminderMinutes)
+					stopActivityButton.isEnabled = true
+					dataManager.safelySaveContext()
+					AlertView.showAlert(true, message: localized("activity_started"), completion: nil)
+					startActivityButton.setTitle(localized("pause"), for: UIControlState())
+				}
+			}
+		} else {
+			UIAlertView(title: localized("error"), message: localized("please_select_a_module"), delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
 		}
 	}
 	
 	func updateTimeLabel(_ sender:Timer) {
-		if let activity = theActivity {
-			if (!activity.isPaused.boolValue) {
-				if (sender.isValid) {
-					let timeInterval = abs(activity.date.timeIntervalSinceNow)
-					if (timeInterval > 0) {
-						theActivity?.timeSpent = (Int(timeInterval) / 60) as NSNumber
-						updateSpentTimeLabel()
+		if let activityPaused = theActivity?.isPaused.boolValue {
+			if let activityDate = theActivity?.date {
+				if !activityPaused {
+					if (sender.isValid) {
+						let timeInterval = abs(activityDate.timeIntervalSinceNow)
+						if (timeInterval > 0) {
+							theActivity?.timeSpent = (Int(timeInterval) / 60) as NSNumber
+							updateSpentTimeLabel()
+						}
 					}
 				}
 			}

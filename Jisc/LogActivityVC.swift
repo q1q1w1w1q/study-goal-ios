@@ -21,9 +21,7 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 	@IBOutlet weak var scrollBottomSpace:NSLayoutConstraint!
 	@IBOutlet weak var chooseActivityLabel:UILabel!
 	@IBOutlet weak var hoursPicker:UIPickerView!
-	@IBOutlet weak var hoursLabel:UILabel!
 	@IBOutlet weak var minutesPicker:UIPickerView!
-	@IBOutlet weak var minutesLabel:UILabel!
 	@IBOutlet weak var closeTimePickerButton:UIButton!
 	@IBOutlet weak var timePickerBottomSpace:NSLayoutConstraint!
 	@IBOutlet weak var hoursTextField:UITextField!
@@ -125,12 +123,12 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 		if (selectedHours < 10) {
 			title = "0\(selectedHours)"
 		}
-		hoursLabel.text = title
+		hoursTextField.text = title
 		title = "\(selectedMinutes)"
 		if (selectedMinutes < 10) {
 			title = "0\(selectedMinutes)"
 		}
-		minutesLabel.text = title
+		minutesTextField.text = title
 		moduleButton.setTitle(dataManager.moduleNameAtIndex(selectedModule), for: UIControlState())
 		activityTypeButton.setTitle(dataManager.activityTypeNameAtIndex(selectedActivityType), for: UIControlState())
 		let activityType = dataManager.activityTypes()[selectedActivityType]
@@ -229,7 +227,7 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 	//MARK: Show/Close Selectors
 	
 	@IBAction func showModuleSelector(_ sender:UIButton) {
-		if social() {
+		if currentUserType() == .social {
 			if dataManager.modules().count == 1 {
 				addModule()
 			} else {
@@ -289,7 +287,7 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 	func view(_ view: CustomPickerView, selectedRow: Int) {
 		switch (view) {
 		case moduleSelectorView:
-			if social() {
+			if currentUserType() == .social {
 				if selectedRow == dataManager.modules().count - 1 {
 					addModule()
 				} else {
@@ -393,42 +391,64 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 				if (selectedModule < dataManager.modules().count) {
 					theActivity!.module = dataManager.modules()[selectedModule]
 				}
-				theActivity!.activityType = dataManager.activityTypes()[selectedActivityType]
-				theActivity!.activity = dataManager.activityAtIndex(selectedActivity, type: theActivity!.activityType)!
-				theActivity!.date = datePicker.date
-				theActivity!.timeSpent = ((selectedHours * 60) + selectedMinutes) as NSNumber
-				theActivity!.note = noteTextView.text
-				dataManager.editActivityLog(theActivity!, completion: { (success, failureReason) -> Void in
-					if (success) {
-						AlertView.showAlert(true, message: localized("saved_successfully"), completion: { (done) -> Void in
-							_ = self.navigationController?.popToRootViewController(animated: true)
-						})
-					} else {
-						managedContext.rollback()
-						AlertView.showAlert(false, message: failureReason, completion: nil)
+				var moduleIsOk = true
+				if social() {
+					if let moduleID = theActivity?.module?.id {
+						if moduleID == "add_module" {
+							moduleIsOk = false
+						}
 					}
-				})
-			} else {
-				let newActivity = ActivityLog.insertInManagedObjectContext(managedContext, dictionary: NSDictionary())
-				newActivity.student = dataManager.currentStudent!
-				if (selectedModule < dataManager.modules().count) {
-					newActivity.module = dataManager.modules()[selectedModule]
 				}
-				newActivity.activityType = dataManager.activityTypes()[selectedActivityType]
-				newActivity.activity = dataManager.activityAtIndex(selectedActivity, type: newActivity.activityType)!
-				newActivity.date = datePicker.date
-				newActivity.timeSpent = ((selectedHours * 60) + selectedMinutes) as NSNumber
-				newActivity.note = noteTextView.text
-				dataManager.addActivityLog(newActivity, completion: { (success, failureReason) -> Void in
-					if (success) {
-						AlertView.showAlert(true, message: localized("saved_successfully"), completion: { (done) -> Void in
-							_ = self.navigationController?.popToRootViewController(animated: true)
-						})
-					} else {
-						AlertView.showAlert(false, message: failureReason, completion: nil)
+				if moduleIsOk {
+					theActivity!.activityType = dataManager.activityTypes()[selectedActivityType]
+					theActivity!.activity = dataManager.activityAtIndex(selectedActivity, type: theActivity!.activityType)!
+					theActivity!.date = datePicker.date
+					theActivity!.timeSpent = ((selectedHours * 60) + selectedMinutes) as NSNumber
+					theActivity!.note = noteTextView.text
+					dataManager.editActivityLog(theActivity!, completion: { (success, failureReason) -> Void in
+						if (success) {
+							AlertView.showAlert(true, message: localized("saved_successfully"), completion: { (done) -> Void in
+								_ = self.navigationController?.popToRootViewController(animated: true)
+							})
+						} else {
+							managedContext.rollback()
+							AlertView.showAlert(false, message: failureReason, completion: nil)
+						}
+					})
+				} else {
+					UIAlertView(title: localized("error"), message: localized("please_select_a_module"), delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
+				}
+			} else {
+				var moduleIsOk = true
+				if social() {
+					if dataManager.modules()[selectedModule].id == "add_module" {
+						moduleIsOk = false
 					}
-					dataManager.deleteObject(newActivity)
-				})
+				}
+				if moduleIsOk {
+					let newActivity = ActivityLog.insertInManagedObjectContext(managedContext, dictionary: NSDictionary())
+					newActivity.student = dataManager.currentStudent!
+					if (selectedModule < dataManager.modules().count) {
+						newActivity.module = dataManager.modules()[selectedModule]
+					}
+					newActivity.activityType = dataManager.activityTypes()[selectedActivityType]
+					newActivity.activity = dataManager.activityAtIndex(selectedActivity, type: newActivity.activityType)!
+					newActivity.date = datePicker.date
+					newActivity.timeSpent = ((selectedHours * 60) + selectedMinutes) as NSNumber
+					newActivity.note = noteTextView.text
+					dataManager.addActivityLog(newActivity, completion: { (success, failureReason) -> Void in
+						if (success) {
+							AlertView.showAlert(true, message: localized("saved_successfully"), completion: { (done) -> Void in
+								_ = self.navigationController?.popToRootViewController(animated: true)
+							})
+						} else {
+							AlertView.showAlert(false, message: failureReason, completion: nil)
+						}
+						dataManager.deleteObject(newActivity)
+					})
+				} else {
+					UIAlertView(title: localized("error"), message: localized("please_select_a_module"), delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
+				}
 			}
 		}
 	}
@@ -502,22 +522,22 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 		switch (pickerView) {
 		case hoursPicker:
 			selectedHours = row
-			hoursLabel.text = title
+			hoursTextField.text = title
 			if (selectedHours == maxHours && selectedMinutes > 0) {
 				selectedMinutes = 0
-				minutesLabel.text = "00"
+				minutesTextField.text = "00"
 				minutesPicker.selectRow(0, inComponent: 0, animated: true)
 				AlertView.showAlert(false, message: localizedWith1Parameter("time_spent_max", parameter: "\(maxHours)"), completion: nil)
 			}
 		case minutesPicker:
 			if (selectedHours == maxHours && row > 0) {
 				selectedMinutes = 0
-				minutesLabel.text = "00"
+				minutesTextField.text = "00"
 				minutesPicker.selectRow(0, inComponent: 0, animated: true)
 				AlertView.showAlert(false, message: localizedWith1Parameter("time_spent_max", parameter: "\(maxHours)"), completion: nil)
 			} else {
 				selectedMinutes = row
-				minutesLabel.text = title
+				minutesTextField.text = title
 			}
 		default:break
 		}

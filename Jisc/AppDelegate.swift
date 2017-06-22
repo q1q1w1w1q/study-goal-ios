@@ -113,8 +113,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
 			}
 		}
 	}
-	
+	    
 	func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+    
 		let facebook = FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
 		if !facebook {
 			return GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation)

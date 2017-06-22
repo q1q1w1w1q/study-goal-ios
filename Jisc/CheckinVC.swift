@@ -34,7 +34,7 @@ class CheckinVC: BaseViewController {
 	}
 	
 	@IBAction func sendPin(_ sender:UIButton?) {
-		if staff() {
+		if currentUserType() == .staff {
 			let alert = UIAlertController(title: "", message: localized("checkin_staff_message"), preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
 			navigationController?.present(alert, animated: true, completion: nil)

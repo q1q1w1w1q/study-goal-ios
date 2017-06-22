@@ -22,10 +22,15 @@ class SocialLoginVC: BaseViewController, GIDSignInUIDelegate {
 		GIDSignIn.sharedInstance().uiDelegate = self
 		FBSDKLoginManager().logOut()
 		GIDSignIn.sharedInstance().signOut()
+        let store = Twitter.sharedInstance().sessionStore
+        if let userID = store.session()?.userID {
+            store.logOutUserID(userID)
+        }
     }
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
+//		finishedWithEmail("temp@temp.com", name: "Temp User", userId: "tempuserid1")
 		if let currentUser = GIDSignIn.sharedInstance().currentUser {
 			if let profile = currentUser.profile {
 				if let email = profile.email {
@@ -91,9 +96,11 @@ class SocialLoginVC: BaseViewController, GIDSignInUIDelegate {
 							}
 						}
 						if !dataOk {
+                            print("DATA NOT OK")
 							self.finishedWithError(localized("an_unknown_error_occured_please_try_again"))
 						}
 					} else {
+                        print("ERR TWITTER")
 						self.finishedWithError(error!.localizedDescription)
 					}
 				})
