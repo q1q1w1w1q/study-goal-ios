@@ -118,7 +118,7 @@ class TargetDetailsVC: BaseViewController, UIScrollViewDelegate {
 	}
 	
 	@IBAction func goBack(_ sender:UIButton) {
-		navigationController?.popViewController(animated: true)
+		_ = navigationController?.popViewController(animated: true)
 	}
 	
 	@IBAction func settings(_ sender:UIButton) {

@@ -80,20 +80,7 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
 				
 				if (code == .unauthorized) {
 					completionBlock = nil
-					if let cookies = HTTPCookieStorage.shared.cookies {
-						for cookie in cookies {
-							HTTPCookieStorage.shared.deleteCookie(cookie)
-						}
-					}
-					runningActivititesTimer.invalidate()
-					DELEGATE.mainController?.feedViewController.refreshTimer?.invalidate()
-					dataManager.currentStudent = nil
-					dataManager.firstTrophyCheck = true
-					deleteCurrentUser()
-					clearXAPIToken()
-					let nvc = UINavigationController(rootViewController: LoginVC())
-					nvc.isNavigationBarHidden = true
-					DELEGATE.window?.rootViewController = nvc
+					dataManager.logout()
 					UIAlertView(title: localized("session_expired_title"), message: localized("session_expired_message"), delegate: nil, cancelButtonTitle: localized("ok")).show()
 				}
 			}
@@ -407,7 +394,7 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
 	func getStudentDetails(_ completion:@escaping xAPICompletionBlock) {
 		completionBlock = completion
 		var request:URLRequest?
-		if staff() {
+		if currentUserType() == .staff {
 			if let url = urlWithHost("https://sp.data.alpha.jisc.ac.uk/", path: "staff/") {
 				request = URLRequest(url: url)
 			}

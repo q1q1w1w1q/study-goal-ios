@@ -17,15 +17,28 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.2</string>
+	<string>1.0.7</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+            
+            <key>CFBundleURLName</key>
+            <string>uk.ac.jisc.studygoal</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>studygoal</string>
+            </array>
+        </dict>
+        <dict>
+
+            
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb1841301559462853</string>
+				<string>fb220083488482658</string>
 			</array>
 		</dict>
 		<dict>
@@ -33,25 +46,31 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.147677483837-o75b77enbl2jbqnj83scjh98kq58tk5f</string>
+				<string>com.googleusercontent.apps.172717420956-qrqlhm946bqf2134qo3buut1bd342bq8</string>
 			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array/>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>7</string>
+	<string>14</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
-		<string>21d350a22cfbb1eb4c5ca00b104aab7d33fc6d2a</string>
+		<string>aabe6f656cd29919a8d107f1347dc2c158eff1d7</string>
 		<key>Kits</key>
 		<array>
 			<dict>
 				<key>KitInfo</key>
 				<dict>
 					<key>consumerKey</key>
-					<string>M0NKXVGquYoclGTcG81u49hka</string>
+					<string>8sRjZ9CSN89N1iHMyMZjfedeE</string>
 					<key>consumerSecret</key>
-					<string>CCpca8rm2GuJFkuHmTdTiwBsTcWdv7Ybi5Qqi7POIA6BvCObY6</string>
+					<string>GPRDOuvl9HBoIZVYZo7r5XlverGN6HAGNouJYhCDOVIYrd7lcT</string>
 				</dict>
 				<key>KitName</key>
 				<string>Twitter</string>
@@ -59,7 +78,7 @@
 		</array>
 	</dict>
 	<key>FacebookAppID</key>
-	<string>1841301559462853</string>
+	<string>220083488482658</string>
 	<key>FacebookDisplayName</key>
 	<string>JiscTest</string>
 	<key>LSApplicationQueriesSchemes</key>

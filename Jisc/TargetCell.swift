@@ -95,17 +95,29 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
 	}
 	
 	@IBAction func editTarget(_ sender:UIButton) {
-		closeCellOptions()
-		if (indexPath != nil) {
-			let target = dataManager.targets()[(indexPath! as NSIndexPath).row]
-			let vc = NewTargetVC(target: target)
-			navigationController?.pushViewController(vc, animated: true)
+		if demo() {
+			let alert = UIAlertController(title: "", message: localized("demo_mode_edittarget"), preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
+			navigationController?.present(alert, animated: true, completion: nil)
+		} else {
+			closeCellOptions()
+			if (indexPath != nil) {
+				let target = dataManager.targets()[(indexPath! as NSIndexPath).row]
+				let vc = NewTargetVC(target: target)
+				navigationController?.pushViewController(vc, animated: true)
+			}
 		}
 	}
 	
 	@IBAction func deleteTarget(_ sender:UIButton) {
-		if (indexPath != nil) {
-			UIAlertView(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_delete_this_target"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
+		if demo() {
+			let alert = UIAlertController(title: "", message: localized("demo_mode_deletetarget"), preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
+			navigationController?.present(alert, animated: true, completion: nil)
+		} else {
+			if (indexPath != nil) {
+				UIAlertView(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_delete_this_target"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
+			}
 		}
 	}
 	
