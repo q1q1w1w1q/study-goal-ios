@@ -206,7 +206,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 			
 		}
 		
-		if staff() {
+		if currentUserType() == .staff {
 			if let studentId = dataManager.currentStudent?.id {
 				if NSKeyedUnarchiver.unarchiveObject(withFile: filePath("dont_show_staff_alert\(studentId)")) == nil {
 					if let alert = staffAlert {

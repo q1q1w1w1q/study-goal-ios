@@ -287,6 +287,26 @@ class DataManager: NSObject {
 		return array
 	}
 	
+	func logout() {
+		setRememberMe(false)
+		setUserType(.regular)
+		setPickedinstitutionId("")
+		saveSocialData(email: "", name: "", userId: "")
+		if let cookies = HTTPCookieStorage.shared.cookies {
+			for cookie in cookies {
+				HTTPCookieStorage.shared.deleteCookie(cookie)
+			}
+		}
+		runningActivititesTimer.invalidate()
+		DELEGATE.mainController?.feedViewController.refreshTimer?.invalidate()
+		dataManager.currentStudent = nil
+		dataManager.firstTrophyCheck = true
+		clearXAPIToken()
+		let nvc = UINavigationController(rootViewController: LoginVC())
+		nvc.isNavigationBarHidden = true
+		DELEGATE.window?.rootViewController = nvc
+	}
+	
 	//MARK: Institutions
 	
 	func institutions() -> [Institution] {
@@ -547,7 +567,7 @@ class DataManager: NSObject {
 		} catch let error as NSError {
 			print("get modules error: \(error.localizedDescription)")
 		}
-		if social() {
+		if currentUserType() == .social {
 			array.sort { (module1, module2) -> Bool in
 				var sorted = true
 				if module1.name > module2.name {
@@ -917,7 +937,7 @@ class DataManager: NSObject {
 				self.currentStudent = Student.insertInManagedObjectContext(managedContext, dictionary: result!)
 				if social {
 					self.currentStudent?.institution = self.socialInstitution()
-				} else if demo() {
+				} else if currentUserType() == .demo {
 					self.currentStudent?.institution = self.demoInstitution()
 				}
 				self.safelySaveContext()
@@ -1117,7 +1137,7 @@ class DataManager: NSObject {
 	//MARK: Get Modules
 	
 	func getStudentModules(_ completion:@escaping dataManagerCompletionBlock) {
-		if social() {
+		if currentUserType() == .social {
 			DownloadManager().getSocialModules(studentId: self.currentStudent!.id, alertAboutInternet: false, completion: { (success, result, results, error) in
 				if (success) {
 					if let modules = results as? [String] {
@@ -1137,7 +1157,7 @@ class DataManager: NSObject {
 				self.currentStudent!.addModule(object)
 				completion(true, "")
 			})
-		} else if staff() {
+		} else if currentUserType() == .staff {
 			let modulesCount = 2
 			for i in stride(from: 1, through: modulesCount, by: 1) {
 				let key = "DUMMY_\(i)"
@@ -1969,7 +1989,7 @@ class DataManager: NSObject {
 				if (results != nil) {
 					for (_, item) in results!.enumerated() {
 						if let dictionary = item as? NSDictionary {
-							Trophy.insertInManagedObjectContext(managedContext, dictionary: dictionary)
+							_ = Trophy.insertInManagedObjectContext(managedContext, dictionary: dictionary)
 						}
 					}
 				}
@@ -2004,7 +2024,7 @@ class DataManager: NSObject {
 						if let dictionary = item as? NSDictionary {
 							let ID = stringFromDictionary(dictionary, key: "id")
 							let total = intFromDictionary(dictionary, key: "total")
-							StudentTrophy.insertInManagedObjectContext(managedContext, ID: ID, trophyTotal: total, studentID: self.currentStudent!.id)
+							_ = StudentTrophy.insertInManagedObjectContext(managedContext, ID: ID, trophyTotal: total, studentID: self.currentStudent!.id)
 						}
 					}
 					if (!self.firstTrophyCheck) {
