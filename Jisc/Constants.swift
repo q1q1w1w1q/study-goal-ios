@@ -9,6 +9,9 @@
 import UIKit
 import CoreData
 
+
+var devicePushToken = ""
+
 let xAPILoginCompleteNotification = "xAPILoginCompleteNotification"
 
 let onSimulator = TARGET_IPHONE_SIMULATOR == 1
@@ -87,6 +90,26 @@ func filePath(_ fileName:String) -> String {
 		}
 	}
 	return documentsPath + fileName	
+}
+
+func deviceId() -> String {
+	return md5(documentsPath)
+}
+
+func appVersion() -> String {
+	var version = ""
+	if let string = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+		version = string
+	}
+	return version
+}
+
+func buildVersion() -> String {
+	var version = ""
+	if let string = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
+		version = string
+	}
+	return version
 }
 
 //MARK: HomeScreen
