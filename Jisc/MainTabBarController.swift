@@ -24,6 +24,14 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
 		selectedIndex = getHomeScreenTab().rawValue
 		tabBar.frame = CGRect(x: tabBar.frame.origin.x, y: tabBar.frame.origin.y, width: tabBar.frame.size.width, height: 45)
 		self.delegate = self
+		
+		if let user = dataManager.currentStudent {
+			UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil))
+			UIApplication.shared.registerForRemoteNotifications()
+			DownloadManager().registerForRemoteNotifications(studentId: user.id, isActive: 1, alertAboutInternet: false, completion: { (success, dictionary, array, error) in
+				
+			})
+		}
 	}
 	
 	func createdViewControllers() -> [UIViewController]? {
@@ -60,7 +68,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
 //		var viewControllers = [navigationController1, navigationController2, navigationController3, navigationController4, navigationController5]
 		var viewControllers = [navigationController1, navigationController3, navigationController4, navigationController5]
 		
-		if social() {
+		if currentUserType() == .social {
 			let navigationController1 = UINavigationController(rootViewController: feedViewController)
 			navigationController1.isNavigationBarHidden = true
 			let navigationController2 = UINavigationController(rootViewController: logViewController)

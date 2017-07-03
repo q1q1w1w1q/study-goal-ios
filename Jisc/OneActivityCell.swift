@@ -92,18 +92,30 @@ class OneActivityCell: UITableViewCell, UIAlertViewDelegate {
 	}
 	
 	@IBAction func deleteActivity(_ sender:UIButton) {
-		UIAlertView(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_delete_this_activity_log"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
+		if demo() {
+			let alert = UIAlertController(title: "", message: localized("demo_mode_deleteactivitylog"), preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
+			parent?.navigationController?.present(alert, animated: true, completion: nil)
+		} else {
+			UIAlertView(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_delete_this_activity_log"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
+		}
 	}
 	
 	@IBAction func editActivity(_ sender:UIButton) {
-		closeCellOptions()
-		if (theActivity != nil) {
-			if (theActivity!.isRunning.boolValue) {
-				let vc = NewActivityVC(activity: theActivity!, atIndex:dataManager.runningActivities().index(of: theActivity!)!)
-				navigationController?.pushViewController(vc, animated: true)
-			} else {
-				let vc = LogActivityVC(activity: theActivity!)
-				navigationController?.pushViewController(vc, animated: true)
+		if demo() {
+			let alert = UIAlertController(title: "", message: localized("demo_mode_editactivitylog"), preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
+			parent?.navigationController?.present(alert, animated: true, completion: nil)
+		} else {
+			closeCellOptions()
+			if (theActivity != nil) {
+				if (theActivity!.isRunning.boolValue) {
+					let vc = NewActivityVC(activity: theActivity!, atIndex:dataManager.runningActivities().index(of: theActivity!)!)
+					navigationController?.pushViewController(vc, animated: true)
+				} else {
+					let vc = LogActivityVC(activity: theActivity!)
+					navigationController?.pushViewController(vc, animated: true)
+				}
 			}
 		}
 	}
