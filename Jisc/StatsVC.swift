@@ -253,7 +253,11 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 						if let object = info[key] as? [AnyHashable:Any] {
 							if let count = object["count"] as? Int {
 								if let points = object["points"] as? Int {
-									self.pointsArray.append(PointsObject(activity: "\(key)", count: count, points: points))
+									if let id = object["_id"] as? String {
+										if let activity = id.components(separatedBy: "/").last {
+											self.pointsArray.append(PointsObject(activity: activity.capitalized, count: count, points: points))
+										}
+									}
 								}
 							}
 						}
