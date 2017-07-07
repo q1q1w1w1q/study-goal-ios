@@ -12,7 +12,7 @@ import CoreData
 let openPostMessageTopSpace:CGFloat = -60.0
 let emptyFeedPageMessage = localized("empty_feed_page_message")
 
-class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
+class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, CustomPickerViewDelegate {
 	
 	@IBOutlet weak var feedsTableView:UITableView!
 	@IBOutlet weak var postsViewTopSpace:NSLayoutConstraint!
@@ -24,6 +24,9 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
 	var refreshTimer:Timer?
 	@IBOutlet weak var emptyScreenMessage:UIView!
 	@IBOutlet weak var peopleButton:UIButton!
+	var destinationSelectorView:CustomPickerView!
+	var selectedStudent = 0
+	var destinationStudentId = ""
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -72,6 +75,29 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
 		navigationController?.pushViewController(vc, animated: true)
 	}
 	
+	@IBAction func changeMessageDestination(_ sender:UIButton?) {
+		var array:[String] = [String]()
+		array.append(localized("everyone"))
+		let colleagues = friendsInTheSameCourse()
+		for (_, item) in colleagues.enumerated() {
+			array.append("\(item.firstName) \(item.lastName)")
+		}
+		destinationSelectorView = CustomPickerView.create(localized("send_to"), delegate: self, contentArray: array, selectedItem: selectedStudent)
+		view.addSubview(destinationSelectorView)
+	}
+	
+	func friendsInTheSameCourse() -> [Friend] {
+		var array:[Friend] = [Friend]()
+		
+		for (_, friend) in dataManager.friends().enumerated() {
+			if (!friend.jisc_id.isEmpty) {
+				array.append(friend)
+			}
+		}
+		
+		return array
+	}
+	
 	func openPostMessageHeight() -> CGFloat {
 		return postButtonView.frame.origin.y + postButtonView.frame.size.height
 	}
@@ -108,24 +134,57 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
 			self.newPostTextView.resignFirstResponder()
 			if (!self.newPostTextView.text.replacingOccurrences(of: " ", with: "").isEmpty) {
 				if (!self.newPostTextView.text.isEmpty) {
-					DownloadManager().postFeedMessage(dataManager.currentStudent!.id, message: self.newPostTextView.text, alertAboutInternet: true, completion: { (success, result, results, error) -> Void in
-						if (success) {
-							AlertView.showAlert(true, message: localized("message_posted_successfully"), completion: nil)
-						} else {
-							var failureReason = kDefaultFailureReason
-							if (error != nil) {
-								failureReason = error!
+					if self.destinationStudentId.isEmpty {
+						DownloadManager().postFeedMessage(dataManager.currentStudent!.id, message: self.newPostTextView.text, alertAboutInternet: true, completion: { (success, result, results, error) -> Void in
+							if (success) {
+								AlertView.showAlert(true, message: localized("message_posted_successfully"), completion: nil)
+							} else {
+								var failureReason = kDefaultFailureReason
+								if (error != nil) {
+									failureReason = error!
+								}
+								AlertView.showAlert(false, message: failureReason, completion: nil)
 							}
-							AlertView.showAlert(false, message: failureReason, completion: nil)
-						}
-						self.newPostTextView.text = ""
-						dataManager.getStudentFeeds({ (success, failureReason) -> Void in
-							self.feedsTableView.reloadData()
+							self.newPostTextView.text = ""
+							dataManager.getStudentFeeds({ (success, failureReason) -> Void in
+								self.feedsTableView.reloadData()
+							})
 						})
-					})
+					} else {
+						DownloadManager().sendPrivateMessage(self.newPostTextView.text, to: self.destinationStudentId, from: dataManager.currentStudent!.id, alertAboutInternet: true, completion: { (success, result, results, error) in
+							if (success) {
+								AlertView.showAlert(true, message: localized("message_posted_successfully"), completion: nil)
+							} else {
+								var failureReason = kDefaultFailureReason
+								if (error != nil) {
+									failureReason = error!
+								}
+								AlertView.showAlert(false, message: failureReason, completion: nil)
+							}
+							self.newPostTextView.text = ""
+							dataManager.getStudentFeeds({ (success, failureReason) -> Void in
+								self.feedsTableView.reloadData()
+							})
+						})
+					}
 				}
 			}
 		})
+	}
+	
+	//MARK: CustomPickerView Delegate
+	
+	func view(_ view: CustomPickerView, selectedRow: Int) {
+		switch (view) {
+		case destinationSelectorView:
+			if selectedRow == 0 {
+				destinationStudentId = ""
+			} else {
+				destinationStudentId = friendsInTheSameCourse()[selectedRow - 1].jisc_id
+			}
+			break
+		default:break
+		}
 	}
 	
 	//MARK: UITableView Datasource

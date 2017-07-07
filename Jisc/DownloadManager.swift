@@ -81,6 +81,7 @@ let getSocialModulesPath = "fn_get_modules"
 let registerForRemoteNotificationsPath = "fn_register_device"
 let getPushNotificationsPath = "fn_get_push_notifications"
 let changeReadStatusForNotificationPath = "fn_update_notifications_read_status"
+let sendPrivateMessagePath = "fn_add_push_notification"
 
 enum kRequestStatusCode:Int {
 	case `continue` = 100
@@ -1254,6 +1255,26 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 				dictionary["is_social"] = "yes"
 			}
 			startConnectionWithRequest(createPostRequest(postFeedMessagePath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
+		}
+	}
+	
+	func sendPrivateMessage(_ message:String, to:String, from:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
+		if currentUserType() == .demo {
+			completion(false, nil, nil, localized("demo_mode_post_message"))
+		} else {
+			shouldNotifyAboutInternetConnection = alertAboutInternet
+			completionBlock = completion
+			var dictionary = [String:String]()
+			dictionary["student_id"] = to
+			dictionary["from"] = from
+			dictionary["message"] = message
+			var language = "en"
+			if let newLanguage = BundleLocalization.sharedInstance().language {
+				language = newLanguage
+			}
+			dictionary["language"] = language
+			dictionary["is_social"] = "yes"
+			startConnectionWithRequest(createPostRequest(sendPrivateMessagePath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 		}
 	}
 	
