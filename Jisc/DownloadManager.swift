@@ -8,7 +8,7 @@
 
 import UIKit
 
-let LOG_ACTIVITY = false
+let LOG_ACTIVITY = true
 
 //let hostPath = "http://therapy-box.com/jisc/"
 let hostPath = "http://stuapp.analytics.alpha.jisc.ac.uk/"
