@@ -37,19 +37,19 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xnp-Pz-kTD">
-                    <rect key="frame" x="20" y="100" width="335" height="308"/>
+                    <rect key="frame" x="20" y="100" width="335" height="297"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="studentHat" translatesAutoresizingMaskIntoConstraints="NO" id="zVT-pH-ECr">
-                            <rect key="frame" x="98" y="31" width="140" height="64"/>
+                            <rect key="frame" x="98" y="20" width="140" height="64"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Study Goal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WII-La-gAk">
-                            <rect key="frame" x="0.0" y="115" width="335" height="53"/>
+                            <rect key="frame" x="0.0" y="104" width="335" height="53"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="53"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AXf-hN-ygR">
-                            <rect key="frame" x="0.0" y="188" width="335" height="50"/>
+                            <rect key="frame" x="0.0" y="177" width="335" height="50"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
                             <state key="normal" title="I'm a student" backgroundImage="genericLoginButton">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -63,7 +63,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jnm-Jf-HlH">
-                            <rect key="frame" x="0.0" y="258" width="335" height="50"/>
+                            <rect key="frame" x="0.0" y="247" width="335" height="50"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
                             <state key="normal" title="I'm a member of staff" backgroundImage="genericLoginButton">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -80,7 +80,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="AXf-hN-ygR" firstAttribute="leading" secondItem="xnp-Pz-kTD" secondAttribute="leading" id="49d-Hd-dK2"/>
-                        <constraint firstItem="zVT-pH-ECr" firstAttribute="top" secondItem="xnp-Pz-kTD" secondAttribute="top" constant="31" id="4gS-H6-rMW"/>
+                        <constraint firstItem="zVT-pH-ECr" firstAttribute="top" secondItem="xnp-Pz-kTD" secondAttribute="top" constant="20" id="4gS-H6-rMW"/>
                         <constraint firstAttribute="trailing" secondItem="AXf-hN-ygR" secondAttribute="trailing" id="Cqd-aN-tmd"/>
                         <constraint firstItem="jnm-Jf-HlH" firstAttribute="leading" secondItem="xnp-Pz-kTD" secondAttribute="leading" id="HF5-C2-LHa"/>
                         <constraint firstItem="jnm-Jf-HlH" firstAttribute="top" secondItem="AXf-hN-ygR" secondAttribute="bottom" constant="20" id="Ooa-bd-CBL"/>
@@ -94,7 +94,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ihX-GB-yAh">
-                    <rect key="frame" x="97" y="428" width="180" height="20"/>
+                    <rect key="frame" x="97" y="417" width="180" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="180" id="SlO-GU-fhS"/>
                     </constraints>
@@ -107,7 +107,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SUR-63-VKQ">
-                    <rect key="frame" x="162" y="478" width="50" height="50"/>
+                    <rect key="frame" x="162" y="447" width="50" height="50"/>
                     <state key="normal" backgroundImage="nextLoginStep"/>
                     <connections>
                         <action selector="next:" destination="-1" eventType="touchUpInside" id="4hO-5O-Hv3"/>
@@ -129,12 +129,13 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="xnp-Pz-kTD" secondAttribute="trailing" constant="20" id="64j-u2-3er"/>
                 <constraint firstItem="SUR-63-VKQ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Aab-dz-06j"/>
+                <constraint firstItem="UdW-ta-NB6" firstAttribute="top" relation="greaterThanOrEqual" secondItem="SUR-63-VKQ" secondAttribute="bottom" constant="10" id="COI-NB-0Ff"/>
                 <constraint firstItem="ihX-GB-yAh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="D2J-1X-GNm"/>
-                <constraint firstAttribute="bottom" secondItem="UdW-ta-NB6" secondAttribute="bottom" constant="20" id="HdV-9s-Jt0"/>
+                <constraint firstAttribute="bottom" secondItem="UdW-ta-NB6" secondAttribute="bottom" priority="1" constant="20" id="HdV-9s-Jt0"/>
                 <constraint firstItem="xnp-Pz-kTD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="100" id="Kjq-0k-jUB"/>
                 <constraint firstItem="ihX-GB-yAh" firstAttribute="top" secondItem="xnp-Pz-kTD" secondAttribute="bottom" constant="20" id="duh-gi-pYs"/>
-                <constraint firstItem="SUR-63-VKQ" firstAttribute="top" secondItem="ihX-GB-yAh" secondAttribute="bottom" constant="30" id="fOV-2c-aVA"/>
                 <constraint firstAttribute="trailing" secondItem="dMH-2G-yRC" secondAttribute="trailing" id="gnx-Te-6he"/>
+                <constraint firstItem="SUR-63-VKQ" firstAttribute="top" secondItem="ihX-GB-yAh" secondAttribute="bottom" constant="10" id="hIF-vC-3vv"/>
                 <constraint firstItem="xnp-Pz-kTD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="haO-w9-KWT"/>
                 <constraint firstAttribute="bottom" secondItem="dMH-2G-yRC" secondAttribute="bottom" id="mDh-vJ-LL2"/>
                 <constraint firstItem="UdW-ta-NB6" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="pyC-4e-L9Z"/>
@@ -333,7 +334,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="335" height="124"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Institution not listed?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ce-Xk-oI9">
-                            <rect key="frame" x="92.5" y="10" width="150.5" height="17"/>
+                            <rect key="frame" x="93" y="10" width="150.5" height="17"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
