@@ -84,9 +84,9 @@ class CheckinVC: BaseViewController, CLLocationManagerDelegate {
 					locationManager.startUpdatingLocation()
 				}
 				if !locationOn {
-					let alert = UIAlertController(title: "", message: localized("turn_location_on"), preferredStyle: .alert)
-					alert.addAction(UIAlertAction(title: localized("not_now"), style: .cancel, handler: nil))
-					alert.addAction(UIAlertAction(title: localized("take_me_to_settings"), style: .default, handler: { (action) in
+					let alert = UIAlertController(title: "", message: localized("You'll need to turn location services on to check in."), preferredStyle: .alert)
+					alert.addAction(UIAlertAction(title: localized("Cancel"), style: .cancel, handler: nil))
+					alert.addAction(UIAlertAction(title: localized("Take me to settings"), style: .default, handler: { (action) in
 						self.didChangeLocationPermissions = true
 						UIApplication.shared.openURL(URL(string:UIApplicationOpenSettingsURLString)!)
 					}))
