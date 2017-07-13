@@ -57,7 +57,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>14</string>
+	<string>15</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -97,6 +97,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>We need access to your camera in order to give you the ability to update your profile photo</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We need access to your location for the checkin functionality</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We need access to your photo library in order to give you the ability to update your profile photo</string>
 	<key>UILaunchStoryboardName</key>

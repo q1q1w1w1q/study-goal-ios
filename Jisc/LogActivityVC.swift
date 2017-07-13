@@ -172,6 +172,14 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 			dayOrderString = "nd"
 		} else if (day == 3) {
 			dayOrderString = "rd"
+		} else if (day == 21) {
+			dayOrderString = "st"
+		} else if (day == 22) {
+			dayOrderString = "nd"
+		} else if (day == 23) {
+			dayOrderString = "rd"
+		} else if (day == 31) {
+			dayOrderString = "st"
 		}
 		dateFormatter.dateFormat = "EEEE d"
 		let dateSoFar = dateFormatter.string(from: date)

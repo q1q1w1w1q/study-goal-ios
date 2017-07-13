@@ -12,7 +12,7 @@ import QuartzCore
 class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
 	
 	let feedViewController = FeedVC()
-//	let checkinViewController = CheckinVC()
+	let checkinViewController = CheckinVC()
 	let statsViewController = StatsVC()
 	let logViewController = LogVC()
 	let targetViewController = TargetVC()
@@ -24,11 +24,19 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
 		selectedIndex = getHomeScreenTab().rawValue
 		tabBar.frame = CGRect(x: tabBar.frame.origin.x, y: tabBar.frame.origin.y, width: tabBar.frame.size.width, height: 45)
 		self.delegate = self
+		
+		if let user = dataManager.currentStudent {
+			UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil))
+			UIApplication.shared.registerForRemoteNotifications()
+			DownloadManager().registerForRemoteNotifications(studentId: user.id, isActive: 1, alertAboutInternet: false, completion: { (success, dictionary, array, error) in
+				
+			})
+		}
 	}
 	
 	func createdViewControllers() -> [UIViewController]? {
 		feedViewController.tabBarItem = tabBarItem("Feed")
-//		checkinViewController.tabBarItem = tabBarItem("Checkin")
+		checkinViewController.tabBarItem = tabBarItem("Checkin")
 		statsViewController.tabBarItem = tabBarItem("Stats")
 		logViewController.tabBarItem = tabBarItem("Log")
 		targetViewController.tabBarItem = tabBarItem("Target")
@@ -48,8 +56,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
 		
 		let navigationController1 = UINavigationController(rootViewController: feedViewController)
 		navigationController1.isNavigationBarHidden = true
-//		let navigationController2 = UINavigationController(rootViewController: checkinViewController)
-//		navigationController2.isNavigationBarHidden = true
+		let navigationController2 = UINavigationController(rootViewController: checkinViewController)
+		navigationController2.isNavigationBarHidden = true
 		let navigationController3 = UINavigationController(rootViewController: statsViewController)
 		navigationController3.isNavigationBarHidden = true
 		let navigationController4 = UINavigationController(rootViewController: logViewController)
@@ -57,8 +65,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
 		let navigationController5 = UINavigationController(rootViewController: targetViewController)
 		navigationController5.isNavigationBarHidden = true
 		
-//		var viewControllers = [navigationController1, navigationController2, navigationController3, navigationController4, navigationController5]
-		var viewControllers = [navigationController1, navigationController3, navigationController4, navigationController5]
+		var viewControllers = [navigationController1, navigationController2, navigationController3, navigationController4, navigationController5]
+//		var viewControllers = [navigationController1, navigationController3, navigationController4, navigationController5]
 		
 		if currentUserType() == .social {
 			let navigationController1 = UINavigationController(rootViewController: feedViewController)

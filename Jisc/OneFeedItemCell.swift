@@ -29,6 +29,7 @@ class OneFeedItemCell: LocalizableCell {
 	@IBOutlet weak var deleteFriendButton:UIButton!
 	var theFeed:Feed?
 	@IBOutlet var buttonsWithLargeTitles:[BigTitleButton] = []
+	@IBOutlet weak var cellBG:UIView!
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
@@ -86,6 +87,11 @@ class OneFeedItemCell: LocalizableCell {
 	
 	func loadFeedPost(_ feed:Feed) {
 		theFeed = feed
+		if feed.activityType == "temp_push_notification" {
+			cellBG.backgroundColor = UIColor(red: 186.0/255.0, green: 216.0/255.0, blue: 247.0/255.0, alpha: 1.0)
+		} else {
+			cellBG.backgroundColor = UIColor(red: 251.0/255.0, green: 251.0/255.0, blue: 251.0/255.0, alpha: 1.0)
+		}
 		if (feed.isMine()) {
 			shareButton.alpha = 1.0
 			loadProfilePicture("\(hostPath)\(dataManager.currentStudent!.photo)")

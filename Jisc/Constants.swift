@@ -9,6 +9,9 @@
 import UIKit
 import CoreData
 
+
+var devicePushToken = ""
+
 let xAPILoginCompleteNotification = "xAPILoginCompleteNotification"
 
 let onSimulator = TARGET_IPHONE_SIMULATOR == 1
@@ -89,13 +92,33 @@ func filePath(_ fileName:String) -> String {
 	return documentsPath + fileName	
 }
 
+func deviceId() -> String {
+	return md5(documentsPath)
+}
+
+func appVersion() -> String {
+	var version = ""
+	if let string = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+		version = string
+	}
+	return version
+}
+
+func buildVersion() -> String {
+	var version = ""
+	if let string = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
+		version = string
+	}
+	return version
+}
+
 //MARK: HomeScreen
 
 enum kHomeScreenTab: Int {
 	case feed = 0
-	case stats = 1
-	case log = 2
-	case target = 3
+	case stats = 2
+	case log = 3
+	case target = 4
 }
 
 func screenTabFromString(_ string:String) -> kHomeScreenTab {
