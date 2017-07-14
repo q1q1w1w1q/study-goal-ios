@@ -102,6 +102,11 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 	
 	var staffAlert:UIAlertController? = UIAlertController(title: localized("staff_stats_alert"), message: "", preferredStyle: .alert)
 	
+	@IBOutlet weak var pieChartWebView: UIWebView!
+	@IBOutlet weak var pieChartSwitch: UISwitch!
+   	@IBOutlet weak var lineViews: UIView!
+	@IBOutlet weak var rectangleView: UIView!
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		staffAlert?.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
@@ -185,6 +190,8 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 			}
 		}
 		staffAlert = nil
+	
+		loadPieChart()
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
@@ -198,6 +205,13 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 	@IBAction func openMenu(_ sender:UIButton?) {
 		DELEGATE.menuView?.open()
 	}
+	
+	 @IBAction func tapPieChartSwitch(_ sender: UISwitch) {
+	pieChartWebView.isHidden = !sender.isOn
+	lineViews.isHidden = sender.isOn
+	rectangleView.isHidden = sender.isOn
+	 }
+
 	
 	func refreshAttainmentData(_ sender:UIRefreshControl) {
 		getAttainmentData {
@@ -468,6 +482,31 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 			graphType = .Line
 		}
 		representValues(graphValues)
+	}
+	
+	  private func loadPieChart() {
+	do {
+	guard let filePath = Bundle.main.path(forResource: "stats_points_pi_chart", ofType: "html")
+		else {
+			print ("File reading error")
+			return
+	}
+		
+		pieChartWebView.setNeedsLayout()
+		pieChartWebView.layoutIfNeeded()
+		let w = pieChartWebView.frame.size.width - 20
+		let h = pieChartWebView.frame.size.height - 20
+		var contents = try String(contentsOfFile: filePath, encoding: .utf8)
+		contents = contents.replacingOccurrences(of: "300px", with: "\(w)px")
+		contents = contents.replacingOccurrences(of: "220px", with: "\(h)px")
+            
+		print(contents)
+            
+		let baseUrl = URL(fileURLWithPath: filePath)
+		pieChartWebView.loadHTMLString(contents as String, baseURL: baseUrl)
+	} catch {
+		print ("File HTML error")
+		}
 	}
 	
 	func getEngagementData() {
