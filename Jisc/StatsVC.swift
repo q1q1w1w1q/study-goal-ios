@@ -326,40 +326,25 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 		}
 	}
 	
-	func goToGraph() {
-		if let pageSegment = pageSegment {
-			if pageSegment.selectedSegmentIndex != 0 {
-				pageSegment.selectedSegmentIndex = 0
-			}
-			UIView.animate(withDuration: 0.25) {
-				self.contentCenterX.constant = self.view.frame.size.width
-				self.view.layoutIfNeeded()
-			}
-		}
-	}
-	
-	func goToAttainment() {
-		if let pageSegment = pageSegment {
-			if pageSegment.selectedSegmentIndex != 1 {
-				pageSegment.selectedSegmentIndex = 1
-			}
-			UIView.animate(withDuration: 0.25) {
-				self.contentCenterX.constant = 0.0
-				self.view.layoutIfNeeded()
-			}
-		}
-	}
-	
+    func goToGraph() {
+        UIView.animate(withDuration: 0.25) {
+            self.contentCenterX.constant = self.view.frame.size.width
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func goToAttainment() {
+        UIView.animate(withDuration: 0.25) {
+            self.contentCenterX.constant = 0.0
+            self.view.layoutIfNeeded()
+        }
+    }
+    
 	func goToPoints() {
-		if let pageSegment = pageSegment {
-			if pageSegment.selectedSegmentIndex != 2 {
-				pageSegment.selectedSegmentIndex = 2
-			}
-			UIView.animate(withDuration: 0.25) {
-				self.contentCenterX.constant = -self.view.frame.size.width
-				self.view.layoutIfNeeded()
-			}
-		}
+        UIView.animate(withDuration: 0.25) {
+            self.contentCenterX.constant = -self.view.frame.size.width
+            self.view.layoutIfNeeded()
+        }
 	}
 	
 	@IBAction func changePeriod(_ sender:UISegmentedControl) {
