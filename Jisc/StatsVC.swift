@@ -267,7 +267,9 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 								if let points = object["points"] as? Int {
 									if let id = object["_id"] as? String {
 										if let activity = id.components(separatedBy: "/").last {
-											self.pointsArray.append(PointsObject(activity: activity.capitalized, count: count, points: points))
+                                            var activity = activity
+                                            if activity.isEmpty { activity = id.components(separatedBy: "/")[id.components(separatedBy: "/").count-2]}
+                                            self.pointsArray.append(PointsObject(activity: activity.capitalized, count: count, points: points))
 										}
 									}
 								}
