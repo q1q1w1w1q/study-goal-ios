@@ -191,9 +191,6 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 			}
 		}
 		staffAlert = nil
-        
-        loadPieChart()
-
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
@@ -270,7 +267,9 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 								if let points = object["points"] as? Int {
 									if let id = object["_id"] as? String {
 										if let activity = id.components(separatedBy: "/").last {
-											self.pointsArray.append(PointsObject(activity: activity.capitalized, count: count, points: points))
+                                            var activity = activity
+                                            if activity.isEmpty { activity = id.components(separatedBy: "/")[id.components(separatedBy: "/").count-2]}
+                                            self.pointsArray.append(PointsObject(activity: activity.capitalized, count: count, points: points))
 										}
 									}
 								}
@@ -279,6 +278,8 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 					}
 				}
 			}
+            
+            self.loadPieChart()
 			self.pointsTable.reloadData()
 			completion()
 		}
@@ -327,40 +328,31 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 		}
 	}
 	
-	func goToGraph() {
-		if let pageSegment = pageSegment {
-			if pageSegment.selectedSegmentIndex != 0 {
-				pageSegment.selectedSegmentIndex = 0
-			}
-			UIView.animate(withDuration: 0.25) {
-				self.contentCenterX.constant = self.view.frame.size.width
-				self.view.layoutIfNeeded()
-			}
-		}
-	}
-	
-	func goToAttainment() {
-		if let pageSegment = pageSegment {
-			if pageSegment.selectedSegmentIndex != 1 {
-				pageSegment.selectedSegmentIndex = 1
-			}
-			UIView.animate(withDuration: 0.25) {
-				self.contentCenterX.constant = 0.0
-				self.view.layoutIfNeeded()
-			}
-		}
-	}
-	
+    func goToGraph() {
+        guard let center = contentCenterX else { return }
+        
+        UIView.animate(withDuration: 0.25) {
+            center.constant = self.view.frame.size.width
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func goToAttainment() {
+        guard let center = contentCenterX else { return }
+        
+        UIView.animate(withDuration: 0.25) {
+            center.constant = 0.0
+            self.view.layoutIfNeeded()
+        }
+    }
+    
 	func goToPoints() {
-		if let pageSegment = pageSegment {
-			if pageSegment.selectedSegmentIndex != 2 {
-				pageSegment.selectedSegmentIndex = 2
-			}
-			UIView.animate(withDuration: 0.25) {
-				self.contentCenterX.constant = -self.view.frame.size.width
-				self.view.layoutIfNeeded()
-			}
-		}
+        guard let center = contentCenterX else { return }
+
+        UIView.animate(withDuration: 0.25) {
+            center.constant = -self.view.frame.size.width
+            self.view.layoutIfNeeded()
+        }
 	}
 	
 	@IBAction func changePeriod(_ sender:UISegmentedControl) {
@@ -501,7 +493,22 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             contents = contents.replacingOccurrences(of: "300px", with: "\(w)px")
             contents = contents.replacingOccurrences(of: "220px", with: "\(h)px")
             
-            print(contents)
+            /* {
+             name: 'Computer',
+             y: 56.33
+             }, {
+             name: 'English',
+             y: 24.03
+             } */
+            var data: String = ""
+            for point in pointsArray {
+                data += "{"
+                data += "name:'\(point.activity)',"
+                data += "y:\(point.points)"
+                data += "},"
+            }
+            contents = contents.replacingOccurrences(of: "REPLACE_DATA", with: data)
+
             
             let baseUrl = URL(fileURLWithPath: filePath)
             pieChartWebView.loadHTMLString(contents as String, baseURL: baseUrl)
