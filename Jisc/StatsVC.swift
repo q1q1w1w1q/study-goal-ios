@@ -329,22 +329,28 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 	}
 	
     func goToGraph() {
+        guard let center = contentCenterX else { return }
+        
         UIView.animate(withDuration: 0.25) {
-            self.contentCenterX.constant = self.view.frame.size.width
+            center.constant = self.view.frame.size.width
             self.view.layoutIfNeeded()
         }
     }
     
     func goToAttainment() {
+        guard let center = contentCenterX else { return }
+        
         UIView.animate(withDuration: 0.25) {
-            self.contentCenterX.constant = 0.0
+            center.constant = 0.0
             self.view.layoutIfNeeded()
         }
     }
     
 	func goToPoints() {
+        guard let center = contentCenterX else { return }
+
         UIView.animate(withDuration: 0.25) {
-            self.contentCenterX.constant = -self.view.frame.size.width
+            center.constant = -self.view.frame.size.width
             self.view.layoutIfNeeded()
         }
 	}
