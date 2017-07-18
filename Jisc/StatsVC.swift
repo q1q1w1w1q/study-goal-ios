@@ -107,6 +107,9 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     @IBOutlet weak var lineViews: UIView!
     @IBOutlet weak var rectangleView: UIView!
     
+    @IBOutlet weak var leaderBoard: UIView!
+    @IBOutlet weak var eventAtteneded: UIView!
+    
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		staffAlert?.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
@@ -329,8 +332,10 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 	}
 	
     func goToGraph() {
-        guard let center = contentCenterX else { return }
         
+        hideUpperViews()
+        
+        guard let center = contentCenterX else { return }
         UIView.animate(withDuration: 0.25) {
             center.constant = self.view.frame.size.width
             self.view.layoutIfNeeded()
@@ -338,8 +343,10 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     }
     
     func goToAttainment() {
-        guard let center = contentCenterX else { return }
         
+        hideUpperViews()
+        
+        guard let center = contentCenterX else { return }
         UIView.animate(withDuration: 0.25) {
             center.constant = 0.0
             self.view.layoutIfNeeded()
@@ -347,13 +354,36 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     }
     
 	func goToPoints() {
+        
+        hideUpperViews()
+        
         guard let center = contentCenterX else { return }
-
         UIView.animate(withDuration: 0.25) {
             center.constant = -self.view.frame.size.width
             self.view.layoutIfNeeded()
         }
 	}
+    
+    
+    func goToLeaderBoard() {
+        hideUpperViews()
+        leaderBoard.isHidden = false
+    }
+    
+    func goToEventsAttended() {
+        hideUpperViews()
+        eventAtteneded.isHidden = false
+    }
+        
+    func goToAttendance() {
+        hideUpperViews()
+
+    }
+    
+    private func hideUpperViews() {
+        leaderBoard.isHidden = true
+        eventAtteneded.isHidden = true
+    }
 	
 	@IBAction func changePeriod(_ sender:UISegmentedControl) {
 		switch sender.selectedSegmentIndex {
