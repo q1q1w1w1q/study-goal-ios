@@ -137,7 +137,7 @@ class StatsMenuButton: MenuButton {
 		expanded = true
 		UIView.animate(withDuration: 0.25) {
 			self.arrow.transform = CGAffineTransform(rotationAngle: .pi / 2.0)
-			self.buttonsHeight.constant = 120.0
+			self.buttonsHeight.constant = 40 * 6
 			self.parent?.layoutIfNeeded()
 		}
 	}
@@ -177,5 +177,32 @@ class StatsMenuButton: MenuButton {
 		}
 		retract()
 	}
+    
+    @IBAction func leaderBoard(_ sender: UIButton) {
+        parent?.close(nil)
+        parent?.stats()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            self.parent?.statsViewController.goToLeaderBoard()
+        }
+        retract()
+    }
+    
+    @IBAction func eventsAttended(_ sender: UIButton) {
+        parent?.close(nil)
+        parent?.stats()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            self.parent?.statsViewController.goToEventsAttended()
+        }
+        retract()
+    }
+    
+    @IBAction func attendance(_ sender: UIButton) {
+        parent?.close(nil)
+        parent?.stats()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            self.parent?.statsViewController.goToAttendance()
+        }
+        retract()
+    }
 	
 }

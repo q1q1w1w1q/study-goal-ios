@@ -63,7 +63,7 @@ enum GraphType {
 class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, CustomPickerViewDelegate, UIScrollViewDelegate {
 	
 	@IBOutlet weak var contentCenterX:NSLayoutConstraint!
-	@IBOutlet weak var pageSegment:UISegmentedControl?
+//	@IBOutlet weak var pageSegment:UISegmentedControl?
 	@IBOutlet weak var titleLabel:UILabel!
 	@IBOutlet weak var blueDot:UIImageView!
 	@IBOutlet weak var comparisonStudentName:UILabel!
@@ -106,6 +106,10 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     @IBOutlet weak var pieChartSwitch: UISwitch!
     @IBOutlet weak var lineViews: UIView!
     @IBOutlet weak var rectangleView: UIView!
+    
+    @IBOutlet weak var leaderBoard: UIView!
+    @IBOutlet weak var eventAtteneded: UIView!
+    @IBOutlet weak var attendance: UIView!
     
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -312,25 +316,27 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 		navigationController?.pushViewController(vc, animated: true)
 	}
 	
-	@IBAction func changePage(_ sender:UISegmentedControl) {
-		switch sender.selectedSegmentIndex {
-		case 0:
-			goToGraph()
-			break
-		case 1:
-			goToAttainment()
-			break
-		case 2:
-			goToPoints()
-			break
-		default:
-			break
-		}
-	}
+//	@IBAction func changePage(_ sender:UISegmentedControl) {
+//		switch sender.selectedSegmentIndex {
+//		case 0:
+//			goToGraph()
+//			break
+//		case 1:
+//			goToAttainment()
+//			break
+//		case 2:
+//			goToPoints()
+//			break
+//		default:
+//			break
+//		}
+//	}
 	
     func goToGraph() {
-        guard let center = contentCenterX else { return }
         
+        hideUpperViews()
+        
+        guard let center = contentCenterX else { return }
         UIView.animate(withDuration: 0.25) {
             center.constant = self.view.frame.size.width
             self.view.layoutIfNeeded()
@@ -338,8 +344,10 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     }
     
     func goToAttainment() {
-        guard let center = contentCenterX else { return }
         
+        hideUpperViews()
+        
+        guard let center = contentCenterX else { return }
         UIView.animate(withDuration: 0.25) {
             center.constant = 0.0
             self.view.layoutIfNeeded()
@@ -347,13 +355,37 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     }
     
 	func goToPoints() {
+        
+        hideUpperViews()
+        
         guard let center = contentCenterX else { return }
-
         UIView.animate(withDuration: 0.25) {
             center.constant = -self.view.frame.size.width
             self.view.layoutIfNeeded()
         }
 	}
+    
+    
+    func goToLeaderBoard() {
+        hideUpperViews()
+        leaderBoard.isHidden = false
+    }
+    
+    func goToEventsAttended() {
+        hideUpperViews()
+        eventAtteneded.isHidden = false
+    }
+        
+    func goToAttendance() {
+        hideUpperViews()
+        attendance.isHidden = false
+    }
+    
+    private func hideUpperViews() {
+        leaderBoard.isHidden = true
+        eventAtteneded.isHidden = true
+        attendance.isHidden = true
+    }
 	
 	@IBAction func changePeriod(_ sender:UISegmentedControl) {
 		switch sender.selectedSegmentIndex {
