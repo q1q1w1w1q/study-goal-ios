@@ -63,7 +63,7 @@ enum GraphType {
 class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, CustomPickerViewDelegate, UIScrollViewDelegate {
 	
 	@IBOutlet weak var contentCenterX:NSLayoutConstraint!
-	@IBOutlet weak var pageSegment:UISegmentedControl?
+//	@IBOutlet weak var pageSegment:UISegmentedControl?
 	@IBOutlet weak var titleLabel:UILabel!
 	@IBOutlet weak var blueDot:UIImageView!
 	@IBOutlet weak var comparisonStudentName:UILabel!
@@ -109,6 +109,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     
     @IBOutlet weak var leaderBoard: UIView!
     @IBOutlet weak var eventAtteneded: UIView!
+    @IBOutlet weak var attendance: UIView!
     
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -315,21 +316,21 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 		navigationController?.pushViewController(vc, animated: true)
 	}
 	
-	@IBAction func changePage(_ sender:UISegmentedControl) {
-		switch sender.selectedSegmentIndex {
-		case 0:
-			goToGraph()
-			break
-		case 1:
-			goToAttainment()
-			break
-		case 2:
-			goToPoints()
-			break
-		default:
-			break
-		}
-	}
+//	@IBAction func changePage(_ sender:UISegmentedControl) {
+//		switch sender.selectedSegmentIndex {
+//		case 0:
+//			goToGraph()
+//			break
+//		case 1:
+//			goToAttainment()
+//			break
+//		case 2:
+//			goToPoints()
+//			break
+//		default:
+//			break
+//		}
+//	}
 	
     func goToGraph() {
         
@@ -377,12 +378,13 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         
     func goToAttendance() {
         hideUpperViews()
-
+        attendance.isHidden = false
     }
     
     private func hideUpperViews() {
         leaderBoard.isHidden = true
         eventAtteneded.isHidden = true
+        attendance.isHidden = true
     }
 	
 	@IBAction func changePeriod(_ sender:UISegmentedControl) {
