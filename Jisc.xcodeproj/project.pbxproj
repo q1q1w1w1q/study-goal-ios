@@ -206,6 +206,8 @@
 		DAFBC44F1BFB2B6800E87023 /* StretchTarget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFBC44D1BFB2B6800E87023 /* StretchTarget+CoreDataProperties.swift */; };
 		DAFBC4501BFB2B6800E87023 /* StretchTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFBC44E1BFB2B6800E87023 /* StretchTarget.swift */; };
 		DAFC711F1BDFE33700A06C9A /* AttainmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFC711D1BDFE33700A06C9A /* AttainmentCell.swift */; };
+		DD33041B1F1DF7260059ED6C /* PrivacyWebViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3304191F1DF7260059ED6C /* PrivacyWebViewVC.swift */; };
+		DD33041C1F1DF7260059ED6C /* PrivacyWebViewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD33041A1F1DF7260059ED6C /* PrivacyWebViewVC.xib */; };
 		DDFE93D41F18611900A62400 /* stats_points_pi_chart.html in Resources */ = {isa = PBXBuildFile; fileRef = DDFE93D31F18611900A62400 /* stats_points_pi_chart.html */; };
 		E18AFD6288449EE9B270EF5D /* Pods_Jisc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D383A4B7AA065C8D65C534 /* Pods_Jisc.framework */; };
 /* End PBXBuildFile section */
@@ -503,6 +505,8 @@
 		DAFBC44D1BFB2B6800E87023 /* StretchTarget+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StretchTarget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DAFBC44E1BFB2B6800E87023 /* StretchTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StretchTarget.swift; sourceTree = "<group>"; };
 		DAFC711D1BDFE33700A06C9A /* AttainmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttainmentCell.swift; sourceTree = "<group>"; };
+		DD3304191F1DF7260059ED6C /* PrivacyWebViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyWebViewVC.swift; sourceTree = "<group>"; };
+		DD33041A1F1DF7260059ED6C /* PrivacyWebViewVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivacyWebViewVC.xib; sourceTree = "<group>"; };
 		DDFE93D31F18611900A62400 /* stats_points_pi_chart.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = stats_points_pi_chart.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1114,6 +1118,8 @@
 				DAB0C8C31C4CEC3200F7A3C6 /* SelectLanguageVC.xib */,
 				DA3F7B841C996B9B00E15678 /* ConsentVC.swift */,
 				DA3F7B851C996B9B00E15678 /* ConsentVC.xib */,
+				DD3304191F1DF7260059ED6C /* PrivacyWebViewVC.swift */,
+				DD33041A1F1DF7260059ED6C /* PrivacyWebViewVC.xib */,
 			);
 			name = iPhone;
 			sourceTree = "<group>";
@@ -1399,6 +1405,7 @@
 				DA425AD41BD52E0B00C77D76 /* InstituteCell.xib in Resources */,
 				DAB0C8131C4CE98C00F7A3C6 /* EngagementGraphVC~ipad.xib in Resources */,
 				DAB0C7E91C4CE90C00F7A3C6 /* FoundStudentCell.xib in Resources */,
+				DD33041C1F1DF7260059ED6C /* PrivacyWebViewVC.xib in Resources */,
 				DAB0C80D1C4CE97400F7A3C6 /* EngagementGraphVC.xib in Resources */,
 				DA2094001E69BDA3001D979A /* SocialLoginVC~ipad.xib in Resources */,
 				DAD8BD7C1DB8C4DC004F21DE /* DoubleBarView.xib in Resources */,
@@ -1493,6 +1500,7 @@
 				DA46D96E1BF2397F00AA1476 /* Institution.swift in Sources */,
 				DA46D9791BF2482400AA1476 /* Activity+CoreDataProperties.swift in Sources */,
 				DADBA8B81BD1340300BC9CE4 /* OneActivityCell.swift in Sources */,
+				DD33041B1F1DF7260059ED6C /* PrivacyWebViewVC.swift in Sources */,
 				DA4085AD1EE6A8C00012A561 /* MenuView.swift in Sources */,
 				DAFBC4501BFB2B6800E87023 /* StretchTarget.swift in Sources */,
 				DA3F7B861C996B9B00E15678 /* ConsentVC.swift in Sources */,
