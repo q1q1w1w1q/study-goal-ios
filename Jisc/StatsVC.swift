@@ -107,6 +107,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     @IBOutlet weak var lineViews: UIView!
     @IBOutlet weak var rectangleView: UIView!
     
+    @IBOutlet weak var container: UIView!
     @IBOutlet weak var leaderBoard: UIView!
     @IBOutlet weak var eventAtteneded: UIView!
     @IBOutlet weak var attendance: UIView!
@@ -335,7 +336,8 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     func goToGraph() {
         
         hideUpperViews()
-        
+        container.isHidden = false
+
         guard let center = contentCenterX else { return }
         UIView.animate(withDuration: 0.25) {
             center.constant = self.view.frame.size.width
@@ -346,7 +348,8 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     func goToAttainment() {
         
         hideUpperViews()
-        
+        container.isHidden = false
+
         guard let center = contentCenterX else { return }
         UIView.animate(withDuration: 0.25) {
             center.constant = 0.0
@@ -357,7 +360,8 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 	func goToPoints() {
         
         hideUpperViews()
-        
+        container.isHidden = false
+
         guard let center = contentCenterX else { return }
         UIView.animate(withDuration: 0.25) {
             center.constant = -self.view.frame.size.width
@@ -382,6 +386,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     }
     
     private func hideUpperViews() {
+        container.isHidden = true
         leaderBoard.isHidden = true
         eventAtteneded.isHidden = true
         attendance.isHidden = true

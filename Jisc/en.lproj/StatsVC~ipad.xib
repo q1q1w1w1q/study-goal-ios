@@ -30,6 +30,7 @@
                 <outlet property="compareToButton" destination="21C-a0-oJh" id="Hfb-8w-MU4"/>
                 <outlet property="compareToView" destination="s5e-JA-nYS" id="bcO-Qc-hfE"/>
                 <outlet property="comparisonStudentName" destination="W1p-eh-43G" id="MDU-gq-iId"/>
+                <outlet property="container" destination="piF-xF-kJw" id="pxg-FK-AJ7"/>
                 <outlet property="eventAtteneded" destination="W0B-S1-lqT" id="1Xq-wZ-a4r"/>
                 <outlet property="graphContainer" destination="MBA-FU-wRf" id="sQr-Gv-oEq"/>
                 <outlet property="graphContainerWidth" destination="PTG-Y3-dH5" id="Hyi-tl-XJf"/>
@@ -121,7 +122,7 @@
                         <constraint firstAttribute="trailing" secondItem="hxL-PE-OB7" secondAttribute="trailing" id="xts-jq-85Z"/>
                     </constraints>
                 </view>
-                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pRf-AU-I8i" userLabel="Leader Board">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pRf-AU-I8i" userLabel="Leader Board">
                     <rect key="frame" x="0.0" y="60" width="1024" height="708"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UaN-vD-MCX">
@@ -1051,7 +1052,7 @@
                         <constraint firstItem="eQL-rN-RZv" firstAttribute="top" secondItem="KbO-3f-Ulc" secondAttribute="bottom" constant="-2" id="oic-j8-Wsa"/>
                     </constraints>
                 </view>
-                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W0B-S1-lqT" userLabel="Events Attended">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W0B-S1-lqT" userLabel="Events Attended">
                     <rect key="frame" x="0.0" y="60" width="1024" height="708"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="prY-xN-4dm">
