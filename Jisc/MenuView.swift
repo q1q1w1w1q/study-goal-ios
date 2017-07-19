@@ -54,11 +54,11 @@ class MenuView: UIView {
 			}
 		} else {
 			lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Feed, previousButton: lastButton, isLastButton: false, parent: view)
-			if iPad {
-				lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Stats, previousButton: lastButton, isLastButton: false, parent: view)
-			} else {
+//			if iPad {
+//				lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Stats, previousButton: lastButton, isLastButton: false, parent: view)
+//			} else {
 				lastButton = StatsMenuButton.insertSelfinView(view.menuContent, buttonType: .Stats, previousButton: lastButton, isLastButton: false, parent: view)
-			}
+//			}
 			lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Log, previousButton: lastButton, isLastButton: false, parent: view)
 			lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Target, previousButton: lastButton, isLastButton: false, parent: view)
 			if index == 0 {
