@@ -51,6 +51,7 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 	@IBOutlet weak var acceptAnalyticsButton:UIButton!
 	@IBOutlet weak var acceptPrivacyButton:UIButton!
 	var goingAway = false
+    @IBOutlet var privacyView: UIView!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -217,7 +218,19 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 		}
 	}
 	
-	@IBAction func toggleAnalytics(_ sender:UIButton) {
+    @IBAction func privacyStatement(_ sender: UIButton) {
+        if (iPad) {
+            titleLabel.text = localized("privacy_statement")
+            addCurrentView(privacyView)
+        } else if (!goingAway) {
+            goingAway = true
+            let vc = PrivacyWebViewVC()
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    
+    }
+	
+    @IBAction func toggleAnalytics(_ sender:UIButton) {
 		sender.isSelected = !sender.isSelected
 		changeConsentSettings()
 	}
