@@ -206,6 +206,7 @@
 		DAFBC44F1BFB2B6800E87023 /* StretchTarget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFBC44D1BFB2B6800E87023 /* StretchTarget+CoreDataProperties.swift */; };
 		DAFBC4501BFB2B6800E87023 /* StretchTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFBC44E1BFB2B6800E87023 /* StretchTarget.swift */; };
 		DAFC711F1BDFE33700A06C9A /* AttainmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFC711D1BDFE33700A06C9A /* AttainmentCell.swift */; };
+		DD6518351F21E2B300003916 /* IPadStatsMenuButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD6518341F21E2B300003916 /* IPadStatsMenuButton.xib */; };
 		DDFE93D41F18611900A62400 /* stats_points_pi_chart.html in Resources */ = {isa = PBXBuildFile; fileRef = DDFE93D31F18611900A62400 /* stats_points_pi_chart.html */; };
 		E18AFD6288449EE9B270EF5D /* Pods_Jisc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D383A4B7AA065C8D65C534 /* Pods_Jisc.framework */; };
 /* End PBXBuildFile section */
@@ -503,6 +504,7 @@
 		DAFBC44D1BFB2B6800E87023 /* StretchTarget+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StretchTarget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DAFBC44E1BFB2B6800E87023 /* StretchTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StretchTarget.swift; sourceTree = "<group>"; };
 		DAFC711D1BDFE33700A06C9A /* AttainmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttainmentCell.swift; sourceTree = "<group>"; };
+		DD6518341F21E2B300003916 /* IPadStatsMenuButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IPadStatsMenuButton.xib; sourceTree = "<group>"; };
 		DDFE93D31F18611900A62400 /* stats_points_pi_chart.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = stats_points_pi_chart.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -728,6 +730,7 @@
 				DA4085B51EE6AFD70012A561 /* MenuButton.swift */,
 				DA4085B71EE6AFE50012A561 /* MenuButton.xib */,
 				DA4085B91EE6EAA10012A561 /* StatsMenuButton.xib */,
+				DD6518341F21E2B300003916 /* IPadStatsMenuButton.xib */,
 				DA76411C1BD7BE4000A7D5C1 /* AlertView.swift */,
 				DA76411A1BD7BE3300A7D5C1 /* AlertView.xib */,
 				DAD644CA1C6227C800AA62E8 /* Localizable.strings */,
@@ -1344,6 +1347,7 @@
 				DAB0C8611C4CEA8900F7A3C6 /* TargetVC.xib in Resources */,
 				DAB0C8731C4CEAC400F7A3C6 /* NewTargetVC~ipad.xib in Resources */,
 				DA4085B81EE6AFE50012A561 /* MenuButton.xib in Resources */,
+				DD6518351F21E2B300003916 /* IPadStatsMenuButton.xib in Resources */,
 				DAC32DC91BCF9F5B00C4FBF5 /* MyriadPro-Regular.otf in Resources */,
 				DAB0C8071C4CE96400F7A3C6 /* AttainmentCell.xib in Resources */,
 				DAD66C9C1C52745500074B79 /* LoginVC~ipad.xib in Resources */,

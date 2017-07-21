@@ -32,33 +32,9 @@ class MenuButton: UIView {
 		button.parent = parent
 		button.button.setTitle(buttonType.rawValue, for: .normal)
 		button.button.setTitle(buttonType.rawValue, for: .selected)
-		switch buttonType {
-		case .Feed:
-			button.button.setImage(UIImage(named: "FeedVCMenuIcon"), for: .normal)
-			button.button.setImage(UIImage(named: "FeedVCMenuIconSelected"), for: .selected)
-			break
-		case .Stats:
-			button.button.setImage(UIImage(named: "StatsVCMenuIcon"), for: .normal)
-			button.button.setImage(UIImage(named: "StatsVCMenuIconSelected"), for: .selected)
-			break
-		case .Log:
-			button.button.setImage(UIImage(named: "LogVCMenuIcon"), for: .normal)
-			button.button.setImage(UIImage(named: "LogVCMenuIconSelected"), for: .selected)
-			break
-		case .Target:
-			button.button.setImage(UIImage(named: "TargetVCMenuIcon"), for: .normal)
-			button.button.setImage(UIImage(named: "TargetVCMenuIconSelected"), for: .selected)
-			break
-		case .Settings:
-			button.button.setImage(UIImage(named: "settingsMenuIcon"), for: .normal)
-			button.button.setImage(UIImage(named: "settingsMenuIconSelected"), for: .selected)
-			break
-		case .Logout:
-			button.button.setImage(UIImage(named: "logoutMenuIcon"), for: .normal)
-			button.button.setImage(UIImage(named: "logoutMenuIcon"), for: .selected)
-			break
-		}
+        setImageOf(button:button.button, with: buttonType)
 		view.addSubview(button)
+        
 		let leading = NSLayoutConstraint(item: button, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: 0.0)
 		let trailing = NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: button, attribute: .trailing, multiplier: 1.0, constant: 0.0)
 		view.addConstraints([leading, trailing])
@@ -116,15 +92,116 @@ class MenuButton: UIView {
 	deinit {
 		NotificationCenter.default.removeObserver(self)
 	}
+    
+    private class func setImageOf(button: UIButton, with buttonType: MenuButtonType) {
+        switch buttonType {
+        case .Feed:
+            button.setImage(UIImage(named: "FeedVCMenuIcon"), for: .normal)
+            button.setImage(UIImage(named: "FeedVCMenuIconSelected"), for: .selected)
+            break
+        case .Stats:
+            button.setImage(UIImage(named: "StatsVCMenuIcon"), for: .normal)
+            button.setImage(UIImage(named: "StatsVCMenuIconSelected"), for: .selected)
+            break
+        case .Log:
+            button.setImage(UIImage(named: "LogVCMenuIcon"), for: .normal)
+            button.setImage(UIImage(named: "LogVCMenuIconSelected"), for: .selected)
+            break
+        case .Target:
+            button.setImage(UIImage(named: "TargetVCMenuIcon"), for: .normal)
+            button.setImage(UIImage(named: "TargetVCMenuIconSelected"), for: .selected)
+            break
+        case .Settings:
+            button.setImage(UIImage(named: "settingsMenuIcon"), for: .normal)
+            button.setImage(UIImage(named: "settingsMenuIconSelected"), for: .selected)
+            break
+        case .Logout:
+            button.setImage(UIImage(named: "logoutMenuIcon"), for: .normal)
+            button.setImage(UIImage(named: "logoutMenuIcon"), for: .selected)
+            break
+        }
+    }
 
 }
 
+class IPadStatsMenuButton: MenuButton {
+    @IBOutlet weak var arrow:UIImageView!
+    @IBOutlet weak var buttonsHeight:NSLayoutConstraint!
+    var expanded = false
+    
+    override func buttonAction(_ sender: UIButton?) {
+        if expanded {
+            retract()
+        } else {
+            expand()
+        }
+    }
+    
+    func expand() {
+      expanded = true
+        UIView.animate(withDuration: 0.25) {
+            self.arrow.transform = CGAffineTransform(rotationAngle: .pi / 2.0)
+            self.buttonsHeight.constant = 40 * 4
+            self.parent?.layoutIfNeeded()
+        }
+    }
+    
+    func retract() {
+        expanded = false
+        UIView.animate(withDuration: 0.25) {
+            self.arrow.transform = CGAffineTransform.identity
+            self.buttonsHeight.constant = 0.0
+            self.parent?.layoutIfNeeded()
+        }
+    }
+    
+    @IBAction func graph(_ sender:UIButton?) {
+        parent?.close(nil)
+        parent?.stats()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            self.parent?.statsViewController.goToGraph()
+        }
+        retract()
+    }
+    
+    @IBAction func leaderBoard(_ sender: UIButton) {
+        parent?.close(nil)
+        parent?.stats()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            self.parent?.statsViewController.goToLeaderBoard()
+        }
+        retract()
+    }
+    
+    @IBAction func eventsAttended(_ sender: UIButton) {
+        parent?.close(nil)
+        parent?.stats()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            self.parent?.statsViewController.goToEventsAttended()
+        }
+        retract()
+    }
+    
+    @IBAction func attendance(_ sender: UIButton) {
+        parent?.close(nil)
+        parent?.stats()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            self.parent?.statsViewController.goToAttendance()
+        }
+        retract()
+    }
+    
+}
+
 class StatsMenuButton: MenuButton {
-	
 	@IBOutlet weak var arrow:UIImageView!
 	@IBOutlet weak var buttonsHeight:NSLayoutConstraint!
 	var expanded = false
 	
+    @IBOutlet weak var points: UIButton!
+    @IBOutlet weak var attainment: UIButton!
+    @IBOutlet weak var allActivity: UIButton!
+  
 	override func buttonAction(_ sender: UIButton?) {
 		if expanded {
 			retract()
