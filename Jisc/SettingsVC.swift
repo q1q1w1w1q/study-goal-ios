@@ -52,6 +52,7 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 	@IBOutlet weak var acceptPrivacyButton:UIButton!
 	var goingAway = false
     @IBOutlet var privacyView: UIView!
+    @IBOutlet weak var privacyWebView: UIWebView!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -222,6 +223,9 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
         if (iPad) {
             titleLabel.text = localized("privacy_statement")
             addCurrentView(privacyView)
+            let url = URL(string: "https://github.com/jiscdev/learning-analytics/wiki/Privacy-Statement")
+            let requestObj = URLRequest(url: url!)
+            privacyWebView.loadRequest(requestObj)
         } else if (!goingAway) {
             goingAway = true
             let vc = PrivacyWebViewVC()
